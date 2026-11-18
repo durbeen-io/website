@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Durbeen — Logo system: Discovery</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+</style>
+</helmet>
+<div style="width: 1440px; height: 2240px; background: #F4F4F1; color: #14181D; font-family: Inter, system-ui, sans-serif; padding: 64px 72px; display: flex; flex-direction: column; gap: 56px;">
+
+  <!-- Title -->
+  <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid #14181D; padding-bottom: 20px;">
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B; margin-bottom: 12px;">DURBEEN / BRAND / LOGO SYSTEM V3 · FINAL CANDIDATE</div>
+      <div style="font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 44px; letter-spacing: -0.02em;">Discovery</div>
+      <div style="font-size: 17px; color: #3A4149; margin-top: 8px;">A bold D with a forward notch, and a star just beyond its edge: what you find when you look further.</div>
+    </div>
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B; text-align: right; line-height: 1.7;">INK #14181D<br>ACCENT {{accentHex}}<br>PAPER #F4F4F1</div>
+  </div>
+
+  <!-- Row 1: marks -->
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="height: 300px; background: #FFFFFF; border: 1px solid #D9DBD8; display: flex; align-items: center; justify-content: center; color: #14181D; --acc: {{accent}};">
+        <svg viewBox="0 0 100 100" width="210" height="210" role="img" aria-label="Durbeen mark"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{star}}" style="fill: var(--acc);"></path></svg>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">PRIMARY · ON LIGHT</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="height: 300px; background: #14181D; display: flex; align-items: center; justify-content: center; color: #F4F4F1; --acc: {{accentDark}};">
+        <svg viewBox="0 0 100 100" width="210" height="210" role="img" aria-label="Durbeen mark on dark"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{star}}" style="fill: var(--acc);"></path></svg>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">PRIMARY · ON DARK</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="height: 300px; background: #FFFFFF; border: 1px solid #D9DBD8; display: flex; align-items: center; justify-content: center; color: #000000; --acc: #000000;">
+        <svg viewBox="0 0 100 100" width="210" height="210" role="img" aria-label="Durbeen mark, black"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{star}}" style="fill: var(--acc);"></path></svg>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">ONE COLOUR · BLACK</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="height: 300px; background: #000000; display: flex; align-items: center; justify-content: center; color: #FFFFFF; --acc: #FFFFFF;">
+        <svg viewBox="0 0 100 100" width="210" height="210" role="img" aria-label="Durbeen mark, white"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{star}}" style="fill: var(--acc);"></path></svg>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">ONE COLOUR · WHITE</div>
+    </div>
+  </div>
+
+  <!-- Row 2: lockups -->
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="height: 230px; background: #FFFFFF; border: 1px solid #D9DBD8; display: flex; align-items: center; justify-content: center; gap: 26px; color: #14181D; --acc: {{accent}};">
+        <svg viewBox="0 0 100 100" width="104" height="104" role="img" aria-label="Durbeen mark"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{star}}" style="fill: var(--acc);"></path></svg>
+        <div>
+          <div style="font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 64px; line-height: 1; letter-spacing: 0.1em;">DURBEEN</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #3A4149; margin-top: 12px;">Discover. Build. Innovate.</div>
+        </div>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">HORIZONTAL LOCKUP · ON LIGHT</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 12px;">
+      <div style="height: 230px; background: #14181D; display: flex; align-items: center; justify-content: center; gap: 26px; color: #F4F4F1; --acc: {{accentDark}};">
+        <svg viewBox="0 0 100 100" width="104" height="104" role="img" aria-label="Durbeen mark on dark"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{star}}" style="fill: var(--acc);"></path></svg>
+        <div>
+          <div style="font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 64px; line-height: 1; letter-spacing: 0.1em;">DURBEEN</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #C5CAD0; margin-top: 12px;">Discover. Build. Innovate.</div>
+        </div>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">HORIZONTAL LOCKUP · ON DARK</div>
+    </div>
+  </div>
+
+  <!-- Row 3: icons & favicons -->
+  <div style="display: flex; gap: 24px;">
+    <div style="flex: 1 1 0; display: flex; flex-direction: column; gap: 12px;">
+      <div style="height: 260px; background: #FFFFFF; border: 1px solid #D9DBD8; display: flex; align-items: center; justify-content: space-evenly;">
+        <div style="width: 168px; height: 168px; border-radius: 38px; background: #14181D; display: flex; align-items: center; justify-content: center; color: #F4F4F1; --acc: {{accentDark}};">
+          <svg viewBox="0 0 100 100" width="108" height="108" role="img" aria-label="Durbeen app icon"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{starSmall}}" style="fill: var(--acc);"></path></svg>
+        </div>
+        <div style="width: 168px; height: 168px; border-radius: 50%; background: #14181D; display: flex; align-items: center; justify-content: center; color: #F4F4F1; --acc: {{accentDark}};">
+          <svg viewBox="0 0 100 100" width="96" height="96" role="img" aria-label="Durbeen GitHub avatar"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{starSmall}}" style="fill: var(--acc);"></path></svg>
+        </div>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">APP ICON · GITHUB / SOCIAL AVATAR</div>
+    </div>
+    <div style="flex: 1 1 0; display: flex; flex-direction: column; gap: 12px;">
+      <div style="height: 260px; background: #FFFFFF; border: 1px solid #D9DBD8; display: flex; flex-direction: column; justify-content: center; gap: 28px; padding: 0 40px; color: #14181D; --acc: {{accent}};">
+        <div style="display: flex; align-items: flex-end; gap: 40px;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <svg viewBox="0 0 100 100" width="48" height="48" role="img" aria-label="Favicon 48 pixels"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{starSmall}}" style="fill: var(--acc);"></path></svg>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">48</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <svg viewBox="0 0 100 100" width="32" height="32" role="img" aria-label="Favicon 32 pixels"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{starSmall}}" style="fill: var(--acc);"></path></svg>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">32</span>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <svg viewBox="0 0 100 100" width="16" height="16" role="img" aria-label="Favicon 16 pixels"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{starSmall}}" style="fill: var(--acc);"></path></svg>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">16</span>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 8px; background: #E9EAE6; border-radius: 8px 8px 0 0; padding: 10px 14px; width: 340px;">
+          <svg viewBox="0 0 100 100" width="16" height="16" aria-hidden="true"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{starSmall}}" style="fill: var(--acc);"></path></svg>
+          <span style="font-size: 13px; color: #22272E;">Durbeen — Field notes from the ed…</span>
+        </div>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B;">FAVICONS AT REAL SIZE (SMALL VERSION: LARGER STAR) + BROWSER TAB</div>
+    </div>
+  </div>
+
+  <!-- Row 4: rules -->
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; border-top: 1px solid #D9DBD8; padding-top: 28px;">
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 10px;">CLEAR SPACE</div>
+      <div style="font-size: 15px; line-height: 1.55;">Keep empty space around the mark at least the width of the D's wall on every side.</div>
+    </div>
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 10px;">MINIMUM SIZE</div>
+      <div style="font-size: 15px; line-height: 1.55;">Primary mark from 24 px. Below 24 px use the small version (bigger star, more gap).</div>
+    </div>
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 10px;">COLOUR</div>
+      <div style="font-size: 15px; line-height: 1.55;">The accent colour is used on the star only. The D is always ink, paper, black or white.</div>
+    </div>
+    <div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 10px;">NEVER</div>
+      <div style="font-size: 15px; line-height: 1.55;">No gradients, glow, shadows, outlines, rotation or stretching. Never move the star.</div>
+    </div>
+  </div>
+
+  <!-- Row 5: in context -->
+  <div style="display: flex; flex-direction: column; gap: 12px;">
+    <div style="background: #F4F4F1; border: 1px solid #14181D;">
+      <div style="padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #D9DBD8;">
+        <div style="display: flex; align-items: center; gap: 12px; color: #14181D; --acc: {{accent}};">
+          <svg viewBox="0 0 100 100" width="34" height="34" role="img" aria-label="Durbeen"><path d="{{ink}}" fill-rule="evenodd" style="fill: currentColor;"></path><path d="{{star}}" style="fill: var(--acc);"></path></svg>
+          <span style="font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.1em;">DURBEEN</span>
+        </div>
+        <div style="display: flex; gap: 32px; font-size: 15px; font-weight: 500;"><span>Insights</span><span>Projects</span><span>Resources</span><span>About</span></div>
+      </div>
+      <div style="padding: 56px 40px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px;">
+        <div style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 64px; line-height: 1; letter-spacing: -0.035em; max-width: 760px;">Field notes from the edge of technology.</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">HOMEPAGE A · HEADER IN CONTEXT</div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"palette":{"editor":"enum","default":"Signal orange","options":["Teal","Signal orange","Signal red","Cobalt","Forest","Plum","Magenta","Monochrome"]},"$preview":{"width":1440,"height":2240}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const PALETTES = {
+      'Teal': ['#1F5F5C', '#6FB3AE'],
+      'Signal orange': ['#B4501E', '#F08A4B'],
+      'Signal red': ['#C0392B', '#FF6B5A'],
+      'Cobalt': ['#2D4FBF', '#8AA2FF'],
+      'Forest': ['#2E6B3F', '#6FBF86'],
+      'Plum': ['#6B3FA0', '#B596E6'],
+      'Magenta': ['#B0306A', '#F07AAE'],
+      'Monochrome': ['#14181D', '#F4F4F1']
+    };
+    const pick = PALETTES[this.props.palette ?? 'Signal orange'] || PALETTES['Signal orange'];
+    return {
+      accent: pick[0],
+      accentDark: pick[1],
+      accentHex: pick[0],
+      ink: 'M10 8H50A42 42 0 0 1 50 92H10L18 50Z M32 26H50A24 24 0 0 1 50 74H32Z',
+      star: 'M82 12A6 6 0 1 0 94 12A6 6 0 1 0 82 12Z',
+      starSmall: 'M82 10A8 8 0 1 0 98 10A8 8 0 1 0 82 10Z'
+    };
+  }
+}
+</script>
+</body>
+</html>

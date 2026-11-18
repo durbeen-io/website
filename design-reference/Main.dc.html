@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Durbeen — Homepage A, Instrument Lab</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Inter+Tight:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Doto:wght@700;900&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F4F4F1}
+a{color:#14181D;text-decoration:none}a:hover{color:#1F5F5C}
+*{box-sizing:border-box}
+</style>
+</helmet>
+<div style="background: #F4F4F1; color: #14181D; font-family: Inter, system-ui, sans-serif; min-height: 100vh;">
+
+  <!-- Status strip -->
+  <div style="border-bottom: 1px solid #D9DBD8; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.04em; color: #5B636B;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 8px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px;">
+      <span>DURBEEN / INDEPENDENT TECHNOLOGY LAB</span>
+      <span>LOG UPDATED 18.11.2026 · N°012</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header style="border-bottom: 1px solid #D9DBD8;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 20px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px;">
+      <a href="#" style="display: flex; align-items: center; gap: 12px;" aria-label="Durbeen home">
+        <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true"><path d="M10 8H50A42 42 0 0 1 50 92H10L18 50Z M32 26H50A24 24 0 0 1 50 74H32Z" fill-rule="evenodd" fill="#14181D"></path><path d="M82 12A6 6 0 1 0 94 12A6 6 0 1 0 82 12Z" fill="{{accent}}"></path></svg>
+        <span style="font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.14em;">DURBEEN</span>
+      </a>
+      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 32px; font-size: 15px; font-weight: 500;">
+        <a href="#">Insights</a>
+        <a href="#">Projects</a>
+        <a href="#">Resources</a>
+        <a href="#">About</a>
+        <button type="button" aria-label="Search" style="width: 44px; height: 44px; border: 1px solid #D9DBD8; background: transparent; border-radius: 0; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#14181D" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section style="max-width: 1360px; margin: 0 auto; padding: 96px 40px 120px; display: flex; flex-wrap: wrap; gap: 64px; align-items: flex-start;">
+    <div style="flex: 7 1 520px; min-width: 0;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B; margin-bottom: 32px;">[ 00 ] &#160;DISCOVER → EVALUATE → BUILD → SHARE</div>
+      <h1 style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: clamp(48px, 7vw, 104px); line-height: 0.98; letter-spacing: -0.035em; margin: 0 0 40px;">Field notes from the edge of technology.</h1>
+      <p style="font-size: 20px; line-height: 1.55; color: #3A4149; max-width: 600px; margin: 0 0 48px;">Durbeen is an independent lab. We find useful open-source tools and AI, test them properly, and build practical things with what works.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center;">
+        <a href="#" style="background: {{accent}}; color: #FFFFFF; padding: 16px 28px; font-weight: 500; font-size: 15px; display: inline-flex; gap: 12px; align-items: center; min-height: 52px;">Read the latest <span aria-hidden="true">→</span></a>
+        <a href="#" style="padding: 16px 4px; font-weight: 500; font-size: 15px; border-bottom: 1px solid #14181D;">See projects</a>
+      </div>
+    </div>
+
+    <!-- Observation log -->
+    <div style="flex: 5 1 380px; min-width: 0; border: 1px solid #14181D; background: #FAFAF8;">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid #14181D; font-family: 'JetBrains Mono', monospace; font-size: 12px;">
+        <span>OBSERVATION LOG</span>
+        <span style="display: flex; align-items: center; gap: 8px;"><span style="width: 8px; height: 8px; background: {{accent}}; display: inline-block;"></span>LIVE</span>
+      </div>
+      <a href="#" style="display: grid; grid-template-columns: 56px minmax(0,1fr) 56px; gap: 12px; padding: 18px 20px; border-bottom: 1px solid #D9DBD8;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">012</span>
+        <span><span style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 6px;">REPO REVIEW</span><span style="font-weight: 500; font-size: 16px; line-height: 1.35;">UI/UX Pro Max: what's actually inside a viral design skill</span></span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B; text-align: right;">8 MIN</span>
+      </a>
+      <a href="#" style="display: grid; grid-template-columns: 56px minmax(0,1fr) 56px; gap: 12px; padding: 18px 20px; border-bottom: 1px solid #D9DBD8;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">011</span>
+        <span><span style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 6px;">EXPERIMENT</span><span style="font-weight: 500; font-size: 16px; line-height: 1.35;">Converting any file to Markdown to cut AI token costs</span></span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B; text-align: right;">6 MIN</span>
+      </a>
+      <a href="#" style="display: grid; grid-template-columns: 56px minmax(0,1fr) 56px; gap: 12px; padding: 18px 20px; border-bottom: 1px solid #D9DBD8;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">010</span>
+        <span><span style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 6px;">GUIDE</span><span style="font-weight: 500; font-size: 16px; line-height: 1.35;">How to judge a GitHub repo before you trust it</span></span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B; text-align: right;">11 MIN</span>
+      </a>
+      <a href="#" style="display: grid; grid-template-columns: 56px minmax(0,1fr) 56px; gap: 12px; padding: 18px 20px; border-bottom: 1px solid #D9DBD8;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">009</span>
+        <span><span style="display: block; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 6px;">BUILD NOTE</span><span style="font-weight: 500; font-size: 16px; line-height: 1.35;">Building durbeen.io in public: week one</span></span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B; text-align: right;">5 MIN</span>
+      </a>
+      <a href="#" style="display: flex; justify-content: space-between; padding: 16px 20px; font-family: 'JetBrains Mono', monospace; font-size: 12px;">
+        <span>VIEW FULL LOG</span><span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Statement (Apple pacing: one idea, lots of air) -->
+  <section style="border-top: 1px solid #D9DBD8; border-bottom: 1px solid #D9DBD8;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 160px 40px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center; justify-content: space-between;">
+      <h2 style="flex: 1 1 560px; min-width: 0; font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: clamp(40px, 5.5vw, 80px); line-height: 1.02; letter-spacing: -0.03em; margin: 0;">Look closer.<br><span style="color: #5B636B;">Then build.</span></h2>
+      <svg width="320" height="320" viewBox="0 0 320 320" aria-hidden="true" style="flex: 0 0 auto; max-width: 100%;">
+        <circle cx="160" cy="160" r="150" fill="none" stroke="#14181D" stroke-width="1"></circle>
+        <circle cx="160" cy="160" r="100" fill="none" stroke="#D9DBD8" stroke-width="1"></circle>
+        <circle cx="160" cy="160" r="50" fill="none" stroke="#D9DBD8" stroke-width="1"></circle>
+        <path d="M160 0v120M160 200v120M0 160h120M200 160h120" stroke="#14181D" stroke-width="1"></path>
+        <path d="M152 160h16M160 152v16" stroke="{{accent}}" stroke-width="2"></path>
+        <circle cx="228" cy="104" r="6" fill="{{accent}}"></circle>
+        <text x="240" y="96" font-family="JetBrains Mono, monospace" font-size="10" fill="#5B636B">TARGET 012</text>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Featured + recent -->
+  <section style="max-width: 1360px; margin: 0 auto; padding: 120px 40px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 48px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">[ 01 ] &#160;INSIGHTS</div>
+      <a href="#" style="font-size: 15px; font-weight: 500; border-bottom: 1px solid #14181D; padding-bottom: 2px;">All insights →</a>
+    </div>
+
+    <a href="#" style="display: flex; flex-wrap: wrap; gap: 48px; border-top: 1px solid #14181D; padding-top: 40px; margin-bottom: 80px;">
+      <div style="flex: 6 1 480px; min-width: 0; aspect-ratio: 16 / 10; background: #E9EAE6; position: relative; overflow: hidden;">
+        <svg width="100%" height="100%" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#D3D5D1" stroke-width="1"></path></pattern></defs>
+          <rect width="640" height="400" fill="url(#g)"></rect>
+          <circle cx="400" cy="200" r="130" fill="none" stroke="#14181D" stroke-width="1.2"></circle>
+          <circle cx="400" cy="200" r="64" fill="{{accent}}"></circle>
+          <path d="M400 40v60M400 300v60M240 200h60M500 200h60" stroke="#14181D" stroke-width="1.2"></path>
+          <text x="40" y="364" font-family="JetBrains Mono, monospace" font-size="12" fill="#14181D">FIG. 012 — DESIGN INTELLIGENCE, MEASURED</text>
+        </svg>
+      </div>
+      <div style="flex: 5 1 360px; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 32px;">
+        <div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: {{accent}}; margin-bottom: 20px;">FEATURED · REPO REVIEW</div>
+          <h3 style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: clamp(32px, 3.4vw, 48px); line-height: 1.05; letter-spacing: -0.025em; margin: 0 0 24px;">UI/UX Pro Max: what's actually inside a viral design skill</h3>
+          <p style="font-size: 18px; line-height: 1.6; color: #3A4149; margin: 0;">We installed it, read every script, and tested it on a real website. What it does well, where it makes everything look the same, and how to use it safely.</p>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B; border-top: 1px solid #D9DBD8; padding-top: 16px;">
+          <span>FAHAD EHSAN</span><span>18 NOV 2026</span><span>8 MIN READ</span>
+        </div>
+      </div>
+    </a>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px;">
+      <a href="#" style="border-top: 1px solid #14181D; padding-top: 24px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">011 · EXPERIMENT</span>
+        <span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -0.015em;">Converting any file to Markdown to cut AI token costs</span>
+        <span style="font-size: 16px; line-height: 1.55; color: #3A4149;">A small automation that turns PDFs, Word and Excel files into clean text before they reach an AI model.</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">6 MIN READ</span>
+      </a>
+      <a href="#" style="border-top: 1px solid #14181D; padding-top: 24px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">010 · GUIDE</span>
+        <span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -0.015em;">How to judge a GitHub repo before you trust it</span>
+        <span style="font-size: 16px; line-height: 1.55; color: #3A4149;">Stars, licence, last commit, install scripts: a ten-minute checklist for anything you plan to run.</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">11 MIN READ</span>
+      </a>
+      <a href="#" style="border-top: 1px solid #14181D; padding-top: 24px; display: flex; flex-direction: column; gap: 16px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">009 · BUILD NOTE</span>
+        <span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 24px; line-height: 1.2; letter-spacing: -0.015em;">Building durbeen.io in public: week one</span>
+        <span style="font-size: 16px; line-height: 1.55; color: #3A4149;">Why we threw away the first design, and what an independent lab website should actually do.</span>
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">5 MIN READ</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Method -->
+  <section style="background: #14181D; color: #F4F4F1;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 120px 40px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #A3AAB1; margin-bottom: 40px;">[ 02 ] &#160;METHOD</div>
+      <h2 style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: clamp(36px, 4.5vw, 64px); line-height: 1.05; letter-spacing: -0.03em; margin: 0 0 80px; max-width: 900px;">Every project goes through the same four steps.</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0;">
+        <div style="border-top: 1px solid #F4F4F1; padding: 28px 28px 0 0;">
+          <div style="font-family: Doto, 'JetBrains Mono', monospace; font-weight: 900; font-size: 56px; line-height: 1; margin-bottom: 28px;">01</div>
+          <div style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 22px; margin-bottom: 12px;">Discover</div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C5CAD0;">Scan open source, AI releases and tools for things worth a closer look.</p>
+        </div>
+        <div style="border-top: 1px solid #F4F4F1; padding: 28px 28px 0 0;">
+          <div style="font-family: Doto, 'JetBrains Mono', monospace; font-weight: 900; font-size: 56px; line-height: 1; margin-bottom: 28px;">02</div>
+          <div style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 22px; margin-bottom: 12px;">Evaluate</div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C5CAD0;">Install it, read the code, test it on a real task. Publish the honest result.</p>
+        </div>
+        <div style="border-top: 1px solid #F4F4F1; padding: 28px 28px 0 0;">
+          <div style="font-family: Doto, 'JetBrains Mono', monospace; font-weight: 900; font-size: 56px; line-height: 1; margin-bottom: 28px;">03</div>
+          <div style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 22px; margin-bottom: 12px;">Build</div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C5CAD0;">Turn what works into practical tools, automations and products.</p>
+        </div>
+        <div style="border-top: 1px solid #F4F4F1; padding: 28px 28px 0 0;">
+          <div style="font-family: Doto, 'JetBrains Mono', monospace; font-weight: 900; font-size: 56px; line-height: 1; margin-bottom: 28px; color: {{accentOnDark}};">04</div>
+          <div style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 22px; margin-bottom: 12px;">Share</div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #C5CAD0;">Document everything, so others can reuse it and build on it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section style="max-width: 1360px; margin: 0 auto; padding: 120px 40px;">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 48px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5B636B;">[ 03 ] &#160;PROJECTS</div>
+      <a href="#" style="font-size: 15px; font-weight: 500; border-bottom: 1px solid #14181D; padding-bottom: 2px;">All projects →</a>
+    </div>
+    <a href="#" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; align-items: center; padding: 32px 0; border-top: 1px solid #14181D;">
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em;">durbeen.io</span>
+      <span style="font-size: 16px; color: #3A4149; line-height: 1.5;">This website, designed and built in public.</span>
+      <span style="justify-self: end; font-family: 'JetBrains Mono', monospace; font-size: 12px; border: 1px solid {{accent}}; color: {{accent}}; padding: 6px 10px;">IN PROGRESS</span>
+    </a>
+    <a href="#" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; align-items: center; padding: 32px 0; border-top: 1px solid #D9DBD8;">
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em;">[Project 02]</span>
+      <span style="font-size: 16px; color: #3A4149; line-height: 1.5;">[One line on what it does and who it is for.]</span>
+      <span style="justify-self: end; font-family: 'JetBrains Mono', monospace; font-size: 12px; border: 1px solid #5B636B; color: #5B636B; padding: 6px 10px;">PLANNED</span>
+    </a>
+    <a href="#" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; align-items: center; padding: 32px 0; border-top: 1px solid #D9DBD8; border-bottom: 1px solid #D9DBD8;">
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em;">[Project 03]</span>
+      <span style="font-size: 16px; color: #3A4149; line-height: 1.5;">[One line on what it does and who it is for.]</span>
+      <span style="justify-self: end; font-family: 'JetBrains Mono', monospace; font-size: 12px; border: 1px solid #5B636B; color: #5B636B; padding: 6px 10px;">PLANNED</span>
+    </a>
+  </section>
+
+  <!-- Footer -->
+  <footer style="border-top: 1px solid #14181D;">
+    <div style="max-width: 1360px; margin: 0 auto; padding: 80px 40px 40px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 48px; justify-content: space-between; margin-bottom: 96px;">
+        <div style="flex: 1 1 360px; min-width: 0;">
+          <div style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 28px; letter-spacing: -0.02em; margin-bottom: 16px;">Get the field notes.</div>
+          <p style="font-size: 16px; color: #3A4149; line-height: 1.55; margin: 0 0 24px; max-width: 420px;">New reviews and experiments, about twice a month. No spam.</p>
+          <form style="display: flex; flex-wrap: wrap; gap: 8px; max-width: 460px;">
+            <label for="email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Email address</label>
+            <input id="email" type="email" placeholder="you@example.com" style="flex: 1 1 220px; min-height: 52px; padding: 0 16px; border: 1px solid #14181D; background: #FAFAF8; font: inherit; font-size: 15px;">
+            <button type="button" style="min-height: 52px; padding: 0 24px; background: #14181D; color: #F4F4F1; border: 0; font: inherit; font-weight: 500; font-size: 15px; cursor: pointer;">Subscribe</button>
+          </form>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 64px; font-size: 15px;">
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 4px;">EXPLORE</span>
+            <a href="#">Insights</a><a href="#">Projects</a><a href="#">Resources</a><a href="#">About</a>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; margin-bottom: 4px;">ELSEWHERE</span>
+            <a href="#">GitHub ↗</a><a href="#">LinkedIn ↗</a><a href="#">RSS</a>
+          </div>
+        </div>
+      </div>
+      <div style="font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: clamp(64px, 16vw, 232px); line-height: 0.8; letter-spacing: -0.02em; margin-bottom: 32px;">DURBEEN</div>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5B636B; border-top: 1px solid #D9DBD8; padding-top: 16px;">
+        <span>© 2026 DURBEEN · DISCOVER. BUILD. INNOVATE.</span>
+        <span>PRIVACY · TERMS</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"palette":{"editor":"enum","default":"Signal orange","options":["Teal","Signal orange","Signal red","Cobalt","Forest","Plum","Magenta","Monochrome"]},"$preview":{"width":1440,"height":4000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const PALETTES = {
+      'Teal': ['#1F5F5C', '#6FB3AE'],
+      'Signal orange': ['#B4501E', '#F08A4B'],
+      'Signal red': ['#C0392B', '#FF6B5A'],
+      'Cobalt': ['#2D4FBF', '#8AA2FF'],
+      'Forest': ['#2E6B3F', '#6FBF86'],
+      'Plum': ['#6B3FA0', '#B596E6'],
+      'Magenta': ['#B0306A', '#F07AAE'],
+      'Monochrome': ['#14181D', '#F4F4F1']
+    };
+    const pick = PALETTES[this.props.palette ?? 'Signal orange'] || PALETTES['Signal orange'];
+    return { accent: pick[0], accentOnDark: pick[1] };
+  }
+}
+</script>
+</body>
+</html>
