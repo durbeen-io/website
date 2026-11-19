@@ -2,7 +2,7 @@
 
 > Read this whole file at the start of every session. Part A holds locked decisions and changes rarely.
 > Part B (the Progress Log, at the end) is updated at the end of every session.
-> Brief version: 1.3 · 18 Nov 2026 · Owner: Fahad Ehsan
+> Brief version: 1.4 · 19 Nov 2026 · Owner: Fahad Ehsan
 
 ---
 
@@ -15,14 +15,11 @@
 - Tagline: **Discover. Build. Innovate.**
 - Method: **Discover → Evaluate → Build → Share.**
 - It is NOT a personal portfolio, NOT a generic AI agency, and NOT an "open-source company". Open source is a content topic, not the identity.
-- The founder is a beginner, learning in public. Honesty and real experience are the brand's advantage.
 
-## 2. Goals (in order)
+## 2. Goals
 
-1. **Blog first.** Publish useful, experience-based articles regularly (target: 1 per week).
-2. Build credibility, search traffic, and an **email list** (the main long-term asset).
-3. Make money. The fastest route is **services** (setting up tools, automations and AI workflows for businesses), then templates and scripts, labelled affiliate links, and later products and courses.
-4. Grow into a parent company with Projects and Products sections.
+- Publish useful, experience-based articles regularly (target: 1 per week).
+- Business strategy is kept in the private internal repo.
 
 ## 3. Audience
 
@@ -318,10 +315,11 @@ Keep dependencies minimal. Every new package must be justified and approved.
    - Commit.
    - **Update the Progress Log below** and any affected doc (public `docs/` or the private `internal` repo).
    - Tell the founder exactly what changed and what's next.
-10. **Explain simply.** The founder is a beginner learning Git and GitHub. Give the reason behind each step in one line.
+10. **Explain simply.** Give the reason behind each step in one line.
 
 11. **Automatic quality checks (GitHub Actions, from Phase 2 onwards)** run on every pull request: build, frontmatter validation, broken-link check, accessibility check (axe), and Lighthouse CI against the performance budget. A failing check blocks the merge.
 12. **Keep it simple.** Prefer the simplest solution that meets the brief. No new service, package or page without founder approval. Anything listed in section 13 stays out until the founder asks.
+13. **Never in the public repo:** business strategy, revenue plans, founder background, and account or security details. These live in the private `internal` repo (section 16). If a task needs one of them, read it from there; do not copy it here, into `docs/`, into code comments, or into commit messages and pull requests.
 
 ## 12. Phases and gates
 
@@ -342,7 +340,7 @@ Every phase ends with a gate. **Every gate also includes: relevant `docs/` files
 
 ## 13. Deferred: do not build until the founder asks
 
-**Rule:** nothing here is built before launch. Revisit after 10 published articles.
+**Rule:** nothing here is built before launch. Revisit after 10 published articles. Revenue-related deferred items are kept in the private `internal` repo.
 
 | Item | Note |
 |---|---|
@@ -351,13 +349,9 @@ Every phase ends with a gate. **Every gate also includes: relevant `docs/` files
 | "Now" page | What the founder is working on this month |
 | Series landing pages beyond the basic series page | |
 | Beginner glossary | |
-| Sponsorship page | Only once there is traffic |
-| Selling digital products | Kit supports this; after the first templates exist |
-| Affiliate programmes | Disclosure page exists from launch |
 | Footnotes / side notes, print styles | Reading-experience extras |
 | llms.txt | Optional; Google says it has no effect on rankings (2026) |
 | Arabic or Urdu versions | Only if the audience asks |
-| Products section and payments | |
 | User accounts, comments, chatbot, pop-ups | Not planned |
 
 ## 14. Design references
@@ -374,16 +368,10 @@ Every phase ends with a gate. **Every gate also includes: relevant `docs/` files
 
 **Architecture = security.** The site is static (no server code, no database, no login, no admin panel on durbeen.io). Do not add any of these without founder approval.
 
-**The founder is the sole owner/admin of every account:**
-| Account | Controls | Rules |
-|---|---|---|
-| GitHub org `durbeen-io` | Code, articles, who can change anything | Founder = only Owner. 2FA required for all org members. Others get the minimum role (e.g. Write on one repo), removed when no longer needed |
-| Cloudflare | Hosting (Pages), DNS, domain, Email Routing, Web Analytics | Founder = only Super Administrator. 2FA on. No API tokens unless approved; scoped and documented if created |
-| Gmail (personal) | Receives hello@durbeen.io; recovery for the other accounts | 2FA on |
+Account inventory, roles and 2FA rules are kept in the private `internal` repo (`SECURITY.md`).
 
 **Required controls:**
-- 2FA (passkey or authenticator app, not SMS where avoidable) on GitHub, Cloudflare and Gmail. Recovery codes stored offline (password manager or paper), never in the repo.
-- **Branch protection on `main`:** changes go through a pull request; the founder approves before merge; builds must pass. Cloudflare deploys `main` to production and other branches to preview URLs.
+- **Branch protection on `main`:** changes go through a pull request (0 required approvals, because the founder is the only member); the founder reviews and merges it; force pushes and deletion are blocked; it applies to admins too. Required status checks (builds must pass) are added in Phase 2. Cloudflare deploys `main` to production and other branches to preview URLs.
 - GitHub **secret scanning + push protection** and **Dependabot alerts** enabled.
 - No secrets, tokens, `.env` files or personal data in the repo. `.gitignore` covers them.
 - Minimal dependencies; each new package justified and approved; lock file committed.
@@ -409,8 +397,9 @@ Documentation is part of the product. Keep these files current, in plain English
 | File | Contents |
 |---|---|
 | `ADMIN.md` | Account inventory: who owns what, roles, 2FA status, where recovery codes are kept (location only, never the codes), how to add/remove a collaborator |
-| `SECURITY.md` | The controls in section 15 as a checklist, with the date each was last verified |
+| `SECURITY.md` | The account and role table, 2FA rules and the controls in section 15 as a checklist, with the date each was last verified |
 | `INCIDENT.md` | Step-by-step: account compromised, site down, bad deploy (how to roll back), domain/DNS problem, leaked secret |
+| `STRATEGY.md` | Business strategy, revenue plans, founder background, the launch article plan and the Quran Visuals purpose |
 
 **Rules:**
 - ADMIN, SECURITY and INCIDENT must **never** be committed to the public repo. The public docs may say that a private repo exists, but must not copy its contents.
@@ -418,30 +407,15 @@ Documentation is part of the product. Keep these files current, in plain English
 - Every session that changes behaviour, settings or workflow updates the relevant doc in the same commit (in the repo that holds that doc).
 - Anywhere else in this file, "ADMIN.md", "SECURITY.md" or "INCIDENT.md" means the private copy.
 
-## 17. Launch content plan: the first 12 articles
+## 17. Launch content plan
 
-All are based on the founder's real experience. Phase 6 needs 3–5 of these live at launch; the rest follow weekly.
-
-| # | Working title | Category | Type | Level |
-|---|---|---|---|---|
-| 1 | Why I'm building Durbeen in public | Building Products | Build Note | Beginner |
-| 2 | Lovable vs Astro: how I chose where to build my site | Software & Tools | Comparison | Beginner |
-| 3 | UI/UX Pro Max: what's inside a viral design skill | Open Source & GitHub | Review | Intermediate |
-| 4 | How to judge a GitHub repo before you trust it | Open Source & GitHub | Guide | Beginner |
-| 5 | Converting files to Markdown to cut AI token costs | Automation & Productivity | Experiment | Intermediate |
-| 6 | Is Claude Pro enough to build a website? | AI | Insight | Beginner |
-| 7 | llms.txt: what the data really says | AI | Insight | Intermediate |
-| 8 | Kit vs Beehiiv vs Buttondown for a new newsletter | Software & Tools | Comparison | Beginner |
-| 9 | Designing a logo with two AIs: what worked | AI | Experiment | Beginner |
-| 10 | GitHub basics for complete beginners | Open Source & GitHub | Guide | Beginner |
-| 11 | A free website stack: Astro + Cloudflare | Building Products | Guide | Intermediate |
-| 12 | Security basics for a one-person website | Software & Tools | Guide | Beginner |
+The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). Phase 6 needs 3-5 real articles live at launch.
 
 ## 18. Deferred project: Quran Visuals
 
 **Status:** idea agreed, **not to be built yet.** Start only when the founder asks (after the main launch).
 
-**Purpose (founder's words, summarised):** Many people recite surahs every day in prayer without understanding them. Each infographic gives a visual of a surah's meaning, so that when you recite it you can recall the picture, understand what you are reciting, and feel more connected to Allah. **The goal is awareness, not income.**
+**Purpose:** kept in the private `internal` repo (`STRATEGY.md`).
 
 **Decisions so far:**
 - Lives on durbeen.io as its own section (e.g. `/quran-visuals/`), with its own short introduction. Kept separate from the tech feed: not in the homepage log or the Insights list; one link in the footer or menu.
@@ -455,11 +429,12 @@ All are based on the founder's real experience. Phase 6 needs 3–5 of these liv
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 0 (Setup), not started
-- **Last session:** none yet
-- **Next session goal:** Phase 0, step 1. Check whether Node, Git and Claude Code are installed, and plan the installs for approval.
+- **Current phase:** 0 (Setup), in progress
+- **Last session:** 18-19 Nov 2026: tools installed, repos created, security baseline set (details in private repo), public docs skeleton added
+- **Next session goal:** Phase 0, remaining items: scaffold the empty Astro site (check the current stable version; ask approval before installing packages), then create the Cloudflare account and a `*.pages.dev` preview (ask approval first). Then ask for the Phase 0 gate review.
 
 ## Completed
+- 18-19 Nov 2026 (Phase 0, partial): installed Homebrew, Node v26 (Active LTS), npm and the GitHub CLI. Created public repo `durbeen-io/website` and private repo `durbeen-io/internal`. First commit: brief, brand files, design references, `.gitignore`. Security baseline set (details in private repo). Public docs skeleton added: README, DECISIONS, PUBLISHING, DEPLOYMENT, CHANGELOG.
 - 18 Nov 2026: brand, design direction, mockups, logo ("Discovery"), colour (signal orange), architecture and phase plan approved in planning (outside Claude Code).
 - 18 Nov 2026 (v1.3): page inventory (12 pages + 4 templates) and connection map; content system (categories, types, levels, tags, series); Toolkit, Work with Durbeen packages, Editorial policy; Kit newsletter + free download; scorecard, level labels, last-verified dates, reading line, image handling; automatic checks; first 12 articles; Quran Visuals deferred project; deferred list expanded.
 - 18 Nov 2026 (v1.2): added section 15 (security, admin, access control) and section 16 (documentation); gates updated.
@@ -471,4 +446,5 @@ All are based on the founder's real experience. Phase 6 needs 3–5 of these liv
 ## Session history
 | Date | Phase | What was done | Commit(s) | Next |
 |---|---|---|---|---|
-| | | | | |
+| 2026-11-18 | 0 | Installed tools, created both repos, security baseline (details in private repo), first commit | `f8fd6d7` | Docs skeleton |
+| 2026-11-19 | 0 | Public docs skeleton and Progress Log (pull request) | this pull request | Astro scaffold, Cloudflare preview |
