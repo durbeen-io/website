@@ -1,0 +1,6 @@
+/* Self-hosted fonts (@fontsource-variable). Files are bundled by Astro; nothing loads from Google.
+   Each import defines one family. font-display: swap is set by the package. */
+@import '@fontsource-variable/inter';        /* 'Inter Variable'          body and UI */
+@import '@fontsource-variable/inter-tight';  /* 'Inter Tight Variable'    headings    */
+@import '@fontsource-variable/jetbrains-mono'; /* 'JetBrains Mono Variable' labels, code */
+@import '@fontsource-variable/doto';         /* 'Doto Variable'           big numerals only */
