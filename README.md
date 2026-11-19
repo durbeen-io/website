@@ -6,7 +6,7 @@
 - Method: Discover → Evaluate → Build → Share.
 - Content: honest, first-hand articles on AI, open source, automation, tools and building products.
 
-> **Status:** Phase 0 (setup). The site is not built yet. Nothing is deployed to durbeen.io.
+> **Status:** Phase 0 (setup). A placeholder site is deployed to a Cloudflare `workers.dev` address and is hidden from search engines. Nothing is deployed to durbeen.io.
 
 ## Stack
 
@@ -14,7 +14,7 @@ Astro with MDX, plain CSS (custom properties), self-hosted fonts, Pagefind searc
 
 ## Run it locally
 
-The Astro site is not scaffolded yet. Once it is:
+The Astro site is scaffolded (a placeholder page for now):
 
 ```bash
 npm install

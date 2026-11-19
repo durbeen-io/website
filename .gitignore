@@ -12,6 +12,9 @@ dist/
 !.env.example
 *.pem
 *.key
+# Wrangler's local secrets file
+.dev.vars
+.dev.vars.*
 
 # macOS / editors
 .DS_Store
