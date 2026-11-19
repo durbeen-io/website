@@ -77,4 +77,7 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Added `--band` / `--on-band` tokens for dark bands (`#1A1F25` in dark mode) | `--ink` turns light in dark mode, which would make the Method band light | Reusing `--ink` |
 | Follow the brief, not the mockups, where they differ: no teal hover, nav ends with Toolkit (not Resources), wordmark letter-spacing 0.1em, brand favicon | The brief is the locked decision; the mockups are visual references only | Copying the mockup values |
 | Internal `/design-system/` preview page, `noindex` | Lets the founder and reviewers see every token in light and dark. It is not one of the 12 pages. **Remove before the Phase 8 launch** (and keep it out of the sitemap) | Reviewing tokens only in code |
+| Dark mode follows the system by default; the toggle sets a manual override saved in the browser (`localStorage`, key `theme`) | Respects the visitor's device setting and still lets them choose. No cookies, no server | Toggle-only (ignores system); three-way auto/light/dark switch (more UI for little gain) |
+| Theme is applied by a tiny blocking script, `public/theme-init.js`, in `<head>` | Stops a flash of the wrong theme on load | Applying the theme after the page paints |
+| Scripts are never inlined into the HTML (`assetsInlineLimit: 0` in `astro.config.mjs`) | Lets the Phase 7 Content-Security-Policy forbid inline script | Allowing `'unsafe-inline'` or hashing each inline script |
 
