@@ -1,0 +1,164 @@
+---
+// Internal preview of the design tokens. Hidden from search engines.
+// REMOVE before the Phase 8 launch (see docs/DECISIONS.md).
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const colours = [
+  ['--paper', 'Page background'],
+  ['--surface', 'Panels, inputs'],
+  ['--surface-2', 'Placeholders, tabs'],
+  ['--ink', 'Headings, dark bands'],
+  ['--text', 'Article body'],
+  ['--text-2', 'Secondary text'],
+  ['--muted', 'Metadata, labels'],
+  ['--line', 'Hairlines'],
+  ['--accent', 'Links, buttons, star'],
+  ['--on-accent', 'Text on accent'],
+  ['--accent-on-dark', 'Accent on dark bands'],
+  ['--band', 'Dark bands'],
+  ['--on-band', 'Text on dark bands'],
+];
+const spacing = [1, 2, 3, 4, 5, 6, 7];
+---
+
+<BaseLayout
+  title="Design system preview · Durbeen"
+  description="Internal preview of the Durbeen design tokens: colour, type and spacing."
+  noindex
+>
+  <div class="container section">
+    <p class="label">[ DS ] DESIGN SYSTEM PREVIEW · INTERNAL</p>
+    <h1 style="margin-top: var(--space-3)">Instrument Lab</h1>
+    <p class="reading" style="margin-top: var(--space-4); font-size: 20px; color: var(--text-2)">
+      Every colour, font and space below comes from <code>tokens.css</code>. Switch your system to dark
+      to see the dark set.
+    </p>
+
+    <hr />
+    <p class="label">[ 01 ] COLOUR</p>
+    <ul class="swatches">
+      {colours.map(([name, use]) => (
+        <li>
+          <span class="chip" style={`background: var(${name})`}></span>
+          <span class="label">{name}</span>
+          <span class="use">{use}</span>
+        </li>
+      ))}
+    </ul>
+
+    <hr />
+    <p class="label">[ 02 ] TYPE</p>
+    <div class="stack">
+      <div>
+        <p class="label-sm">HERO · INTER TIGHT 600 · CLAMP(48, 7VW, 104)</p>
+        <h1>Field notes from the edge of technology.</h1>
+      </div>
+      <div>
+        <p class="label-sm">SECTION H2 · CLAMP(36, 4.5VW, 64)</p>
+        <h2>Look closer. Then build.</h2>
+      </div>
+      <div>
+        <p class="label-sm">H3 · 24PX</p>
+        <h3>Repo Reviews: what I tested and what broke</h3>
+      </div>
+      <div>
+        <p class="label-sm">BODY · INTER 17PX UI</p>
+        <p class="reading">
+          Durbeen is an independent lab. We find useful open-source tools and AI, test them properly,
+          and build practical things with what works. <a href="#main">A link looks like this</a>.
+        </p>
+      </div>
+      <div>
+        <p class="label-sm">ARTICLE BODY · INTER 19PX / 1.72</p>
+        <p class="reading" style="font-size: var(--fs-body-article); line-height: var(--lh-article)">
+          I installed it on a clean machine and ran the setup guide. It worked on the second try. The
+          first failed because the docs skipped one dependency.
+        </p>
+      </div>
+      <div>
+        <p class="label-sm">LABEL · JETBRAINS MONO 12PX UPPERCASE</p>
+        <p class="label">N°012 · REPO REVIEW · 8 MIN</p>
+      </div>
+      <div>
+        <p class="label-sm">NUMERALS · DOTO 900 · BIG STEP NUMBERS ONLY</p>
+        <p class="numeral" style="font-size: 96px; color: var(--ink)">01 02 03 04</p>
+      </div>
+    </div>
+
+    <hr />
+    <p class="label">[ 03 ] SPACING · 8PX BASE</p>
+    <ul class="spacing">
+      {spacing.map((n) => (
+        <li>
+          <span class="label">--space-{n}</span>
+          <span class="bar" style={`width: var(--space-${n})`}></span>
+        </li>
+      ))}
+    </ul>
+
+    <hr />
+    <p class="label">[ 04 ] ON A DARK BAND</p>
+    <div class="band">
+      <p class="label" style="color: var(--accent-on-dark)">[ 02 ] METHOD</p>
+      <p class="numeral" style="font-size: 72px; margin: var(--space-2) 0">01</p>
+      <p style="margin: 0; color: var(--on-band)">Discover. Evaluate. Build. Share.</p>
+    </div>
+
+    <hr />
+    <p class="label">[ 05 ] FOCUS · PRESS TAB</p>
+    <p><a href="#main">First link</a> · <a href="#main">Second link</a></p>
+  </div>
+</BaseLayout>
+
+<style>
+  .swatches {
+    list-style: none;
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-2);
+  }
+  .swatches li {
+    display: grid;
+    gap: 4px;
+  }
+  .chip {
+    height: 64px;
+    border: var(--border);
+  }
+  .use {
+    font-size: 14px;
+    color: var(--text-2);
+  }
+  .stack {
+    display: grid;
+    gap: var(--space-5);
+    margin-top: var(--space-3);
+  }
+  .stack .label-sm {
+    margin: 0 0 var(--space-1);
+  }
+  .spacing {
+    list-style: none;
+    margin: var(--space-3) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-1);
+  }
+  .spacing li {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    align-items: center;
+  }
+  .bar {
+    height: 12px;
+    background: var(--ink);
+  }
+  .band {
+    margin-top: var(--space-3);
+    padding: var(--space-5);
+    background: var(--band);
+    color: var(--on-band);
+  }
+</style>

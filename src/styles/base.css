@@ -1,0 +1,167 @@
+/* Base styles: reset, page defaults, headings, links, focus, layout helpers.
+   All values come from tokens.css. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--paper);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--fs-body-ui);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Headings: Inter Tight, tight tracking. Sizes are set per use (see utility classes). */
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: var(--track-display);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--fs-hero); }
+h2 { font-size: var(--fs-section); }
+h3 { font-size: 24px; letter-spacing: -0.02em; line-height: 1.2; }
+h4 { font-size: 18px; letter-spacing: -0.01em; line-height: 1.3; }
+
+p { margin: 0 0 1em; }
+
+/* Links: ink with an accent underline. Accent is never used on body paragraphs. */
+a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Visible focus for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+hr {
+  border: 0;
+  border-top: var(--border);
+  margin: var(--space-6) 0;
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.reading {
+  max-width: var(--reading-width);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+/* Labels and metadata: monospace, uppercase, terse */
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.label-sm {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* Big step numbers only (Doto). Never for text. */
+.numeral {
+  font-family: var(--font-numeral);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Skip link: first thing a keyboard user can tab to */
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: 0;
+  transform: translateY(-100%);
+  padding: 12px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  text-decoration: none;
+  z-index: 100;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

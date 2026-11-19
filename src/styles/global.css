@@ -1,3 +1,4 @@
-/* Global entry point. Base styles are added in the next pull request. */
+/* Global entry point: fonts, tokens, then base styles. */
 @import './fonts.css';
 @import './tokens.css';
+@import './base.css';
