@@ -345,7 +345,7 @@ Every phase ends with a gate. **Every gate also includes: relevant `docs/` files
 | Item | Note |
 |---|---|
 | **Quran Visuals** (see section 18) | Planned project; design already agreed |
-| Contact form | Needs a Cloudflare Worker + Turnstile (Pages Functions can't send email). Email link only until then |
+| Contact form | Needs a Worker script (the site is static assets only), Turnstile and a way to send email. Email link only until then |
 | "Now" page | What the founder is working on this month |
 | Series landing pages beyond the basic series page | |
 | Beginner glossary | |
@@ -429,11 +429,12 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 0 (Setup), nearly done: waiting for the gate review
-- **Last session:** 19 Nov 2026: empty Astro site scaffolded; Cloudflare Workers preview live at `durbeen-website.durbeen.workers.dev`; hosting wording moved from Pages to Workers
-- **Next session goal:** Phase 0 gate review in a fresh session (checks every Phase 0 gate item). Then Phase 1 (design system) once the founder approves.
+- **Current phase:** 0 (Setup), nearly done: a gate pre-check is finished and its fixes are in this pull request; waiting for the fresh-session gate review
+- **Last session:** 19 Nov 2026: empty Astro site scaffolded; Cloudflare Workers preview live at `durbeen-website.durbeen.workers.dev`; hosting wording moved from Pages to Workers; Phase 0 gate pre-check and fixes
+- **Next session goal:** Phase 0 gate review in a **fresh** session (the pre-check ran in the building session, so it does not count). Then Phase 1 (design system) once the founder approves.
 
 ## Completed
+- 19 Nov 2026 (Phase 0): gate pre-check run. Fixes: `.dev.vars` added to `.gitignore`; README, CHANGELOG and the contact-form note updated to match the live setup. Account and access details are in the private repo.
 - 19 Nov 2026 (Phase 0): Astro 7.4.13 minimal scaffold added (PR #2). Cloudflare Workers config and pre-launch `noindex` header added (PR #3); first deploy to `durbeen-website.durbeen.workers.dev` succeeded. Follow-up: Pages wording replaced by Workers, Node version pinned to 26 (`.node-version`), Wrangler telemetry off, `workers_dev` and `preview_urls` set explicitly. Account and access details are in the private repo.
 - 18-19 Nov 2026 (Phase 0, partial): installed Homebrew, Node v26 (Active LTS), npm and the GitHub CLI. Created public repo `durbeen-io/website` and private repo `durbeen-io/internal`. First commit: brief, brand files, design references, `.gitignore`. Security baseline set (details in private repo). Public docs skeleton added: README, DECISIONS, PUBLISHING, DEPLOYMENT, CHANGELOG.
 - 18 Nov 2026: brand, design direction, mockups, logo ("Discovery"), colour (signal orange), architecture and phase plan approved in planning (outside Claude Code).
@@ -450,4 +451,5 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 | 2026-11-18 | 0 | Installed tools, created both repos, security baseline (details in private repo), first commit | `f8fd6d7` | Docs skeleton |
 | 2026-11-19 | 0 | Public docs skeleton and Progress Log | PR #1 (`4272615`) | Astro scaffold, Cloudflare preview |
 | 2026-11-19 | 0 | Astro minimal scaffold; Workers config and noindex header; first deploy to workers.dev | PR #2 (`bbe2638`), PR #3 (`61931c2`) | Workers wording, Node pin |
-| 2026-11-19 | 0 | Pages to Workers wording, Node pin, Wrangler settings, docs | this pull request | Phase 0 gate review |
+| 2026-11-19 | 0 | Pages to Workers wording, Node pin, Wrangler settings, docs | PR #4 (`3bc3608`) | Gate pre-check |
+| 2026-11-19 | 0 | Gate pre-check fixes: `.dev.vars` ignored, stale README, CHANGELOG and section 13 wording | this pull request | Fresh-session gate review |
