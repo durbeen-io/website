@@ -1,0 +1,4 @@
+# Pre-launch: ask search engines not to index the site.
+# REMOVE this rule at the Phase 8 launch (see docs/DEPLOYMENT.md).
+/*
+  X-Robots-Tag: noindex

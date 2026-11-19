@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers settings. The site is fully static: no Worker script,
+  // just the built files in dist/. "name" must match the Worker name in the
+  // Cloudflare dashboard, or the build fails.
+  "name": "durbeen-website",
+  "compatibility_date": "2026-11-19",
+  "assets": {
+    "directory": "./dist"
+  }
+}
