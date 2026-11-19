@@ -12,8 +12,8 @@ The weekly routine. Goal: **under 10 minutes** from a finished draft to live.
 4. **Preview locally:** `npm run dev`.
 5. **Run the pre-publish checklist** (below).
 6. **Commit, push and open a pull request.** Automatic checks run (build, frontmatter, links, accessibility, Lighthouse). A failing check blocks the merge.
-7. **Check the preview URL** that Cloudflare Pages posts on the pull request.
-8. **Merge.** Cloudflare Pages publishes `main`.
+7. **Check the preview URL** that Cloudflare posts as a comment on the pull request.
+8. **Merge.** Cloudflare Workers publishes `main`.
 9. **After it is live and indexed**, republish on dev.to, Medium and LinkedIn with a canonical link back to durbeen.io.
 
 ## Frontmatter template

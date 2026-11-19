@@ -261,7 +261,7 @@ scorecard:                 # Review type only
 1. Create `src/content/insights/my-article.mdx` from the template `_template.mdx`.
 2. Write it, and preview locally with `npm run dev`.
 3. Run the pre-publish checklist (`docs/PUBLISHING.md`).
-4. Commit, push and open a pull request. Automatic checks run. Merge, and Cloudflare Pages publishes.
+4. Commit, push and open a pull request. Automatic checks run. Merge, and Cloudflare Workers publishes.
 5. Republish on dev.to, Medium and LinkedIn with a canonical link back to durbeen.io (after the original is live and indexed).
 6. The goal is under 10 minutes from a finished draft to live.
 
@@ -273,7 +273,7 @@ scorecard:                 # Review type only
 | Styling | **Plain CSS** with custom properties (the tokens above). No CSS framework |
 | Fonts | @fontsource, self-hosted |
 | Search | Pagefind |
-| Hosting | **Cloudflare Pages** (free plan), connected to GitHub |
+| Hosting | **Cloudflare Workers with static assets** (free plan), built from GitHub by Workers Builds. Chosen over Pages because Cloudflare now recommends Workers for new projects (see `docs/DECISIONS.md`) |
 | Repository | GitHub organisation `durbeen-io`, repo `website` |
 | Domain | durbeen.io (registered on Cloudflare) |
 | Email | hello@durbeen.io via Cloudflare Email Routing, forwarding to the founder's Gmail |
@@ -298,7 +298,7 @@ Keep dependencies minimal. Every new package must be justified and approved.
    - connect a domain
    - deploy to durbeen.io
    - delete files
-4. **Deploy to preview URLs only** (`*.pages.dev`) until the Phase 8 launch approval.
+4. **Deploy only to the `*.workers.dev` address** (never durbeen.io) until the Phase 8 launch approval. The pre-launch `noindex` rule in `public/_headers` must be removed at Phase 8.
 5. **One commit per finished piece,** with a clear message. Never commit secrets or `.env` files.
 6. **Never set `ANTHROPIC_API_KEY`.** Usage must stay on the Pro plan.
 7. **Accessibility in every component:**
@@ -429,11 +429,12 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 0 (Setup), in progress
-- **Last session:** 18-19 Nov 2026: tools installed, repos created, security baseline set (details in private repo), public docs skeleton added
-- **Next session goal:** Phase 0, remaining items: scaffold the empty Astro site (check the current stable version; ask approval before installing packages), then create the Cloudflare account and a `*.pages.dev` preview (ask approval first). Then ask for the Phase 0 gate review.
+- **Current phase:** 0 (Setup), nearly done: waiting for the gate review
+- **Last session:** 19 Nov 2026: empty Astro site scaffolded; Cloudflare Workers preview live at `durbeen-website.durbeen.workers.dev`; hosting wording moved from Pages to Workers
+- **Next session goal:** Phase 0 gate review in a fresh session (checks every Phase 0 gate item). Then Phase 1 (design system) once the founder approves.
 
 ## Completed
+- 19 Nov 2026 (Phase 0): Astro 7.4.13 minimal scaffold added (PR #2). Cloudflare Workers config and pre-launch `noindex` header added (PR #3); first deploy to `durbeen-website.durbeen.workers.dev` succeeded. Follow-up: Pages wording replaced by Workers, Node version pinned to 26 (`.node-version`), Wrangler telemetry off, `workers_dev` and `preview_urls` set explicitly. Account and access details are in the private repo.
 - 18-19 Nov 2026 (Phase 0, partial): installed Homebrew, Node v26 (Active LTS), npm and the GitHub CLI. Created public repo `durbeen-io/website` and private repo `durbeen-io/internal`. First commit: brief, brand files, design references, `.gitignore`. Security baseline set (details in private repo). Public docs skeleton added: README, DECISIONS, PUBLISHING, DEPLOYMENT, CHANGELOG.
 - 18 Nov 2026: brand, design direction, mockups, logo ("Discovery"), colour (signal orange), architecture and phase plan approved in planning (outside Claude Code).
 - 18 Nov 2026 (v1.3): page inventory (12 pages + 4 templates) and connection map; content system (categories, types, levels, tags, series); Toolkit, Work with Durbeen packages, Editorial policy; Kit newsletter + free download; scorecard, level labels, last-verified dates, reading line, image handling; automatic checks; first 12 articles; Quran Visuals deferred project; deferred list expanded.
@@ -447,4 +448,6 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 | Date | Phase | What was done | Commit(s) | Next |
 |---|---|---|---|---|
 | 2026-11-18 | 0 | Installed tools, created both repos, security baseline (details in private repo), first commit | `f8fd6d7` | Docs skeleton |
-| 2026-11-19 | 0 | Public docs skeleton and Progress Log (pull request) | this pull request | Astro scaffold, Cloudflare preview |
+| 2026-11-19 | 0 | Public docs skeleton and Progress Log | PR #1 (`4272615`) | Astro scaffold, Cloudflare preview |
+| 2026-11-19 | 0 | Astro minimal scaffold; Workers config and noindex header; first deploy to workers.dev | PR #2 (`bbe2638`), PR #3 (`61931c2`) | Workers wording, Node pin |
+| 2026-11-19 | 0 | Pages to Workers wording, Node pin, Wrangler settings, docs | this pull request | Phase 0 gate review |
