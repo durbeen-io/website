@@ -12,5 +12,8 @@
   "workers_dev": true,
   "preview_urls": true,
   // Do not send Wrangler usage data to Cloudflare.
-  "send_metrics": false
+  "send_metrics": false,
+  // Required by Worker Previews (`wrangler preview`, used for branch builds).
+  // Empty on purpose: the preview needs no settings different from production.
+  "previews": {}
 }
