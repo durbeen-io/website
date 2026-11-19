@@ -68,3 +68,13 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Branch previews use Worker Previews (`npx wrangler preview`, open beta) with an empty `"previews": {}` block in `wrangler.jsonc` | Cloudflare requires the block (it can be empty) and recommends Previews for branch testing; it keeps the fix in Git. A preview failure never affects the live site. **Fallback:** if Previews prove unreliable, change the Preview command in the dashboard (Settings > Build) to `npx wrangler versions upload`, the stable option, which makes a Version URL instead | `npx wrangler versions upload` from the start (older approach; not recorded in the repo) |
 | Astro 7.4.13, official minimal template only, Astro telemetry off | Smallest possible start; features are added phase by phase | Adding integrations before they are needed |
 
+## 2026-11-19: Design system (Phase 1)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Fonts via `@fontsource-variable` (Inter, Inter Tight, JetBrains Mono, Doto) | Self-hosted as the brief requires; one file covers all weights, so fewer downloads | Static per-weight `@fontsource` packages; Google Fonts |
+| In dark mode the text on accent buttons is dark (`--on-accent: #101317`) | White on the lighter dark-mode orange would fail contrast | White text in both modes |
+| Added `--band` / `--on-band` tokens for dark bands (`#1A1F25` in dark mode) | `--ink` turns light in dark mode, which would make the Method band light | Reusing `--ink` |
+| Follow the brief, not the mockups, where they differ: no teal hover, nav ends with Toolkit (not Resources), wordmark letter-spacing 0.1em, brand favicon | The brief is the locked decision; the mockups are visual references only | Copying the mockup values |
+| Internal `/design-system/` preview page, `noindex` | Lets the founder and reviewers see every token in light and dark. It is not one of the 12 pages. **Remove before the Phase 8 launch** (and keep it out of the sitemap) | Reviewing tokens only in code |
+
