@@ -27,7 +27,7 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 |---|---|---|
 | Astro with MDX; content lives in the repo as Markdown/MDX | Durbeen owns its content; static output is fast and secure | A hosted CMS; Lovable for the site |
 | Static site, no server code, database, login or admin panel | Architecture is the security model | Accounts, comments, a CMS login |
-| Cloudflare Pages (free), domain on Cloudflare | One place for hosting, DNS, email routing and analytics | Other hosts |
+| Cloudflare for hosting, domain on Cloudflare (hosting product changed from Pages to Workers on 2026-11-19, see below) | One place for hosting, DNS, email routing and analytics | Other hosts |
 | Pagefind for search; `@astrojs/rss` and `@astrojs/sitemap` for feeds | Static and free | Hosted search services |
 | Kit (free plan) for the newsletter; double opt-in; hosted form endpoint | No custom data storage | Beehiiv, Buttondown (revisit at Phase 5) |
 | Cloudflare Web Analytics | Free, no cookies | Google Analytics |
@@ -53,4 +53,18 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Secret scanning, push protection and Dependabot alerts and security updates on | Free protection against leaked secrets and vulnerable packages | None |
 | Commits use the GitHub noreply address | Avoids publishing a personal email in public history | Using a personal email |
 | Node.js: use the current Active LTS (v26 "Lithium" as of 2026-11-18), installed with Homebrew | Long support window; matches the "Node LTS" rule | Pinning an older version; v24, which had already moved to maintenance |
-| Deploy to `*.pages.dev` preview URLs only until the Phase 8 launch approval | Nothing goes live on durbeen.io by accident | Early production deploy |
+| Deploy to a `*.workers.dev` address only (was `*.pages.dev`; changed 2026-11-19) until the Phase 8 launch approval | Nothing goes live on durbeen.io by accident | Early production deploy |
+
+## 2026-11-19: Hosting and build setup
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Host on **Cloudflare Workers with static assets**, not Pages | Cloudflare's docs now say "Start new projects with Workers" and that Workers supports most Pages use cases. Static files stay free and unlimited. Branch previews, `_headers` and rollbacks are all supported | Cloudflare Pages (still works, but migrating later would be extra work) |
+| `wrangler.jsonc` committed to the repo before connecting Cloudflare | Without it Cloudflare opens its own pull request that adds an unneeded server adapter | Letting Cloudflare auto-configure |
+| Serve on `durbeen-website.durbeen.workers.dev` only; durbeen.io not connected until Phase 8 | Nothing goes live on the real domain by accident | Early custom domain |
+| Pre-launch `X-Robots-Tag: noindex` in `public/_headers`; remove at Phase 8 | The production `workers.dev` address is not hidden from search engines by default | Leaving the placeholder indexable |
+| Pin the Node version with `.node-version` (26, the Active LTS) | The build uses the same major version as local development; the build image only preinstalls 22 and 24 | Relying on the build image default |
+| Set `workers_dev` and `preview_urls` explicitly, and turn Wrangler telemetry off (`send_metrics: false`) | A Wrangler default can never change them silently; no usage data is sent | Relying on defaults |
+| Branch previews use Worker Previews (`npx wrangler preview`, open beta) with an empty `"previews": {}` block in `wrangler.jsonc` | Cloudflare requires the block (it can be empty) and recommends Previews for branch testing; it keeps the fix in Git. A preview failure never affects the live site. **Fallback:** if Previews prove unreliable, change the Preview command in the dashboard (Settings > Build) to `npx wrangler versions upload`, the stable option, which makes a Version URL instead | `npx wrangler versions upload` from the start (older approach; not recorded in the repo) |
+| Astro 7.4.13, official minimal template only, Astro telemetry off | Smallest possible start; features are added phase by phase | Adding integrations before they are needed |
+

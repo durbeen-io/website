@@ -1,28 +1,32 @@
 # Deployment
 
-> **Status (Phase 0):** the site, the Cloudflare project and the checks do not exist yet. This page records the intended setup and will be updated as each part is built.
+> **Status (Phase 0):** the placeholder site is live at **https://durbeen-website.durbeen.workers.dev**. It is hidden from search engines. durbeen.io is **not** connected; that happens at the Phase 8 launch, after founder approval.
 
 ## How it works
 
+Hosting is **Cloudflare Workers with static assets**, built from GitHub by Workers Builds. Cloudflare recommends Workers over Pages for new projects (see `DECISIONS.md`).
+
 | Branch | Where it goes |
 |---|---|
-| `main` | Production (durbeen.io). **Not connected until the Phase 8 launch approval.** Until then `main` deploys only to a `*.pages.dev` address |
-| Any other branch or pull request | A preview URL on `*.pages.dev` |
+| `main` | Production build, deployed to `durbeen-website.durbeen.workers.dev`. **durbeen.io is not connected until Phase 8** |
+| Any other branch or pull request | A preview build with its own preview URL. Cloudflare posts it as a comment on the pull request |
 
-- Hosting: Cloudflare Pages (free plan), connected to the GitHub repo `durbeen-io/website`.
-- The site is static. The build produces plain files; there is no server code.
+- The site is static. The build produces plain files in `dist/`; there is no server code.
 - Nothing is deployed to durbeen.io before the founder approves the launch.
+- Rolling back: see the private operations repository.
 
-## Build settings (intended)
+## Settings
 
 | Setting | Value |
 |---|---|
-| Framework preset | Astro |
+| Worker name | `durbeen-website` (must match `name` in `wrangler.jsonc`, or the build fails) |
+| Production branch | `main` |
+| Preview builds | On |
 | Build command | `npm run build` |
-| Output directory | `dist` |
-| Node version | Active LTS (currently 26) |
-
-These will be confirmed when the Astro site exists.
+| Deploy command | `npx wrangler deploy` (default) |
+| Preview command | `npx wrangler preview` (default) |
+| Node version | 26, from `.node-version` |
+| Config file | `wrangler.jsonc` (assets directory `./dist`; `workers_dev` and `preview_urls` on; Wrangler telemetry off) |
 
 ## Environment variables
 
@@ -31,6 +35,10 @@ Names only. Never put values in this repo.
 | Name | Purpose |
 |---|---|
 | None yet | |
+
+## Before launch: remove the noindex rule
+
+`public/_headers` currently sends `X-Robots-Tag: noindex` on every response, so search engines ignore the placeholder site. **Remove that rule at Phase 8**, or Google will never index durbeen.io. Replace the file with the real security headers (Phase 7).
 
 ## Automatic checks (from Phase 2)
 
@@ -42,8 +50,4 @@ Set in `public/_headers`: Content-Security-Policy, Strict-Transport-Security, X-
 
 ## Domain (Phase 8)
 
-durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTTPS only. Connected only after launch approval.
-
-## Rolling back
-
-Rollback steps are kept in the private operations repository.
+durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTTPS only ("Always Use HTTPS"). Connected only after launch approval.

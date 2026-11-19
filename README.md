@@ -10,7 +10,7 @@
 
 ## Stack
 
-Astro with MDX, plain CSS (custom properties), self-hosted fonts, Pagefind search, Cloudflare Pages hosting. The site is fully static: no server code, no database, no login.
+Astro with MDX, plain CSS (custom properties), self-hosted fonts, Pagefind search, Cloudflare Workers (static assets) hosting. The site is fully static: no server code, no database, no login.
 
 ## Run it locally
 
