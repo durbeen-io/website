@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being set up (Phase 0).
 
 ### 2026-11-19
+- Colour contrast check added (`npm run check:contrast`): every text and background pair passes WCAG AA in light and dark mode. Phase 1, step 5.
 - Durbeen logo and favicon added to the site: browser-tab icon, iPhone home-screen icon, and a reusable Logo component (mark, wordmark, tagline; light, dark and dark-band versions). Astro's default favicon removed. Phase 1, step 4.
 - Dark-mode toggle added. The site follows your device's light/dark setting by default; the toggle overrides it and the choice is remembered. Phase 1, step 3.
 - Base styles (reset, headings, links, focus outlines, layout helpers, reduced-motion support) and a shared page layout added. A hidden internal preview page, `/design-system/`, shows all tokens. Phase 1, step 2.

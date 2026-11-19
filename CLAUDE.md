@@ -429,11 +429,12 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 0 (Setup) **COMPLETE** (gate review passed and approved by the founder, 19 Nov 2026). Phase 1 has not started
-- **Last session:** 19 Nov 2026: empty Astro site scaffolded; Cloudflare Workers preview live at `durbeen-website.durbeen.workers.dev`; hosting wording moved from Pages to Workers; Phase 0 gate pre-check and fixes; fresh-session Phase 0 gate review passed, founder approved
-- **Next session goal:** Phase 1 (design system): tokens, fonts, light and dark mode, logo files, base styles. Confirm the goal with the founder at the start of the session.
+- **Current phase:** 1 (Design system) **BUILT, awaiting gate review.** All five Phase 1 pull requests are merged (#7 to #11). The fresh-session gate review and the founder's approval are still needed before Phase 2
+- **Last session:** 19 Nov 2026: Phase 1 built in five pull requests: tokens and self-hosted fonts; base styles, layout and `/design-system/` preview; dark-mode toggle; Logo component and brand favicon; contrast check script and docs
+- **Next session goal:** a fresh Claude session reviews Phase 1 against its gate (section 12). If it passes and the founder approves, start Phase 2 (components + automatic checks). Confirm the goal with the founder at the start of the session.
 
 ## Completed
+- 19 Nov 2026 (Phase 1): design system built. PR #7 tokens + `@fontsource-variable` fonts (Inter, Inter Tight, JetBrains Mono, Doto); PR #8 base styles, `BaseLayout`, internal `/design-system/` preview; PR #9 dark-mode toggle (follows system, saved choice, no flash; scripts never inlined, for the future CSP); PR #10 `Logo` component and brand favicon set; PR #11 `npm run check:contrast` (all 14 pairs pass in light and dark) and docs. Gate pre-check: contrast pass; fonts self-hosted; toggle works and respects system (Chrome); favicon is the brand mark (Chrome). Not yet checked: Safari, Firefox, iPhone (Phase 7). Mockup-vs-brief calls: followed the brief (no teal, nav ends with Toolkit, wordmark 0.1em).
 - 19 Nov 2026 (Phase 0 gate review): a fresh session checked every Phase 0 gate item. All passed; Cloudflare and Gmail 2FA were confirmed by the founder, who approved the review. Phase 0 is complete. Minor follow-ups done in the closing pull request: Progress Log updated, `package.json` engines aligned with `.node-version`.
 - 19 Nov 2026 (Phase 0): gate pre-check run. Fixes: `.dev.vars` added to `.gitignore`; README, CHANGELOG and the contact-form note updated to match the live setup. Account and access details are in the private repo.
 - 19 Nov 2026 (Phase 0): Astro 7.4.13 minimal scaffold added (PR #2). Cloudflare Workers config and pre-launch `noindex` header added (PR #3); first deploy to `durbeen-website.durbeen.workers.dev` succeeded. Follow-up: Pages wording replaced by Workers, Node version pinned to 26 (`.node-version`), Wrangler telemetry off, `workers_dev` and `preview_urls` set explicitly. Account and access details are in the private repo.
@@ -444,6 +445,8 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - 18 Nov 2026 (v1.1): added dedicated 16px favicon tier + PNG/ICO icon set; accent colour confirmed final (orange).
 
 ## Open issues
+- Remove the internal `/design-system/` page (and keep it out of the sitemap) before the Phase 8 launch.
+- Phase 2: UI borders that carry meaning (inputs, buttons) need 3:1 contrast; `--line` is decorative only.
 - Run a reverse image search and a trademark search on the logo (SAIP, IP India, WIPO) before public launch.
 
 ## Session history
@@ -454,4 +457,5 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 | 2026-11-19 | 0 | Astro minimal scaffold; Workers config and noindex header; first deploy to workers.dev | PR #2 (`bbe2638`), PR #3 (`61931c2`) | Workers wording, Node pin |
 | 2026-11-19 | 0 | Pages to Workers wording, Node pin, Wrangler settings, docs | PR #4 (`3bc3608`) | Gate pre-check |
 | 2026-11-19 | 0 | Gate pre-check fixes: `.dev.vars` ignored, stale README, CHANGELOG and section 13 wording | PR #5 (`a0100b1`) | Fresh-session gate review |
-| 2026-11-19 | 0 | Fresh-session Phase 0 gate review: all items passed, founder approved. Phase 0 marked complete; `engines` aligned with Node 26 | this pull request | Phase 1 (design system), when the founder starts it |
+| 2026-11-19 | 0 | Fresh-session Phase 0 gate review: all items passed, founder approved. Phase 0 marked complete; `engines` aligned with Node 26 | PR #6 | Phase 1 (design system), when the founder starts it |
+| 2026-11-19 | 1 | Phase 1 design system built in five PRs: tokens and fonts; base styles and preview page; dark-mode toggle; Logo and favicon; contrast check and docs | PR #7 to #11 | Fresh-session Phase 1 gate review, then founder approval |
