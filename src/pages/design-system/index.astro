@@ -2,6 +2,7 @@
 // Internal preview of the design tokens. Hidden from search engines.
 // REMOVE before the Phase 8 launch (see docs/DECISIONS.md).
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Logo from '../../components/Logo.astro';
 import ThemeToggle from '../../components/ThemeToggle.astro';
 
 const colours = [
@@ -108,7 +109,23 @@ const spacing = [1, 2, 3, 4, 5, 6, 7];
     </div>
 
     <hr />
-    <p class="label">[ 05 ] FOCUS · PRESS TAB</p>
+    <p class="label">[ 05 ] LOGO</p>
+    <div class="logos">
+      <div><p class="label-sm">SMALL STAR · 16PX</p><Logo size={16} /></div>
+      <div><p class="label-sm">SMALL STAR · 20PX</p><Logo size={20} /></div>
+      <div><p class="label-sm">MASTER · 24PX (MINIMUM)</p><Logo size={24} /></div>
+      <div><p class="label-sm">MASTER · 32PX</p><Logo size={32} /></div>
+      <div><p class="label-sm">MASTER · 96PX</p><Logo size={96} /></div>
+      <div><p class="label-sm">WORDMARK</p><Logo wordmark /></div>
+      <div><p class="label-sm">WORDMARK + TAGLINE</p><Logo size={48} wordmark tagline="Discover. Build. Innovate." /></div>
+    </div>
+    <div class="band" style="margin-top: var(--space-3)">
+      <p class="label-sm" style="color: var(--on-band)">ON A DARK BAND</p>
+      <Logo size={48} wordmark onDark />
+    </div>
+
+    <hr />
+    <p class="label">[ 06 ] FOCUS · PRESS TAB</p>
     <p><a href="#main">First link</a> · <a href="#main">Second link</a></p>
   </div>
 </BaseLayout>
@@ -157,6 +174,16 @@ const spacing = [1, 2, 3, 4, 5, 6, 7];
   .bar {
     height: 12px;
     background: var(--ink);
+  }
+  .logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-4) var(--space-2);
+    margin-top: var(--space-3);
+    align-items: end;
+  }
+  .logos .label-sm {
+    margin: 0 0 var(--space-1);
   }
   .band {
     margin-top: var(--space-3);
