@@ -2,6 +2,7 @@
 // Internal preview of the design tokens. Hidden from search engines.
 // REMOVE before the Phase 8 launch (see docs/DECISIONS.md).
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThemeToggle from '../../components/ThemeToggle.astro';
 
 const colours = [
   ['--paper', 'Page background'],
@@ -30,9 +31,11 @@ const spacing = [1, 2, 3, 4, 5, 6, 7];
     <p class="label">[ DS ] DESIGN SYSTEM PREVIEW · INTERNAL</p>
     <h1 style="margin-top: var(--space-3)">Instrument Lab</h1>
     <p class="reading" style="margin-top: var(--space-4); font-size: 20px; color: var(--text-2)">
-      Every colour, font and space below comes from <code>tokens.css</code>. Switch your system to dark
-      to see the dark set.
+      Every colour, font and space below comes from <code>tokens.css</code>. Use the toggle below, or switch
+      your system to dark, to see the dark set.
     </p>
+
+    <div style="margin-top: var(--space-4)"><ThemeToggle /></div>
 
     <hr />
     <p class="label">[ 01 ] COLOUR</p>
