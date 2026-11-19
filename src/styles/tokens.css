@@ -1,0 +1,101 @@
+/* DURBEEN design tokens. Source of truth: CLAUDE.md section 6.
+   Dark mode applies when the system prefers dark (unless the user chose light),
+   or when the user chose dark with the toggle (data-theme="dark" on <html>). */
+
+:root {
+  color-scheme: light;
+
+  /* Colour: light (default) */
+  --paper: #F4F4F1;
+  --surface: #FAFAF8;
+  --surface-2: #E9EAE6;
+  --ink: #14181D;
+  --text: #22272E;
+  --text-2: #3A4149;
+  --muted: #5B636B;
+  --line: #D9DBD8;
+  --accent: #B4501E;
+  --on-accent: #FFFFFF;         /* text on an accent button */
+  --accent-on-dark: #F08A4B;    /* accent on dark bands; same in both modes */
+  --band: #14181D;              /* dark bands (Method, Projects header) */
+  --on-band: #F4F4F1;
+
+  /* Typography: families */
+  --font-display: 'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif;
+  --font-body: 'Inter Variable', Inter, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+  --font-numeral: 'Doto Variable', Doto, var(--font-mono); /* big step numbers only */
+
+  /* Typography: scale */
+  --fs-hero: clamp(48px, 7vw, 104px);
+  --fs-article-title: clamp(40px, 5.6vw, 80px);
+  --fs-section: clamp(36px, 4.5vw, 64px);
+  --fs-article-h2: 30px;
+  --fs-body-article: 19px;
+  --fs-body-ui: 17px;
+  --fs-label: 12px;
+  --fs-label-sm: 11px;
+  --lh-article: 1.72;
+  --track-display: -0.03em;     /* tight tracking on large headings (-0.02 to -0.04em) */
+  --track-wordmark: 0.1em;
+
+  /* Spacing: 8px base */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --space-7: 96px;
+  --space-section: clamp(80px, 10vw, 140px); /* section top/bottom padding (120-160 on desktop) */
+
+  /* Layout */
+  --max-width: 1360px;
+  --gutter: 24px;               /* 40px from 640px up, see below */
+  --reading-width: 700px;
+  --touch-target: 44px;
+  --radius: 0;                  /* square corners; rounded only for app icon and avatar */
+  --border: 1px solid var(--line);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gutter: 40px;
+  }
+}
+
+/* Dark mode: follows the system, unless the user chose light */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --paper: #101317;
+    --surface: #1A1F25;
+    --surface-2: #232A31;
+    --ink: #F4F4F1;
+    --text: #E8E6E1;
+    --text-2: #C5CAD0;
+    --muted: #A3AAB1;
+    --line: #2A3038;
+    --accent: #F08A4B;
+    --on-accent: #101317;
+    --band: #1A1F25;
+    --on-band: #F4F4F1;
+  }
+}
+
+/* Dark mode: user chose dark with the toggle */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --paper: #101317;
+  --surface: #1A1F25;
+  --surface-2: #232A31;
+  --ink: #F4F4F1;
+  --text: #E8E6E1;
+  --text-2: #C5CAD0;
+  --muted: #A3AAB1;
+  --line: #2A3038;
+  --accent: #F08A4B;
+  --on-accent: #101317;
+  --band: #1A1F25;
+  --on-band: #F4F4F1;
+}
