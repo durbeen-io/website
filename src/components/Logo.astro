@@ -1,0 +1,81 @@
+---
+// The Durbeen mark ("Discovery") with optional wordmark and tagline. Geometry: CLAUDE.md section 7.
+// Rules: the accent colour is on the star only. Never recolour, rotate, stretch or move the star.
+// Below 24px the mark switches to the small-size star (bigger, more gap).
+// `onDark` is for dark bands: it uses the on-dark colours instead of the page colours.
+interface Props {
+  size?: number;
+  wordmark?: boolean;
+  tagline?: string;
+  onDark?: boolean;
+}
+const { size = 32, wordmark = false, tagline, onDark = false } = Astro.props;
+
+const D = 'M10 8H50A42 42 0 0 1 50 92H10L18 50Z M32 26H50A24 24 0 0 1 50 74H32Z';
+const star = size < 24
+  ? 'M82 10A8 8 0 1 0 98 10A8 8 0 1 0 82 10Z'
+  : 'M82 12A6 6 0 1 0 94 12A6 6 0 1 0 82 12Z';
+---
+
+<span class:list={['logo', { 'on-dark': onDark }]}>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 100 100"
+    role={wordmark ? undefined : 'img'}
+    aria-hidden={wordmark ? 'true' : undefined}
+    aria-label={wordmark ? undefined : 'Durbeen'}
+  >
+    <path class="d" d={D} fill-rule="evenodd"></path>
+    <path class="s" d={star}></path>
+  </svg>
+  {
+    wordmark && (
+      <span class="text">
+        <span class="name">DURBEEN</span>
+        {tagline && <span class="tagline">{tagline}</span>}
+      </span>
+    )
+  }
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--ink);
+  }
+  .logo.on-dark {
+    color: var(--on-band);
+  }
+  .d {
+    fill: currentColor;
+  }
+  .s {
+    fill: var(--accent);
+  }
+  .on-dark .s {
+    fill: var(--accent-on-dark);
+  }
+  .text {
+    display: grid;
+    gap: 2px;
+  }
+  .name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: var(--track-wordmark);
+    line-height: 1;
+  }
+  .tagline {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label-sm);
+    letter-spacing: normal;
+    color: var(--muted);
+  }
+  .on-dark .tagline {
+    color: var(--on-band);
+  }
+</style>
