@@ -12,11 +12,11 @@ no_progress = true
 
 exclude = [
   # Phase 5 (remaining pages)
-  'file://.*/resources/?$',
-  'file://.*/toolkit/?$',
-  'file://.*/about/?$',
-  'file://.*/editorial-policy/?$',
-  'file://.*/privacy/?$',
-  'file://.*/terms/?$',
-  'file://.*/affiliate-disclosure/?$',
+  'file://.*/resources/?(#.*)?$',
+  'file://.*/toolkit/?(#.*)?$',
+  'file://.*/about/?(#.*)?$',
+  'file://.*/editorial-policy/?(#.*)?$',
+  'file://.*/privacy/?(#.*)?$',
+  'file://.*/terms/?(#.*)?$',
+  'file://.*/affiliate-disclosure/?(#.*)?$',
 ]
