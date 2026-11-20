@@ -10,11 +10,11 @@
 
 ## 1. What Durbeen is
 
-- **Durbeen** (durbeen.io) is an **independent technology lab and publication**, and the parent brand for future projects, services and products.
+- **Durbeen** (durbeen.io) is a **founder-led independent lab and publication**, and the parent brand for future projects, services and products. The brand voice stays "Durbeen", but it openly names its founder: an instrumentation & controls (I&C) engineer testing AI on real work. First person ("I") is fine on About, the author box and articles (decided 21 Nov 2026).
 - "Durbeen" means *telescope*. The core idea: **look further, look closer, then build.**
 - Tagline: **Discover. Build. Innovate.**
 - Method: **Discover → Evaluate → Build → Share.**
-- It is NOT a personal portfolio, NOT a generic AI agency, and NOT an "open-source company". Open source is a content topic, not the identity.
+- It is NOT a personal portfolio (the founder is named and speaks in first person, but the site is the lab, not a CV), NOT a generic AI agency, and NOT an "open-source company". Open source is a content topic, not the identity.
 
 ## 2. Goals
 
@@ -433,6 +433,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 
 ## Status
 - **Current phase:** 5 (Remaining pages) **BUILT and gate-reviewed** (20 Nov 2026), plus enhancements (21 Nov 2026). Open founder items: Email Routing for hello@durbeen.io, the Cloudflare build error behind the 404 page, enabling Pages CMS and GitHub auto-merge, the analytics token, LinkedIn. Phase 6 has not started
+- **Latest change:** 21 Nov 2026: Home Method section copy and layout (PR #52); founder-led voice recorded in section 1 and DECISIONS, Home hero intro, status strip, footer line, meta description and Organization description updated (not yet aligned: About, OG tag line, RSS description, footer "Write to us at")
 - **Last session:** 21 Nov 2026: answers, Infographics gallery, author box, analytics (prepared), email guide, Pages CMS and templates (PRs #43 to #51)
 - **Next session goal:** resolve the founder items above, then Phase 6 (3 to 5 real articles, drafted by Claude from the founder's notes and edited by the founder), only when the founder says to start.
 
