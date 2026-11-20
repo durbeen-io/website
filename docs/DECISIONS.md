@@ -118,3 +118,12 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Six sample articles, all `draft: true` and clearly marked as sample text, test Home and the blog engine. They are deleted in Phase 6 | Home needs content to build against; nothing fake can be published | Hard-coding fake articles in the page; real-looking fake titles |
 | Drafts are hidden from every build unless `DURBEEN_INCLUDE_DRAFTS=1` (`npm run dev` shows them). CI jobs that audit pages set the flag; the Cloudflare deploy does not | Drafts never build to production (brief), but page checks need content to look at | A separate "samples" collection |
 | Featured-card placeholder uses a black (ink) disc, not accent | Founder's call, and the brief limits the accent to links, buttons, the logo star and live dots. Correction: the mockup's own disc is accent orange (it looked black only because the mockup was opened outside its tool) | Accent disc |
+
+## 2026-11-20: Home, first half (Phase 3, PR 2)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| New components `ObservationLog` (framed list of LogRows with an honest empty line) and `Reticle` (the decorative statement graphic; `TARGET nnn` follows the newest article) | Brief section 11 rule 2: built once, reused | Page-only markup |
+| `BaseLayout` reads the newest article and passes it to the status strip, so every page shows `LOG UPDATED date · N°nnn` | Connection map: a new article updates the strip everywhere without touching pages | Passing it page by page |
+| The axe and Lighthouse CI jobs build with `DURBEEN_INCLUDE_DRAFTS=1` so they audit a page that has content; the link job and the Cloudflare deploy build without it | Auditing an empty home page proves little; the deploy must never include drafts. Job names are unchanged, so the required checks still match | Leaving CI on empty pages; including drafts in the deploy |
+| "Read the latest" goes to the newest article, or `/insights/` when there are none. "See projects" goes to `/projects/` (still in `lychee.toml` until Phase 5) | No link to a page that does not exist unless it is on the planned list | A dead link |
