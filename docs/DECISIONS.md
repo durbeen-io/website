@@ -263,7 +263,7 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Decision | Reason | Rejected |
 |---|---|---|
 | `src/pages/404.astro`: on-brand (reticle with `TARGET 404`), a Search button that opens the site search, a link home and the three latest articles. It is `noindex` and left out of the sitemap | Brief section 8: on-brand, with search and recent articles | A plain error page |
-| Serving the page needs `"not_found_handling": "404-page"` in `wrangler.jsonc`. **It was tried and Cloudflare's branch build failed** (all earlier builds and all GitHub checks passed; cause unreadable from outside the dashboard), so it was reverted. The page is built but not yet served for unknown addresses. **Open: the founder needs to read the failed build's error in the Cloudflare dashboard** | A config change that breaks the deploy pipeline should not be merged | Merging the setting anyway
+| Serving the page needs `"not_found_handling": "404-page"` in `wrangler.jsonc`. **It was tried and the branch build failed, so it was reverted. Superseded on 2026-11-20: the failure was a branch-name clash, not this setting (see below)** | A config change that breaks the deploy pipeline should not be merged | Merging the setting anyway
 
 ## 2026-11-21: Four categories and the approved tag list
 
@@ -358,3 +358,10 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Durbeen is a founder-led independent lab. The brand voice stays "Durbeen", but it openly names its founder, an instrumentation & controls engineer testing AI on real work. First person ("I") is fine on About, the author box and articles | "Independent technology lab" and "we" sounded like a generic developer lab; the real value is an engineer's tests on real work (reports, documents, data) | Keeping "we" and a generic lab voice; turning the site into a personal portfolio |
 | Home: hero intro, status strip, footer line, meta description and Organization JSON-LD rewritten to match. Hero headline, hero label and "Look closer. Then build." kept. Meta description is 147 characters | Same reason; Google shows the meta description | – |
 | Aligned in a follow-up PR the same day: About (title, meta description, first line), the OG image label ("INDEPENDENT LAB"; design otherwise unchanged), the RSS description (same as the Home meta description) and the footer ("Write to me at:") | One voice across the site | – |
+
+## 2026-11-20: 404 page served; "preview already exists"
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| `"not_found_handling": "404-page"` added to `wrangler.jsonc` on a new branch (`fix-404-handling`). Cloudflare build passed; on the preview a browser-style request to an unknown address returned our 404 page with status 404 | The earlier failure log read `A preview with name 'phase-5/404' already exists [code 100338]` (from `wrangler preview`, beta): a branch-name clash, not the setting | Leaving the setting out |
+| Workers Builds is **not** a required check on `main`; it stays that way. Fix for the clash is a fresh branch name per pull request (and for Pages CMS, delete the branch after merge); no Cloudflare setting was changed | A failed preview then cannot block a merge, and the clash is a beta-tool quirk, not a site fault | Making it required; changing Cloudflare settings |
