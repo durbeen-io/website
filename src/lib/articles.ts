@@ -2,6 +2,9 @@
 // Home, the Insights list, category/tag pages, RSS and search all read through here (connection map, CLAUDE.md section 8).
 import { getCollection, type CollectionEntry } from 'astro:content';
 
+import { categorySlug } from './taxonomy';
+export { categorySlug };
+
 export type Article = CollectionEntry<'insights'>;
 
 // Drafts never reach production. For testing with sample drafts, run a build with DURBEEN_INCLUDE_DRAFTS=1
@@ -41,15 +44,6 @@ export function formatDate(d: Date): string {
   return d
     .toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
     .toUpperCase();
-}
-
-/** URL part for a category: "Open Source & GitHub" -> "open-source-github". */
-export function categorySlug(category: string): string {
-  return category
-    .toLowerCase()
-    .replace(/&/g, ' ')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
 }
 
 /** URL part for a series: "Building Durbeen in Public" -> "building-durbeen-in-public". */

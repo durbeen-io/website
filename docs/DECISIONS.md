@@ -187,3 +187,13 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Only articles are indexed (`data-pagefind-body`); type and log number are stored as metadata | No nav/footer noise in results | Indexing every page |
 | Esc always closes the search window (a search field would otherwise only clear its text first); the browser's blue clear button is hidden | Predictable keyboard behaviour; on-brand | Native behaviour |
 | The 375px header fits the search button in one row (309 of 327px) without changes | Measured in Chrome | A separate small-screen header |
+
+## 2026-11-20: RSS and sitemap (Phase 4, PR 6)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Add `@astrojs/rss` and `@astrojs/sitemap` (founder-approved). RSS lists published articles only (title, description, date, link, category + tags, author) | Brief section 9; drafts never appear because the feed reads through `getArticles()` | A hand-written feed |
+| The sitemap filter excludes `/design-system/` (internal, removed before launch) and category pages with no published articles (they are `noindex`) | No mixed signals to search engines; closes the "keep it out of the sitemap" open issue | Listing everything |
+| The category slug helper moved to `src/lib/taxonomy.ts` so `astro.config.mjs` can use it; the config reads article frontmatter itself to know which categories are populated | The config runs before Astro's content layer | Importing from `articles.ts` (needs `astro:content`) |
+| `public/robots.txt` allows all and points to the sitemap; the `noindex` header in `_headers` still blocks indexing until Phase 8 | Standard; nothing is exposed because of the header | Adding robots.txt at launch |
+| `lychee.toml`: the `/rss.xml` entry is removed (shipped) | The file's own rule | Stale entry |
