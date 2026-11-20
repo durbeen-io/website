@@ -31,7 +31,8 @@ category: ""               # see allowed values
 type: ""                   # see allowed values
 level: ""                  # Beginner | Intermediate | Advanced
 tags: []                   # 3 to 5, must exist in src/content/tags.json
-series: ""                 # optional
+series: ""                 # optional; one of the four series below
+summary: ""                # required for type Infographic (200+ characters): the written version of the image, shown on the page
 author: "Fahad Ehsan"
 publishDate: 2026-01-01
 updatedDate:               # optional
@@ -59,7 +60,8 @@ The build fails on invalid values.
 | Field | Values |
 |---|---|
 | Category | AI · Open Source & GitHub · Automation & Productivity · Software & Tools · Building Products · Business & Innovation |
-| Type | Review · Comparison · Guide · Experiment · Build Note · Insight · Visual |
+| Type | Review · Comparison · Guide · Experiment · Build Note · Insight · Visual · Infographic |
+| Series (optional) | Building Durbeen in Public · GitHub Mastery · Repo Reviews · AI for Engineers (a controlled list in `src/lib/taxonomy.ts`) |
 | Level | Beginner · Intermediate · Advanced |
 
 Tags come from `src/content/tags.json` (keep it under about 30). To use a new tag, add it to that list first.
@@ -101,3 +103,7 @@ Nothing to edit by hand: Home (Observation Log, featured or recent, status strip
 ## Social-preview (OG) images
 
 Each article gets a preview image automatically at build time (`/og/<slug>.png`): the number, type, reading time and title on the Durbeen layout. You do nothing. To use your own image instead, set `ogImage` in the frontmatter to a path under `public/` (1200x630 works best). Check the result in the built page's `og:image` tag or with a link-preview tool after the preview deploy.
+
+## Infographics
+
+Set `type: Infographic`, put the image in `heroImage` (with `heroAlt`) or in the body, and write a `summary` in the frontmatter: the whole infographic in plain sentences, in reading order (200 characters or more; blank line between paragraphs). The page shows it as a "TEXT VERSION" box above the article, so readers who cannot see or zoom the image lose nothing. The build fails without it. Alt text stays short; the summary carries the full content.

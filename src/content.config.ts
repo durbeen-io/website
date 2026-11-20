@@ -5,7 +5,7 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import tags from './content/tags.json';
 
-import { categories, types, levels, projectStatuses } from './lib/taxonomy';
+import { categories, types, levels, series, projectStatuses } from './lib/taxonomy';
 
 const score = z.number().int().min(1).max(5);
 
@@ -22,7 +22,9 @@ const insights = defineCollection({
       type: z.enum(types),
       level: z.enum(levels),
       tags: z.array(z.string()).min(3, 'use 3-5 tags').max(5, 'use 3-5 tags'),
-      series: z.string().optional(),
+      series: z.enum(series).optional(),
+      // Infographic articles: the written version of the image (blank line between paragraphs). Shown on the page.
+      summary: z.string().optional(),
       author: z.literal('Fahad Ehsan').default('Fahad Ehsan'),
       publishDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
@@ -47,6 +49,9 @@ const insights = defineCollection({
       }
       if (d.heroImage && !d.heroAlt) {
         ctx.addIssue({ code: 'custom', path: ['heroAlt'], message: 'heroAlt (alt text) is required when heroImage is set' });
+      }
+      if (d.type === 'Infographic' && (d.summary ?? '').trim().length < 200) {
+        ctx.addIssue({ code: 'custom', path: ['summary'], message: 'an Infographic needs a written summary of at least 200 characters (the text version shown on the page)' });
       }
       if (d.scorecard && d.type !== 'Review') {
         ctx.addIssue({ code: 'custom', path: ['scorecard'], message: 'scorecard is only for type: Review' });

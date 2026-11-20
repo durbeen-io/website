@@ -13,9 +13,9 @@ no_progress = true
 exclude = [
   # Phase 5 (remaining pages)
   'file://.*/projects/?$',
+  'file://.*/resources/?$',
   'file://.*/toolkit/?$',
   'file://.*/about/?$',
-  'file://.*/work-with-durbeen/?$',
   'file://.*/editorial-policy/?$',
   'file://.*/privacy/?$',
   'file://.*/terms/?$',
