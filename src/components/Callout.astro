@@ -1,0 +1,50 @@
+---
+// Callout: a short aside inside an article. The kind is always spelled out in the label,
+// never shown by colour alone. Two kinds:
+//   note    (default) = extra context
+//   warning           = something that can go wrong (the label gets the accent rule)
+// The text is the slot. Body text stays in --text; the accent is only on the rule.
+interface Props {
+  variant?: 'note' | 'warning';
+  label?: string; // overrides the default "NOTE" / "WARNING"
+}
+const { variant = 'note', label } = Astro.props;
+const text = label ?? (variant === 'warning' ? 'WARNING' : 'NOTE');
+---
+
+<aside class:list={['callout', `callout-${variant}`]} aria-label={text}>
+  <p class="callout-label" aria-hidden="true">{text}</p>
+  <div class="callout-body"><slot /></div>
+</aside>
+
+<style>
+  .callout {
+    margin: var(--space-5) 0;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--ink);
+    background: var(--surface);
+    color: var(--text);
+  }
+  .callout-warning {
+    border-left-color: var(--accent);
+  }
+  .callout-label {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .callout-body {
+    font-size: var(--fs-body-ui);
+    line-height: 1.6;
+  }
+  .callout-body :global(> :first-child) {
+    margin-top: 0;
+  }
+  .callout-body :global(> :last-child) {
+    margin-bottom: 0;
+  }
+</style>

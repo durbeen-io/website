@@ -10,6 +10,9 @@ import NewsletterForm from '../../../components/NewsletterForm.astro';
 import StatusStrip from '../../../components/StatusStrip.astro';
 import ArticleCard from '../../../components/ArticleCard.astro';
 import LogRow from '../../../components/LogRow.astro';
+import TOC from '../../../components/TOC.astro';
+import Callout from '../../../components/Callout.astro';
+import VerdictBox from '../../../components/VerdictBox.astro';
 import ThemeToggle from '../../../components/ThemeToggle.astro';
 ---
 
@@ -37,6 +40,9 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
         <li><a href="#footer">Footer</a></li>
         <li><a href="#article-card">ArticleCard</a></li>
         <li><a href="#log-row">LogRow</a></li>
+        <li><a href="#toc">TOC</a></li>
+        <li><a href="#callout">Callout</a></li>
+        <li><a href="#verdict">VerdictBox</a></li>
       </ul>
     </nav>
 
@@ -229,6 +235,68 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
         <LogRow number={10} type="Guide" title="How to judge a GitHub repo before you trust it" minutes={11} href="/design-system/components/#log-row" />
       </ul>
     </section>
+
+    <!-- TOC -->
+    <section id="toc" aria-labelledby="toc-h">
+      <hr />
+      <SectionLabel number={9}>TOC</SectionLabel>
+      <h2 id="toc-h" class="h2-sm">TOC</h2>
+      <p class="reading" style="margin-top: var(--space-2)">
+        Scroll the sample article: the section being read gets the accent rule. Hover and keyboard focus are shown too.
+      </p>
+      <div class="article-demo">
+        <div class="toc-col">
+          <TOC id="demo-toc" items={[
+            { id: 'demo-s1', text: 'Why stars mislead' },
+            { id: 'demo-s2', text: 'The ten-minute check' },
+            { id: 'demo-s3', text: 'Read the install script' },
+          ]} />
+        </div>
+        <div class="reading demo-text">
+          <h3 id="demo-s1">Why stars mislead</h3>
+          <p>Stars measure attention, not quality, and certainly not safety. A project can collect thousands of stars in a week from one viral post.</p>
+          <p>That tells you people were curious. It tells you nothing about who maintains it, what it installs, or whether it still works.</p>
+          <h3 id="demo-s2">The ten-minute check</h3>
+          <p>Before installing anything, check the licence, the last commit, the owner, the install path and the network calls.</p>
+          <p>Sample text only. Real articles arrive in Phase 4.</p>
+          <h3 id="demo-s3">Read the install script</h3>
+          <p>Search the code for anything that downloads, executes or deletes. A two-line search catches most surprises.</p>
+          <p>Keep scrolling to see the last item become current.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALLOUT -->
+    <section id="callout" aria-labelledby="co-h">
+      <hr />
+      <SectionLabel number={10}>CALLOUT</SectionLabel>
+      <h2 id="co-h" class="h2-sm">Callout</h2>
+      <div class="reading">
+        <p class="label-sm">NOTE (DEFAULT)</p>
+        <Callout><p>Pagefind builds its search index after the site build, so search does not work in <code>npm run dev</code>.</p></Callout>
+        <p class="label-sm">WARNING</p>
+        <Callout variant="warning"><p>Never run an install script you have not read. Search it for <code>curl</code>, <code>eval</code> and <code>rm -rf</code> first.</p></Callout>
+        <p class="label-sm">CUSTOM LABEL</p>
+        <Callout label="Last verified 18.11.2026"><p>Checked against version 2.4. Later versions may differ.</p></Callout>
+      </div>
+    </section>
+
+    <!-- VERDICT BOX -->
+    <section id="verdict" aria-labelledby="vb-h">
+      <hr />
+      <SectionLabel number={11}>VERDICT BOX</SectionLabel>
+      <h2 id="vb-h" class="h2-sm">VerdictBox</h2>
+      <div class="reading">
+        <p class="label-sm">ARTICLE VERDICT</p>
+        <VerdictBox call="Use the checklist">
+          <p>Ten minutes of checking is cheap. Cleaning up a compromised laptop is not. Save this routine and run it every time.</p>
+        </VerdictBox>
+        <p class="label-sm">REVIEW VERDICT WITH SCORECARD (SETUP · DOCS · MAINTENANCE · SAFETY)</p>
+        <VerdictBox call="Use with care" scores={{ setup: 4, docs: 3, maintenance: 5, safety: 2 }}>
+          <p>Works well and is actively maintained, but the install script runs unreviewed code. Read it first.</p>
+        </VerdictBox>
+      </div>
+    </section>
   </div>
 </BaseLayout>
 
@@ -270,6 +338,29 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
     max-width: 520px;
     border: 1px solid var(--ink);
     background: var(--surface);
+  }
+  .article-demo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5) var(--space-6);
+    align-items: flex-start;
+  }
+  .toc-col {
+    flex: 1 1 200px;
+    max-width: 240px;
+    position: sticky;
+    top: var(--space-2);
+  }
+  .demo-text {
+    flex: 4 1 360px;
+    min-width: 0;
+  }
+  .demo-text :global(h3) {
+    margin-top: 120px;
+    font-size: 30px;
+  }
+  .demo-text :global(h3:first-child) {
+    margin-top: 0;
   }
   .toc {
     margin-top: var(--space-5);

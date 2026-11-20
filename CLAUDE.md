@@ -429,11 +429,12 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 2 (Components) **IN PROGRESS**. PRs 1-4 merged (#13, #14, #15, #16); PR 5 open. Phase 1 is complete (approved 19 Nov 2026)
-- **Last session:** 20 Nov 2026: Phase 2 PR 5 (ArticleCard, LogRow + preview page sections)
-- **Next session goal:** Phase 2 PR 6 (TOC, Callout, VerdictBox), PR 7 (axe, Lighthouse CI, lychee, docs). One PR at a time, never stacked; wait for the founder's merge between PRs. Confirm the goal with the founder at the start of the session.
+- **Current phase:** 2 (Components) **IN PROGRESS**. PRs 1-5 merged (#13 to #16, #18); PR 6 open. Phase 1 is complete (approved 19 Nov 2026)
+- **Last session:** 20 Nov 2026: Phase 2 PR 6 (TOC, Callout, VerdictBox + preview page sections)
+- **Next session goal:** Phase 2 PR 7 (axe, Lighthouse CI, lychee, docs). One PR at a time, never stacked; wait for the founder's merge between PRs. Confirm the goal with the founder at the start of the session.
 
 ## Completed
+- 20 Nov 2026 (Phase 2, PR 6): TOC (anchor list, current section marked by a small script), Callout (note, warning; kind always written out) and VerdictBox (call + optional Setup/Docs/Maintenance/Safety scores in monospace). Checked: build, contrast check, 375px (no horizontal scroll), light mode. Not yet checked in a real browser: TOC current-section marking while scrolling, dark mode by eye (tokens only, contrast check passes).
 - 20 Nov 2026 (Phase 2, PR 5): ArticleCard (default + featured; one stretched link on the title, so no nested links; figure slot with reticle placeholder) and LogRow (`<li>`, 44px+ target). Checked in headless Chrome: 375px (no horizontal scroll), light and dark; contrast check passes. Real images arrive with the Phase 4 image handling.
 - 20 Nov 2026 (Phase 2, PRs 1-4): PR #13 GitHub Actions `Build and contrast` (required on `main`); PR #14 Button, Tag, SectionLabel, `--ui-border` token (3:1) and the `/design-system/components/` preview page; PR #15 Header (MENU button below 860px) and StatusStrip; PR 4 NewsletterForm (disabled until Kit, Phase 5), Footer, and Header + Footer wired into `BaseLayout`. Each PR checked in headless Chrome: keyboard tab-through, 375px (no horizontal scroll), 44px targets, light and dark. Brief followed over the mockups (Toolkit not Resources, 0.1em wordmark, no teal). Not yet checked: Safari, Firefox (Phase 7). Phase 2 is not finished: PRs 5-7 remain.
 - 19 Nov 2026 (Phase 1 gate review): a fresh session checked every Phase 1 gate item. Contrast (14 pairs, light and dark) passes; fonts are self-hosted with no Google requests; favicon files match `brand/`; the live site matches the build. The founder tested the dark-mode toggle on Mac in Safari, Chrome and Brave and on iPhone: system setting followed, toggle works, choice remembered, no white flash. Founder approved. Phase 1 is complete. Still unchecked: Firefox and Android (Phase 7).
@@ -469,3 +470,4 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 | 2026-11-19 | 1 | Fresh-session Phase 1 gate review: all items passed; toggle tested by the founder on Mac (Safari, Chrome, Brave) and iPhone; founder approved. Phase 1 marked complete | this pull request | Phase 2 (components + automatic checks), when the founder starts it |
 | 2026-11-20 | 2 | Phase 2 PRs 1-4: checks workflow (required on `main`); Button, Tag, SectionLabel + preview page; Header + StatusStrip; NewsletterForm + Footer wired into BaseLayout; docs updated | PR #13, #14, #15, #16 | PR 5 (ArticleCard, LogRow) |
 | 2026-11-20 | 2 | Phase 2 PR 5: ArticleCard and LogRow components + preview page sections; docs updated | PR 5 (this pull request) | PR 6 (TOC, Callout, VerdictBox), after the founder merges PR 5 |
+| 2026-11-20 | 2 | Phase 2 PR 6: TOC, Callout, VerdictBox + preview page sections; CHANGELOG intro fixed | PR 6 (this pull request) | PR 7 (axe, Lighthouse CI, lychee, docs), after the founder merges PR 6 |

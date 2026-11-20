@@ -1,0 +1,116 @@
+---
+// Verdict box: the closing box of an article. Header row "VERDICT" + a short call in capitals
+// (for example "USE THE CHECKLIST"), then the explanation as the slot.
+// Optional `scores` (Review articles): Setup, Docs, Maintenance, Safety, each 1-5, in monospace.
+// The scores are plain text ("4/5"), so they read correctly to a screen reader.
+interface Scores {
+  setup: number;
+  docs: number;
+  maintenance: number;
+  safety: number;
+}
+interface Props {
+  call: string;
+  scores?: Scores;
+  id?: string;
+}
+const { call, scores, id } = Astro.props;
+const cells = scores
+  ? [
+      ['Setup', scores.setup],
+      ['Docs', scores.docs],
+      ['Maintenance', scores.maintenance],
+      ['Safety', scores.safety],
+    ]
+  : [];
+---
+
+<section class="verdict" id={id} aria-label="Verdict">
+  <header class="verdict-head">
+    <span>VERDICT</span>
+    <span class="verdict-call"><span class="dot" aria-hidden="true">■</span> {call}</span>
+  </header>
+  {
+    cells.length > 0 && (
+      <dl class="scores">
+        {cells.map(([name, value]) => (
+          <div class="score">
+            <dt>{name}</dt>
+            <dd>
+              {value}
+              <span class="of">/5</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+  <div class="verdict-body"><slot /></div>
+</section>
+
+<style>
+  .verdict {
+    margin: var(--space-6) 0 0;
+    border: 1px solid var(--ink);
+    background: var(--surface);
+    color: var(--text);
+  }
+  .verdict-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-3);
+    padding: 14px var(--space-3);
+    border-bottom: 1px solid var(--ink);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+  .verdict-call .dot {
+    color: var(--accent); /* the one accent mark; the words stay in ink */
+  }
+  .scores {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    margin: 0;
+    border-bottom: 1px solid var(--ink);
+  }
+  .score {
+    padding: var(--space-2) var(--space-3);
+    border-right: 1px solid var(--line);
+  }
+  .score:last-child {
+    border-right: 0;
+  }
+  dt {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  dd {
+    margin: 4px 0 0;
+    font-family: var(--font-mono);
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .of {
+    font-size: var(--fs-label);
+    color: var(--muted);
+  }
+  .verdict-body {
+    padding: var(--space-3);
+    font-size: var(--fs-body-ui);
+    line-height: 1.6;
+  }
+  .verdict-body :global(> :first-child) {
+    margin-top: 0;
+  }
+  .verdict-body :global(> :last-child) {
+    margin-bottom: 0;
+  }
+</style>
