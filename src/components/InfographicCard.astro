@@ -1,0 +1,98 @@
+---
+// One card of the Infographics gallery: the picture (whole image, never cropped), number and category, title, date.
+// The whole card is one link (the title), like ArticleCard. data-* lets the category filter hide it.
+import { Picture } from 'astro:assets';
+
+interface Props {
+  number: number;
+  category: string;
+  title: string;
+  date: string; // already formatted, e.g. "18 NOV 2026"
+  href: string;
+  image: ImageMetadata;
+  alt: string;
+}
+const { number, category, title, date, href, image, alt } = Astro.props;
+const n = String(number).padStart(3, '0');
+---
+
+<li class="card" data-article data-category={category}>
+  <div class="frame">
+    <Picture
+      src={image}
+      alt={alt}
+      formats={['avif', 'webp']}
+      widths={[320, 480, 640]}
+      sizes="(min-width: 1100px) 300px, (min-width: 640px) 33vw, calc(100vw - 48px)"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <p class="meta">N°{n} · {category.toUpperCase()}</p>
+  <h2 class="title"><a href={href}>{title}</a></h2>
+  <p class="date">{date}</p>
+</li>
+
+<style>
+  .card {
+    position: relative; /* anchors the stretched link */
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    list-style: none;
+  }
+  .card[hidden] {
+    display: none;
+  }
+  .frame {
+    aspect-ratio: 4 / 3;
+    margin-bottom: var(--space-1);
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    overflow: hidden;
+  }
+  .frame :global(picture),
+  .frame :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* the whole infographic stays visible */
+  }
+  .meta,
+  .date {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+  }
+  .title a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .title a::after {
+    content: '';
+    position: absolute;
+    inset: 0; /* the whole card is the tap target */
+  }
+  .card:hover .title a {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 0.2em;
+  }
+  .title a:focus-visible {
+    outline: none; /* the ring goes on the whole card */
+  }
+  .card:has(.title a:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+  }
+</style>

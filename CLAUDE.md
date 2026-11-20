@@ -144,7 +144,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 
 **Products** is hidden until a real product exists.
 
-### Unique pages (11 planned, 1 deferred): built and approved one by one
+### Unique pages (12 planned, 1 deferred): built and approved one by one
 | # | Page | URL | Design source | Phase |
 |---|---|---|---|---|
 | 1 | Home | `/` | Mockup **A, Instrument Lab** | 3 |
@@ -159,6 +159,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 | 10 | Terms | `/terms/` | Plain text | 5 |
 | 11 | Affiliate disclosure | `/affiliate-disclosure/` | Plain text | 5 |
 | 12 | 404 | — | On-brand, with search and recent articles | 5 |
+| 13 | Infographics | `/infographics/` | Added 21 Nov 2026: thumbnail grid of every Infographic article, newest first (image, title, date, category), filter by the 4 categories; linked from the footer and the Insights page | 5 |
 
 ### Templates (4): built once, they generate pages automatically
 | # | Template | URL | Generates |
@@ -173,7 +174,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 ### Connection map: what updates what
 | When this changes… | …these must update (and be checked at the gate) |
 |---|---|
-| A new article is published | Home (Observation Log, featured, recent) · Insights list and filters · its category and tag pages · related articles on other posts · series page (if any) · RSS · sitemap · search index |
+| A new article is published | Home (Observation Log, featured, recent) · Insights list and filters · its category and tag pages · related articles on other posts · series page (if any) · Infographics gallery (if type Infographic) · RSS · sitemap · search index |
 | A project is added or its status changes | Home projects section · Projects list · its detail page |
 | A Toolkit item is added | Toolkit page · any article that links to it |
 | Header, footer or a shared component changes | Every page (check Home, an article and one plain page) |

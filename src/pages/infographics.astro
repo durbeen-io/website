@@ -1,0 +1,87 @@
+---
+// Infographics gallery: every article of type Infographic, newest first, as a grid of thumbnails.
+// A new Infographic article appears here by itself (connection map, CLAUDE.md section 8).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ListHeader from '../components/ListHeader.astro';
+import InsightsFilters from '../components/InsightsFilters.astro';
+import InfographicCard from '../components/InfographicCard.astro';
+import { getArticles, articleHref, formatDate } from '../lib/articles';
+import { categories } from '../lib/taxonomy';
+
+const items = (await getArticles()).filter((a) => a.data.type === 'Infographic' && a.data.heroImage);
+// All four categories are always offered here (the founder asked for them); an empty one says so.
+const groups = [{ name: 'category' as const, label: 'CATEGORY', options: [...categories] }];
+---
+
+<BaseLayout
+  title="Infographics: pictures that explain one idea | Durbeen"
+  description="Durbeen infographics, newest first: one idea per picture, each with a full written version on its page, filed under four categories."
+>
+  <ListHeader
+    label="INFOGRAPHICS"
+    title="Infographics"
+    intro="One idea per picture, and every picture comes with a full written version. Newest first."
+  />
+  <div class="container body">
+    {
+      items.length > 0 ? (
+        <>
+          <InsightsFilters groups={groups} noun="INFOGRAPHIC" />
+          <ul class="grid">
+            {items.map((a) => (
+              <InfographicCard
+                number={a.data.number}
+                category={a.data.category}
+                title={a.data.title}
+                date={formatDate(a.data.publishDate)}
+                href={articleHref(a)}
+                image={a.data.heroImage!}
+                alt={a.data.heroAlt!}
+              />
+            ))}
+          </ul>
+          <div class="empty" data-filter-empty hidden>
+            <p>No infographics in this category yet.</p>
+            <button type="button" data-filter-reset>Show all infographics</button>
+          </div>
+        </>
+      ) : (
+        <p class="none">The first infographics are on the way.</p>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .body {
+    padding-bottom: var(--space-section);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-6) var(--space-4);
+    margin: 0;
+    padding: var(--space-4) 0 0;
+    border-top: 1px solid var(--ink);
+  }
+  .none,
+  .empty p {
+    margin: 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--ink);
+    color: var(--text-2);
+  }
+  .empty {
+    padding-block: var(--space-4);
+  }
+  .empty button {
+    min-height: var(--touch-target);
+    padding: 0 20px;
+    border: 1px solid var(--ui-border);
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+  }
+</style>

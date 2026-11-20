@@ -10,11 +10,12 @@ interface Group {
 }
 interface Props {
   groups: Group[];
+  noun?: string; // what is being counted, upper case singular: "ARTICLE" (default) or "INFOGRAPHIC"
 }
-const { groups } = Astro.props;
+const { groups, noun = 'ARTICLE' } = Astro.props;
 ---
 
-<form class="filters" data-filters aria-label="Filter articles">
+<form class="filters" data-filters data-noun={noun} aria-label={`Filter ${noun.toLowerCase()}s`}>
   {
     groups.map((g) => (
       <fieldset>
@@ -113,7 +114,8 @@ const { groups } = Astro.props;
   const form = document.querySelector<HTMLFormElement>('[data-filters]');
   const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-article]'));
   if (form) {
-    const names = ['category', 'type', 'level'] as const;
+    // Only the groups present in this form (Insights has three; the Infographics gallery has Category only).
+    const names = (['category', 'type', 'level'] as const).filter((n) => form.querySelector(`input[name="${n}"]`));
     const status = form.querySelector<HTMLElement>('[data-filter-status]');
     const empty = document.querySelector<HTMLElement>('[data-filter-empty]');
 
@@ -127,7 +129,8 @@ const { groups } = Astro.props;
         row.hidden = !ok;
         if (ok) shown++;
       });
-      if (status) status.textContent = `${shown} ${shown === 1 ? 'ARTICLE' : 'ARTICLES'}`;
+      const noun = form.dataset.noun ?? 'ARTICLE';
+      if (status) status.textContent = `${shown} ${shown === 1 ? noun : noun + 'S'}`;
       if (empty) empty.hidden = shown !== 0;
       const q = new URLSearchParams();
       names.forEach((n) => f[n] && q.set(n, f[n]));
