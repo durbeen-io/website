@@ -18,7 +18,7 @@ content:
     path: src/content/insights
     format: yaml-frontmatter
     subfolders: false
-    exclude: ["_template.mdx"]
+    exclude: ["_template-build-note.mdx", "_template-comparison.mdx", "_template-guide.mdx", "_template-infographic.mdx", "_template-review.mdx", "_template.mdx"]
     filename:
       template: "{primary}.mdx"
       field: create
@@ -154,3 +154,872 @@ content:
         type: code
         options:
           format: mdx
+  - name: templates
+    label: Start a new article
+    type: group
+    items:
+      - name: new-build-note
+        label: New Build Note
+        type: collection
+        path: src/content/insights
+        format: yaml-frontmatter
+        subfolders: false
+        exclude: ["_template-build-note.mdx", "_template-comparison.mdx", "_template-guide.mdx", "_template-infographic.mdx", "_template-review.mdx", "_template.mdx"]
+        filename:
+          template: "{primary}.mdx"
+          field: create
+        view:
+          primary: title
+          fields: [number, type, category, publishDate, draft]
+          sort: [publishDate, number, title]
+          search: [title, type]
+          default:
+            search: "Build Note"
+            sort: publishDate
+            order: desc
+        fields:
+          - name: title
+            default: "[FILL] Build note: what I built or decided this week"
+            label: Title
+            type: string
+            required: true
+          - name: description
+            default: "[FILL] One sentence of 120 to 160 characters that tells a reader what they will learn or decide, and why it is worth their time."
+            label: Description (Google meta description)
+            type: text
+            required: true
+            description: 120 to 160 characters. The build fails outside that range.
+            options:
+              minlength: 120
+              maxlength: 160
+          - name: number
+            label: Log number
+            type: number
+            required: true
+            description: The next free number. Each article needs its own (N°012). Drafts count too.
+            options:
+              min: 1
+          - name: category
+            default: "Building Durbeen"
+            label: Category
+            type: select
+            required: true
+            options:
+              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+          - name: type
+            default: "Build Note"
+            label: Type
+            type: select
+            required: true
+            description: An Infographic also needs the Text version (summary) below.
+            options:
+              values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
+          - name: level
+            default: "Beginner"
+            label: Level
+            type: select
+            required: true
+            options:
+              values: ["Beginner", "Intermediate", "Advanced"]
+          - name: tags
+            label: Tags
+            type: select
+            required: true
+            description: Choose 3 to 5 tags from the approved list.
+            options:
+              multiple: true
+              min: 3
+              max: 5
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+          - name: series
+            default: "Building Durbeen in Public"
+            label: Series (optional)
+            type: select
+            options:
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+          - name: author
+            label: Author
+            type: string
+            readonly: true
+            default: Fahad Ehsan
+          - name: publishDate
+            label: Publish date
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: updatedDate
+            label: Updated date (optional)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: lastVerified
+            label: Last verified (optional, for reviews)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: featured
+            label: Feature on the home page
+            type: boolean
+            default: false
+          - name: draft
+            label: Draft (not published)
+            type: boolean
+            default: true
+            description: Leave on while writing. Switch off to publish.
+          - name: affiliate
+            label: Contains affiliate links
+            type: boolean
+            default: false
+          - name: heroImage
+            label: Hero image (optional)
+            type: image
+            options:
+              media: article_images
+          - name: heroAlt
+            label: Hero image alt text
+            type: string
+            description: Required if there is a hero image. One short sentence describing it.
+          - name: ogImage
+            label: Own social-preview image (optional)
+            type: string
+            description: Leave empty. A preview image is made automatically.
+          - name: canonicalSource
+            label: First published at (optional)
+            type: string
+            description: Only if the article appeared somewhere else first. A full https address.
+          - name: summary
+            label: Text version (required for Infographic)
+            type: text
+            description: For an Infographic, write the whole picture in plain sentences (200 characters or more). It is shown on the page.
+          - name: scorecard
+            label: Scorecard (Reviews only)
+            type: object
+            fields:
+              - { name: setup, label: Setup (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: docs, label: Docs (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: maintenance, label: Maintenance (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: safety, label: Safety (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: verdict, label: Verdict (one sentence), type: string }
+          - name: body
+            default: |
+              [FILL: one or two sentences. What was this week's goal?]
+
+              ## What I set out to do
+
+              [FILL: the plan, in plain words.]
+
+              ## What I did
+
+              [FILL: what actually happened, in order. Real dates, real tools.]
+
+              ## What went wrong
+
+              [FILL: honest negatives. A build note without a problem is usually missing something.]
+
+              ## What I decided, and why
+
+              [FILL: each decision in one sentence, with the reason. What did you reject?]
+
+              ## What is next
+
+              [FILL: the next one or two steps.]
+            label: Article text (MDX)
+            type: code
+            options:
+              format: mdx
+
+      - name: new-comparison
+        label: New Comparison
+        type: collection
+        path: src/content/insights
+        format: yaml-frontmatter
+        subfolders: false
+        exclude: ["_template-build-note.mdx", "_template-comparison.mdx", "_template-guide.mdx", "_template-infographic.mdx", "_template-review.mdx", "_template.mdx"]
+        filename:
+          template: "{primary}.mdx"
+          field: create
+        view:
+          primary: title
+          fields: [number, type, category, publishDate, draft]
+          sort: [publishDate, number, title]
+          search: [title, type]
+          default:
+            search: "Comparison"
+            sort: publishDate
+            order: desc
+        fields:
+          - name: title
+            default: "[FILL] Tool A or Tool B: which one for what"
+            label: Title
+            type: string
+            required: true
+          - name: description
+            default: "[FILL] One sentence of 120 to 160 characters that tells a reader what they will learn or decide, and why it is worth their time."
+            label: Description (Google meta description)
+            type: text
+            required: true
+            description: 120 to 160 characters. The build fails outside that range.
+            options:
+              minlength: 120
+              maxlength: 160
+          - name: number
+            label: Log number
+            type: number
+            required: true
+            description: The next free number. Each article needs its own (N°012). Drafts count too.
+            options:
+              min: 1
+          - name: category
+            default: "AI & AI Tools"
+            label: Category
+            type: select
+            required: true
+            options:
+              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+          - name: type
+            default: "Comparison"
+            label: Type
+            type: select
+            required: true
+            description: An Infographic also needs the Text version (summary) below.
+            options:
+              values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
+          - name: level
+            default: "Beginner"
+            label: Level
+            type: select
+            required: true
+            options:
+              values: ["Beginner", "Intermediate", "Advanced"]
+          - name: tags
+            label: Tags
+            type: select
+            required: true
+            description: Choose 3 to 5 tags from the approved list.
+            options:
+              multiple: true
+              min: 3
+              max: 5
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+          - name: series
+            label: Series (optional)
+            type: select
+            options:
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+          - name: author
+            label: Author
+            type: string
+            readonly: true
+            default: Fahad Ehsan
+          - name: publishDate
+            label: Publish date
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: updatedDate
+            label: Updated date (optional)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: lastVerified
+            label: Last verified (optional, for reviews)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: featured
+            label: Feature on the home page
+            type: boolean
+            default: false
+          - name: draft
+            label: Draft (not published)
+            type: boolean
+            default: true
+            description: Leave on while writing. Switch off to publish.
+          - name: affiliate
+            label: Contains affiliate links
+            type: boolean
+            default: false
+          - name: heroImage
+            label: Hero image (optional)
+            type: image
+            options:
+              media: article_images
+          - name: heroAlt
+            label: Hero image alt text
+            type: string
+            description: Required if there is a hero image. One short sentence describing it.
+          - name: ogImage
+            label: Own social-preview image (optional)
+            type: string
+            description: Leave empty. A preview image is made automatically.
+          - name: canonicalSource
+            label: First published at (optional)
+            type: string
+            description: Only if the article appeared somewhere else first. A full https address.
+          - name: summary
+            label: Text version (required for Infographic)
+            type: text
+            description: For an Infographic, write the whole picture in plain sentences (200 characters or more). It is shown on the page.
+          - name: scorecard
+            label: Scorecard (Reviews only)
+            type: object
+            fields:
+              - { name: setup, label: Setup (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: docs, label: Docs (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: maintenance, label: Maintenance (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: safety, label: Safety (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: verdict, label: Verdict (one sentence), type: string }
+          - name: body
+            default: |
+              [FILL: what you compared and the one question you wanted answered.]
+
+              ## The test
+
+              [FILL: the same task, given to each. Versions and dates. What would count as better.]
+
+              ## At a glance
+
+              | | [FILL: Tool A] | [FILL: Tool B] |
+              |---|---|---|
+              | [FILL: criterion] | [FILL] | [FILL] |
+              | [FILL: criterion] | [FILL] | [FILL] |
+              | [FILL: criterion] | [FILL] | [FILL] |
+
+              ## Where [FILL: Tool A] wins
+
+              [FILL: specific results.]
+
+              ## Where [FILL: Tool B] wins
+
+              [FILL: specific results.]
+
+              ## Which one to use
+
+              [FILL: a clear recommendation by situation. Not "it depends".]
+            label: Article text (MDX)
+            type: code
+            options:
+              format: mdx
+
+      - name: new-guide
+        label: New Guide
+        type: collection
+        path: src/content/insights
+        format: yaml-frontmatter
+        subfolders: false
+        exclude: ["_template-build-note.mdx", "_template-comparison.mdx", "_template-guide.mdx", "_template-infographic.mdx", "_template-review.mdx", "_template.mdx"]
+        filename:
+          template: "{primary}.mdx"
+          field: create
+        view:
+          primary: title
+          fields: [number, type, category, publishDate, draft]
+          sort: [publishDate, number, title]
+          search: [title, type]
+          default:
+            search: "Guide"
+            sort: publishDate
+            order: desc
+        fields:
+          - name: title
+            default: "[FILL] How to do one specific thing, in plain words"
+            label: Title
+            type: string
+            required: true
+          - name: description
+            default: "[FILL] One sentence of 120 to 160 characters that tells a reader what they will learn or decide, and why it is worth their time."
+            label: Description (Google meta description)
+            type: text
+            required: true
+            description: 120 to 160 characters. The build fails outside that range.
+            options:
+              minlength: 120
+              maxlength: 160
+          - name: number
+            label: Log number
+            type: number
+            required: true
+            description: The next free number. Each article needs its own (N°012). Drafts count too.
+            options:
+              min: 1
+          - name: category
+            default: "GitHub & Open Source"
+            label: Category
+            type: select
+            required: true
+            options:
+              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+          - name: type
+            default: "Guide"
+            label: Type
+            type: select
+            required: true
+            description: An Infographic also needs the Text version (summary) below.
+            options:
+              values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
+          - name: level
+            default: "Beginner"
+            label: Level
+            type: select
+            required: true
+            options:
+              values: ["Beginner", "Intermediate", "Advanced"]
+          - name: tags
+            label: Tags
+            type: select
+            required: true
+            description: Choose 3 to 5 tags from the approved list.
+            options:
+              multiple: true
+              min: 3
+              max: 5
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+          - name: series
+            label: Series (optional)
+            type: select
+            options:
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+          - name: author
+            label: Author
+            type: string
+            readonly: true
+            default: Fahad Ehsan
+          - name: publishDate
+            label: Publish date
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: updatedDate
+            label: Updated date (optional)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: lastVerified
+            label: Last verified (optional, for reviews)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: featured
+            label: Feature on the home page
+            type: boolean
+            default: false
+          - name: draft
+            label: Draft (not published)
+            type: boolean
+            default: true
+            description: Leave on while writing. Switch off to publish.
+          - name: affiliate
+            label: Contains affiliate links
+            type: boolean
+            default: false
+          - name: heroImage
+            label: Hero image (optional)
+            type: image
+            options:
+              media: article_images
+          - name: heroAlt
+            label: Hero image alt text
+            type: string
+            description: Required if there is a hero image. One short sentence describing it.
+          - name: ogImage
+            label: Own social-preview image (optional)
+            type: string
+            description: Leave empty. A preview image is made automatically.
+          - name: canonicalSource
+            label: First published at (optional)
+            type: string
+            description: Only if the article appeared somewhere else first. A full https address.
+          - name: summary
+            label: Text version (required for Infographic)
+            type: text
+            description: For an Infographic, write the whole picture in plain sentences (200 characters or more). It is shown on the page.
+          - name: scorecard
+            label: Scorecard (Reviews only)
+            type: object
+            fields:
+              - { name: setup, label: Setup (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: docs, label: Docs (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: maintenance, label: Maintenance (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: safety, label: Safety (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: verdict, label: Verdict (one sentence), type: string }
+          - name: body
+            default: |
+              [FILL: two sentences. What will the reader be able to do at the end? Who is this for?]
+
+              ## Before you start
+
+              [FILL: what the reader needs: accounts, tools, versions. List only what you used.]
+
+              ## Steps
+
+              1. [FILL: step one. One action per step. Say exactly what to click or type.]
+              2. [FILL: step two.]
+              3. [FILL: step three.]
+
+              ```bash
+              # [FILL: the exact command you ran, if any]
+              ```
+
+              ## Check that it worked
+
+              [FILL: what the reader should see. Describe the real result you got.]
+
+              ## If something goes wrong
+
+              [FILL: the real problems you hit, and what fixed them. If none, say so.]
+
+              ## What next
+
+              [FILL: one link or one next step. No more than one.]
+            label: Article text (MDX)
+            type: code
+            options:
+              format: mdx
+
+      - name: new-infographic
+        label: New Infographic
+        type: collection
+        path: src/content/insights
+        format: yaml-frontmatter
+        subfolders: false
+        exclude: ["_template-build-note.mdx", "_template-comparison.mdx", "_template-guide.mdx", "_template-infographic.mdx", "_template-review.mdx", "_template.mdx"]
+        filename:
+          template: "{primary}.mdx"
+          field: create
+        view:
+          primary: title
+          fields: [number, type, category, publishDate, draft]
+          sort: [publishDate, number, title]
+          search: [title, type]
+          default:
+            search: "Infographic"
+            sort: publishDate
+            order: desc
+        fields:
+          - name: title
+            default: "[FILL] Infographic: what the picture shows, in plain words"
+            label: Title
+            type: string
+            required: true
+          - name: description
+            default: "[FILL] One sentence of 120 to 160 characters that tells a reader what they will learn or decide, and why it is worth their time."
+            label: Description (Google meta description)
+            type: text
+            required: true
+            description: 120 to 160 characters. The build fails outside that range.
+            options:
+              minlength: 120
+              maxlength: 160
+          - name: number
+            label: Log number
+            type: number
+            required: true
+            description: The next free number. Each article needs its own (N°012). Drafts count too.
+            options:
+              min: 1
+          - name: category
+            default: "AI for Engineers"
+            label: Category
+            type: select
+            required: true
+            options:
+              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+          - name: type
+            default: "Infographic"
+            label: Type
+            type: select
+            required: true
+            description: An Infographic also needs the Text version (summary) below.
+            options:
+              values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
+          - name: level
+            default: "Beginner"
+            label: Level
+            type: select
+            required: true
+            options:
+              values: ["Beginner", "Intermediate", "Advanced"]
+          - name: tags
+            label: Tags
+            type: select
+            required: true
+            description: Choose 3 to 5 tags from the approved list.
+            options:
+              multiple: true
+              min: 3
+              max: 5
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+          - name: series
+            label: Series (optional)
+            type: select
+            options:
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+          - name: author
+            label: Author
+            type: string
+            readonly: true
+            default: Fahad Ehsan
+          - name: publishDate
+            label: Publish date
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: updatedDate
+            label: Updated date (optional)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: lastVerified
+            label: Last verified (optional, for reviews)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: featured
+            label: Feature on the home page
+            type: boolean
+            default: false
+          - name: draft
+            label: Draft (not published)
+            type: boolean
+            default: true
+            description: Leave on while writing. Switch off to publish.
+          - name: affiliate
+            label: Contains affiliate links
+            type: boolean
+            default: false
+          - name: heroImage
+            label: Hero image (optional)
+            type: image
+            options:
+              media: article_images
+          - name: heroAlt
+            default: "[FILL] One short sentence saying what the infographic is about."
+            label: Hero image alt text
+            type: string
+            description: Required if there is a hero image. One short sentence describing it.
+          - name: ogImage
+            label: Own social-preview image (optional)
+            type: string
+            description: Leave empty. A preview image is made automatically.
+          - name: canonicalSource
+            label: First published at (optional)
+            type: string
+            description: Only if the article appeared somewhere else first. A full https address.
+          - name: summary
+            default: "[FILL: write the whole infographic in plain sentences, in reading order, so a reader who cannot see or zoom the picture loses nothing. Aim for 200 characters or more, and leave a blank line between the parts of the picture.]"
+            label: Text version (required for Infographic)
+            type: text
+            description: For an Infographic, write the whole picture in plain sentences (200 characters or more). It is shown on the page.
+          - name: scorecard
+            label: Scorecard (Reviews only)
+            type: object
+            fields:
+              - { name: setup, label: Setup (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: docs, label: Docs (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: maintenance, label: Maintenance (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: safety, label: Safety (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: verdict, label: Verdict (one sentence), type: string }
+          - name: body
+            default: |
+              [FILL: one or two sentences. Why this infographic, and who it helps.]
+
+              ## How to read it
+
+              [FILL: where to start, and what the colours or shapes mean (keep to the style card).]
+
+              ## Sources
+
+              [FILL: where each number or claim comes from, with links. If it is your own testing, say so.]
+
+              ## What it leaves out
+
+              [FILL: what the picture simplifies, and where to read more.]
+            label: Article text (MDX)
+            type: code
+            options:
+              format: mdx
+
+      - name: new-review
+        label: New Review
+        type: collection
+        path: src/content/insights
+        format: yaml-frontmatter
+        subfolders: false
+        exclude: ["_template-build-note.mdx", "_template-comparison.mdx", "_template-guide.mdx", "_template-infographic.mdx", "_template-review.mdx", "_template.mdx"]
+        filename:
+          template: "{primary}.mdx"
+          field: create
+        view:
+          primary: title
+          fields: [number, type, category, publishDate, draft]
+          sort: [publishDate, number, title]
+          search: [title, type]
+          default:
+            search: "Review"
+            sort: publishDate
+            order: desc
+        fields:
+          - name: title
+            default: "[FILL] Review: tool or repo name, and the verdict in a few words"
+            label: Title
+            type: string
+            required: true
+          - name: description
+            default: "[FILL] One sentence of 120 to 160 characters that tells a reader what they will learn or decide, and why it is worth their time."
+            label: Description (Google meta description)
+            type: text
+            required: true
+            description: 120 to 160 characters. The build fails outside that range.
+            options:
+              minlength: 120
+              maxlength: 160
+          - name: number
+            label: Log number
+            type: number
+            required: true
+            description: The next free number. Each article needs its own (N°012). Drafts count too.
+            options:
+              min: 1
+          - name: category
+            default: "AI & AI Tools"
+            label: Category
+            type: select
+            required: true
+            options:
+              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+          - name: type
+            default: "Review"
+            label: Type
+            type: select
+            required: true
+            description: An Infographic also needs the Text version (summary) below.
+            options:
+              values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
+          - name: level
+            default: "Beginner"
+            label: Level
+            type: select
+            required: true
+            options:
+              values: ["Beginner", "Intermediate", "Advanced"]
+          - name: tags
+            label: Tags
+            type: select
+            required: true
+            description: Choose 3 to 5 tags from the approved list.
+            options:
+              multiple: true
+              min: 3
+              max: 5
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+          - name: series
+            label: Series (optional)
+            type: select
+            options:
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+          - name: author
+            label: Author
+            type: string
+            readonly: true
+            default: Fahad Ehsan
+          - name: publishDate
+            label: Publish date
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: updatedDate
+            label: Updated date (optional)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: lastVerified
+            label: Last verified (optional, for reviews)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: featured
+            label: Feature on the home page
+            type: boolean
+            default: false
+          - name: draft
+            label: Draft (not published)
+            type: boolean
+            default: true
+            description: Leave on while writing. Switch off to publish.
+          - name: affiliate
+            label: Contains affiliate links
+            type: boolean
+            default: false
+          - name: heroImage
+            label: Hero image (optional)
+            type: image
+            options:
+              media: article_images
+          - name: heroAlt
+            label: Hero image alt text
+            type: string
+            description: Required if there is a hero image. One short sentence describing it.
+          - name: ogImage
+            label: Own social-preview image (optional)
+            type: string
+            description: Leave empty. A preview image is made automatically.
+          - name: canonicalSource
+            label: First published at (optional)
+            type: string
+            description: Only if the article appeared somewhere else first. A full https address.
+          - name: summary
+            label: Text version (required for Infographic)
+            type: text
+            description: For an Infographic, write the whole picture in plain sentences (200 characters or more). It is shown on the page.
+          - name: scorecard
+            label: Scorecard (Reviews only)
+            type: object
+            fields:
+              - { name: setup, label: Setup (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: docs, label: Docs (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: maintenance, label: Maintenance (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: safety, label: Safety (1 to 5), type: number, options: { min: 1, max: 5 } }
+              - { name: verdict, label: Verdict (one sentence), type: string }
+          - name: body
+            default: |
+              [FILL: what it is, in one sentence, and why you looked at it.]
+
+              ## How I tested it
+
+              [FILL: version, date, machine, the real task you gave it. If you did not test something, say so.]
+
+              ## What worked
+
+              [FILL: specific results, not adjectives.]
+
+              ## What did not
+
+              [FILL: the honest negatives. Include install problems and surprises.]
+
+              ## Safety
+
+              [FILL: what it installs, what it runs, what it can reach, and what you checked (licence, install scripts, last commit).]
+
+              ## Verdict
+
+              [FILL: who should use it, who should not. This repeats the verdict line in the scorecard, with the reasons.]
+            label: Article text (MDX)
+            type: code
+            options:
+              format: mdx
+
