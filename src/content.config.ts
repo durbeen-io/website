@@ -60,6 +60,9 @@ const insights = defineCollection({
       if (d.heroImage && !d.heroAlt) {
         ctx.addIssue({ code: 'custom', path: ['heroAlt'], message: 'heroAlt (alt text) is required when heroImage is set' });
       }
+      if (d.type === 'Infographic' && !d.heroImage) {
+        ctx.addIssue({ code: 'custom', path: ['heroImage'], message: 'an Infographic needs heroImage (the infographic itself, also its thumbnail in the gallery)' });
+      }
       if (d.type === 'Infographic' && (d.summary ?? '').trim().length < 200) {
         ctx.addIssue({ code: 'custom', path: ['summary'], message: 'an Infographic needs a written summary of at least 200 characters (the text version shown on the page)' });
       }

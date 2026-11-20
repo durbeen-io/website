@@ -315,3 +315,13 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Terms: governing law India, courts of **Hyderabad**, India. The legal pages stay PRELIMINARY until the founder's legal check | Founder's answer | Citing statutes without a legal check |
 | Personal CV website: **Live**, link `https://fahadehsan-cv.lovable.app/` (opened and returned HTTP 200 with no redirect before adding), description "My professional CV site, built with Lovable (AI app builder).", repository still private. New optional `url` field on projects shows a "LIVE SITE" fact | Founder's answer; link verified | Adding an unverified link |
 | GitHub auto-merge for content pull requests is **documented in `docs/CMS.md`, not switched on** (steps checked against GitHub's documentation) | The founder asked to be told before any GitHub setting; it is a repository setting | Changing the setting myself |
+
+## 2026-11-21: Infographics gallery
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| `/infographics/`: every article of type Infographic, newest first, as a grid of cards (image, `N°` and category, title, date). The whole card is one tap target (like ArticleCard) and opens the article, where the text version is shown. Linked from the footer (Explore) and from the Insights page, as the founder asked; not in the main nav | Founder's spec | Adding it to the nav |
+| An Infographic must have `heroImage` (and `heroAlt`); the build fails without it | The gallery needs the picture, and the picture is the article | Skipping articles with no image |
+| Thumbnails show the **whole image** (letterboxed in a 4:3 frame, `object-fit: contain`), never cropped. AVIF/WebP at 320/480/640 px | Cropping would cut off part of an infographic | Same-shape cropped cards |
+| The category filter reuses the Insights filter component (now works with any subset of its three groups, and says INFOGRAPHIC instead of ARTICLE on this page). All four categories are always offered, and an empty one says "No infographics in this category yet" | Founder asked for the four category buttons; one shared, tested component | A second filter script; hiding empty categories |
+| Tested with temporary infographics (removed afterwards): newest-first order, filter, empty state and reset, `?category=` deep link, card focus ring, tap opens the article with its text version, Insights filters unchanged | Not claimed without running | None |
