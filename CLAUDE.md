@@ -164,7 +164,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 | # | Template | URL | Generates |
 |---|---|---|---|
 | A | Article | `/insights/[slug]/` | One page per article |
-| B | Category | `/insights/category/[slug]/` | One page per category (6) |
+| B | Category | `/insights/category/[slug]/` | One page per category (4) |
 | C | Tag | `/insights/tag/[slug]/` | One page per tag |
 | D | Project detail | `/projects/[slug]/` | One page per project |
 
@@ -204,7 +204,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 ### Content system: every article gets 1 category + 1 type + 1 level + 3–5 tags
 | Label | Allowed values |
 |---|---|
-| **Category** (what it's about) | AI · Open Source & GitHub · Automation & Productivity · Software & Tools · Building Products · Business & Innovation |
+| **Category** (what it's about) | **Exactly four:** AI & AI Tools · AI for Engineers · GitHub & Open Source · Building Durbeen (changed 21 Nov 2026; "Infographic" is a type, not a category) |
 | **Type** (what form it takes) | Review · Comparison · Guide · Experiment · Build Note · Insight · Visual · **Infographic** (needs a written text summary shown on the page) |
 | **Level** | Beginner · Intermediate · Advanced |
 | **Tags** | Lowercase, reused, from a controlled list in `src/content/tags.json` (keep it under ~30; adding a tag means adding it to the list) |
@@ -215,7 +215,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 title: string              # required
 description: string        # required, 120–160 chars (meta description)
 number: number             # log number, e.g. 12 → "N°012"
-category: enum             # one of the 6 categories above
+category: enum             # one of the 4 categories above
 type: enum                 # one of the 8 types above
 level: enum                # Beginner | Intermediate | Advanced
 tags: string[]             # 3–5, must exist in tags.json

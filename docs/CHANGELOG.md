@@ -6,6 +6,9 @@ User-visible changes, newest first. Dates are when the change was made.
 
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
+### 2026-11-21
+- Categories are now exactly four: AI & AI Tools, AI for Engineers, GitHub & Open Source, Building Durbeen. The tag list is now 32 tags built around the founder's four topic areas, the Toolkit and the projects. Sample drafts were remapped.
+
 ### 2026-11-20
 - 404 page built: on-brand, with a Search button, a link home and the latest articles. **Not yet served by Cloudflare for unknown addresses:** that needs a Worker setting that failed to build when tried (see docs/DEPLOYMENT.md). Phase 5.
 - Privacy, Terms, Editorial policy and Affiliate disclosure pages, all marked as preliminary drafts (not legal advice; the governing law is not decided). They describe what the site really does: no cookies, no accounts, no third-party scripts or fonts, no analytics yet, no affiliate links. Phase 5.
