@@ -127,3 +127,12 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | `BaseLayout` reads the newest article and passes it to the status strip, so every page shows `LOG UPDATED date · N°nnn` | Connection map: a new article updates the strip everywhere without touching pages | Passing it page by page |
 | The axe and Lighthouse CI jobs build with `DURBEEN_INCLUDE_DRAFTS=1` so they audit a page that has content; the link job and the Cloudflare deploy build without it | Auditing an empty home page proves little; the deploy must never include drafts. Job names are unchanged, so the required checks still match | Leaving CI on empty pages; including drafts in the deploy |
 | "Read the latest" goes to the newest article, or `/insights/` when there are none. "See projects" goes to `/projects/` (still in `lychee.toml` until Phase 5) | No link to a page that does not exist unless it is on the planned list | A dead link |
+
+## 2026-11-20: Home, Method and Projects (Phase 3, PR 4)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Projects live in a `projects` collection (`src/content/projects/*.md`: title, summary, status, order). Only the real project (durbeen.io) is listed | Founder: real projects only, no placeholders. Phase 5 reuses the collection for the list and detail pages | Hard-coded rows; `[Project 02]` placeholders |
+| `ProjectRow` is plain text, not a link, until a project has its own page (Phase 5) | No dead links | A link to a page that does not exist |
+| New token `--on-band-2` (#C5CAD0, same in both modes) for secondary text on dark bands, with a pair in `check:contrast` (10.8:1 and 10.1:1) | `--text-2` is dark in light mode and unreadable on the dark band | Reusing `--text-2` |
+| Method steps are written in the page (four fixed steps from the brief), not in a collection | They never change per article; keeps it simple | A steps collection |

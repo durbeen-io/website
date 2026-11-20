@@ -20,6 +20,7 @@
   --accent-on-dark: #F08A4B;    /* accent on dark bands; same in both modes */
   --band: #14181D;              /* dark bands (Method, Projects header) */
   --on-band: #F4F4F1;
+  --on-band-2: #C5CAD0;         /* secondary text on dark bands; same in both modes */
 
   /* Typography: families */
   --font-display: 'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif;

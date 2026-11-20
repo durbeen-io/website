@@ -1,12 +1,14 @@
 ---
 // Home (Homepage A, "Instrument Lab"). Sections are added one PR at a time:
-// hero + Observation Log, statement, Insights (this PR); Method, Projects (next PR).
+// hero + Observation Log, statement, Insights, Method, Projects. The footer comes from BaseLayout.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import ObservationLog from '../components/ObservationLog.astro';
 import Reticle from '../components/Reticle.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import ArticleCard from '../components/ArticleCard.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import { getCollection } from 'astro:content';
 import { getArticles, articleHref, readingMinutes } from '../lib/articles';
 
 const articles = await getArticles();
@@ -30,6 +32,16 @@ const card = (a: (typeof articles)[number]) => ({
   href: articleHref(a),
   minutes: readingMinutes(a),
 });
+
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+
+// The four steps of the method (brief section 1). Copy follows the mockup.
+const steps = [
+  { n: '01', name: 'Discover', text: 'Scan open source, AI releases and tools for things worth a closer look.' },
+  { n: '02', name: 'Evaluate', text: 'Install it, read the code, test it on a real task. Publish the honest result.' },
+  { n: '03', name: 'Build', text: 'Turn what works into practical tools, automations and products.' },
+  { n: '04', name: 'Share', text: 'Document everything, so others can reuse it and build on it.' },
+];
 ---
 
 <BaseLayout
@@ -83,6 +95,43 @@ const card = (a: (typeof articles)[number]) => ({
         </>
       ) : (
         <p class="none">The first articles are on the way.</p>
+      )
+    }
+  </section>
+
+  <section class="method" aria-labelledby="method-title">
+    <div class="container section">
+      <SectionLabel number={2} onDark>Method</SectionLabel>
+      <h2 id="method-title">Every project goes through the same four steps.</h2>
+      <ol class="steps">
+        {
+          steps.map((s) => (
+            <li class:list={{ last: s.n === '04' }}>
+              <span class="numeral num" aria-hidden="true">{s.n}</span>
+              <h3>{s.name}</h3>
+              <p>{s.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="projects container section" aria-labelledby="projects-title">
+    <h2 id="projects-title" class="visually-hidden">Projects</h2>
+    <div class="head">
+      <SectionLabel number={3}>Projects</SectionLabel>
+      <Button variant="text" href="/projects/" arrow>All projects</Button>
+    </div>
+    {
+      projects.length > 0 ? (
+        <ul class="rows">
+          {projects.map((p, i) => (
+            <ProjectRow title={p.data.title} summary={p.data.summary} status={p.data.status} first={i === 0} />
+          ))}
+        </ul>
+      ) : (
+        <p class="none">Projects will appear here.</p>
       )
     }
   </section>
@@ -171,5 +220,50 @@ const card = (a: (typeof articles)[number]) => ({
     padding-top: var(--space-4);
     border-top: 1px solid var(--ink);
     color: var(--text-2);
+  }
+
+  .method {
+    background: var(--band);
+    color: var(--on-band);
+  }
+  .method h2 {
+    max-width: 900px;
+    margin: var(--space-5) 0 clamp(48px, 6vw, 80px);
+    color: var(--on-band);
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin: 0;
+    padding: 0;
+  }
+  .steps li {
+    list-style: none;
+    padding: 28px 28px 0 0;
+    border-top: 1px solid var(--on-band);
+  }
+  .num {
+    display: block;
+    margin-bottom: 28px;
+    font-size: 56px;
+  }
+  .steps .last .num {
+    color: var(--accent-on-dark);
+  }
+  .steps h3 {
+    margin: 0 0 12px;
+    font-size: 22px;
+    letter-spacing: 0;
+    color: var(--on-band);
+  }
+  .steps p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--on-band-2);
+  }
+  .rows {
+    margin: 0;
+    padding: 0;
   }
 </style>

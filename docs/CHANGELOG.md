@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system is done and the shared components are in progress (Phase 2).
 
 ### 2026-11-20
+- Home page, Method band (four steps, Doto numerals) and Projects section (one row: durbeen.io, in progress). Projects now come from a `projects` content collection. New token `--on-band-2` for secondary text on dark bands, with a contrast check. Phase 3, PR 4.
 - Home page, Insights section: one featured article plus the next three, read from the content collection. The featured-card placeholder disc is now ink (black) instead of accent. Phase 3, PR 3.
 - Home page, first half: the hero with the Observation Log (latest four articles, read from the content collection) and the "Look closer. Then build." statement with the reticle. The status strip now shows the newest article's date and number on every page. Phase 3, PR 2.
 - Content system: articles are written as `.mdx` files, and the build fails on invalid frontmatter or a tag not on the approved list. Six sample drafts (hidden from every normal build) added for testing. Phase 3, PR 1.

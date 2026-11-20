@@ -48,6 +48,7 @@ const pairs = [
   ['--ui-border', '--surface', 'Border of an input or button on panel', 3],
   ['--on-accent', '--accent', 'Text on accent button', 4.5],
   ['--on-band', '--band', 'Text on dark band', 4.5],
+  ['--on-band-2', '--band', 'Secondary text on dark band', 4.5],
   ['--accent-on-dark', '--band', 'Accent on dark band', 4.5],
 ];
 
