@@ -5,6 +5,8 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Button from '../../../components/Button.astro';
 import Tag from '../../../components/Tag.astro';
 import SectionLabel from '../../../components/SectionLabel.astro';
+import Header from '../../../components/Header.astro';
+import StatusStrip from '../../../components/StatusStrip.astro';
 import ThemeToggle from '../../../components/ThemeToggle.astro';
 ---
 
@@ -27,6 +29,7 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
         <li><a href="#button">Button</a></li>
         <li><a href="#tag">Tag</a></li>
         <li><a href="#section-label">SectionLabel</a></li>
+        <li><a href="#header">Header</a></li>
       </ul>
     </nav>
 
@@ -130,6 +133,28 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
         <SectionLabel number={2} onDark>METHOD</SectionLabel>
       </div>
     </section>
+
+    <!-- HEADER -->
+    <section id="header" aria-labelledby="header-h">
+      <hr />
+      <SectionLabel number={4}>HEADER</SectionLabel>
+      <h2 id="header-h" class="h2-sm">Header + StatusStrip</h2>
+      <p class="reading" style="margin-top: var(--space-2)">
+        Below 860px the nav collapses behind MENU (Esc closes it). Resize the window to see both layouts.
+        Search stays off until Pagefind exists (Phase 4).
+      </p>
+
+      <p class="label-sm">DEFAULT (SEARCH OFF, NO LOG DATA)</p>
+      <div class="frame"><Header currentPath="/" id="demo-nav-1" /></div>
+
+      <p class="label-sm">SEARCH ON · LOG DATA · "INSIGHTS" IS THE CURRENT PAGE</p>
+      <div class="frame">
+        <Header search log={{ date: '18.11.2026', number: 12 }} currentPath="/insights/" id="demo-nav-2" />
+      </div>
+
+      <p class="label-sm">STATUS STRIP ALONE</p>
+      <div class="frame"><StatusStrip log={{ date: '18.11.2026', number: 12 }} /></div>
+    </section>
   </div>
 </BaseLayout>
 
@@ -155,6 +180,10 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
     padding: var(--space-4);
     background: var(--band);
     color: var(--on-band);
+  }
+  .frame {
+    border: 1px solid var(--ui-border);
+    background: var(--paper);
   }
   .toc {
     margin-top: var(--space-5);

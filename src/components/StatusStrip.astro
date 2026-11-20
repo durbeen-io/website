@@ -1,0 +1,34 @@
+---
+// Thin strip above the header: "DURBEEN / INDEPENDENT TECHNOLOGY LAB" and, when known,
+// "LOG UPDATED 18.11.2026 · N°012". The log part is passed in by the page; it is generated
+// from the latest article (Phase 3/4). Without it, only the left text shows. Nothing is invented here.
+interface Props {
+  log?: { date: string; number: number };
+}
+const { log } = Astro.props;
+const n = log ? String(log.number).padStart(3, '0') : '';
+---
+
+<div class="strip">
+  <div class="container inner">
+    <span>DURBEEN / INDEPENDENT TECHNOLOGY LAB</span>
+    {log && <span>LOG UPDATED {log.date} · N°{n}</span>}
+  </div>
+</div>
+
+<style>
+  .strip {
+    border-bottom: var(--border);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label-sm);
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-1);
+    padding-block: var(--space-1);
+  }
+</style>
