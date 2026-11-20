@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, the home page and the blog engine are done; the remaining pages are next (Phase 5).
 
 ### 2026-11-20
+- Privacy, Terms, Editorial policy and Affiliate disclosure pages, all marked as preliminary drafts (not legal advice; the governing law is not decided). They describe what the site really does: no cookies, no accounts, no third-party scripts or fonts, no analytics yet, no affiliate links. Phase 5.
 - About page (89 words; three `[BRACKET]` placeholders for the founder: field, years of experience, why Durbeen started) and a Resources page with eleven hand-checked links. `hello@durbeen.io` appears as plain text. A new command, `npm run check:brackets`, lists any placeholder still on the built site. Phase 5.
 - Toolkit page: ten tools used daily (ChatGPT, Claude, Gemini, NotebookLM, Hazel, MarkItDown, GitHub, Git, Cloudflare, macOS) and three being learned (TypeScript, Bash, Astro), one line each, no affiliate links. Project pages link to the tools they use. Phase 5.
 - Projects: a Projects page (dark header band and rows with status labels) and one page per project: durbeen.io (in progress), TokenSave (complete, version 1.0, private repository) and a personal CV website (in progress, private repository). Home project rows now link to them. Phase 5.
