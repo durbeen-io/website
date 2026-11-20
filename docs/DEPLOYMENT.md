@@ -66,3 +66,9 @@ Set in `public/_headers`: Content-Security-Policy, Strict-Transport-Security, X-
 ## Domain (Phase 8)
 
 durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTTPS only ("Always Use HTTPS"). Connected only after launch approval.
+
+## Search (Pagefind)
+
+- `npm run build` is `astro build && pagefind --site dist`. Pagefind reads the built pages and writes the search index to `dist/pagefind/`. The Cloudflare build command stays `npm run build`, so no Cloudflare setting changes.
+- Only articles are indexed (`data-pagefind-body` on the article page).
+- **Phase 7 (security headers):** the Content-Security-Policy must allow `script-src 'self' 'wasm-unsafe-eval'`, because Pagefind uses WebAssembly. Test search again after the headers are set.

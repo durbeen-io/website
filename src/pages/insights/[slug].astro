@@ -73,8 +73,8 @@ const jsonLd = [
 
 <BaseLayout title={`${d.title} | Durbeen`} description={d.description} ogType="article" jsonLd={jsonLd}>
   <ReadingProgress target="#article-body" />
-  <article>
-    <header class="head container">
+  <article data-pagefind-body data-pagefind-meta={`type:${d.type}`}>
+    <header class="head container" data-pagefind-meta={`number:${n}`}>
       <nav aria-label="Breadcrumb" class="crumbs">
         <a href="/insights/">INSIGHTS</a><span aria-hidden="true">/</span>
         <a href={categoryHref(d.category)}>{d.category.toUpperCase()}</a><span aria-hidden="true">/</span>

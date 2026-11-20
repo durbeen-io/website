@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components and the home page are done; the blog engine is next (Phase 4).
 
 ### 2026-11-20
+- Search: a search button in the header opens a search window over the articles (Pagefind, built into the site, no tracking). Phase 4, PR 5.
 - Insights list (`/insights/`) with filters for category, type and level, plus category pages (all six), tag pages (tags in use) and basic series pages. Without scripts the full list still shows. Phase 4, PR 4.
 - Article images: AVIF and WebP in several sizes, lazy loading, a soft blur-to-sharp preview, `FIG. 01 —` captions and tap-to-zoom. The build fails if an image has no alt text. Hero images are supported through frontmatter. Phase 4, PR 3.
 - Articles: a thin reading-progress line at the top, share links (LinkedIn, X, copy link) and a copy button on code blocks. Phase 4, PR 2.

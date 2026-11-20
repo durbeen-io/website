@@ -463,7 +463,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - Footer links are 44px tall but only 29-42px wide (RSS, Terms, About). Minor; revisit with the Phase 3 footer check.
 - Re-test the open mobile MENU panel by keyboard at 375px (not re-tested at the Phase 2 gate).
 - Footer has no LinkedIn link: the founder must supply the URL.
-- Header search is off until Pagefind (Phase 4); with it on, the 375px header row wraps and needs a small-screen layout.
+- Phase 7: the CSP must allow `'wasm-unsafe-eval'` for Pagefind search (see `docs/DEPLOYMENT.md`); retest search after the headers.
 - Newsletter form is disabled until the Kit endpoint is set (Phase 5). Check Kit's field name (`email_address`) then.
 - Run a reverse image search and a trademark search on the logo (SAIP, IP India, WIPO) before public launch.
 

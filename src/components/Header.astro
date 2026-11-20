@@ -2,7 +2,7 @@
 // Site header: status strip, logo, main nav, optional search, theme toggle.
 // Nav (CLAUDE.md section 8): Insights · Projects · Toolkit · About · (search).
 // Below 860px the nav collapses behind a MENU button (only when scripts run; without JS it stays open).
-// `search` stays off until Pagefind exists (Phase 4), so there is no button that does nothing.
+// `search` shows the search button (the dialog is SearchDialog, mounted once in BaseLayout; index from Pagefind).
 import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import StatusStrip from './StatusStrip.astro';
@@ -14,7 +14,7 @@ interface Props {
   navLabel?: string; // only change when two headers share a page (the preview page): landmarks need unique names
   id?: string; // nav id; only change if two headers share a page (the preview page)
 }
-const { search = false, log, currentPath = Astro.url.pathname, id = 'site-nav', navLabel = 'Main' } = Astro.props;
+const { search = true, log, currentPath = Astro.url.pathname, id = 'site-nav', navLabel = 'Main' } = Astro.props;
 
 const nav = [
   { label: 'Insights', href: '/insights/' },
