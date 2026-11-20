@@ -1,0 +1,417 @@
+---
+// Article page template: one page per article (CLAUDE.md section 9).
+// Everything here is read from the article's frontmatter and body; nothing is written by hand.
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TOC from '../../components/TOC.astro';
+import Tag from '../../components/Tag.astro';
+import Callout from '../../components/Callout.astro';
+import VerdictBox from '../../components/VerdictBox.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+import {
+  getArticles,
+  readingMinutes,
+  articleHref,
+  formatDate,
+  categoryHref,
+  tagHref,
+  seriesHref,
+  relatedArticles,
+  adjacentArticles,
+} from '../../lib/articles';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props;
+const d = article.data;
+const all = await getArticles();
+const { Content, headings } = await render(article);
+const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, text: h.text }));
+const minutes = readingMinutes(article);
+const related = relatedArticles(article, all);
+const { previous, next } = adjacentArticles(article, all);
+const inSeries = d.series ? all.filter((a) => a.data.series === d.series && a.id !== article.id) : [];
+const n = String(d.number).padStart(3, '0');
+const sc = d.scorecard;
+const total = sc ? sc.setup + sc.docs + sc.maintenance + sc.safety : 0;
+
+const url = new URL(articleHref(article), Astro.site).href;
+const site = Astro.site!.href;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: d.title,
+    description: d.description,
+    datePublished: d.publishDate.toISOString(),
+    dateModified: (d.updatedDate ?? d.publishDate).toISOString(),
+    author: { '@type': 'Person', name: d.author },
+    publisher: { '@type': 'Organization', name: 'Durbeen', url: site, logo: { '@type': 'ImageObject', url: `${site}icon-512.png` } },
+    mainEntityOfPage: url,
+    articleSection: d.category,
+    keywords: d.tags.join(', '),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Insights', item: `${site}insights/` },
+      { '@type': 'ListItem', position: 2, name: d.category, item: new URL(categoryHref(d.category), Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: d.title, item: url },
+    ],
+  },
+];
+---
+
+<BaseLayout title={`${d.title} | Durbeen`} description={d.description} ogType="article" jsonLd={jsonLd}>
+  <article>
+    <header class="head container">
+      <nav aria-label="Breadcrumb" class="crumbs">
+        <a href="/insights/">INSIGHTS</a><span aria-hidden="true">/</span>
+        <a href={categoryHref(d.category)}>{d.category.toUpperCase()}</a><span aria-hidden="true">/</span>
+        <span aria-current="page">N°{n}</span>
+      </nav>
+      <h1>{d.title}</h1>
+      <p class="dek">{d.description}</p>
+      <div class="meta">
+        <span class="who"><strong>{d.author}</strong><span>Founder, Durbeen</span></span>
+        <span class="label"><time datetime={d.publishDate.toISOString().slice(0, 10)}>{formatDate(d.publishDate)}</time></span>
+        <span class="label">{minutes} MIN READ</span>
+        {d.updatedDate && <span class="label">UPDATED <time datetime={d.updatedDate.toISOString().slice(0, 10)}>{formatDate(d.updatedDate)}</time></span>}
+        {d.lastVerified && <span class="label">LAST VERIFIED <time datetime={d.lastVerified.toISOString().slice(0, 10)}>{formatDate(d.lastVerified)}</time></span>}
+      </div>
+      <div class="chips">
+        <Tag variant="chip" label={d.type.toUpperCase()} />
+        <Tag variant="chip" label={d.level.toUpperCase()} />
+        {d.tags.map((t) => <Tag label={t.toUpperCase()} href={tagHref(t)} />)}
+      </div>
+    </header>
+
+    <div class:list={['layout container', { 'no-toc': toc.length < 2 }]}>
+      {toc.length >= 2 && <div class="toc"><TOC items={toc} /></div>}
+
+      <div class="text">
+        <div class="prose">
+          <Content components={{ Callout, VerdictBox }} />
+        </div>
+
+        {
+          sc && (
+            <VerdictBox call={`${total}/20 OVERALL`} scores={sc}>
+              {sc.verdict}
+            </VerdictBox>
+          )
+        }
+        {
+          d.affiliate && (
+            <Callout label="AFFILIATE NOTE">
+              This article contains affiliate links. If you buy through them, Durbeen may earn a commission at no extra cost to you. It does not change what is written. <a href="/affiliate-disclosure/">Affiliate disclosure</a>.
+            </Callout>
+          )
+        }
+        {d.canonicalSource && <p class="label source">FIRST PUBLISHED AT <a href={d.canonicalSource}>{new URL(d.canonicalSource).hostname}</a></p>}
+
+        <section class="signup" aria-labelledby="signup-title">
+          <h2 id="signup-title">Get the field notes.</h2>
+          <p>New reviews and experiments. No spam.</p>
+          <NewsletterForm id="newsletter-article" />
+        </section>
+      </div>
+
+      <aside class="rail" aria-label="Article tools">
+        {
+          inSeries.length > 0 && d.series && (
+            <div class="block">
+              <p class="label">IN THIS SERIES · <a href={seriesHref(d.series)}>{d.series.toUpperCase()}</a></p>
+              <ul>
+                {inSeries.map((a) => (
+                  <li><a href={articleHref(a)}>{a.data.title} →</a></li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </aside>
+    </div>
+
+    <nav class="pager container" aria-label="More articles">
+      {previous ? <a href={articleHref(previous)} rel="prev"><span class="label">← PREVIOUS</span><span class="t">{previous.data.title}</span></a> : <span />}
+      {next ? <a href={articleHref(next)} rel="next" class="next"><span class="label">NEXT →</span><span class="t">{next.data.title}</span></a> : <span />}
+    </nav>
+
+    {
+      related.length > 0 && (
+        <section class="related" aria-labelledby="related-title">
+          <div class="container">
+            <h2 id="related-title" class="label">RELATED FIELD NOTES</h2>
+            <ul>
+              {related.map((a) => (
+                <li>
+                  <a href={articleHref(a)}>
+                    <span class="label">{String(a.data.number).padStart(3, '0')} · {a.data.type.toUpperCase()}</span>
+                    <span class="t">{a.data.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .head {
+    padding-block: clamp(48px, 6vw, 80px) clamp(32px, 4vw, 64px);
+  }
+  .crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: var(--space-5);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    color: var(--muted);
+  }
+  .crumbs a {
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    margin-block: -14px;
+  }
+  h1 {
+    max-width: 1050px;
+    margin: 0 0 var(--space-4);
+    font-size: var(--fs-article-title);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+  .dek {
+    max-width: 720px;
+    margin: 0 0 var(--space-4);
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--text-2);
+  }
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-4);
+    margin-bottom: var(--space-3);
+  }
+  .who {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .who strong {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px var(--space-2);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-5);
+    padding-bottom: clamp(64px, 8vw, 112px);
+  }
+  .text {
+    min-width: 0;
+    max-width: var(--reading-width);
+  }
+  @media (min-width: 1100px) {
+    .layout {
+      grid-template-columns: 220px minmax(0, var(--reading-width)) 220px;
+      justify-content: space-between;
+      gap: var(--space-6);
+    }
+    .layout.no-toc {
+      grid-template-columns: minmax(0, var(--reading-width)) 220px;
+      justify-content: center;
+    }
+    .toc {
+      position: sticky;
+      top: var(--space-3);
+      align-self: start;
+    }
+    .rail {
+      align-self: start;
+    }
+  }
+
+  /* Body text: 19px / 1.72, one ~700px column (brief section 6) */
+  .prose {
+    font-size: var(--fs-body-article);
+    line-height: var(--lh-article);
+    color: var(--text);
+  }
+  .prose :global(> :first-child) {
+    margin-top: 0;
+  }
+  .prose :global(p) {
+    margin: 0 0 24px;
+  }
+  .prose :global(h2) {
+    margin: 56px 0 20px;
+    font-size: var(--fs-article-h2);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    scroll-margin-top: var(--space-4);
+  }
+  .prose :global(h3) {
+    margin: 40px 0 16px;
+    scroll-margin-top: var(--space-4);
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 28px;
+    padding-left: 24px;
+  }
+  .prose :global(li) {
+    margin-bottom: 10px;
+  }
+  .prose :global(strong) {
+    font-weight: 600;
+  }
+  .prose :global(code) {
+    padding: 2px 6px;
+    background: var(--surface-2);
+    font-size: 0.88em;
+  }
+  .prose :global(pre) {
+    margin: 0 0 28px;
+    padding: 24px 28px;
+    background: var(--band) !important; /* the theme sets its own; the site's band colour wins */
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: auto;
+  }
+  .prose :global(pre code) {
+    padding: 0;
+    background: none;
+    font-size: inherit;
+  }
+  /* Pull quote: a quote between two ink rules */
+  .prose :global(blockquote) {
+    margin: 48px 0;
+    border-block: 1px solid var(--ink);
+  }
+  .prose :global(blockquote p) {
+    margin: 32px 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .prose :global(hr) {
+    margin: 48px 0;
+  }
+
+  .source {
+    margin: var(--space-4) 0 0;
+  }
+  .signup {
+    margin-top: var(--space-7);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--ink);
+  }
+  .signup h2 {
+    margin: 0 0 var(--space-2);
+    font-size: 28px;
+    letter-spacing: -0.02em;
+  }
+  .signup p {
+    margin: 0 0 var(--space-3);
+    color: var(--text-2);
+  }
+
+  .rail .block p {
+    margin: 0 0 var(--space-2);
+  }
+  .rail .block a {
+    color: inherit;
+  }
+  .rail ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .rail li a {
+    display: flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .pager {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-3);
+    padding-block: var(--space-5);
+    border-top: var(--border);
+  }
+  .pager a,
+  .related li a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    min-height: var(--touch-target);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .pager .next {
+    text-align: right;
+  }
+  .pager .t,
+  .related .t {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .pager a:hover .t,
+  .related a:hover .t {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 0.2em;
+  }
+  .related {
+    padding-block: var(--space-6) var(--space-7);
+    border-top: var(--border);
+    background: var(--surface);
+  }
+  .related h2 {
+    margin: 0 0 var(--space-5);
+    font-size: var(--fs-label);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+  .related ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

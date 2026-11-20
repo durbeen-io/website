@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components and the home page are done; the blog engine is next (Phase 4).
 
 ### 2026-11-20
+- Article page template (`/insights/[slug]/`): header with breadcrumb, byline, dates, reading time, type, level and tags; contents list, body styles, pull quotes, code blocks, callouts, review scorecard, affiliate note, signup, related articles and previous/next. Every page now has a canonical URL, Open Graph and Twitter tags; articles carry `Article` and `BreadcrumbList` data and the home page `Organization` data. Phase 4, PR 1.
 - Home page, Method band (four steps, Doto numerals) and Projects section (one row: durbeen.io, in progress). Projects now come from a `projects` content collection. New token `--on-band-2` for secondary text on dark bands, with a contrast check. Phase 3, PR 4.
 - Home page, Insights section: one featured article plus the next three, read from the content collection. The featured-card placeholder disc is now ink (black) instead of accent. Phase 3, PR 3.
 - Home page, first half: the hero with the Observation Log (latest four articles, read from the content collection) and the "Look closer. Then build." statement with the reticle. The status strip now shows the newest article's date and number on every page. Phase 3, PR 2.

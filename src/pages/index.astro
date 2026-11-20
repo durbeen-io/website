@@ -42,9 +42,20 @@ const steps = [
   { n: '03', name: 'Build', text: 'Turn what works into practical tools, automations and products.' },
   { n: '04', name: 'Share', text: 'Document everything, so others can reuse it and build on it.' },
 ];
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Durbeen',
+  url: Astro.site!.href,
+  logo: `${Astro.site!.href}icon-512.png`,
+  description: 'An independent technology lab and publication.',
+  sameAs: ['https://github.com/durbeen-io'],
+};
 ---
 
 <BaseLayout
+  jsonLd={[organization]}
   title="Durbeen: field notes from the edge of technology"
   description="Durbeen is an independent technology lab and publication. Reviews, experiments and build notes on AI, open source and practical tools."
 >

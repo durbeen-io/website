@@ -9,8 +9,13 @@ interface Props {
   title: string;
   description: string;
   noindex?: boolean;
+  ogType?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>[]; // structured data (Article, BreadcrumbList, Organization)
 }
-const { title, description, noindex = false } = Astro.props;
+const { title, description, noindex = false, ogType = 'website', jsonLd = [] } = Astro.props;
+
+// Canonical URL: always the durbeen.io address of this page (from `site` in astro.config.mjs).
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
 // Status strip: "LOG UPDATED date · N°nnn" comes from the newest article, on every page.
 const latest = (await getArticles())[0];
@@ -24,11 +29,21 @@ const log = latest ? { date: logDate(latest.data.publishDate), number: latest.da
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:site_name" content="Durbeen" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <script is:inline src="/theme-init.js"></script>
+    {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
