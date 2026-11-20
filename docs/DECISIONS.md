@@ -350,3 +350,11 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | `docs/EMAIL.md` gives the founder step-by-step instructions to forward hello@durbeen.io to Gmail with Cloudflare Email Routing (steps from Cloudflare's documentation, including: three kinds of DNS records are added, the destination must be verified before the rule works, test from a different address). **No DNS record was added or changed, and Email Routing was not enabled** | The founder asked for instructions and not to change DNS | Doing it myself |
 | The site keeps showing hello@durbeen.io as plain text until the founder confirms delivery works; then the Privacy page names Email Routing and the text can become a mail link | A mail link that bounces would look like a working feature | Linking it now |
 | "Replying as hello@" is called out as a separate decision: Email Routing only receives and forwards | Cloudflare's documentation used does not cover sending as the domain | Promising replies |
+
+## 2026-11-21: Founder-led voice
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Durbeen is a founder-led independent lab. The brand voice stays "Durbeen", but it openly names its founder, an instrumentation & controls engineer testing AI on real work. First person ("I") is fine on About, the author box and articles | "Independent technology lab" and "we" sounded like a generic developer lab; the real value is an engineer's tests on real work (reports, documents, data) | Keeping "we" and a generic lab voice; turning the site into a personal portfolio |
+| Home: hero intro, status strip, footer line, meta description and Organization JSON-LD rewritten to match. Hero headline, hero label and "Look closer. Then build." kept. Meta description is 147 characters | Same reason; Google shows the meta description | – |
+| Not yet aligned (older wording remains): About page, OG image tag line, RSS description, "Write to us at" in the footer | Outside the approved list | – |

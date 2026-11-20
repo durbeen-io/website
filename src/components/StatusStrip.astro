@@ -1,5 +1,5 @@
 ---
-// Thin strip above the header: "DURBEEN / INDEPENDENT TECHNOLOGY LAB" and, when known,
+// Thin strip above the header: "DURBEEN / INDEPENDENT LAB. AN ENGINEER TESTING AI ON REAL WORK." and, when known,
 // "LOG UPDATED 18.11.2026 · N°012". The log part is passed in by the page; it is generated
 // from the latest article (Phase 3/4). Without it, only the left text shows. Nothing is invented here.
 interface Props {
@@ -11,7 +11,7 @@ const n = log ? String(log.number).padStart(3, '0') : '';
 
 <div class="strip">
   <div class="container inner">
-    <span>DURBEEN / INDEPENDENT TECHNOLOGY LAB</span>
+    <span>DURBEEN / INDEPENDENT LAB. AN ENGINEER TESTING AI ON REAL WORK.</span>
     {log && <span>LOG UPDATED {log.date} · N°{n}</span>}
   </div>
 </div>
