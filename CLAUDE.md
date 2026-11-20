@@ -208,7 +208,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 | **Type** (what form it takes) | Review · Comparison · Guide · Experiment · Build Note · Insight · Visual · **Infographic** (needs a written text summary shown on the page) |
 | **Level** | Beginner · Intermediate · Advanced |
 | **Tags** | Lowercase, reused, from a controlled list in `src/content/tags.json` (keep it under ~30; adding a tag means adding it to the list) |
-| **Series** (optional) | One of: "Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers" (a controlled list in `src/lib/taxonomy.ts`; a series is a sequence of articles, never a category) |
+| **Series** (optional) | One of: "Building Durbeen in Public", "GitHub Mastery", "Repo Reviews" (a controlled list in `src/lib/taxonomy.ts`; a series is a sequence of articles, never a category) |
 
 **Frontmatter schema** (validate with Astro content collections + zod; the build fails on invalid values):
 ```yaml

@@ -63,7 +63,7 @@ The build fails on invalid values.
 |---|---|
 | Category | AI & AI Tools · AI for Engineers · GitHub & Open Source · Building Durbeen |
 | Type | Review · Comparison · Guide · Experiment · Build Note · Insight · Visual · Infographic |
-| Series (optional) | Building Durbeen in Public · GitHub Mastery · Repo Reviews · AI for Engineers (a controlled list in `src/lib/taxonomy.ts`) |
+| Series (optional) | Building Durbeen in Public · GitHub Mastery · Repo Reviews (a controlled list in `src/lib/taxonomy.ts`) |
 | Level | Beginner · Intermediate · Advanced |
 
 Tags come from `src/content/tags.json` (keep it under about 30). To use a new tag, add it to that list first.

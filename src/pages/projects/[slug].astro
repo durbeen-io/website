@@ -28,6 +28,7 @@ const toolkitNames = new Set(['MarkItDown', 'Hazel', 'Astro', 'Cloudflare', 'Git
     <dl class="facts">
       <div><dt>STATUS</dt><dd>{d.status.toUpperCase()}</dd></div>
       {d.version && <div><dt>VERSION</dt><dd>{d.version}</dd></div>}
+      {d.url && <div><dt>LIVE SITE</dt><dd><a href={d.url} rel="noopener">{new URL(d.url).hostname}</a></dd></div>}
       {
         d.repo && (
           <div>

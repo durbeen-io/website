@@ -32,6 +32,28 @@ Tips:
 - The article text is a code editor in MDX, so `<Callout>` and code blocks work. There is no live preview: use the Cloudflare preview address of the branch.
 - Images: upload in the **Hero image** field. They are saved in `src/content/insights/images/` and written as `./images/name.png`. Always fill the alt text.
 
+## Let content pull requests merge by themselves (auto-merge)
+
+Auto-merge merges a pull request on its own once all required checks pass, so you do not have to come back and click Merge. **This is a GitHub setting, so I have not changed it. You turn it on.** Steps are from GitHub's own documentation (checked 21 Nov 2026):
+
+**Once, for the repository**
+1. On GitHub open **durbeen-io / website**, then the **Settings** tab.
+2. In the left menu click **General**.
+3. Scroll down to **Pull Requests** and tick **Allow auto-merge**.
+
+**Each time, on the pull request from `content` into `main`**
+1. Open the pull request (the **Pull requests** tab, then click it).
+2. Next to the merge button, open the dropdown and choose **Squash and merge**.
+3. Click **Enable auto-merge**, then **Confirm auto-merge**.
+4. That is all. When the four required checks pass, GitHub merges it. If a check fails, it does not merge, and you see the failure on the pull request.
+
+Good to know:
+- The **Enable auto-merge** button only appears while the checks are still running or failing. If the checks have already passed you will see the normal **Squash and merge** button instead. Just click that.
+- Auto-merge needs the branch protection we already have (required checks). Nothing there changes.
+- A merged article goes to the live site. Articles with **Draft** on stay hidden, and the site is still hidden from search engines until launch.
+- Do not switch on GitHub's "Automatically delete head branches": it would delete your `content` branch after each merge (you would have to recreate it).
+- Pages CMS still cannot open the pull request for you. A small automatic step that opens and auto-merges it could be added later; it would be a new GitHub Action, so it needs your approval first.
+
 ## First test (about 10 minutes, on the `content` branch)
 
 1. **MDX files appear.** Articles lists the sample articles (`sample-*`), and opening one fills every field and the text box. The template file `_template.mdx` should be hidden.

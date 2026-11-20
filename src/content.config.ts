@@ -81,6 +81,7 @@ const projects = defineCollection({
       version: z.string().optional(), // e.g. "1.0"
       repo: z.enum(['Private', 'Public']).optional(),
       repoUrl: z.string().url().optional(), // only for a Public repo; a private repo is never linked
+      url: z.string().url().optional(), // the live site, when there is one
       uses: z.array(z.string()).default([]), // tools it is built with
     })
     .superRefine((d, ctx) => {

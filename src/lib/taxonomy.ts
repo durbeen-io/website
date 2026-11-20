@@ -2,7 +2,7 @@
 export const categories = ['AI & AI Tools', 'AI for Engineers', 'GitHub & Open Source', 'Building Durbeen'] as const;
 export const types = ['Review', 'Comparison', 'Guide', 'Experiment', 'Build Note', 'Insight', 'Visual', 'Infographic'] as const;
 // Series: ongoing sequences of articles (not categories). A controlled list, so a typo cannot create a new series.
-export const series = ['Building Durbeen in Public', 'GitHub Mastery', 'Repo Reviews', 'AI for Engineers'] as const;
+export const series = ['Building Durbeen in Public', 'GitHub Mastery', 'Repo Reviews'] as const;
 export const levels = ['Beginner', 'Intermediate', 'Advanced'] as const;
 export const projectStatuses = ['In progress', 'Planned', 'Complete', 'Live'] as const;
 

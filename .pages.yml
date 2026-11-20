@@ -82,7 +82,7 @@ content:
         label: Series (optional)
         type: select
         options:
-          values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+          values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews"]
       - name: author
         label: Author
         type: string
@@ -236,7 +236,7 @@ content:
             label: Series (optional)
             type: select
             options:
-              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews"]
           - name: author
             label: Author
             type: string
@@ -408,7 +408,7 @@ content:
             label: Series (optional)
             type: select
             options:
-              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews"]
           - name: author
             label: Author
             type: string
@@ -584,7 +584,7 @@ content:
             label: Series (optional)
             type: select
             options:
-              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews"]
           - name: author
             label: Author
             type: string
@@ -762,7 +762,7 @@ content:
             label: Series (optional)
             type: select
             options:
-              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews"]
           - name: author
             label: Author
             type: string
@@ -928,7 +928,7 @@ content:
             label: Series (optional)
             type: select
             options:
-              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers"]
+              values: ["Building Durbeen in Public", "GitHub Mastery", "Repo Reviews"]
           - name: author
             label: Author
             type: string
