@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
 ### 2026-11-21
+- Personal CV website is now marked Live (no link yet). Privacy and Terms name the law of India (Terms still need the city of the courts). A one-page infographic style card, `docs/INFOGRAPHIC-STYLE.md`, was added.
 - Categories are now exactly four: AI & AI Tools, AI for Engineers, GitHub & Open Source, Building Durbeen. The tag list is now 32 tags built around the founder's four topic areas, the Toolkit and the projects. Sample drafts were remapped.
 
 ### 2026-11-20

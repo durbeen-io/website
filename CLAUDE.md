@@ -461,8 +461,8 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 ## Open issues
 **Waiting for the founder**
 - Tag list: a proposal is awaiting approval (not applied). Applying it needs two sample drafts retagged.
-- Which country's law applies to Privacy and Terms (`[COUNTRY]`); confirm the Editorial policy's AI-use statement; legal pages stay preliminary until then.
-- About placeholders: `[YOUR FIELD]`, `[YEARS]`, `[WHY YOU STARTED DURBEEN]`.
+- Legal pages: India's law applies (set 21 Nov 2026); Terms still need `[CITY]` for the courts; the pages stay PRELIMINARY until the founder's legal check. The Editorial policy's AI-use statement is confirmed.
+- About placeholders still blank: `[YOUR FIELD]`, `[YEARS]`, `[WHY YOU STARTED DURBEEN]`. Personal CV website is Live; no link was given.
 - Cloudflare: open the failed build for the branch that added `not_found_handling` (Workers, durbeen-website, Builds) and read its error, so the 404 page can be wired up (see `docs/DEPLOYMENT.md`).
 - Email Routing for hello@durbeen.io (shown as plain text; delivery untested).
 - LinkedIn URL (footer has no LinkedIn link).

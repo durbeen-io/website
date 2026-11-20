@@ -106,4 +106,4 @@ Each article gets a preview image automatically at build time (`/og/<slug>.png`)
 
 ## Infographics
 
-Set `type: Infographic`, put the image in `heroImage` (with `heroAlt`) or in the body, and write a `summary` in the frontmatter: the whole infographic in plain sentences, in reading order (200 characters or more; blank line between paragraphs). The page shows it as a "TEXT VERSION" box above the article, so readers who cannot see or zoom the image lose nothing. The build fails without it. Alt text stays short; the summary carries the full content.
+Set `type: Infographic`, put the image in `heroImage` (with `heroAlt`) or in the body, and write a `summary` in the frontmatter: the whole infographic in plain sentences, in reading order (200 characters or more; blank line between paragraphs). The page shows it as a "TEXT VERSION" box above the article, so readers who cannot see or zoom the image lose nothing. The build fails without it. Alt text stays short; the summary carries the full content. To brief an image tool, paste the brief from `docs/INFOGRAPHIC-STYLE.md`.
