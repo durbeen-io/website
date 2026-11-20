@@ -1,0 +1,74 @@
+---
+// LogRow: one line of the Observation Log ("012  REPO REVIEW / Title  8 MIN").
+// Renders an <li>, so put it inside a <ul> (the Home panel and the Insights list do).
+// It only draws what it is given; the real data comes from the content collection in Phase 4.
+interface Props {
+  number: number; // log number, shown padded: 12 -> "012"
+  type: string; // article type, e.g. "Repo review"
+  title: string;
+  minutes: number; // reading time
+  href: string;
+}
+const { number, type, title, minutes, href } = Astro.props;
+const n = String(number).padStart(3, '0');
+---
+
+<li class="log-row">
+  <a href={href}>
+    <span class="num" aria-hidden="true">{n}</span>
+    <span class="main">
+      <span class="type">
+        <span class="visually-hidden">Log number {number}, </span>{type}
+      </span>
+      <span class="title">{title}</span>
+    </span>
+    <span class="min">{minutes} MIN<span class="visually-hidden"> read</span></span>
+  </a>
+</li>
+
+<style>
+  .log-row {
+    list-style: none;
+    border-bottom: 1px solid var(--line);
+  }
+  a {
+    display: grid;
+    grid-template-columns: 56px minmax(0, 1fr) 56px;
+    gap: 12px;
+    min-height: var(--touch-target);
+    padding: 18px 20px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  a:hover .title {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 0.2em;
+  }
+  .num,
+  .min,
+  .type {
+    font-family: var(--font-mono);
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .num,
+  .min {
+    font-size: var(--fs-label);
+  }
+  .min {
+    text-align: right;
+    white-space: nowrap;
+  }
+  .type {
+    display: block;
+    margin-bottom: 6px;
+    font-size: var(--fs-label-sm);
+  }
+  .title {
+    display: block;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+</style>
