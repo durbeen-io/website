@@ -273,3 +273,12 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | **Tag list approved: 32 tags** (the proposed 29 plus `engineering`, `inspection-qa`, `standards`). It is slightly over the brief's "about 30"; the founder chose it | Founder's approval | Trimming to 30 |
 | Sample drafts were remapped: Open Source & GitHub → GitHub & Open Source; Automation & Productivity and the infographic → AI for Engineers; AI and Software & Tools → AI & AI Tools; Building Products and Business & Innovation → Building Durbeen. Two drafts were retagged (they used removed tags) | The build fails on removed values, which proves the rule works: an old category and a removed tag both exit 1 | Leaving the drafts invalid |
 | **Flag for the founder:** two series share a name with a category ("AI for Engineers"; "Building Durbeen in Public" vs "Building Durbeen"). Earlier the founder asked that series not duplicate categories; this follows the latest instruction. Both pages exist at different addresses (`/insights/category/…` and `/insights/series/…`) | Not mixing up the two is the author's job; a rename of either is a one-line change | Silently renaming a series |
+
+## 2026-11-21: Project status, legal country, style card
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Personal CV website: status **Live**, summary "A personal CV website.", repository private, **no link** (the founder's link field was left blank) | Only the facts given; a Live project with no link is stated as it is, to be completed when a URL is supplied | Inventing a URL |
+| Legal pages name **India** as the governing law; Terms add "the courts of [CITY], India" with `[CITY]` still to fill in. The notice on each page now says it has "not had a legal check yet". Pages stay **PRELIMINARY** until the founder's legal check | Founder's answer; no statute is cited because that needs the legal check | Citing specific Indian statutes without review |
+| The Editorial policy's AI-use statement is **confirmed** by the founder | Resolves the open question | None |
+| `docs/INFOGRAPHIC-STYLE.md`: a one-page style card whose 19 hex codes were checked against `tokens.css` (all match), with a paste-ready brief for an image tool | Founder wants to brief ChatGPT for infographics | Typing the colours from memory |
