@@ -1,10 +1,12 @@
 ---
 // Home (Homepage A, "Instrument Lab"). Sections are added one PR at a time:
-// hero + Observation Log, statement (this PR); Insights, Method, Projects (next PRs).
+// hero + Observation Log, statement, Insights (this PR); Method, Projects (next PR).
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/Button.astro';
 import ObservationLog from '../components/ObservationLog.astro';
 import Reticle from '../components/Reticle.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import ArticleCard from '../components/ArticleCard.astro';
 import { getArticles, articleHref, readingMinutes } from '../lib/articles';
 
 const articles = await getArticles();
@@ -16,6 +18,18 @@ const logEntries = articles.slice(0, 4).map((a) => ({
   minutes: readingMinutes(a),
   href: articleHref(a),
 }));
+
+// Insights: the newest article marked `featured` (or just the newest) plus the next three.
+const featured = articles.find((a) => a.data.featured) ?? latest;
+const recent = articles.filter((a) => a !== featured).slice(0, 3);
+const card = (a: (typeof articles)[number]) => ({
+  number: a.data.number,
+  type: a.data.type,
+  title: a.data.title,
+  description: a.data.description,
+  href: articleHref(a),
+  minutes: readingMinutes(a),
+});
 ---
 
 <BaseLayout
@@ -45,6 +59,32 @@ const logEntries = articles.slice(0, 4).map((a) => ({
       <h2 id="statement-title">Look closer.<br /><span>Then build.</span></h2>
       <Reticle target={latest?.data.number} />
     </div>
+  </section>
+
+  <section class="insights container section" aria-labelledby="insights-title">
+    <h2 id="insights-title" class="visually-hidden">Latest insights</h2>
+    <div class="head">
+      <SectionLabel number={1}>Insights</SectionLabel>
+      <Button variant="text" href="/insights/" arrow>All insights</Button>
+    </div>
+    {
+      featured ? (
+        <>
+          <div class="featured">
+            <ArticleCard variant="featured" {...card(featured)} date={featured.data.publishDate} />
+          </div>
+          {recent.length > 0 && (
+            <div class="recent">
+              {recent.map((a) => (
+                <ArticleCard {...card(a)} />
+              ))}
+            </div>
+          )}
+        </>
+      ) : (
+        <p class="none">The first articles are on the way.</p>
+      )
+    }
   </section>
 </BaseLayout>
 
@@ -108,5 +148,28 @@ const logEntries = articles.slice(0, 4).map((a) => ({
   }
   .statement :global(svg) {
     flex: 0 0 auto;
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin-bottom: 48px;
+  }
+  .featured {
+    margin-bottom: clamp(48px, 6vw, 80px);
+  }
+  .recent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-5);
+  }
+  .none {
+    margin: 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--ink);
+    color: var(--text-2);
   }
 </style>
