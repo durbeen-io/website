@@ -136,3 +136,15 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | `ProjectRow` is plain text, not a link, until a project has its own page (Phase 5) | No dead links | A link to a page that does not exist |
 | New token `--on-band-2` (#C5CAD0, same in both modes) for secondary text on dark bands, with a pair in `check:contrast` (10.8:1 and 10.1:1) | `--text-2` is dark in light mode and unreadable on the dark band | Reusing `--text-2` |
 | Method steps are written in the page (four fixed steps from the brief), not in a collection | They never change per article; keeps it simple | A steps collection |
+
+## 2026-11-20: Article page and SEO head (Phase 4, PR 1)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| `site: 'https://durbeen.io'` in `astro.config.mjs`; every page gets a canonical URL, Open Graph and Twitter tags from `BaseLayout` | Canonical, sitemap and RSS need the final address. Pre-launch the site stays `noindex`, so nothing points search engines at an unlaunched domain | Leaving `site` unset |
+| Authors write `<Callout>` and `<VerdictBox>` in `.mdx` without imports (the article page provides them) | Keeps the publishing routine under 10 minutes | Importing in every article |
+| A Review's scorecard renders as a VerdictBox after the body, with call `n/20 OVERALL` (sum of the four scores) and the frontmatter verdict | The call is derived, not invented; only the verdict sentence is written | A separate scorecard component |
+| Code blocks: Shiki theme `github-dark-high-contrast` on the site's dark band colour | Every token stays readable (AA); same look in light and dark mode, as in the mockup | Default theme (comments fail contrast) |
+| Related articles: 2 points per shared tag, 1 for the same category, newest first on ties; previous/next by publish date | Brief: related by tags and category | Manual links |
+| No avatar or photo in the byline until the founder supplies one; the byline reads "Fahad Ehsan, Founder, Durbeen" | No founder initials on the site (brief); nothing invented | The mockup's "FE" circle |
+| Article titles are `Title | Durbeen`; JSON-LD is a data block, not a script, so the future CSP is unaffected | Unique title per page is a gate item | |

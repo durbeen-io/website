@@ -35,3 +35,47 @@ export function logDate(d: Date): string {
   const p = (n: number) => String(n).padStart(2, '0');
   return `${p(d.getUTCDate())}.${p(d.getUTCMonth() + 1)}.${d.getUTCFullYear()}`;
 }
+
+/** "18 NOV 2026", as used in bylines. UTC so the day never shifts. */
+export function formatDate(d: Date): string {
+  return d
+    .toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })
+    .toUpperCase();
+}
+
+/** URL part for a category: "Open Source & GitHub" -> "open-source-github". */
+export function categorySlug(category: string): string {
+  return category
+    .toLowerCase()
+    .replace(/&/g, ' ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+/** URL part for a series: "Building Durbeen in Public" -> "building-durbeen-in-public". */
+export const seriesSlug = categorySlug;
+
+export const categoryHref = (category: string) => `/insights/category/${categorySlug(category)}/`;
+export const tagHref = (tag: string) => `/insights/tag/${tag}/`;
+export const seriesHref = (series: string) => `/insights/series/${seriesSlug(series)}/`;
+
+/** Related articles: 2 points per shared tag, 1 for the same category. Newest first on ties. Never the article itself. */
+export function relatedArticles(current: Article, all: Article[], limit = 3): Article[] {
+  const tags = new Set(current.data.tags);
+  return all
+    .filter((a) => a.id !== current.id)
+    .map((a) => ({
+      a,
+      score: a.data.tags.filter((t) => tags.has(t)).length * 2 + (a.data.category === current.data.category ? 1 : 0),
+    }))
+    .filter((x) => x.score > 0)
+    .sort((x, y) => y.score - x.score || y.a.data.publishDate.valueOf() - x.a.data.publishDate.valueOf())
+    .slice(0, limit)
+    .map((x) => x.a);
+}
+
+/** Neighbours in publish order. `all` is newest first, so "previous" is the older one. */
+export function adjacentArticles(current: Article, all: Article[]): { previous?: Article; next?: Article } {
+  const i = all.findIndex((a) => a.id === current.id);
+  return { previous: all[i + 1], next: i > 0 ? all[i - 1] : undefined };
+}
