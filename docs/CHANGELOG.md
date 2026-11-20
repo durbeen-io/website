@@ -4,7 +4,7 @@ User-visible changes, newest first. Dates are when the change was made.
 
 ## Unreleased
 
-Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system is done and the shared components are in progress (Phase 2).
+Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components and the home page are done; the blog engine is next (Phase 4).
 
 ### 2026-11-20
 - Home page, Method band (four steps, Doto numerals) and Projects section (one row: durbeen.io, in progress). Projects now come from a `projects` content collection. New token `--on-band-2` for secondary text on dark bands, with a contrast check. Phase 3, PR 4.
