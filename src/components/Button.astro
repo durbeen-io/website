@@ -1,0 +1,162 @@
+---
+// Button. One component for all three looks in the brief:
+//   primary   = filled accent ("Read the latest →")
+//   ink       = filled ink, for form submits ("Subscribe" in the mockup)
+//   secondary = outlined (border carries meaning, so it uses --ui-border at 3:1)
+//   text      = text link with accent underline ("See projects")
+// Renders <a> when `href` is set, otherwise <button>. Min height 44px (touch target).
+// `onDark` is for dark bands. `arrow` adds a decorative → (hidden from screen readers).
+interface Props {
+  variant?: 'primary' | 'ink' | 'secondary' | 'text';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  arrow?: boolean;
+  onDark?: boolean;
+  disabled?: boolean;
+  class?: string;
+  [attr: string]: unknown;
+}
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  arrow = false,
+  onDark = false,
+  disabled = false,
+  class: extra,
+  ...rest
+} = Astro.props;
+
+const classes = ['btn', `btn-${variant}`, { 'on-dark': onDark }, extra];
+const Tag = href && !disabled ? 'a' : 'button';
+const attrs = Tag === 'a' ? { href } : { type, disabled };
+---
+
+<Tag class:list={classes} {...attrs} {...rest}>
+  <slot />{arrow && <span class="arrow" aria-hidden="true">→</span>}
+</Tag>
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    min-height: 52px;              /* mockup size; always above the 44px minimum */
+    padding: 0 28px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Primary: filled accent. Hover swaps to ink (no gradients, no shadows). */
+  .btn-primary {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+  .btn-primary:hover,
+  .btn-primary.is-hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+
+  /* Ink: filled ink. Hover swaps to accent. */
+  .btn-ink {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+  .btn-ink:hover,
+  .btn-ink.is-hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+
+  /* Secondary: outline */
+  .btn-secondary {
+    background: transparent;
+    border-color: var(--ui-border);
+    color: var(--ink);
+  }
+  .btn-secondary:hover,
+  .btn-secondary.is-hover {
+    border-color: var(--ink);
+    background: var(--surface-2);
+  }
+
+  /* Text: no box, accent underline like links */
+  .btn-text {
+    padding-inline: 0;
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+  }
+  .btn-text:hover,
+  .btn-text.is-hover {
+    text-decoration-thickness: 2px;
+  }
+
+  /* On a dark band */
+  .on-dark.btn-primary {
+    background: var(--accent-on-dark);
+    border-color: var(--accent-on-dark);
+    color: var(--band);
+  }
+  .on-dark.btn-primary:hover,
+  .on-dark.btn-primary.is-hover {
+    background: var(--on-band);
+    border-color: var(--on-band);
+    color: var(--band);
+  }
+  .on-dark.btn-ink {
+    background: var(--on-band);
+    border-color: var(--on-band);
+    color: var(--band);
+  }
+  .on-dark.btn-ink:hover,
+  .on-dark.btn-ink.is-hover {
+    background: var(--accent-on-dark);
+    border-color: var(--accent-on-dark);
+    color: var(--band);
+  }
+  .on-dark.btn-secondary {
+    border-color: var(--on-band);
+    color: var(--on-band);
+  }
+  .on-dark.btn-secondary:hover,
+  .on-dark.btn-secondary.is-hover {
+    background: var(--on-band);
+    color: var(--band);
+  }
+  .on-dark.btn-text {
+    color: var(--on-band);
+    text-decoration-color: var(--accent-on-dark);
+  }
+  .on-dark:focus-visible {
+    outline-color: var(--accent-on-dark);
+  }
+
+  .btn.is-focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .arrow {
+    font-family: var(--font-mono);
+  }
+</style>
