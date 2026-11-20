@@ -8,6 +8,9 @@ import Tag from '../../components/Tag.astro';
 import Callout from '../../components/Callout.astro';
 import VerdictBox from '../../components/VerdictBox.astro';
 import NewsletterForm from '../../components/NewsletterForm.astro';
+import ReadingProgress from '../../components/ReadingProgress.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
+import CodeCopy from '../../components/CodeCopy.astro';
 import {
   getArticles,
   readingMinutes,
@@ -67,6 +70,7 @@ const jsonLd = [
 ---
 
 <BaseLayout title={`${d.title} | Durbeen`} description={d.description} ogType="article" jsonLd={jsonLd}>
+  <ReadingProgress target="#article-body" />
   <article>
     <header class="head container">
       <nav aria-label="Breadcrumb" class="crumbs">
@@ -93,8 +97,8 @@ const jsonLd = [
     <div class:list={['layout container', { 'no-toc': toc.length < 2 }]}>
       {toc.length >= 2 && <div class="toc"><TOC items={toc} /></div>}
 
-      <div class="text">
-        <div class="prose">
+      <div class="text" id="article-body">
+        <div class="prose" data-prose>
           <Content components={{ Callout, VerdictBox }} />
         </div>
 
@@ -122,6 +126,7 @@ const jsonLd = [
       </div>
 
       <aside class="rail" aria-label="Article tools">
+        <ShareButtons url={url} title={d.title} />
         {
           inSeries.length > 0 && d.series && (
             <div class="block">
@@ -162,6 +167,7 @@ const jsonLd = [
       )
     }
   </article>
+  <CodeCopy />
 </BaseLayout>
 
 <style>
@@ -249,6 +255,8 @@ const jsonLd = [
       align-self: start;
     }
     .rail {
+      position: sticky;
+      top: var(--space-3);
       align-self: start;
     }
   }
@@ -341,6 +349,15 @@ const jsonLd = [
     color: var(--text-2);
   }
 
+  .rail .block {
+    margin-top: var(--space-5);
+  }
+  @media (max-width: 1099px) {
+    .rail {
+      padding-top: var(--space-4);
+      border-top: var(--border);
+    }
+  }
   .rail .block p {
     margin: 0 0 var(--space-2);
   }

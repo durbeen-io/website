@@ -1,0 +1,76 @@
+---
+// Share: LinkedIn, X and Copy link. Plain links (no third-party scripts, no tracking pixels).
+// "Copy link" needs scripts, so it only shows when they run (html.js); the two links always work.
+interface Props {
+  url: string; // the canonical article URL
+  title: string;
+}
+const { url, title } = Astro.props;
+const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+const x = `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+---
+
+<div class="share">
+  <p class="label">SHARE</p>
+  <div class="row">
+    <a href={linkedin} target="_blank" rel="noopener noreferrer">LINKEDIN<span class="visually-hidden"> (opens in a new tab)</span></a>
+    <a href={x} target="_blank" rel="noopener noreferrer">X<span class="visually-hidden"> (opens in a new tab)</span></a>
+    <button type="button" data-copy-link={url}>COPY LINK</button>
+  </div>
+  <p class="visually-hidden" role="status" data-copy-status></p>
+</div>
+
+<style>
+  .share .label {
+    margin: 0 0 var(--space-2);
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+  a,
+  button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--touch-target);
+    height: var(--touch-target);
+    padding: 0 14px;
+    border: 1px solid var(--ui-border);
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  a:hover,
+  button:hover {
+    border-color: var(--ink);
+  }
+  button {
+    display: none;
+  }
+  :global(html.js) button {
+    display: inline-flex;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-copy-link]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const status = btn.closest('.share')?.querySelector<HTMLElement>('[data-copy-status]');
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copyLink ?? location.href);
+        if (status) status.textContent = 'Link copied';
+      } catch {
+        if (status) status.textContent = 'Could not copy. Copy the address from the browser bar.';
+      }
+      setTimeout(() => {
+        if (status) status.textContent = '';
+      }, 3000);
+    });
+  });
+</script>

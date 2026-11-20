@@ -1,0 +1,56 @@
+---
+// Reading-progress line: a thin 3px rule at the top of the screen that fills as you read the article.
+// Instrument style, no animation of its own: it simply follows the scroll position, so it is the same with
+// "reduce motion" on. Decorative (hidden from screen readers). Needs scripts; without them it is not shown.
+interface Props {
+  target: string; // CSS selector of the element being read, e.g. "#article-body"
+}
+const { target } = Astro.props;
+---
+
+<div class="progress" aria-hidden="true" data-reading-progress={target}><div class="bar"></div></div>
+
+<style>
+  .progress {
+    display: none;
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 3px;
+    z-index: 60;
+    pointer-events: none;
+  }
+  :global(html.js) .progress {
+    display: block;
+  }
+  .bar {
+    height: 100%;
+    background: var(--accent);
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-reading-progress]');
+  const target = root ? document.querySelector<HTMLElement>(root.dataset.readingProgress ?? '') : null;
+  const bar = root?.querySelector<HTMLElement>('.bar');
+  if (root && target && bar) {
+    let queued = false;
+    const update = () => {
+      queued = false;
+      const rect = target.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      const done = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : rect.top < 0 ? 1 : 0;
+      bar.style.transform = `scaleX(${done})`;
+    };
+    const queue = () => {
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(update);
+      }
+    };
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue);
+    update();
+  }
+</script>

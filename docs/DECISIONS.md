@@ -148,3 +148,12 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Related articles: 2 points per shared tag, 1 for the same category, newest first on ties; previous/next by publish date | Brief: related by tags and category | Manual links |
 | No avatar or photo in the byline until the founder supplies one; the byline reads "Fahad Ehsan, Founder, Durbeen" | No founder initials on the site (brief); nothing invented | The mockup's "FE" circle |
 | Article titles are `Title | Durbeen`; JSON-LD is a data block, not a script, so the future CSP is unaffected | Unique title per page is a gate item | |
+
+## 2026-11-20: Article extras (Phase 4, PR 2)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Reading-progress line is a 3px accent rule that follows the scroll position directly (no animation of its own), shown only when scripts run | Brief: respects reduced motion; decorative, so hidden from screen readers | An eased or animated bar |
+| Share = two plain links (LinkedIn, X) and a Copy link button; no third-party share scripts | No tracking, no extra requests. Copy link shows only when scripts run | Share-button widgets |
+| Share controls use words (`LINKEDIN`, `X`, `COPY LINK`), not the mockup's `in` and an icon | axe's label-in-name rule fails when a short visible glyph is not in the accessible name; real words pass and read better | Icons with `aria-label` |
+| Code blocks get a `COPY` button added by a small script; without scripts they are plain code blocks | Progressive enhancement; no extra package | A copy library |
