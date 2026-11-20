@@ -5,8 +5,8 @@
 # Zero entries left is a Phase 5 gate (CLAUDE.md section 12).
 
 offline = true
-root_dir = "dist"
-include_fragments = true
+# root_dir must be absolute, so it is passed in the workflow (--root-dir).
+include_fragments = "full"
 no_progress = true
 
 exclude = [
