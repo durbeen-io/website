@@ -21,7 +21,8 @@ const score = z.number().int().min(1).max(5);
 const insights = defineCollection({
   // Files starting with "_" (like _template.mdx) are ignored.
   loader: glob({ base: './src/content/insights', pattern: '**/[^_]*.{md,mdx}' }),
-  schema: z
+  schema: ({ image }) =>
+    z
     .object({
       title: z.string().min(1),
       description: z.string().min(120, 'description must be 120-160 characters').max(160, 'description must be 120-160 characters'),
@@ -36,7 +37,7 @@ const insights = defineCollection({
       updatedDate: z.coerce.date().optional(),
       lastVerified: z.coerce.date().optional(),
       featured: z.boolean().default(false),
-      heroImage: z.string().optional(),
+      heroImage: image().optional(),
       heroAlt: z.string().optional(),
       ogImage: z.string().optional(),
       draft: z.boolean().default(false),

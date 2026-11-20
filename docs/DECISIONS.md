@@ -157,3 +157,12 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Share = two plain links (LinkedIn, X) and a Copy link button; no third-party share scripts | No tracking, no extra requests. Copy link shows only when scripts run | Share-button widgets |
 | Share controls use words (`LINKEDIN`, `X`, `COPY LINK`), not the mockup's `in` and an icon | axe's label-in-name rule fails when a short visible glyph is not in the accessible name; real words pass and read better | Icons with `aria-label` |
 | Code blocks get a `COPY` button added by a small script; without scripts they are plain code blocks | Progressive enhancement; no extra package | A copy library |
+
+## 2026-11-20: Article images (Phase 4, PR 3)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| `heroImage` uses Astro's `image()` in the schema (a real file in the repo), with `heroAlt` required | The build fails if the file is missing or has no alt text | A plain string path |
+| One `ArticleImage` component handles every image: `Picture` (AVIF + WebP, widths 480-1600), lazy loading except the hero, a 24px blurred preview that the full image fades over, tap-to-zoom through one `<dialog>` per page | Brief section 9; native `<dialog>` gives focus handling and Esc for free; no package | A lightbox library |
+| The zoom trigger is a link to the full image, so without scripts the full image opens | Progressive enhancement | A button that needs scripts |
+| One 26 kB sample PNG (`src/content/insights/images/sample-figure.png`) is used by the sample drafts and is deleted with them in Phase 6 | Test data for image handling | Downloading a stock image |

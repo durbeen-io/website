@@ -1,0 +1,69 @@
+---
+// Tap-to-zoom viewer for article images: one <dialog> per page, opened by links with data-zoom.
+// The browser's dialog handles focus (it returns to the image link) and Esc. Tap anywhere or press CLOSE to leave.
+// On a phone the full image can be pinch-zoomed.
+---
+
+<dialog class="zoom" aria-label="Enlarged image" data-zoom-dialog>
+  <button type="button" class="close" data-zoom-close>CLOSE</button>
+  <img alt="" data-zoom-img />
+</dialog>
+
+<style>
+  .zoom {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    background: var(--paper);
+    overflow: auto;
+  }
+  .zoom::backdrop {
+    background: var(--paper);
+  }
+  .zoom img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    object-fit: contain;
+    touch-action: pinch-zoom pan-x pan-y;
+  }
+  .close {
+    position: fixed;
+    top: var(--space-2);
+    right: var(--space-2);
+    z-index: 1;
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
+    padding: 0 16px;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>('[data-zoom-dialog]');
+  const big = dialog?.querySelector<HTMLImageElement>('[data-zoom-img]');
+  if (dialog && big && typeof dialog.showModal === 'function') {
+    document.querySelectorAll<HTMLAnchorElement>('a[data-zoom]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        big.src = a.href;
+        big.alt = a.dataset.alt ?? '';
+        dialog.showModal();
+      });
+    });
+    dialog.addEventListener('click', () => dialog.close());
+    dialog.querySelector('[data-zoom-close]')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => big.removeAttribute('src'));
+  }
+</script>

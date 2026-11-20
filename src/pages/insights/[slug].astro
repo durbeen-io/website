@@ -11,6 +11,8 @@ import NewsletterForm from '../../components/NewsletterForm.astro';
 import ReadingProgress from '../../components/ReadingProgress.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import CodeCopy from '../../components/CodeCopy.astro';
+import ArticleImage from '../../components/ArticleImage.astro';
+import ImageZoom from '../../components/ImageZoom.astro';
 import {
   getArticles,
   readingMinutes,
@@ -94,12 +96,20 @@ const jsonLd = [
       </div>
     </header>
 
+    {
+      d.heroImage && (
+        <div class="hero container">
+          <ArticleImage src={d.heroImage} alt={d.heroAlt!} eager />
+        </div>
+      )
+    }
+
     <div class:list={['layout container', { 'no-toc': toc.length < 2 }]}>
       {toc.length >= 2 && <div class="toc"><TOC items={toc} /></div>}
 
       <div class="text" id="article-body">
         <div class="prose" data-prose>
-          <Content components={{ Callout, VerdictBox }} />
+          <Content components={{ Callout, VerdictBox, img: ArticleImage }} />
         </div>
 
         {
@@ -168,6 +178,7 @@ const jsonLd = [
     }
   </article>
   <CodeCopy />
+  <ImageZoom />
 </BaseLayout>
 
 <style>
@@ -229,6 +240,12 @@ const jsonLd = [
     gap: 4px var(--space-2);
   }
 
+  .hero {
+    padding-bottom: var(--space-5);
+  }
+  .hero :global(.figure) {
+    margin: 0;
+  }
   .layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
