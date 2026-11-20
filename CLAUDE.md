@@ -242,7 +242,7 @@ scorecard:                 # Review type only
 ```
 
 **Required features:**
-- **Article page:** table of contents, reading time, level label, author byline, dates, "last verified" date, tags, share buttons (LinkedIn, X, copy link), related articles (by tags and category), next/previous links
+- **Article page:** table of contents, reading time, level label, author byline, author box at the end (two-line bio and a link to About; from `src/data/author.ts`; also the `author` in the Article structured data), dates, "last verified" date, tags, share buttons (LinkedIn, X, copy link), related articles (by tags and category), next/previous links
 - **A thin reading-progress line** at the top of articles (instrument style; it respects reduced motion)
 - **The review scorecard component** (Review type): Setup · Docs · Maintenance · Safety, scored 1–5 in monospace, plus a one-line Verdict
 - Code blocks with syntax highlighting and a copy button

@@ -12,6 +12,8 @@ import ShareButtons from '../../components/ShareButtons.astro';
 import CodeCopy from '../../components/CodeCopy.astro';
 import ArticleImage from '../../components/ArticleImage.astro';
 import ImageZoom from '../../components/ImageZoom.astro';
+import AuthorBox from '../../components/AuthorBox.astro';
+import { author } from '../../data/author';
 import {
   getArticles,
   readingMinutes,
@@ -53,7 +55,13 @@ const jsonLd = [
     description: d.description,
     datePublished: d.publishDate.toISOString(),
     dateModified: (d.updatedDate ?? d.publishDate).toISOString(),
-    author: { '@type': 'Person', name: d.author },
+    author: {
+      '@type': 'Person',
+      name: author.name,
+      url: `${site}about/`,
+      jobTitle: author.jobTitle,
+      description: author.bio.join(' '),
+    },
     publisher: { '@type': 'Organization', name: 'Durbeen', url: site, logo: { '@type': 'ImageObject', url: `${site}icon-512.png` } },
     mainEntityOfPage: url,
     articleSection: d.category,
@@ -106,7 +114,7 @@ const jsonLd = [
     }
 
     <div class:list={['layout container', { 'no-toc': toc.length < 2 }]}>
-      {toc.length >= 2 && <div class="toc"><TOC items={toc} /></div>}
+      {toc.length >= 2 && <div class="toc" data-pagefind-ignore><TOC items={toc} /></div>}
 
       <div class="text" id="article-body">
         {
@@ -137,9 +145,11 @@ const jsonLd = [
         }
         {d.canonicalSource && <p class="label source">FIRST PUBLISHED AT <a href={d.canonicalSource}>{new URL(d.canonicalSource).hostname}</a></p>}
 
+        <AuthorBox />
+
       </div>
 
-      <aside class="rail" aria-label="Article tools">
+      <aside class="rail" aria-label="Article tools" data-pagefind-ignore>
         <ShareButtons url={url} title={d.title} />
         {
           inSeries.length > 0 && d.series && (
@@ -156,14 +166,14 @@ const jsonLd = [
       </aside>
     </div>
 
-    <nav class="pager container" aria-label="More articles">
+    <nav class="pager container" aria-label="More articles" data-pagefind-ignore>
       {previous ? <a href={articleHref(previous)} rel="prev"><span class="label">← PREVIOUS</span><span class="t">{previous.data.title}</span></a> : <span />}
       {next ? <a href={articleHref(next)} rel="next" class="next"><span class="label">NEXT →</span><span class="t">{next.data.title}</span></a> : <span />}
     </nav>
 
     {
       related.length > 0 && (
-        <section class="related" aria-labelledby="related-title">
+        <section class="related" aria-labelledby="related-title" data-pagefind-ignore>
           <div class="container">
             <h2 id="related-title" class="label">RELATED FIELD NOTES</h2>
             <ul>
