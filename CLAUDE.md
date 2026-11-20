@@ -429,11 +429,12 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 2 (Components) **IN PROGRESS**. PRs 1-6 merged (#13 to #16, #18, #19); PR 7 open. Phase 1 is complete (approved 19 Nov 2026)
-- **Last session:** 20 Nov 2026: Phase 2 PR 7 (axe, Lighthouse CI, lychee link check, docs)
-- **Next session goal:** Phase 2 gate review by a fresh session (after the founder merges PR 7 and adds the new checks as required on `main`). Confirm the goal with the founder at the start of the session.
+- **Current phase:** 2 (Components) **PASSED** (founder approved 20 Nov 2026). PRs 1-7 merged (#13 to #16, #18, #19, #20). Phase 1 is complete (approved 19 Nov 2026)
+- **Last session:** 20 Nov 2026: Phase 2 gate review and close-out
+- **Next session goal:** Phase 3 (Homepage A), after the founder answers the needs list and approves the package and Action list. Confirm the goal with the founder at the start of the session.
 
 ## Completed
+- 20 Nov 2026 (Phase 2 gate review): every gate item checked on `main` (`3250066`). Pass: build, contrast (all pairs, light and dark), axe (0 violations, 3 pages x 2 modes), keyboard (every focusable element reached by Tab, visible focus ring, ArticleCard ring on the whole card), 375px and 1360px (no horizontal scroll), preview page with all components, CI green on `main`. Branch protection on `main` now requires `Build and contrast`, `Accessibility (axe)`, `Lighthouse (mobile)` and `Internal links (lychee)` (up to date, applies to admins). Not tested: a failing check actually blocking a merge (founder chose to skip the throwaway-PR test), the open MENU panel by keyboard at 375px. Known deviations from the mockups: nav says Toolkit (brief wins); the featured-card placeholder disc is accent orange where the mockup's is black. Founder approved: Phase 2 is complete.
 - 20 Nov 2026 (Phase 2, PR 7): added dev-only `@axe-core/playwright`, `playwright-core`, `@lhci/cli` and `lycheeverse/lychee-action` (pinned to SHA). Three new CI jobs: axe (all pages, light and dark, 375px), Lighthouse (median of 3, 90+ for Performance, Accessibility, Best Practices; SEO not asserted until Phase 8) and internal link check (lychee offline, `lychee.toml` excludes only unbuilt pages). Checked locally: build, axe (0 violations on 3 pages x 2 modes), Lighthouse CI passes. All five checks passed on GitHub Actions for this PR (lychee needed two config fixes for v0.24; it is not installed locally, so it only runs in CI). Anchor (#fragment) checking is off because lychee gives false alarms on directory-style links.
 - 20 Nov 2026 (Phase 2, PR 6): TOC (anchor list, current section marked by a small script), Callout (note, warning; kind always written out) and VerdictBox (call + optional Setup/Docs/Maintenance/Safety scores in monospace). Checked: build, contrast check, 375px (no horizontal scroll), light mode. Not yet checked in a real browser: TOC current-section marking while scrolling, dark mode by eye (tokens only, contrast check passes).
 - 20 Nov 2026 (Phase 2, PR 5): ArticleCard (default + featured; one stretched link on the title, so no nested links; figure slot with reticle placeholder) and LogRow (`<li>`, 44px+ target). Checked in headless Chrome: 375px (no horizontal scroll), light and dark; contrast check passes. Real images arrive with the Phase 4 image handling.
@@ -453,7 +454,9 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - Remove the internal `/design-system/` page (and keep it out of the sitemap) before the Phase 8 launch.
 - Remove `/design-system/components/` (with `/design-system/`) before the Phase 8 launch, and the `docs/pr-screenshots/` folder.
 - Nav and footer links point to pages that do not exist yet (Phases 4-5). They are listed in `lychee.toml`. **When a page ships, remove its entry from `lychee.toml`.** Zero entries and zero broken links is a Phase 5 gate. The link check covers internal links only.
-- Add the new checks (`Accessibility (axe)`, `Lighthouse (mobile)`, `Internal links (lychee)`) as required status checks on `main` after PR 7 has run once. Lighthouse: turn on the SEO assertion at Phase 8 (when `noindex` is removed).
+- Lighthouse: turn on the SEO assertion at Phase 8 (when `noindex` is removed).
+- Footer links are 44px tall but only 29-42px wide (RSS, Terms, About). Minor; revisit with the Phase 3 footer check.
+- Re-test the open mobile MENU panel by keyboard at 375px (not re-tested at the Phase 2 gate).
 - Footer has no LinkedIn link: the founder must supply the URL.
 - Header search is off until Pagefind (Phase 4); with it on, the 375px header row wraps and needs a small-screen layout.
 - Newsletter form is disabled until the Kit endpoint is set (Phase 5). Check Kit's field name (`email_address`) then.
@@ -473,4 +476,5 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 | 2026-11-20 | 2 | Phase 2 PRs 1-4: checks workflow (required on `main`); Button, Tag, SectionLabel + preview page; Header + StatusStrip; NewsletterForm + Footer wired into BaseLayout; docs updated | PR #13, #14, #15, #16 | PR 5 (ArticleCard, LogRow) |
 | 2026-11-20 | 2 | Phase 2 PR 5: ArticleCard and LogRow components + preview page sections; docs updated | PR 5 (this pull request) | PR 6 (TOC, Callout, VerdictBox), after the founder merges PR 5 |
 | 2026-11-20 | 2 | Phase 2 PR 6: TOC, Callout, VerdictBox + preview page sections; CHANGELOG intro fixed | PR #19 | PR 7 (axe, Lighthouse CI, lychee, docs), after the founder merges PR 6 |
-| 2026-11-20 | 2 | Phase 2 PR 7: axe, Lighthouse CI and lychee link check in CI; `lychee.toml`, `lighthouserc.json`, `scripts/check-axe.mjs`; docs | PR 7 (this pull request) | Phase 2 gate review (fresh session), after the founder merges PR 7 |
+| 2026-11-20 | 2 | Phase 2 PR 7: axe, Lighthouse CI and lychee link check in CI; `lychee.toml`, `lighthouserc.json`, `scripts/check-axe.mjs`; docs | PR #20 | Phase 2 gate review |
+| 2026-11-20 | 2 | Phase 2 gate review: all items passed (CI-blocking not demonstrated, by founder's choice); Progress Log fixed; founder approved. Phase 2 marked complete | this pull request | Phase 3 (Homepage A), after the founder answers the needs list and approves packages |
