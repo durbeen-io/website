@@ -1,9 +1,112 @@
 ---
+// Home (Homepage A, "Instrument Lab"). Sections are added one PR at a time:
+// hero + Observation Log, statement (this PR); Insights, Method, Projects (next PRs).
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import ObservationLog from '../components/ObservationLog.astro';
+import Reticle from '../components/Reticle.astro';
+import { getArticles, articleHref, readingMinutes } from '../lib/articles';
+
+const articles = await getArticles();
+const latest = articles[0];
+const logEntries = articles.slice(0, 4).map((a) => ({
+  number: a.data.number,
+  type: a.data.type,
+  title: a.data.title,
+  minutes: readingMinutes(a),
+  href: articleHref(a),
+}));
 ---
 
-<BaseLayout title="Durbeen" description="Durbeen is an independent technology lab and publication.">
-  <div class="container section">
-    <h1>Durbeen</h1>
-  </div>
+<BaseLayout
+  title="Durbeen: field notes from the edge of technology"
+  description="Durbeen is an independent technology lab and publication. Reviews, experiments and build notes on AI, open source and practical tools."
+>
+  <section class="hero container">
+    <div class="intro">
+      <p class="label kicker"><span aria-hidden="true">[ 00 ]</span> Discover → Evaluate → Build → Share</p>
+      <h1>Field notes from the edge of technology.</h1>
+      <p class="lede">
+        Durbeen is an independent lab. We find useful open-source tools and AI, test them properly, and build practical
+        things with what works.
+      </p>
+      <div class="actions">
+        <Button href={latest ? articleHref(latest) : '/insights/'} arrow>Read the latest</Button>
+        <Button variant="text" href="/projects/">See projects</Button>
+      </div>
+    </div>
+    <div class="log">
+      <ObservationLog entries={logEntries} />
+    </div>
+  </section>
+
+  <section class="statement" aria-labelledby="statement-title">
+    <div class="container inner">
+      <h2 id="statement-title">Look closer.<br /><span>Then build.</span></h2>
+      <Reticle target={latest?.data.number} />
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+    align-items: flex-start;
+    padding-block: clamp(48px, 7vw, 96px) clamp(64px, 9vw, 120px);
+  }
+  .intro {
+    flex: 7 1 520px;
+    min-width: 0;
+  }
+  .log {
+    flex: 5 1 380px;
+    min-width: 0;
+  }
+  .kicker {
+    margin: 0 0 var(--space-4);
+  }
+  h1 {
+    margin: 0 0 var(--space-5);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+  }
+  .lede {
+    max-width: 600px;
+    margin: 0 0 48px;
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--text-2);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+  }
+
+  .statement {
+    border-block: var(--border);
+  }
+  .inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: clamp(80px, 12vw, 160px);
+  }
+  .statement h2 {
+    flex: 1 1 560px;
+    min-width: 0;
+    font-size: clamp(40px, 5.5vw, 80px);
+    line-height: 1.02;
+  }
+  .statement h2 span {
+    color: var(--muted);
+  }
+  .statement :global(svg) {
+    flex: 0 0 auto;
+  }
+</style>

@@ -1,0 +1,20 @@
+---
+// The telescope reticle: the site's only illustration style (brief section 5).
+// Decorative (hidden from screen readers). `target` adds the small "TARGET 012" tag next to the dot.
+interface Props {
+  target?: number;
+  size?: number;
+}
+const { target, size = 320 } = Astro.props;
+const label = target !== undefined ? `TARGET ${String(target).padStart(3, '0')}` : undefined;
+---
+
+<svg width={size} height={size} viewBox="0 0 320 320" aria-hidden="true" focusable="false">
+  <circle cx="160" cy="160" r="150" fill="none" stroke="var(--ink)" stroke-width="1" />
+  <circle cx="160" cy="160" r="100" fill="none" stroke="var(--line)" stroke-width="1" />
+  <circle cx="160" cy="160" r="50" fill="none" stroke="var(--line)" stroke-width="1" />
+  <path d="M160 0v120M160 200v120M0 160h120M200 160h120" stroke="var(--ink)" stroke-width="1" />
+  <path d="M152 160h16M160 152v16" stroke="var(--accent)" stroke-width="2" />
+  <circle cx="228" cy="104" r="6" fill="var(--accent)" />
+  {label && <text x="240" y="96" font-family="var(--font-mono)" font-size="10" fill="var(--muted)">{label}</text>}
+</svg>

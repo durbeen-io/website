@@ -1,0 +1,96 @@
+---
+// Observation Log panel (Home hero, right side): the latest articles as a framed list.
+// Data comes from the content collection via the page (src/lib/articles.ts); nothing is written by hand here.
+// With no entries it shows an honest empty line instead of fake rows.
+import LogRow from './LogRow.astro';
+
+interface Props {
+  entries: { number: number; type: string; title: string; minutes: number; href: string }[];
+  allHref?: string;
+}
+const { entries, allHref = '/insights/' } = Astro.props;
+---
+
+<section class="panel" aria-labelledby="observation-log-title">
+  <header>
+    <h2 id="observation-log-title">Observation log</h2>
+    <span class="live"><span class="dot" aria-hidden="true"></span>LIVE</span>
+  </header>
+  {
+    entries.length > 0 ? (
+      <ul>
+        {entries.map((e) => (
+          <LogRow {...e} />
+        ))}
+      </ul>
+    ) : (
+      <p class="empty">No entries yet. The first articles are on the way.</p>
+    )
+  }
+  <a class="all" href={allHref}>
+    <span>VIEW FULL LOG</span><span aria-hidden="true">→</span>
+  </a>
+</section>
+
+<style>
+  .panel {
+    border: 1px solid var(--ink);
+    background: var(--surface);
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--ink);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    color: var(--ink);
+  }
+  h2 {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.4;
+    text-transform: uppercase;
+  }
+  .live {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  .empty {
+    margin: 0;
+    padding: 18px 20px;
+    border-bottom: 1px solid var(--line);
+    font-size: 16px;
+    color: var(--text-2);
+  }
+  .all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: var(--touch-target);
+    padding: 16px 20px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .all:hover span:first-child {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 0.2em;
+  }
+</style>
