@@ -25,3 +25,51 @@ jobs:
         run: npm run check:contrast
       - name: Build
         run: npm run build
+
+  accessibility:
+    name: Accessibility (axe)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      # Uses the Chrome already installed on the runner.
+      - name: axe on every built page (light and dark, 375px)
+        run: npm run check:axe
+
+  lighthouse:
+    name: Lighthouse (mobile)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      # Budget and settings are in lighthouserc.json (median of 3 runs).
+      - name: Lighthouse CI
+        run: npm run check:lighthouse
+
+  links:
+    name: Internal links (lychee)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      # Pinned to a full commit SHA (a tag can be moved). Version: v2.9.0
+      - name: Check internal links in dist/
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          args: --config lychee.toml --root-dir ${{ github.workspace }}/dist dist
+          fail: true

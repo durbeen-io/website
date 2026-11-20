@@ -429,11 +429,12 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 2 (Components) **IN PROGRESS**. PRs 1-5 merged (#13 to #16, #18); PR 6 open. Phase 1 is complete (approved 19 Nov 2026)
-- **Last session:** 20 Nov 2026: Phase 2 PR 6 (TOC, Callout, VerdictBox + preview page sections)
-- **Next session goal:** Phase 2 PR 7 (axe, Lighthouse CI, lychee, docs). One PR at a time, never stacked; wait for the founder's merge between PRs. Confirm the goal with the founder at the start of the session.
+- **Current phase:** 2 (Components) **IN PROGRESS**. PRs 1-6 merged (#13 to #16, #18, #19); PR 7 open. Phase 1 is complete (approved 19 Nov 2026)
+- **Last session:** 20 Nov 2026: Phase 2 PR 7 (axe, Lighthouse CI, lychee link check, docs)
+- **Next session goal:** Phase 2 gate review by a fresh session (after the founder merges PR 7 and adds the new checks as required on `main`). Confirm the goal with the founder at the start of the session.
 
 ## Completed
+- 20 Nov 2026 (Phase 2, PR 7): added dev-only `@axe-core/playwright`, `playwright-core`, `@lhci/cli` and `lycheeverse/lychee-action` (pinned to SHA). Three new CI jobs: axe (all pages, light and dark, 375px), Lighthouse (median of 3, 90+ for Performance, Accessibility, Best Practices; SEO not asserted until Phase 8) and internal link check (lychee offline, `lychee.toml` excludes only unbuilt pages). Checked locally: build, axe (0 violations on 3 pages x 2 modes), Lighthouse CI passes. All five checks passed on GitHub Actions for this PR (lychee needed two config fixes for v0.24; it is not installed locally, so it only runs in CI). Anchor (#fragment) checking is off because lychee gives false alarms on directory-style links.
 - 20 Nov 2026 (Phase 2, PR 6): TOC (anchor list, current section marked by a small script), Callout (note, warning; kind always written out) and VerdictBox (call + optional Setup/Docs/Maintenance/Safety scores in monospace). Checked: build, contrast check, 375px (no horizontal scroll), light mode. Not yet checked in a real browser: TOC current-section marking while scrolling, dark mode by eye (tokens only, contrast check passes).
 - 20 Nov 2026 (Phase 2, PR 5): ArticleCard (default + featured; one stretched link on the title, so no nested links; figure slot with reticle placeholder) and LogRow (`<li>`, 44px+ target). Checked in headless Chrome: 375px (no horizontal scroll), light and dark; contrast check passes. Real images arrive with the Phase 4 image handling.
 - 20 Nov 2026 (Phase 2, PRs 1-4): PR #13 GitHub Actions `Build and contrast` (required on `main`); PR #14 Button, Tag, SectionLabel, `--ui-border` token (3:1) and the `/design-system/components/` preview page; PR #15 Header (MENU button below 860px) and StatusStrip; PR 4 NewsletterForm (disabled until Kit, Phase 5), Footer, and Header + Footer wired into `BaseLayout`. Each PR checked in headless Chrome: keyboard tab-through, 375px (no horizontal scroll), 44px targets, light and dark. Brief followed over the mockups (Toolkit not Resources, 0.1em wordmark, no teal). Not yet checked: Safari, Firefox (Phase 7). Phase 2 is not finished: PRs 5-7 remain.
@@ -451,7 +452,8 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 ## Open issues
 - Remove the internal `/design-system/` page (and keep it out of the sitemap) before the Phase 8 launch.
 - Remove `/design-system/components/` (with `/design-system/`) before the Phase 8 launch, and the `docs/pr-screenshots/` folder.
-- Nav and footer links point to pages that do not exist yet (Phases 4-5). Zero broken links is a Phase 5 gate; PR 7's link check covers internal links only.
+- Nav and footer links point to pages that do not exist yet (Phases 4-5). They are listed in `lychee.toml`. **When a page ships, remove its entry from `lychee.toml`.** Zero entries and zero broken links is a Phase 5 gate. The link check covers internal links only.
+- Add the new checks (`Accessibility (axe)`, `Lighthouse (mobile)`, `Internal links (lychee)`) as required status checks on `main` after PR 7 has run once. Lighthouse: turn on the SEO assertion at Phase 8 (when `noindex` is removed).
 - Footer has no LinkedIn link: the founder must supply the URL.
 - Header search is off until Pagefind (Phase 4); with it on, the 375px header row wraps and needs a small-screen layout.
 - Newsletter form is disabled until the Kit endpoint is set (Phase 5). Check Kit's field name (`email_address`) then.
@@ -470,4 +472,5 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 | 2026-11-19 | 1 | Fresh-session Phase 1 gate review: all items passed; toggle tested by the founder on Mac (Safari, Chrome, Brave) and iPhone; founder approved. Phase 1 marked complete | this pull request | Phase 2 (components + automatic checks), when the founder starts it |
 | 2026-11-20 | 2 | Phase 2 PRs 1-4: checks workflow (required on `main`); Button, Tag, SectionLabel + preview page; Header + StatusStrip; NewsletterForm + Footer wired into BaseLayout; docs updated | PR #13, #14, #15, #16 | PR 5 (ArticleCard, LogRow) |
 | 2026-11-20 | 2 | Phase 2 PR 5: ArticleCard and LogRow components + preview page sections; docs updated | PR 5 (this pull request) | PR 6 (TOC, Callout, VerdictBox), after the founder merges PR 5 |
-| 2026-11-20 | 2 | Phase 2 PR 6: TOC, Callout, VerdictBox + preview page sections; CHANGELOG intro fixed | PR 6 (this pull request) | PR 7 (axe, Lighthouse CI, lychee, docs), after the founder merges PR 6 |
+| 2026-11-20 | 2 | Phase 2 PR 6: TOC, Callout, VerdictBox + preview page sections; CHANGELOG intro fixed | PR #19 | PR 7 (axe, Lighthouse CI, lychee, docs), after the founder merges PR 6 |
+| 2026-11-20 | 2 | Phase 2 PR 7: axe, Lighthouse CI and lychee link check in CI; `lychee.toml`, `lighthouserc.json`, `scripts/check-axe.mjs`; docs | PR 7 (this pull request) | Phase 2 gate review (fresh session), after the founder merges PR 7 |
