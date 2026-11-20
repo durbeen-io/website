@@ -37,10 +37,10 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 
 // The four steps of the method (brief section 1). Copy follows the mockup.
 const steps = [
-  { n: '01', name: 'Discover', text: 'Scan open source, AI releases and tools for things worth a closer look.' },
-  { n: '02', name: 'Evaluate', text: 'Install it, read the code, test it on a real task. Publish the honest result.' },
-  { n: '03', name: 'Build', text: 'Turn what works into practical tools, automations and products.' },
-  { n: '04', name: 'Share', text: 'Document everything, so others can reuse it and build on it.' },
+  { n: '01', name: 'Discover', text: 'Find AI tools and ideas that could save engineers real time.' },
+  { n: '02', name: 'Evaluate', text: 'Try them on real work: reports, documents, data. Note what breaks.' },
+  { n: '03', name: 'Build', text: 'Turn what works into small tools and workflows I actually use.' },
+  { n: '04', name: 'Share', text: 'Write it up honestly, so you can skip the trial and error.' },
 ];
 
 const organization = {
@@ -113,7 +113,7 @@ const organization = {
   <section class="method" aria-labelledby="method-title">
     <div class="container section">
       <SectionLabel number={2} onDark>Method</SectionLabel>
-      <h2 id="method-title">Every project goes through the same four steps.</h2>
+      <h2 id="method-title">Test before you trust.</h2>
       <ol class="steps">
         {
           steps.map((s) => (
@@ -244,13 +244,24 @@ const organization = {
   }
   .steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* Phone: stacked. Tablet: 2x2. Desktop: one row of four. Never 3 + 1. */
+    grid-template-columns: 1fr;
     margin: 0;
     padding: 0;
   }
+  @media (min-width: 600px) {
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1100px) {
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
   .steps li {
     list-style: none;
-    padding: 28px 28px 0 0;
+    padding: 28px 28px 48px 0;
     border-top: 1px solid var(--on-band);
   }
   .num {

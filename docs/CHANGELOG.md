@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
 ### 2026-11-21
+- Home page Method section: new heading "Test before you trust." and new text for the four steps. Steps sit in one row on desktop, two by two on tablet and stacked on phone, so step 04 never sits alone. More space under each step so the divider line is not read as an underline.
 - Step-by-step guide for forwarding hello@durbeen.io to Gmail with Cloudflare Email Routing (`docs/EMAIL.md`). Nothing was switched on.
 - Analytics prepared but switched off: a Cloudflare Web Analytics loader that does nothing until a token is added, runs only on durbeen.io and never for visitors who send Do Not Track. The Privacy page text follows the same setting. Step-by-step instructions to get the token are in `docs/ANALYTICS.md`.
 - Every article now ends with an author box (two-line bio and a link to the About page), and the Article structured data names the author with a link to About. Search no longer matches the repeated blocks (related articles, previous/next, share, contents), so a search shows only the articles that really contain the words.
