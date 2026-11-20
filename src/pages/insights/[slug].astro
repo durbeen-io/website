@@ -45,6 +45,7 @@ const total = sc ? sc.setup + sc.docs + sc.maintenance + sc.safety : 0;
 
 const url = new URL(articleHref(article), Astro.site).href;
 const site = Astro.site!.href;
+const image = d.ogImage ? new URL(d.ogImage, site).href : `${site}og/${article.id}.png`;
 const jsonLd = [
   {
     '@context': 'https://schema.org',
@@ -58,6 +59,7 @@ const jsonLd = [
     mainEntityOfPage: url,
     articleSection: d.category,
     keywords: d.tags.join(', '),
+    image,
   },
   {
     '@context': 'https://schema.org',
@@ -71,7 +73,7 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title={`${d.title} | Durbeen`} description={d.description} ogType="article" jsonLd={jsonLd}>
+<BaseLayout title={`${d.title} | Durbeen`} description={d.description} ogType="article" ogImage={image} jsonLd={jsonLd}>
   <ReadingProgress target="#article-body" />
   <article data-pagefind-body data-pagefind-meta={`type:${d.type}`}>
     <header class="head container" data-pagefind-meta={`number:${n}`}>

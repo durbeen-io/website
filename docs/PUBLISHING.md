@@ -91,3 +91,7 @@ Tags come from `src/content/tags.json` (keep it under about 30). To use a new ta
 - **Alt text is required.** The build fails without it. The text in quotes becomes the caption, shown as `FIG. 01 — …` (numbered automatically).
 - For a hero image set `heroImage: ./images/my-hero.png` and `heroAlt: "…"` in the frontmatter.
 - Astro makes AVIF and WebP copies at several widths. Upload one good original (about 1600px wide or more); do not resize by hand.
+
+## Social-preview (OG) images
+
+Each article gets a preview image automatically at build time (`/og/<slug>.png`): the number, type, reading time and title on the Durbeen layout. You do nothing. To use your own image instead, set `ogImage` in the frontmatter to a path under `public/` (1200x630 works best). Check the result in the built page's `og:image` tag or with a link-preview tool after the preview deploy.

@@ -197,3 +197,12 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | The category slug helper moved to `src/lib/taxonomy.ts` so `astro.config.mjs` can use it; the config reads article frontmatter itself to know which categories are populated | The config runs before Astro's content layer | Importing from `articles.ts` (needs `astro:content`) |
 | `public/robots.txt` allows all and points to the sitemap; the `noindex` header in `_headers` still blocks indexing until Phase 8 | Standard; nothing is exposed because of the header | Adding robots.txt at launch |
 | `lychee.toml`: the `/rss.xml` entry is removed (shipped) | The file's own rule | Stale entry |
+
+## 2026-11-20: Open Graph images (Phase 4, PR 7)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Add `satori` and `@resvg/resvg-js` (founder-approved). One design, drawn at build time: paper background, mono metadata line, large Inter Tight title (size steps down for long titles), logo, faint reticle with the accent dot. Founder approves the look by viewing it | Brief: OG images auto-generated per article in the brand style; no third-party service | A screenshot service; a template per category |
+| The Inter Tight and JetBrains Mono variable TTFs (Google Fonts repo, SIL OFL, licence texts included) live in `src/assets/og-fonts/` (about 770 kB) | satori cannot read the site's woff2 fonts; tested that satori renders both weights from the variable files, so no static instances are needed | Adding `@fontsource` static packages |
+| `/og/default.png` is the image for every non-article page. An article's `ogImage` frontmatter overrides its generated image | Every page has a valid `og:image`; authors can still override | No image on non-article pages |
+| OG images are always light mode | Link previews appear on both light and dark feeds; light is the brief's default | A dark variant |
