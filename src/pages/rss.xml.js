@@ -6,7 +6,7 @@ export async function GET(context) {
   const articles = await getArticles();
   return rss({
     title: 'Durbeen',
-    description: 'Field notes from the edge of technology: reviews, experiments, guides and build notes from an independent technology lab.',
+    description: 'Durbeen: an independent lab where an I&C engineer tests AI on real work, from reports and documents to data. Honest results, including what breaks.',
     site: context.site,
     items: articles.map((a) => ({
       title: a.data.title,

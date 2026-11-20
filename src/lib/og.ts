@@ -61,7 +61,7 @@ export async function renderOg(opts: { label: string; title: string }): Promise<
       'div',
       { justifyContent: 'space-between', fontFamily: 'JetBrains Mono', fontSize: 22, color: muted, letterSpacing: 1 },
       h('div', {}, opts.label),
-      h('div', {}, 'INDEPENDENT TECHNOLOGY LAB'),
+      h('div', {}, 'INDEPENDENT LAB'),
     ),
     h(
       'div',
