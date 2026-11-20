@@ -8,6 +8,8 @@ The weekly routine. Goal: **under 10 minutes** from a finished draft to live.
 >
 > **Drafts:** `npm run dev` shows drafts. A normal build hides them. To test a build with drafts, run `DURBEEN_INCLUDE_DRAFTS=1 npm run build`. To try search locally, run a build and then `npm run preview` (search needs the built index).
 
+> **Prefer forms?** You can write and edit articles in Pages CMS instead of editing files: see `docs/CMS.md`.
+
 ## Routine
 
 1. **Create a branch** for the article, for example `article/why-im-building-durbeen`.

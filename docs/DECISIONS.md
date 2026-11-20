@@ -282,3 +282,16 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Legal pages name **India** as the governing law; Terms add "the courts of [CITY], India" with `[CITY]` still to fill in. The notice on each page now says it has "not had a legal check yet". Pages stay **PRELIMINARY** until the founder's legal check | Founder's answer; no statute is cited because that needs the legal check | Citing specific Indian statutes without review |
 | The Editorial policy's AI-use statement is **confirmed** by the founder | Resolves the open question | None |
 | `docs/INFOGRAPHIC-STYLE.md`: a one-page style card whose 19 hex codes were checked against `tokens.css` (all match), with a paste-ready brief for an image tool | Founder wants to brief ChatGPT for infographics | Typing the colours from memory |
+
+## 2026-11-21: Pages CMS (enhancement 1)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Use **Pages CMS** (hosted at app.pagescms.org, GitHub login) with a `.pages.yml` at the repository root. Nothing is added to the site or its dependencies | Documented support for our schema; adds no server code, so the site stays static; free | Keystatic |
+| **Keystatic rejected:** its admin needs server-side rendering, an Astro adapter and the React integration, and its documentation and community guides say it cannot be used with a fully static build | Our architecture is static with no server code (brief section 15); also needs three new packages | Adding an adapter and SSR |
+| `.pages.yml` is **generated** by `scripts/build-cms-config.mjs` from `taxonomy.ts` and `tags.json`; `npm run check:cms` (a step of the required "Build and contrast" CI job) fails if it is stale | The dropdowns can never drift from the build's rules; no YAML package needed | Hand-copying the lists |
+| The article body is a **code editor in MDX**, not rich text. Pages CMS's rich-text editor only outputs Markdown or HTML, which would risk breaking `<Callout>` and `<VerdictBox>` | MDX components are part of our articles | Rich-text body |
+| The article schema treats an empty optional value (`series: ""`, an all-empty scorecard) as not set. A half-filled scorecard still fails. Tested both ways | A CMS may write blanks; I cannot see its exact output from here | Hoping it omits them |
+| New articles start as `draft: true` in the CMS | A new post must be switched on to publish | Default off |
+| Editing goes through a `content` branch and a pull request (not `main`) because of branch protection. Pages CMS cannot open the pull request itself, as far as its documentation says. **No GitHub setting was changed; installing the Pages CMS GitHub App is the founder's step** | Branch protection applies to admins too; the founder asked to be told before any GitHub setting | Loosening branch protection |
+| **Not tested in the live app.** Three points need the founder's login: `.mdx` files listing and opening, the body editor not altering MDX components, and the relative image path `./images/…`. A test list is in `docs/CMS.md` | Honesty about what was and was not run | Claiming it works |

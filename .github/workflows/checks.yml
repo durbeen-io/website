@@ -23,6 +23,8 @@ jobs:
       - run: npm ci
       - name: Colour contrast (WCAG AA)
         run: npm run check:contrast
+      - name: Pages CMS config matches the site's lists
+        run: npm run check:cms
       - name: Build
         run: npm run build
 

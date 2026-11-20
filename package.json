@@ -14,7 +14,9 @@
     "check:contrast": "node scripts/check-contrast.mjs",
     "check:axe": "node scripts/check-axe.mjs",
     "check:lighthouse": "lhci autorun",
-    "check:brackets": "node scripts/check-brackets.mjs"
+    "check:brackets": "node scripts/check-brackets.mjs",
+    "cms:build": "node scripts/build-cms-config.mjs",
+    "check:cms": "node scripts/build-cms-config.mjs --check"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.1.6",
