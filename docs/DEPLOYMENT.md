@@ -54,6 +54,7 @@ Run by GitHub Actions on every pull request: build, frontmatter validation, brok
 | `Internal links (lychee)` | Checks internal links in `dist/` (offline, no external links). Config: `lychee.toml` | needs lychee installed; CI is the normal route |
 
 - axe and Lighthouse use the Chrome already installed on the machine; no browser is downloaded.
+- Anchor (`#fragment`) checking is off: lychee 0.24 reports false errors on links like `/design-system/components/#button`.
 - `lychee.toml` skips the nav and footer pages that are not built yet. **When a page ships, delete its line.** The list must be empty at the Phase 5 gate.
 - The three new jobs are not yet *required* on `main`. Add them in GitHub branch protection after this PR is merged and has run once (the job names must exist first).
 - The `lychee-action` is pinned to a full commit SHA, not a tag. To update it, look up the new release's SHA and change the version comment too.
