@@ -456,7 +456,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - Delete the six `sample-*.mdx` drafts in Phase 6 (and check nothing links to them).
 - The deployed `workers.dev` site excludes drafts. To show the sample content on branch previews, the founder can set `DURBEEN_INCLUDE_DRAFTS=1` for non-production builds in Cloudflare (a setting change, ask first). Never set it for production.
 - ProjectRow is plain text until Phase 5 gives each project a page; then link it.
-- Remove the internal `/design-system/` page (and keep it out of the sitemap) before the Phase 8 launch.
+- Remove the internal `/design-system/` page before the Phase 8 launch (it is already filtered out of the sitemap in `astro.config.mjs`; remove that filter line too).
 - Remove `/design-system/components/` (with `/design-system/`) before the Phase 8 launch, and the `docs/pr-screenshots/` folder.
 - Nav and footer links point to pages that do not exist yet (Phases 4-5). They are listed in `lychee.toml`. **When a page ships, remove its entry from `lychee.toml`.** Zero entries and zero broken links is a Phase 5 gate. The link check covers internal links only.
 - Lighthouse: turn on the SEO assertion at Phase 8 (when `noindex` is removed).
