@@ -80,3 +80,7 @@ durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTT
 ## Before launch: placeholders
 
 `npm run build && npm run check:brackets` lists every `[BRACKET]` placeholder and every "PRELIMINARY" marker on the built site (the internal design-system pages are skipped). It exits with an error while any remain. It is **not** a CI job (it would fail on purpose before the founder fills them in). The Phase 8 gate requires it to report none.
+
+## 404 page
+
+`wrangler.jsonc` sets `assets.not_found_handling` to `"404-page"`, so Cloudflare answers an unknown address with `dist/404.html` and a 404 status. This is a deployment setting kept in the repository (no dashboard change). To check it: open any address that does not exist on the production or a preview URL and confirm the on-brand page and a 404 status (`curl -sI <url>/no-such-page/`).

@@ -257,3 +257,10 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Affiliate disclosure says there are currently no affiliate links, and describes how they would be marked if that changes (the `affiliate: true` note already built into articles) | True today, and ready for later | A generic disclosure of links that do not exist |
 | One external link, to Cloudflare's privacy policy, was opened and confirmed (200) | Verified links only | An unverified link |
 | Defect found while checking: a line break before a link in an `.astro` file removed the space ("See<a>"). Fixed on Privacy and Editorial policy; a scan of all 47 built pages found no other case. Rule: keep the link on the same line as the word before it, or use `{' '}` | Text must read correctly | None |
+
+## 2026-11-20: 404 page (Phase 5)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| `src/pages/404.astro`: on-brand (reticle with `TARGET 404`), a Search button that opens the site search, a link home and the three latest articles. It is `noindex` and left out of the sitemap | Brief section 8: on-brand, with search and recent articles | A plain error page |
+| `wrangler.jsonc` gets `"not_found_handling": "404-page"` so Cloudflare serves the page with a 404 status. It is a deployment setting kept in the repository, verified on the PR's preview URL before merging | Without it Cloudflare would not serve `404.html`; flagged to the founder because it changes deployed behaviour | A dashboard change; skipping the page |

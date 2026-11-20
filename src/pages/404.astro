@@ -1,0 +1,93 @@
+---
+// 404: on-brand, with search and the latest articles (CLAUDE.md section 8).
+// Cloudflare serves this page for unknown addresses because wrangler.jsonc sets `not_found_handling: "404-page"`.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/Button.astro';
+import Reticle from '../components/Reticle.astro';
+import ArticleList from '../components/ArticleList.astro';
+import { getArticles } from '../lib/articles';
+
+const recent = (await getArticles()).slice(0, 3);
+---
+
+<BaseLayout
+  title="Page not found | Durbeen"
+  description="That address does not exist on durbeen.io. Search the site, go back to the home page, or start from the latest articles."
+  noindex
+>
+  <section class="container hero">
+    <div class="copy">
+      <p class="label">ERROR 404</p>
+      <h1>Page not found.</h1>
+      <p class="lede">
+        Nothing lives at this address. It may have moved, or the link may be wrong. Search the site, or start from the
+        latest articles.
+      </p>
+      <div class="actions">
+        <Button type="button" arrow data-search-open>Search</Button>
+        <Button variant="text" href="/">Go to the home page</Button>
+      </div>
+    </div>
+    <Reticle target={404} />
+  </section>
+
+  {
+    recent.length > 0 && (
+      <section class="container latest" aria-labelledby="latest-title">
+        <h2 id="latest-title" class="label">LATEST ARTICLES</h2>
+        <ArticleList articles={recent} />
+      </section>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: clamp(64px, 9vw, 140px);
+  }
+  .copy {
+    flex: 1 1 480px;
+    min-width: 0;
+  }
+  .label {
+    margin: 0 0 var(--space-4);
+  }
+  h1 {
+    margin: 0 0 var(--space-4);
+    font-size: var(--fs-hero);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+  }
+  .lede {
+    max-width: 560px;
+    margin: 0 0 var(--space-5);
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--text-2);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+  }
+  .hero :global(svg) {
+    flex: 0 0 auto;
+  }
+  .latest {
+    padding-bottom: var(--space-section);
+  }
+  .latest h2 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--fs-label);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+</style>
