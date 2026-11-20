@@ -6,20 +6,21 @@
 
 offline = true
 # root_dir must be absolute, so it is passed in the workflow (--root-dir).
-include_fragments = "full"
+# Anchor (#fragment) checking is off: lychee 0.24 cannot resolve fragments on directory-style links
+# like /design-system/components/#button, even though the ids exist (false alarms).
 no_progress = true
 
 exclude = [
   # Phase 4 (blog engine): Insights list and RSS feed
-  'file://.*/insights/$',
+  'file://.*/insights/?$',
   'file://.*/rss\.xml$',
   # Phase 5 (remaining pages)
-  'file://.*/projects/$',
-  'file://.*/toolkit/$',
-  'file://.*/about/$',
-  'file://.*/work-with-durbeen/$',
-  'file://.*/editorial-policy/$',
-  'file://.*/privacy/$',
-  'file://.*/terms/$',
-  'file://.*/affiliate-disclosure/$',
+  'file://.*/projects/?$',
+  'file://.*/toolkit/?$',
+  'file://.*/about/?$',
+  'file://.*/work-with-durbeen/?$',
+  'file://.*/editorial-policy/?$',
+  'file://.*/privacy/?$',
+  'file://.*/terms/?$',
+  'file://.*/affiliate-disclosure/?$',
 ]
