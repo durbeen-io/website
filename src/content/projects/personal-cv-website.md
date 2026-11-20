@@ -1,9 +1,11 @@
 ---
 title: Personal CV website
-summary: A personal CV website.
+summary: My professional CV site, built with Lovable (AI app builder).
 status: Live
 order: 3
+url: https://fahadehsan-cv.lovable.app/
 repo: Private
+uses: [Lovable]
 ---
 
-A personal CV website. It is live. The repository is private.
+My professional CV site. It is live, and it was built with Lovable, an AI app builder. The repository is private.

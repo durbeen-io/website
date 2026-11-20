@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
 ### 2026-11-21
+- About page now carries the founder's own text (123 words in all). Terms name the courts of Hyderabad, India. The Personal CV website is Live with its address and a description. The "AI for Engineers" series was removed (the category stays); "Building Durbeen in Public", "GitHub Mastery" and "Repo Reviews" remain. `docs/CMS.md` explains how to turn on GitHub auto-merge for content pull requests.
 - Starter templates for the five article types (Guide, Build note, Review, Comparison, Infographic), each with `[FILL]` hints, also offered in Pages CMS as **Start a new article**. A published article that still contains `[FILL]` now fails the build.
 - Pages CMS configuration (`.pages.yml`, generated from the site's own lists) so articles can be written and edited in forms at app.pagescms.org after you install its GitHub app. Instructions and a short first test are in `docs/CMS.md`. The article schema now treats empty optional values as not set.
 - Personal CV website is now marked Live (no link yet). Privacy and Terms name the law of India (Terms still need the city of the courts). A one-page infographic style card, `docs/INFOGRAPHIC-STYLE.md`, was added.
