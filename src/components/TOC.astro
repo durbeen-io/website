@@ -1,0 +1,107 @@
+---
+// Table of contents for an article: "CONTENTS" + a list of the h2 sections.
+// `items` is built from the article's headings (Phase 4 does that); here we only draw it.
+// The section being read is marked (a 2px accent rule + aria-current) by a small script.
+// Without JavaScript it is a plain list of anchor links, which still works.
+interface Item {
+  id: string;
+  text: string;
+}
+interface Props {
+  items: Item[];
+  label?: string;
+  id?: string; // unique per page if there is more than one TOC
+}
+const { items, label = 'Contents', id = 'toc' } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <nav class="toc" aria-labelledby={`${id}-label`} data-toc>
+      <p class="toc-label" id={`${id}-label`}>
+        {label}
+      </p>
+      <ol>
+        {items.map((item) => (
+          <li>
+            <a href={`#${item.id}`} data-toc-link>
+              {item.text}
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<style>
+  .toc-label {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  ol {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    padding: 8px 0 8px 12px;
+    border-left: 2px solid var(--line);
+    font-size: 14px;
+    line-height: 1.35;
+    color: var(--text-2);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--ink);
+    border-left-color: var(--ui-border);
+  }
+  a[aria-current='true'] {
+    border-left-color: var(--accent);
+    color: var(--ink);
+    font-weight: 500;
+  }
+</style>
+
+<script>
+  // Mark the heading nearest the top of the screen as the current section.
+  document.querySelectorAll<HTMLElement>('[data-toc]').forEach((toc) => {
+    const links = Array.from(toc.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'));
+    const targets = links
+      .map((a) => document.getElementById(decodeURIComponent(a.hash.slice(1))))
+      .filter((el): el is HTMLElement => el !== null);
+    if (targets.length === 0 || !('IntersectionObserver' in window)) return;
+
+    const setCurrent = (id: string) => {
+      links.forEach((a) => {
+        if (decodeURIComponent(a.hash.slice(1)) === id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    };
+
+    // A heading counts as "current" once it crosses the top 30% of the viewport.
+    const seen = new Set<string>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) seen.add(e.target.id);
+          else seen.delete(e.target.id);
+        });
+        const first = targets.find((t) => seen.has(t.id));
+        if (first) setCurrent(first.id);
+      },
+      { rootMargin: '0px 0px -70% 0px' },
+    );
+    targets.forEach((t) => observer.observe(t));
+  });
+</script>
