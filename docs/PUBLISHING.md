@@ -84,3 +84,10 @@ Tags come from `src/content/tags.json` (keep it under about 30). To use a new ta
 - [ ] No secrets, tokens, private URLs or personal data
 - [ ] Preview checked on desktop and at 375px phone width
 - [ ] Every page in the connection map for a new article updates (Home log, Insights list, category and tag pages, related articles, RSS, sitemap, search)
+
+## Images
+
+- Put images in `src/content/insights/images/` and use normal Markdown: `![Alt text that describes the image](./images/my-image.png "Caption text")`.
+- **Alt text is required.** The build fails without it. The text in quotes becomes the caption, shown as `FIG. 01 — …` (numbered automatically).
+- For a hero image set `heroImage: ./images/my-hero.png` and `heroAlt: "…"` in the frontmatter.
+- Astro makes AVIF and WebP copies at several widths. Upload one good original (about 1600px wide or more); do not resize by hand.

@@ -1,0 +1,109 @@
+---
+// Article image (used for every image in an article, and for the hero image).
+// - Alt text is REQUIRED: the build fails without it (brief section 9).
+// - Astro makes AVIF and WebP copies at several widths (responsive sizes) and the browser picks one.
+// - Lazy loading (except the hero), and a soft blurred preview that sharpens when the image loads.
+// - The title in `![alt](./img.png "caption")` becomes the caption, numbered "FIG. 01 —" by CSS.
+// - Tap or click to zoom (see ImageZoom.astro). Without scripts the link opens the full image.
+import { Picture, getImage } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  title?: string; // caption
+  eager?: boolean; // the hero image loads at once
+}
+const { src, alt, title, eager = false } = Astro.props;
+if (!alt || !alt.trim()) {
+  throw new Error(`Image is missing alt text (src: ${typeof src === 'string' ? src : src.src}). Every image needs alt text.`);
+}
+const optimised = typeof src !== 'string';
+const full = optimised ? await getImage({ src, width: Math.min(2000, src.width), format: 'webp' }) : undefined;
+const tiny = optimised ? await getImage({ src, width: 24, format: 'webp', quality: 30 }) : undefined;
+---
+
+<figure class:list={['figure', { 'has-caption': !!title }]}>
+  <a
+    class="frame"
+    href={full?.src ?? (src as string)}
+    data-zoom
+    data-alt={alt}
+    aria-label={`Enlarge image: ${alt}`}
+    style={tiny ? `background-image:url(${tiny.src})` : undefined}
+  >
+    {
+      optimised ? (
+        <Picture
+          src={src}
+          alt={alt}
+          formats={['avif', 'webp']}
+          widths={[480, 800, 1200, 1600]}
+          sizes="(min-width: 760px) 700px, calc(100vw - 48px)"
+          loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
+          class="img"
+        />
+      ) : (
+        <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" class="img" />
+      )
+    }
+  </a>
+  {title && <figcaption>{title}</figcaption>}
+</figure>
+
+<style>
+  .figure {
+    margin: 40px 0;
+  }
+  .frame {
+    display: block;
+    background-color: var(--surface-2);
+    background-size: cover;
+    background-position: center;
+    cursor: zoom-in;
+    line-height: 0;
+  }
+  .frame :global(.img),
+  .frame :global(picture) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  /* Blur-to-sharp: with scripts, the full image fades in over the blurred preview once it has loaded. */
+  :global(html.js) .frame :global(.img:not(.loaded)) {
+    opacity: 0;
+    filter: blur(12px);
+  }
+  .frame :global(.img) {
+    transition: opacity 0.4s ease, filter 0.4s ease;
+  }
+  figcaption {
+    margin-top: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  /* Caption numbers count up per article: FIG. 01, FIG. 02 ... */
+  :global(.prose) {
+    counter-reset: fig;
+  }
+  .has-caption {
+    counter-increment: fig;
+  }
+  .has-caption figcaption::before {
+    content: 'FIG. ' counter(fig, decimal-leading-zero) ' — ';
+  }
+</style>
+
+<script>
+  // Mark images as loaded (cached images included) so the blur lifts.
+  document.querySelectorAll<HTMLImageElement>('.frame .img').forEach((img) => {
+    const done = () => img.classList.add('loaded');
+    if (img.complete) done();
+    else img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  });
+</script>
