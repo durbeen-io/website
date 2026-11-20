@@ -67,6 +67,10 @@ Set in `public/_headers`: Content-Security-Policy, Strict-Transport-Security, X-
 
 durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTTPS only ("Always Use HTTPS"). Connected only after launch approval.
 
+## Analytics (Cloudflare Web Analytics)
+
+Prepared and switched off (`ANALYTICS_TOKEN` in `src/data/site.ts` is empty). See `docs/ANALYTICS.md` for the token steps, the launch-day setting and the Content-Security-Policy entries (`script-src https://static.cloudflareinsights.com/beacon.min.js`, `connect-src cloudflareinsights.com`) for Phase 7.
+
 ## Search (Pagefind)
 
 - `npm run build` is `astro build && pagefind --site dist`. Pagefind reads the built pages and writes the search index to `dist/pagefind/`. The Cloudflare build command stays `npm run build`, so no Cloudflare setting changes.
