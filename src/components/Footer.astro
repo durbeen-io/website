@@ -1,17 +1,13 @@
 ---
-// Site footer (CLAUDE.md section 8): newsletter, Explore, Work with Durbeen,
-// Elsewhere (GitHub, RSS), the large DURBEEN wordmark, and the policy links.
+// Site footer (CLAUDE.md section 8): intro and plain-text contact, Explore, Elsewhere (GitHub, RSS),
+// the large DURBEEN wordmark, and the policy links. The newsletter form is hidden until Kit is set up (deferred).
 // LinkedIn is left out until the founder supplies the URL. Nothing is guessed.
-import NewsletterForm from './NewsletterForm.astro';
 
-interface Props {
-  newsletterAction?: string; // Kit form URL, set in Phase 5
-}
-const { newsletterAction } = Astro.props;
 
 const explore = [
   { label: 'Insights', href: '/insights/' },
   { label: 'Projects', href: '/projects/' },
+  { label: 'Resources', href: '/resources/' },
   { label: 'Toolkit', href: '/toolkit/' },
   { label: 'About', href: '/about/' },
 ];
@@ -31,22 +27,16 @@ const year = new Date().getFullYear();
 <footer class="site-footer">
   <div class="container">
     <div class="top">
-      <div class="signup">
-        <h2 class="signup-title">Get the field notes.</h2>
-        <p class="signup-text">
-          New reviews and experiments. No spam.
-        </p>
-        <NewsletterForm id="footer-newsletter" action={newsletterAction} />
+      <div class="intro">
+        <p class="intro-title">Field notes from the edge of technology.</p>
+        <p class="intro-text">Independent technology lab and publication. Write to us at:</p>
+        <p class="contact"><span class="visually-hidden">Email: </span>hello@durbeen.io</p>
       </div>
 
       <div class="links">
         <nav aria-label="Explore">
           <p class="group">EXPLORE</p>
           <ul>{explore.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
-        </nav>
-        <nav aria-label="Work with Durbeen">
-          <p class="group">WORK</p>
-          <ul><li><a href="/work-with-durbeen/">Work with Durbeen</a></li></ul>
         </nav>
         <nav aria-label="Elsewhere">
           <p class="group">ELSEWHERE</p>
@@ -81,22 +71,32 @@ const year = new Date().getFullYear();
     gap: var(--space-6) 48px;
     margin-bottom: var(--space-7);
   }
-  .signup {
+  .intro {
     flex: 1 1 360px;
     min-width: 0;
   }
-  .signup-title {
-    margin-bottom: var(--space-2);
+  .intro-title {
+    margin: 0 0 var(--space-2);
+    font-family: var(--font-display);
+    font-weight: 600;
     font-size: 28px;
     letter-spacing: -0.02em;
     line-height: 1.2;
+    color: var(--ink);
   }
-  .signup-text {
+  .intro-text {
     max-width: 420px;
-    margin: 0 0 var(--space-3);
+    margin: 0 0 var(--space-1);
     font-size: 16px;
     line-height: 1.55;
     color: var(--text-2);
+  }
+  .contact {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--ink);
+    user-select: all; /* plain text on purpose (no mail link until email routing is set up); easy to copy */
   }
   .links {
     display: flex;

@@ -206,3 +206,14 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | The Inter Tight and JetBrains Mono variable TTFs (Google Fonts repo, SIL OFL, licence texts included) live in `src/assets/og-fonts/` (about 770 kB) | satori cannot read the site's woff2 fonts; tested that satori renders both weights from the variable files, so no static instances are needed | Adding `@fontsource` static packages |
 | `/og/default.png` is the image for every non-article page. An article's `ogImage` frontmatter overrides its generated image | Every page has a valid `og:image`; authors can still override | No image on non-article pages |
 | OG images are always light mode | Link previews appear on both light and dark feeds; light is the brief's default | A dark variant |
+
+## 2026-11-20: Scope change, blog first (Phase 5)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| **Durbeen starts as a blog.** "Work with Durbeen" (page `/work-with-durbeen/`) is removed from the footer, the Phase 5 gate and the page inventory. **Deferred, not cancelled.** The plan is kept: 2-3 fixed-price service packages (scope, deliverables, price or "from" price, timeline), an email link to hello@durbeen.io and no contact form. It returns when the founder asks | Founder's call: focus on publishing first | Deleting the plan; building the page now |
+| **The newsletter form is hidden** (footer and end of articles). The `NewsletterForm` component stays in the repo and on the internal preview page. Kit, double opt-in and the "Repo Safety Checklist" download are deferred and kept in brief section 13 | Founder's call; no form that cannot work yet | A disabled form |
+| The footer now holds an intro line and **hello@durbeen.io as plain text** (not a mail link), plus Explore (now with Resources), Elsewhere and the policy links. No LinkedIn link until the founder supplies the URL | Email routing is not set up yet, so a mail link might fail; plain text is honest | A `mailto:` link |
+| **New article type `Infographic`**; all other types (including Visual) stay. An Infographic needs a `summary` (200+ characters) which the page shows as a "TEXT VERSION" box above the article; the build fails without it | Founder: the written text summary must be on the page, not only alt text (accessibility and search) | Alt text only |
+| **New series "AI for Engineers"**; the three existing series stay. Series are now a controlled list (`src/lib/taxonomy.ts`) so a typo cannot create a series; a series is never a category | Series pages are generated from the list | Free-text series |
+| Phase 5 gate revised: no packages, newsletter or free-download items; added legal pages marked preliminary, a list of every `[BRACKET]`, and a Phase 8 gate item: no bracket or "preliminary" marker left on any page | Matches the new scope; stops placeholders reaching launch | Leaving the old gate |

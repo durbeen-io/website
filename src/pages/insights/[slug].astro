@@ -7,7 +7,6 @@ import TOC from '../../components/TOC.astro';
 import Tag from '../../components/Tag.astro';
 import Callout from '../../components/Callout.astro';
 import VerdictBox from '../../components/VerdictBox.astro';
-import NewsletterForm from '../../components/NewsletterForm.astro';
 import ReadingProgress from '../../components/ReadingProgress.astro';
 import ShareButtons from '../../components/ShareButtons.astro';
 import CodeCopy from '../../components/CodeCopy.astro';
@@ -110,6 +109,14 @@ const jsonLd = [
       {toc.length >= 2 && <div class="toc"><TOC items={toc} /></div>}
 
       <div class="text" id="article-body">
+        {
+          d.type === 'Infographic' && d.summary && (
+            <section class="text-version" aria-labelledby="text-version-title">
+              <h2 id="text-version-title" class="label">TEXT VERSION</h2>
+              {d.summary.split(/\n\s*\n/).map((para) => <p>{para.trim()}</p>)}
+            </section>
+          )
+        }
         <div class="prose" data-prose>
           <Content components={{ Callout, VerdictBox, img: ArticleImage }} />
         </div>
@@ -130,11 +137,6 @@ const jsonLd = [
         }
         {d.canonicalSource && <p class="label source">FIRST PUBLISHED AT <a href={d.canonicalSource}>{new URL(d.canonicalSource).hostname}</a></p>}
 
-        <section class="signup" aria-labelledby="signup-title">
-          <h2 id="signup-title">Get the field notes.</h2>
-          <p>New reviews and experiments. No spam.</p>
-          <NewsletterForm id="newsletter-article" />
-        </section>
       </div>
 
       <aside class="rail" aria-label="Article tools">
@@ -350,24 +352,33 @@ const jsonLd = [
     margin: 48px 0;
   }
 
+  /* Infographic articles: the written version of the image, always on the page (not only as alt text) */
+  .text-version {
+    margin: 0 0 var(--space-5);
+    padding: var(--space-3);
+    border: 1px solid var(--ink);
+    background: var(--surface);
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--text);
+  }
+  .text-version h2 {
+    margin: 0 0 var(--space-2);
+    font-size: var(--fs-label);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+  .text-version p {
+    margin: 0 0 var(--space-2);
+  }
+  .text-version p:last-child {
+    margin-bottom: 0;
+  }
   .source {
     margin: var(--space-4) 0 0;
   }
-  .signup {
-    margin-top: var(--space-7);
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--ink);
-  }
-  .signup h2 {
-    margin: 0 0 var(--space-2);
-    font-size: 28px;
-    letter-spacing: -0.02em;
-  }
-  .signup p {
-    margin: 0 0 var(--space-3);
-    color: var(--text-2);
-  }
-
   .rail .block {
     margin-top: var(--space-5);
   }

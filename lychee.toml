@@ -15,7 +15,6 @@ exclude = [
   'file://.*/projects/?$',
   'file://.*/toolkit/?$',
   'file://.*/about/?$',
-  'file://.*/work-with-durbeen/?$',
   'file://.*/editorial-policy/?$',
   'file://.*/privacy/?$',
   'file://.*/terms/?$',

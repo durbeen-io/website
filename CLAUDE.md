@@ -2,7 +2,7 @@
 
 > Read this whole file at the start of every session. Part A holds locked decisions and changes rarely.
 > Part B (the Progress Log, at the end) is updated at the end of every session.
-> Brief version: 1.4 · 19 Nov 2026 · Owner: Fahad Ehsan
+> Brief version: 1.5 · 20 Nov 2026 · Owner: Fahad Ehsan  (1.5: Durbeen starts as a blog; Work with Durbeen and the newsletter are deferred; new Infographic type and series; see docs/DECISIONS.md)
 
 ---
 
@@ -137,15 +137,14 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 
 **Main nav:** Insights · Projects · Toolkit · About · (search)
 **Footer:**
-- Newsletter signup (+ free download)
+- Intro line and **hello@durbeen.io as plain text** (no newsletter form until Kit is set up: deferred, section 13)
 - Explore: Insights, Projects, Resources, Toolkit, About
-- Work with Durbeen
-- GitHub, LinkedIn, RSS
+- GitHub, LinkedIn (when the founder supplies it), RSS
 - Editorial policy · Privacy · Terms · Affiliate disclosure
 
 **Products** is hidden until a real product exists.
 
-### Unique pages (12): built and approved one by one
+### Unique pages (11 planned, 1 deferred): built and approved one by one
 | # | Page | URL | Design source | Phase |
 |---|---|---|---|---|
 | 1 | Home | `/` | Mockup **A, Instrument Lab** | 3 |
@@ -154,7 +153,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 | 4 | Projects (list) | `/projects/` | Dark header band (mockup B) + project rows with status labels | 5 |
 | 5 | Resources | `/resources/` | Curated repos, docs and learning links | 5 |
 | 6 | Toolkit | `/toolkit/` | The tools the founder actually uses, grouped, each with a one-line honest note; affiliate-ready | 5 |
-| 7 | Work with Durbeen | `/work-with-durbeen/` | 2–3 **fixed-price service packages** (scope, deliverables, price or "from" price, timeline) + email link to hello@durbeen.io. No contact form at launch | 5 |
+| 7 | ~~Work with Durbeen~~ | `/work-with-durbeen/` | **DEFERRED, not cancelled** (20 Nov 2026): Durbeen starts as a blog. The plan (2–3 fixed-price service packages with scope, deliverables, price or "from" price, timeline, plus an email link) is kept in section 13 and `docs/DECISIONS.md`. Not built, not in the nav or footer | – |
 | 8 | Editorial policy | `/editorial-policy/` | How we test, how we use AI, affiliates, corrections | 5 |
 | 9 | Privacy | `/privacy/` | Plain text | 5 |
 | 10 | Terms | `/terms/` | Plain text | 5 |
@@ -196,7 +195,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 5. `[ 01 ] INSIGHTS`: 1 featured article plus 3 recent ones
 6. `[ 02 ] METHOD`: a dark band with 4 steps and Doto numerals
 7. `[ 03 ] PROJECTS`: rows with status labels (IN PROGRESS / PLANNED / LIVE)
-8. Footer with newsletter signup (+ free download offer) and the large DURBEEN wordmark
+8. Footer with the intro line, plain-text contact, links and the large DURBEEN wordmark (newsletter form hidden until Kit: deferred)
 
 ## 9. Blog system
 
@@ -206,10 +205,10 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 | Label | Allowed values |
 |---|---|
 | **Category** (what it's about) | AI · Open Source & GitHub · Automation & Productivity · Software & Tools · Building Products · Business & Innovation |
-| **Type** (what form it takes) | Review · Comparison · Guide · Experiment · Build Note · Insight · Visual |
+| **Type** (what form it takes) | Review · Comparison · Guide · Experiment · Build Note · Insight · Visual · **Infographic** (needs a written text summary shown on the page) |
 | **Level** | Beginner · Intermediate · Advanced |
 | **Tags** | Lowercase, reused, from a controlled list in `src/content/tags.json` (keep it under ~30; adding a tag means adding it to the list) |
-| **Series** (optional) | e.g. "Building Durbeen in Public", "GitHub Mastery", "Repo Reviews" |
+| **Series** (optional) | One of: "Building Durbeen in Public", "GitHub Mastery", "Repo Reviews", "AI for Engineers" (a controlled list in `src/lib/taxonomy.ts`; a series is a sequence of articles, never a category) |
 
 **Frontmatter schema** (validate with Astro content collections + zod; the build fails on invalid values):
 ```yaml
@@ -217,10 +216,11 @@ title: string              # required
 description: string        # required, 120–160 chars (meta description)
 number: number             # log number, e.g. 12 → "N°012"
 category: enum             # one of the 6 categories above
-type: enum                 # one of the 7 types above
+type: enum                 # one of the 8 types above
 level: enum                # Beginner | Intermediate | Advanced
 tags: string[]             # 3–5, must exist in tags.json
-series: string             # optional
+series: enum              # optional; one of the series above
+summary: string            # required for type Infographic (200+ chars): the written text version shown on the page
 author: "Fahad Ehsan"      # default
 publishDate: date
 updatedDate: date          # optional
@@ -252,8 +252,8 @@ scorecard:                 # Review type only
 - **RSS feed** (@astrojs/rss) and **sitemap** (@astrojs/sitemap)
 - **SEO:** unique title and meta description per page, canonical URLs, Open Graph and Twitter cards, JSON-LD (`Article`, `BreadcrumbList`, `Organization`)
 - **Open Graph images** auto-generated per article in the brand style
-- **Newsletter: Kit** (free plan up to 10,000 subscribers as of Nov 2026; recheck at Phase 5). Double opt-in. Embedded form in the footer and at the end of articles
-- **A free download for subscribers** (lead magnet): first one is the "Repo Safety Checklist" PDF, delivered by Kit
+- **Newsletter: Kit** *(DEFERRED, see section 13; the form is hidden)* (free plan up to 10,000 subscribers as of Nov 2026; recheck at Phase 5). Double opt-in. Embedded form in the footer and at the end of articles
+- **A free download for subscribers** *(DEFERRED with the newsletter)* (lead magnet): first one is the "Repo Safety Checklist" PDF, delivered by Kit
 - **Analytics:** Cloudflare Web Analytics (free, no cookies)
 - **No user accounts, no comments, and no login** at launch
 
@@ -277,7 +277,7 @@ scorecard:                 # Review type only
 | Repository | GitHub organisation `durbeen-io`, repo `website` |
 | Domain | durbeen.io (registered on Cloudflare) |
 | Email | hello@durbeen.io via Cloudflare Email Routing, forwarding to the founder's Gmail |
-| Newsletter | Kit (free plan), embedded form; free download delivered by Kit |
+| Newsletter | *Deferred.* Kit (free plan), embedded form; free download delivered by Kit |
 | Automatic checks | GitHub Actions: build, link check, axe accessibility, Lighthouse CI |
 | Uptime | A free uptime monitor (chosen in Phase 7) |
 | Builder | Claude Code on the founder's Claude Pro plan |
@@ -332,11 +332,11 @@ Every phase ends with a gate. **Every gate also includes: relevant `docs/` files
 | 2 | **Components** (see rule 2) + automatic checks (rule 11) | Each matches the mockups · works by keyboard alone · correct at 375px · a component preview page exists · GitHub Actions checks run and block a failing pull request |
 | 3 | **Homepage A** | Side-by-side match with the mockup · Lighthouse 90+ ×4 (mobile) · the Observation Log pulls real content |
 | 4 | **Blog engine** (section 9), including filters, scorecard, level labels, reading line and image handling | A test article goes from draft to preview in under 10 minutes · invalid frontmatter fails the build · the connection map (section 8) updates correctly for the test article · RSS and sitemap valid · OG preview correct · search works · structured data passes Google's Rich Results Test |
-| 5 | **Remaining pages** (incl. Toolkit, Work with Durbeen packages, Editorial policy) + Kit newsletter + free download + email routing | Zero broken links · every page has a unique title and description · the newsletter subscribe flow and free download work end to end · hello@durbeen.io receives mail · service packages approved by the founder |
+| 5 | **Remaining pages:** Projects (list + detail template), Resources, Toolkit, About, Editorial policy, Privacy, Terms, Affiliate disclosure, 404, plus hello@durbeen.io as plain text (revised 20 Nov 2026: no Work with Durbeen, no newsletter, no free download) | Zero broken links (`lychee.toml` has no entries) · every page has a unique title and description · legal pages are marked preliminary until the founder confirms which country's law applies · every `[BRACKET]` placeholder is listed for the founder · hello@durbeen.io shows as plain text (mail delivery needs the founder's Email Routing setup, tested then) |
 | 6 | **Launch content:** 3–5 real articles | Each has sources, alt text, a meta description and an OG image · no drafts published |
 | 7 | **Pre-launch QA** | Chrome, Safari, Firefox and iPhone/Android checked · security headers set (`_headers`) and verified with an external header scanner · account access re-audited (ADMIN.md) · INCIDENT.md rollback tested once · analytics on · free uptime monitoring set up · Privacy, Terms, Affiliate and Editorial policy pages live · all earlier gates re-checked |
-| 8 | **Launch** (founder approval required) | durbeen.io and www redirect correctly over HTTPS · live site matches the preview · Google Search Console verified and sitemap submitted |
-| 9 | **After launch** | Weekly publishing routine running · cross-posting with canonical links · monthly health check (links, Lighthouse, dependencies) · monthly export of the Kit subscriber list · uptime monitoring active |
+| 8 | **Launch** (founder approval required) | durbeen.io and www redirect correctly over HTTPS · live site matches the preview · Google Search Console verified and sitemap submitted · **no `[BRACKET]` placeholder and no "preliminary" marker left on any page** |
+| 9 | **After launch** | Weekly publishing routine running · cross-posting with canonical links · monthly health check (links, Lighthouse, dependencies) · monthly export of the Kit subscriber list (once the newsletter exists) · uptime monitoring active |
 
 ## 13. Deferred: do not build until the founder asks
 
@@ -345,6 +345,8 @@ Every phase ends with a gate. **Every gate also includes: relevant `docs/` files
 | Item | Note |
 |---|---|
 | **Quran Visuals** (see section 18) | Planned project; design already agreed |
+| **Work with Durbeen** (page and service packages) | Deferred, not cancelled (20 Nov 2026). Plan: 2–3 fixed-price packages (scope, deliverables, price or "from" price, timeline) and an email link, at `/work-with-durbeen/`. Revisit when the founder asks. Details in `docs/DECISIONS.md` |
+| **Newsletter (Kit) and free download** | Deferred (20 Nov 2026). The `NewsletterForm` component exists but is hidden. Plan: Kit free plan, double opt-in, form in the footer and at the end of articles, "Repo Safety Checklist" PDF as the first download |
 | Contact form | Needs a Worker script (the site is static assets only), Turnstile and a way to send email. Email link only until then |
 | "Now" page | What the founder is working on this month |
 | Series landing pages beyond the basic series page | |
@@ -421,7 +423,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - Lives on durbeen.io as its own section (e.g. `/quran-visuals/`), with its own short introduction. Kept separate from the tech feed: not in the homepage log or the Insights list; one link in the footer or menu.
 - Uses the same stack and design system. It can move to its own site later because it shares the templates.
 - Adds 2 templates when built: a **gallery** (grid of same-shape 4:5 cards, monospace labels like `N°001 · AL-FATIHAH · 7 AYAT`, filter by series such as "Juz 30" or "Daily prayer surahs") and an **infographic page** (large image in a thin frame; full-screen with pinch-zoom and swipe to next/previous; high-resolution download; WhatsApp/X/copy-link sharing; a text version below with the Arabic surah name in Noto Naskh Arabic, the meaning and the founder's explanation).
-- Tech and general infographics are separate: they go in Insights as the **Visual** article type.
+- Tech and general infographics are separate: they go in Insights as the **Infographic** article type (written text summary required); **Visual** stays for other image-led pieces.
 - Content accuracy matters: each infographic should cite the translation or tafsir it is based on.
 
 ---
