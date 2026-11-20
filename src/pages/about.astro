@@ -1,0 +1,60 @@
+---
+// About: short and calm (mockup B pacing). Under 150 words. Text in [SQUARE BRACKETS] is for the founder to
+// fill in: nothing about the founder's field, experience or reasons is invented here. `npm run check:brackets`
+// lists every placeholder left on the built site (it must find none before launch).
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About Durbeen: an independent technology lab | Durbeen"
+  description="Durbeen, which means telescope, is an independent technology lab and publication run by Fahad Ehsan: AI tools tested, GitHub for beginners, AI for engineers."
+>
+  <article class="container page">
+    <p class="label">ABOUT</p>
+    <h1>Look further. Look closer. Then build.</h1>
+
+    <div class="text">
+      <p>Durbeen is an independent technology lab and publication. The name means telescope.</p>
+      <p>
+        I'm Fahad Ehsan, the founder. I work in [YOUR FIELD] and have [YEARS] years of experience. I started Durbeen
+        because [WHY YOU STARTED DURBEEN].
+      </p>
+      <p>
+        Here I test AI tools, explain GitHub for beginners, write about AI for engineers, and build in public. Every
+        article is first-hand: what I installed, what happened, and an honest verdict, including the negatives.
+      </p>
+      <p>Current work is on the <a href="/projects/">Projects</a> page. To get in touch: <span class="mail">hello@durbeen.io</span></p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .page {
+    padding-block: clamp(64px, 9vw, 140px) var(--space-section);
+  }
+  .label {
+    margin: 0 0 var(--space-4);
+  }
+  h1 {
+    max-width: 1000px;
+    margin: 0 0 clamp(48px, 7vw, 96px);
+    font-size: clamp(44px, 7vw, 104px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+  .text {
+    max-width: 620px;
+    font-size: 20px;
+    line-height: 1.6;
+    color: var(--text-2);
+  }
+  .text p {
+    margin: 0 0 var(--space-3);
+  }
+  .mail {
+    font-family: var(--font-mono);
+    font-size: 17px;
+    color: var(--ink);
+    user-select: all;
+  }
+</style>

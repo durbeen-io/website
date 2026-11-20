@@ -76,3 +76,7 @@ durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTT
 ## Drafts in builds
 
 `DURBEEN_INCLUDE_DRAFTS=1` makes a build include `draft: true` articles. The axe, Lighthouse and link jobs set it so they audit pages with content. The Cloudflare production and preview builds do **not** set it, so drafts never appear online. Never set it in Cloudflare.
+
+## Before launch: placeholders
+
+`npm run build && npm run check:brackets` lists every `[BRACKET]` placeholder and every "PRELIMINARY" marker on the built site (the internal design-system pages are skipped). It exits with an error while any remain. It is **not** a CI job (it would fail on purpose before the founder fills them in). The Phase 8 gate requires it to report none.

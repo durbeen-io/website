@@ -235,3 +235,14 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | The Toolkit data is one file, `src/data/toolkit.ts` (groups, items with id, name and one line). Adding a tool means adding one entry; its anchor is `/toolkit/#id` | Simplest thing that works; the connection map says a new Toolkit item updates the page and any article or project that links to it | A content collection per tool |
 | Each line says what the tool is and where Durbeen uses it, using only facts the founder gave (daily use, learning, TokenSave uses MarkItDown and Hazel, this site runs on Astro, GitHub, Cloudflare). No opinions or experiences are invented. The lines for ChatGPT, Gemini and NotebookLM are deliberately plain until the founder adds a personal verdict | "One honest line each"; Editorial policy: no invented experience | Marketing blurbs |
 | No external links and no affiliate links on the page. The page says so | Founder: no affiliate links. Official-site links can be added later after checking each one | Linking every tool's website |
+
+## 2026-11-20: About and Resources (Phase 5)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| About is 89 words. It states only what is known (what Durbeen is, that the name means telescope, the founder's name, the four topic areas, the first-hand promise). The founder's field, years of experience and reason for starting are `[BRACKET]` placeholders | Founder: under 150 words, brackets, no invented history | Writing a plausible backstory |
+| `scripts/check-brackets.mjs` (`npm run check:brackets`) finds leftover `[CAPITALS]` placeholders and "PRELIMINARY" markers in `dist/`. It is a script, not a package, and not a CI job | Makes the Phase 8 "no placeholder left" gate checkable | Remembering to look |
+| Resources: eleven links, grouped Durbeen / Built with / Learn. Only two URLs already existed in the repo (GitHub organisation and repository); the rest are the official homes of tools the project already names. Every URL was opened on 20 Nov 2026 and its final address and content confirmed. Corrections made while checking: Astro docs use `/en/getting-started/`; the Hazel product page 404s, so Hazel links to the Noodlesoft home page; GitHub's Hello World and Claude Code docs moved, so their final addresses are used | "Verified" means opened and read, not assumed | Linking from memory |
+| No Bash link: gnu.org returned 403 to every automated check, so it could not be verified | Do not list an unverified link | Listing it anyway |
+| Resources links are not checked by CI (the link check is offline and internal only). The date "checked on" is shown on the page and in `src/data/resources.ts`; re-check in the monthly health check | Honest about what is automated | Claiming they are monitored |
+| `hello@durbeen.io` is plain text, not a `mailto:` link, until Email Routing is set up | A mail link that bounces would look like a working feature | A mailto link |
