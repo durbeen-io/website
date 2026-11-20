@@ -87,3 +87,21 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Contrast is checked by our own small script, `scripts/check-contrast.mjs` (`npm run check:contrast`), which reads `tokens.css`. It fails if any pair is under 4.5:1 or if the two dark-mode blocks differ | Catches a bad colour change immediately; no new package. Plain Node, about 70 lines | A contrast library or only checking by eye |
 | Hairlines (`--line`) are decorative and not contrast-checked. If a form input or button ever relies on a border alone to be seen, that border must use a colour with 3:1 | Brief treats hairlines as decoration; UI borders are a Phase 2 concern | Forcing 3:1 on all rules (would make the grid heavy) |
 
+## 2026-11-20: Components and checks (Phase 2)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| GitHub Actions workflow `Build and contrast` (`npm ci`, `check:contrast`, `build`) runs on every pull request and is a required check on `main` | A failing check blocks the merge (rule 11); each later PR is checked from the start | Adding checks only at the end of Phase 2 |
+| Axe and Lighthouse CI will be added as devDependencies only: `@axe-core/cli` and `@lhci/cli`. If axe-cli fails in CI from a Chrome/driver mismatch, switch to Playwright + `@axe-core/playwright` instead of patching. Lighthouse is warn-only in Phase 2 and blocking from Phase 3 | Smallest set of packages; the fallback is agreed in advance | Playwright first; patching a broken driver |
+| New token `--ui-border` (`#80878E` light, `#6B737B` dark), at least 3:1 on paper and surface, used for buttons, chips and the theme toggle. `--line` stays decorative | Borders that carry meaning must reach 3:1; closes the Phase 1 open issue | Reusing `--line` |
+| Button has four looks: primary (accent), ink (form submits), secondary (outline), text link. Hover swaps primary to ink | Matches the mockup sizes (52px high); the mockup's teal hover is not used (brief wins) | Teal hover |
+| Header search button is off by default until Pagefind exists (Phase 4) | No control that does nothing. Known gap: with search on, the 375px header row wraps; fix in Phase 4 | A dead search button |
+| Mobile nav is a MENU button below 860px; without JavaScript the nav stays open (`html.js` class set by `theme-init.js`) | Fits 375px; still usable with scripts off | Wrapping the nav as the mockup does |
+| StatusStrip shows `LOG UPDATED date · N°nnn` only when a page passes the data | Nothing is invented; it comes from the latest article in Phase 3/4 | A hard-coded date |
+| NewsletterForm posts to Kit's hosted form (`action` prop) and is shown disabled until it is set (Phase 5) | Never a form that looks live but goes nowhere; no custom data storage | A form with a placeholder endpoint |
+| Footer follows the brief's link list (Explore, Work with Durbeen, GitHub, RSS, policy links). LinkedIn is left out until the founder gives the URL | The brief is locked; no URL is guessed | Mockup's smaller link set; a guessed LinkedIn link |
+| Footer wordmark uses the brief's 0.1em tracking (mockup shows -0.02em) and `aria-hidden` | Brief rule for the wordmark; the text is decorative repeat | Mockup tracking |
+| Header and Footer are in `BaseLayout`, so every page has them. The component preview page shows extra Header demos with unique landmark names | One place to change; avoids duplicate landmark names | Adding them page by page |
+| PR screenshots are committed to `docs/pr-screenshots/` so PR descriptions can show them | Simple; no external image host | Uploading images to a third party. **Remove the folder before launch** |
+| Branches are never stacked: one PR at a time, the next starts from updated `main` after the founder merges | Founder's working rule | Stacked branches |
+

@@ -429,11 +429,12 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 1 (Design system) **COMPLETE** (gate review passed and approved by the founder, 19 Nov 2026). Phase 2 has not started
-- **Last session:** 19 Nov 2026: fresh-session Phase 1 gate review passed (contrast, self-hosted fonts, dark-mode toggle, favicon, docs); founder confirmed the toggle on Mac (Safari, Chrome, Brave) and iPhone, and approved Phase 1
-- **Next session goal:** Phase 2 (components + automatic checks, rule 11), only when the founder asks. Confirm the goal with the founder at the start of the session.
+- **Current phase:** 2 (Components) **IN PROGRESS**. PRs 1-3 merged (#13, #14, #15); PR 4 open. Phase 1 is complete (approved 19 Nov 2026)
+- **Last session:** 20 Nov 2026: Phase 2 PRs 1-4 (checks baseline; Button, Tag, SectionLabel + preview page; Header + StatusStrip; NewsletterForm + Footer, both wired into `BaseLayout`)
+- **Next session goal:** Phase 2 PR 5 (ArticleCard, LogRow), PR 6 (TOC, Callout, VerdictBox), PR 7 (axe, Lighthouse CI, lychee, docs). One PR at a time, never stacked; wait for the founder's merge between PRs. Confirm the goal with the founder at the start of the session.
 
 ## Completed
+- 20 Nov 2026 (Phase 2, PRs 1-4): PR #13 GitHub Actions `Build and contrast` (required on `main`); PR #14 Button, Tag, SectionLabel, `--ui-border` token (3:1) and the `/design-system/components/` preview page; PR #15 Header (MENU button below 860px) and StatusStrip; PR 4 NewsletterForm (disabled until Kit, Phase 5), Footer, and Header + Footer wired into `BaseLayout`. Each PR checked in headless Chrome: keyboard tab-through, 375px (no horizontal scroll), 44px targets, light and dark. Brief followed over the mockups (Toolkit not Resources, 0.1em wordmark, no teal). Not yet checked: Safari, Firefox (Phase 7). Phase 2 is not finished: PRs 5-7 remain.
 - 19 Nov 2026 (Phase 1 gate review): a fresh session checked every Phase 1 gate item. Contrast (14 pairs, light and dark) passes; fonts are self-hosted with no Google requests; favicon files match `brand/`; the live site matches the build. The founder tested the dark-mode toggle on Mac in Safari, Chrome and Brave and on iPhone: system setting followed, toggle works, choice remembered, no white flash. Founder approved. Phase 1 is complete. Still unchecked: Firefox and Android (Phase 7).
 - 19 Nov 2026 (Phase 1): design system built. PR #7 tokens + `@fontsource-variable` fonts (Inter, Inter Tight, JetBrains Mono, Doto); PR #8 base styles, `BaseLayout`, internal `/design-system/` preview; PR #9 dark-mode toggle (follows system, saved choice, no flash; scripts never inlined, for the future CSP); PR #10 `Logo` component and brand favicon set; PR #11 `npm run check:contrast` (all 14 pairs pass in light and dark) and docs. Gate pre-check: contrast pass; fonts self-hosted; toggle works and respects system (Chrome); favicon is the brand mark (Chrome). Not yet checked: Safari, Firefox, iPhone (Phase 7). Mockup-vs-brief calls: followed the brief (no teal, nav ends with Toolkit, wordmark 0.1em).
 - 19 Nov 2026 (Phase 0 gate review): a fresh session checked every Phase 0 gate item. All passed; Cloudflare and Gmail 2FA were confirmed by the founder, who approved the review. Phase 0 is complete. Minor follow-ups done in the closing pull request: Progress Log updated, `package.json` engines aligned with `.node-version`.
@@ -447,7 +448,11 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 
 ## Open issues
 - Remove the internal `/design-system/` page (and keep it out of the sitemap) before the Phase 8 launch.
-- Phase 2: UI borders that carry meaning (inputs, buttons) need 3:1 contrast; `--line` is decorative only.
+- Remove `/design-system/components/` (with `/design-system/`) before the Phase 8 launch, and the `docs/pr-screenshots/` folder.
+- Nav and footer links point to pages that do not exist yet (Phases 4-5). Zero broken links is a Phase 5 gate; PR 7's link check covers internal links only.
+- Footer has no LinkedIn link: the founder must supply the URL.
+- Header search is off until Pagefind (Phase 4); with it on, the 375px header row wraps and needs a small-screen layout.
+- Newsletter form is disabled until the Kit endpoint is set (Phase 5). Check Kit's field name (`email_address`) then.
 - Run a reverse image search and a trademark search on the logo (SAIP, IP India, WIPO) before public launch.
 
 ## Session history
@@ -461,3 +466,4 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 | 2026-11-19 | 0 | Fresh-session Phase 0 gate review: all items passed, founder approved. Phase 0 marked complete; `engines` aligned with Node 26 | PR #6 | Phase 1 (design system), when the founder starts it |
 | 2026-11-19 | 1 | Phase 1 design system built in five PRs: tokens and fonts; base styles and preview page; dark-mode toggle; Logo and favicon; contrast check and docs | PR #7 to #11 | Fresh-session Phase 1 gate review, then founder approval |
 | 2026-11-19 | 1 | Fresh-session Phase 1 gate review: all items passed; toggle tested by the founder on Mac (Safari, Chrome, Brave) and iPhone; founder approved. Phase 1 marked complete | this pull request | Phase 2 (components + automatic checks), when the founder starts it |
+| 2026-11-20 | 2 | Phase 2 PRs 1-4: checks workflow (required on `main`); Button, Tag, SectionLabel + preview page; Header + StatusStrip; NewsletterForm + Footer wired into BaseLayout; docs updated | PR #13, #14, #15, PR 4 | PR 5 (ArticleCard, LogRow), after the founder merges PR 4 |

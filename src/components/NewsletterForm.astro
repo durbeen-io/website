@@ -1,0 +1,85 @@
+---
+// Newsletter signup. Posts to the provider's hosted form endpoint (Kit): no custom data storage.
+// Kit is set up in Phase 5. Until `action` is passed, the form is shown disabled with a short
+// note, so there is never a form that looks live but goes nowhere.
+// `id` must be unique per page when two forms are shown (footer + end of article).
+interface Props {
+  action?: string; // Kit hosted form URL (Phase 5)
+  id?: string;
+}
+const { action, id = 'newsletter' } = Astro.props;
+const live = !!action;
+---
+
+<form class="newsletter" method="post" action={action} aria-describedby={live ? undefined : `${id}-note`}>
+  <div class="fields">
+    <label class="visually-hidden" for={`${id}-email`}>Email address</label>
+    <input
+      id={`${id}-email`}
+      name="email_address"
+      type="email"
+      autocomplete="email"
+      placeholder="you@example.com"
+      required
+      disabled={!live}
+    />
+    <button type="submit" disabled={!live}>Subscribe</button>
+  </div>
+  {!live && <p id={`${id}-note`} class="note">SIGNUP OPENS AT LAUNCH</p>}
+</form>
+
+<style>
+  .newsletter {
+    max-width: 460px;
+  }
+  .fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+  input {
+    flex: 1 1 220px;
+    min-width: 0;
+    min-height: 52px;
+    padding: 0 var(--space-2);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font: inherit;
+    font-size: 15px;
+  }
+  input::placeholder {
+    color: var(--muted);
+    opacity: 1;
+  }
+  button {
+    min-height: 52px;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  button:hover:not(:disabled) {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--on-accent);
+  }
+  input:disabled,
+  button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .note {
+    margin: var(--space-1) 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label-sm);
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+</style>
