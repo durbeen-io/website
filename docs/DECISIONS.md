@@ -177,3 +177,13 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | The controlled lists live in `src/lib/taxonomy.ts` (schema, filters and category pages all import it) | One source of truth | Repeating the lists |
 | No pagination yet | Under ten articles; revisit after 10 published articles | Pagination now |
 | `lychee.toml`: the `/insights/` entry is removed (the page shipped); `rss.xml` stays until the feed ships | The file's own rule | Leaving stale entries |
+
+## 2026-11-20: Search (Phase 4, PR 5)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Add `pagefind` (dev dependency, founder-approved). The build script chains it, so Cloudflare's `npm run build` needs no change | Brief: Pagefind, static and free; avoids a Cloudflare setting change | A separate build command in the dashboard |
+| Own search dialog on Pagefind's JavaScript API, not Pagefind's default UI | Matches the design system; no extra CSS/JS to override; Pagefind loads only when search is opened | Default UI |
+| Only articles are indexed (`data-pagefind-body`); type and log number are stored as metadata | No nav/footer noise in results | Indexing every page |
+| Esc always closes the search window (a search field would otherwise only clear its text first); the browser's blue clear button is hidden | Predictable keyboard behaviour; on-brand | Native behaviour |
+| The 375px header fits the search button in one row (309 of 327px) without changes | Measured in Chrome | A separate small-screen header |
