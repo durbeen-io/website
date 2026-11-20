@@ -51,7 +51,7 @@ Run by GitHub Actions on every pull request: build, frontmatter validation, brok
 | `Build and contrast` | `npm ci`, colour contrast, build. **Required** on `main` | `npm run check:contrast && npm run build` |
 | `Accessibility (axe)` | axe (WCAG 2.0/2.1 A and AA) on every built page, light and dark, at 375px. Any violation fails | `npm run build && npm run check:axe` |
 | `Lighthouse (mobile)` | Lighthouse CI, median of 3 runs. Performance, Accessibility and Best Practices must be 90+. **SEO is not asserted until Phase 8**, when `noindex` is removed (see `lighthouserc.json`) | `npm run build && npm run check:lighthouse` |
-| `Internal links (lychee)` | Checks internal links in `dist/` (offline, no external links). Config: `lychee.toml` | needs lychee installed; CI is the normal route |
+| `Internal links (lychee)` | Checks internal links in `dist/` (offline, no external links), built with the sample drafts so article, tag and series pages are checked. Config: `lychee.toml` | needs lychee installed; CI is the normal route |
 
 - axe and Lighthouse use the Chrome already installed on the machine; no browser is downloaded.
 - Anchor (`#fragment`) checking is off: lychee 0.24 reports false errors on links like `/design-system/components/#button`.
@@ -72,3 +72,7 @@ durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTT
 - `npm run build` is `astro build && pagefind --site dist`. Pagefind reads the built pages and writes the search index to `dist/pagefind/`. The Cloudflare build command stays `npm run build`, so no Cloudflare setting changes.
 - Only articles are indexed (`data-pagefind-body` on the article page).
 - **Phase 7 (security headers):** the Content-Security-Policy must allow `script-src 'self' 'wasm-unsafe-eval'`, because Pagefind uses WebAssembly. Test search again after the headers are set.
+
+## Drafts in builds
+
+`DURBEEN_INCLUDE_DRAFTS=1` makes a build include `draft: true` articles. The axe, Lighthouse and link jobs set it so they audit pages with content. The Cloudflare production and preview builds do **not** set it, so drafts never appear online. Never set it in Cloudflare.
