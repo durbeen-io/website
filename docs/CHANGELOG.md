@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components and the home page are done; the blog engine is next (Phase 4).
 
 ### 2026-11-20
+- Social-preview images: every article gets its own 1200x630 image (number, type, reading time, title, logo, reticle), and every other page uses a default one. Phase 4, PR 7.
 - RSS feed (`/rss.xml`) and sitemap (`/sitemap-index.xml`), plus a `robots.txt` that points to the sitemap. The sitemap leaves out the internal design-system pages and empty category pages. Phase 4, PR 6.
 - Search: a search button in the header opens a search window over the articles (Pagefind, built into the site, no tracking). Phase 4, PR 5.
 - Insights list (`/insights/`) with filters for category, type and level, plus category pages (all six), tag pages (tags in use) and basic series pages. Without scripts the full list still shows. Phase 4, PR 4.

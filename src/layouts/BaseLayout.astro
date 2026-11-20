@@ -11,9 +11,11 @@ interface Props {
   description: string;
   noindex?: boolean;
   ogType?: 'website' | 'article';
+  ogImage?: string; // absolute URL; defaults to the generated /og/default.png
   jsonLd?: Record<string, unknown>[]; // structured data (Article, BreadcrumbList, Organization)
 }
-const { title, description, noindex = false, ogType = 'website', jsonLd = [] } = Astro.props;
+const { title, description, noindex = false, ogType = 'website', jsonLd = [], ogImage } = Astro.props;
+const image = ogImage ?? new URL('/og/default.png', Astro.site).href;
 
 // Canonical URL: always the durbeen.io address of this page (from `site` in astro.config.mjs).
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -37,7 +39,12 @@ const log = latest ? { date: logDate(latest.data.publishDate), number: latest.da
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={image} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {noindex && <meta name="robots" content="noindex" />}
