@@ -107,3 +107,14 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | PR screenshots are committed to `docs/pr-screenshots/` so PR descriptions can show them | Simple; no external image host | Uploading images to a third party. **Remove the folder before launch** |
 | Branches are never stacked: one PR at a time, the next starts from updated `main` after the founder merges | Founder's working rule | Stacked branches |
 
+
+## 2026-11-20: Content system (Phase 3, PR 1)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Add `@astrojs/mdx` (founder-approved list). Articles are `src/content/insights/*.mdx`, validated by a zod schema in `src/content.config.ts`; invalid frontmatter, a tag not in `src/content/tags.json`, a missing `heroAlt`, or a `scorecard` on a non-Review article fails the build | Brief section 9: the build must fail on invalid values | Validating in a separate script |
+| Controlled tag list of 28 lowercase tags in `src/content/tags.json` (founder approves the list) | Brief: keep under about 30; a new tag means editing the list | Free-form tags |
+| Two articles with the same log number fail the build (`src/lib/articles.ts`) | The log number is the article's identity (N°012) | Trusting the writer to check |
+| Six sample articles, all `draft: true` and clearly marked as sample text, test Home and the blog engine. They are deleted in Phase 6 | Home needs content to build against; nothing fake can be published | Hard-coding fake articles in the page; real-looking fake titles |
+| Drafts are hidden from every build unless `DURBEEN_INCLUDE_DRAFTS=1` (`npm run dev` shows them). CI jobs that audit pages set the flag; the Cloudflare deploy does not | Drafts never build to production (brief), but page checks need content to look at | A separate "samples" collection |
+| Featured-card placeholder uses a black (ink) disc, not accent | Founder's call, and the brief limits the accent to links, buttons, the logo star and live dots. Correction: the mockup's own disc is accent orange (it looked black only because the mockup was opened outside its tool) | Accent disc |

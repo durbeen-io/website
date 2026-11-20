@@ -2,7 +2,9 @@
 
 The weekly routine. Goal: **under 10 minutes** from a finished draft to live.
 
-> **Not usable yet.** The blog engine is built in Phase 4. Until then this page describes the intended routine. Paths and commands below will exist once the Astro site is scaffolded.
+> **Partly usable.** The content rules (frontmatter, tags, template) are enforced by the build now. The article page, Insights list and search arrive in Phase 4, so a published article has no page of its own yet. Six sample articles (`sample-*.mdx`, all `draft: true`) test the site and are deleted in Phase 6.
+>
+> **Drafts:** `npm run dev` shows drafts. A normal build hides them. To test a build with drafts, run `DURBEEN_INCLUDE_DRAFTS=1 npm run build`.
 
 ## Routine
 
