@@ -11,9 +11,10 @@ interface Props {
   search?: boolean;
   log?: { date: string; number: number };
   currentPath?: string;
+  navLabel?: string; // only change when two headers share a page (the preview page): landmarks need unique names
   id?: string; // nav id; only change if two headers share a page (the preview page)
 }
-const { search = false, log, currentPath = Astro.url.pathname, id = 'site-nav' } = Astro.props;
+const { search = false, log, currentPath = Astro.url.pathname, id = 'site-nav', navLabel = 'Main' } = Astro.props;
 
 const nav = [
   { label: 'Insights', href: '/insights/' },
@@ -46,7 +47,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
       </button>
     </div>
 
-    <nav id={id} class="nav" aria-label="Main" data-nav>
+    <nav id={id} class="nav" aria-label={navLabel} data-nav>
       <ul>
         {
           nav.map((item) => (

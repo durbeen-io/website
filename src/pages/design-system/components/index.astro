@@ -6,6 +6,7 @@ import Button from '../../../components/Button.astro';
 import Tag from '../../../components/Tag.astro';
 import SectionLabel from '../../../components/SectionLabel.astro';
 import Header from '../../../components/Header.astro';
+import NewsletterForm from '../../../components/NewsletterForm.astro';
 import StatusStrip from '../../../components/StatusStrip.astro';
 import ThemeToggle from '../../../components/ThemeToggle.astro';
 ---
@@ -30,6 +31,8 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
         <li><a href="#tag">Tag</a></li>
         <li><a href="#section-label">SectionLabel</a></li>
         <li><a href="#header">Header</a></li>
+        <li><a href="#newsletter">NewsletterForm</a></li>
+        <li><a href="#footer">Footer</a></li>
       </ul>
     </nav>
 
@@ -140,20 +143,45 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
       <SectionLabel number={4}>HEADER</SectionLabel>
       <h2 id="header-h" class="h2-sm">Header + StatusStrip</h2>
       <p class="reading" style="margin-top: var(--space-2)">
-        Below 860px the nav collapses behind MENU (Esc closes it). Resize the window to see both layouts.
+        The live Header is at the top of this page; the two below are demos. Below 860px the nav collapses behind MENU (Esc closes it). Resize the window to see both layouts.
         Search stays off until Pagefind exists (Phase 4).
       </p>
 
       <p class="label-sm">DEFAULT (SEARCH OFF, NO LOG DATA)</p>
-      <div class="frame"><Header currentPath="/" id="demo-nav-1" /></div>
+      <div class="frame"><Header currentPath="/" id="demo-nav-1" navLabel="Demo A" /></div>
 
       <p class="label-sm">SEARCH ON · LOG DATA · "INSIGHTS" IS THE CURRENT PAGE</p>
       <div class="frame">
-        <Header search log={{ date: '18.11.2026', number: 12 }} currentPath="/insights/" id="demo-nav-2" />
+        <Header search log={{ date: '18.11.2026', number: 12 }} currentPath="/insights/" id="demo-nav-2" navLabel="Demo B" />
       </div>
 
       <p class="label-sm">STATUS STRIP ALONE</p>
       <div class="frame"><StatusStrip log={{ date: '18.11.2026', number: 12 }} /></div>
+    </section>
+
+    <!-- NEWSLETTER FORM -->
+    <section id="newsletter" aria-labelledby="nl-h">
+      <hr />
+      <SectionLabel number={5}>NEWSLETTER FORM</SectionLabel>
+      <h2 id="nl-h" class="h2-sm">NewsletterForm</h2>
+      <p class="reading" style="margin-top: var(--space-2)">
+        Posts to Kit's hosted form (Phase 5). Until an endpoint is passed, it is disabled so it never
+        looks live when it is not.
+      </p>
+      <p class="label-sm">NOT CONNECTED YET (CURRENT STATE ON THE SITE)</p>
+      <NewsletterForm id="demo-nl-1" />
+      <p class="label-sm">CONNECTED (DEMO ENDPOINT, DOES NOT SUBMIT ANYWHERE REAL)</p>
+      <NewsletterForm id="demo-nl-2" action="#newsletter" />
+    </section>
+
+    <!-- FOOTER -->
+    <section id="footer" aria-labelledby="footer-h">
+      <hr />
+      <SectionLabel number={6}>FOOTER</SectionLabel>
+      <h2 id="footer-h" class="h2-sm">Footer</h2>
+      <p class="reading" style="margin-top: var(--space-2)">
+        The live Footer is at the bottom of this page and every other page. The live Header is at the top.
+      </p>
     </section>
   </div>
 </BaseLayout>
