@@ -11,7 +11,7 @@ Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflar
 - Newsletter form added. It is shown disabled ("SIGNUP OPENS AT LAUNCH") until Kit is connected in Phase 5.
 - Header, status strip, Button, Tag and SectionLabel components added, with a hidden component preview page at `/design-system/components/`. Phase 2, PRs 2-3.
 - Automatic checks added: every pull request now runs the build and the colour-contrast check, and the contrast check covers the new border colour for inputs and buttons. Phase 2, PR 1.
-- Nav and footer links to Insights, Projects, Resources, Toolkit, About, Work with Durbeen, RSS and the policy pages lead to pages that do not exist yet. They are built in Phases 4-5.
+- Nav and footer links to Insights, Projects, Toolkit, About, Work with Durbeen, RSS and the policy pages lead to pages that do not exist yet. They are built in Phases 4-5.
 
 ### 2026-11-19
 - Colour contrast check added (`npm run check:contrast`): every text and background pair passes WCAG AA in light and dark mode. Phase 1, step 5.

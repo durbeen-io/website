@@ -1,5 +1,5 @@
 ---
-// Site footer (CLAUDE.md section 8): newsletter + free download, Explore, Work with Durbeen,
+// Site footer (CLAUDE.md section 8): newsletter, Explore, Work with Durbeen,
 // Elsewhere (GitHub, RSS), the large DURBEEN wordmark, and the policy links.
 // LinkedIn is left out until the founder supplies the URL. Nothing is guessed.
 import NewsletterForm from './NewsletterForm.astro';
@@ -12,7 +12,6 @@ const { newsletterAction } = Astro.props;
 const explore = [
   { label: 'Insights', href: '/insights/' },
   { label: 'Projects', href: '/projects/' },
-  { label: 'Resources', href: '/resources/' },
   { label: 'Toolkit', href: '/toolkit/' },
   { label: 'About', href: '/about/' },
 ];
@@ -35,8 +34,7 @@ const year = new Date().getFullYear();
       <div class="signup">
         <h2 class="signup-title">Get the field notes.</h2>
         <p class="signup-text">
-          New reviews and experiments, about twice a month. No spam. Subscribers get the free Repo Safety
-          Checklist (PDF).
+          New reviews and experiments. No spam.
         </p>
         <NewsletterForm id="footer-newsletter" action={newsletterAction} />
       </div>
