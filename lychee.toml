@@ -11,8 +11,7 @@ offline = true
 no_progress = true
 
 exclude = [
-  # Phase 4 (blog engine): Insights list and RSS feed
-  'file://.*/insights/?$',
+  # Phase 4 (blog engine): RSS feed (the Insights list has shipped)
   'file://.*/rss\.xml$',
   # Phase 5 (remaining pages)
   'file://.*/projects/?$',

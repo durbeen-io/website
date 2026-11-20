@@ -166,3 +166,14 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | One `ArticleImage` component handles every image: `Picture` (AVIF + WebP, widths 480-1600), lazy loading except the hero, a 24px blurred preview that the full image fades over, tap-to-zoom through one `<dialog>` per page | Brief section 9; native `<dialog>` gives focus handling and Esc for free; no package | A lightbox library |
 | The zoom trigger is a link to the full image, so without scripts the full image opens | Progressive enhancement | A button that needs scripts |
 | One 26 kB sample PNG (`src/content/insights/images/sample-figure.png`) is used by the sample drafts and is deleted with them in Phase 6 | Test data for image handling | Downloading a stock image |
+
+## 2026-11-20: Insights list, category, tag and series pages (Phase 4, PR 4)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Filters are three radio groups (Category, Type, Level, each "All" or one value), shown only when scripts run; the choice is kept in the address (`?level=Beginner`) | Native radios give keyboard and screen-reader support; shareable links; without scripts the full list still shows | Custom buttons with ARIA; server-side filter pages |
+| Only values that at least one article uses are offered as filter choices | No filter that leads to an empty list | Always listing all 6 + 7 + 3 values |
+| Category pages exist for all six categories (empty ones are `noindex`); tag and series pages only for tags and series in use | Brief: one page per category (6); no thin pages for unused tags | Pages for all 28 tags |
+| The controlled lists live in `src/lib/taxonomy.ts` (schema, filters and category pages all import it) | One source of truth | Repeating the lists |
+| No pagination yet | Under ten articles; revisit after 10 published articles | Pagination now |
+| `lychee.toml`: the `/insights/` entry is removed (the page shipped); `rss.xml` stays until the feed ships | The file's own rule | Leaving stale entries |

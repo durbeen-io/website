@@ -1,0 +1,32 @@
+---
+// One page per tag that at least one article uses.
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ListHeader from '../../../components/ListHeader.astro';
+import ArticleList from '../../../components/ArticleList.astro';
+import { getArticles } from '../../../lib/articles';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  const tags = [...new Set(articles.flatMap((a) => a.data.tags))].sort();
+  return tags.map((tag) => ({
+    params: { slug: tag },
+    props: { tag, articles: articles.filter((a) => a.data.tags.includes(tag)) },
+  }));
+}
+const { tag, articles } = Astro.props;
+const count = `${articles.length} ${articles.length === 1 ? 'article' : 'articles'}`;
+---
+
+<BaseLayout
+  title={`#${tag}: articles | Durbeen`}
+  description={`Durbeen articles tagged ${tag}: reviews, guides, experiments and build notes, written first-hand. ${count}, newest first.`}
+>
+  <ListHeader label="INSIGHTS / TAG" title={`#${tag}`} intro={`${count}, newest first.`} back />
+  <div class="container body"><ArticleList articles={articles} /></div>
+</BaseLayout>
+
+<style>
+  .body {
+    padding-bottom: var(--space-section);
+  }
+</style>

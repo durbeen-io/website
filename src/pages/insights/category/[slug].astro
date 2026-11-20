@@ -1,0 +1,38 @@
+---
+// One page per category (all six, even when empty; an empty page is marked noindex).
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ListHeader from '../../../components/ListHeader.astro';
+import ArticleList from '../../../components/ArticleList.astro';
+import { getArticles, categorySlug } from '../../../lib/articles';
+import { categories } from '../../../lib/taxonomy';
+
+export function getStaticPaths() {
+  return categories.map((category) => ({ params: { slug: categorySlug(category) }, props: { category } }));
+}
+const { category } = Astro.props;
+const articles = (await getArticles()).filter((a) => a.data.category === category);
+const count = `${articles.length} ${articles.length === 1 ? 'article' : 'articles'}`;
+---
+
+<BaseLayout
+  title={`${category}: articles | Durbeen`}
+  description={`Durbeen articles about ${category}: reviews, guides, experiments and build notes, written first-hand. ${count}, newest first.`}
+  noindex={articles.length === 0}
+>
+  <ListHeader label="INSIGHTS / CATEGORY" title={category} intro={`${count}, newest first.`} back />
+  <div class="container body">
+    {articles.length > 0 ? <ArticleList articles={articles} /> : <p class="none">Nothing here yet.</p>}
+  </div>
+</BaseLayout>
+
+<style>
+  .body {
+    padding-bottom: var(--space-section);
+  }
+  .none {
+    margin: 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--ink);
+    color: var(--text-2);
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+// A list of articles as typographic rows. Used by Insights, category, tag and series pages.
+import ArticleListRow from './ArticleListRow.astro';
+import { articleHref, readingMinutes, type Article } from '../lib/articles';
+
+interface Props {
+  articles: Article[];
+}
+const { articles } = Astro.props;
+---
+
+<ul class="list">
+  {
+    articles.map((a, i) => (
+      <ArticleListRow
+        number={a.data.number}
+        type={a.data.type}
+        level={a.data.level}
+        category={a.data.category}
+        title={a.data.title}
+        description={a.data.description}
+        minutes={readingMinutes(a)}
+        href={articleHref(a)}
+        first={i === 0}
+      />
+    ))
+  }
+</ul>
+
+<style>
+  .list {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid var(--line);
+  }
+</style>

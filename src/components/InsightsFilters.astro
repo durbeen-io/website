@@ -1,0 +1,152 @@
+---
+// Filters for the Insights list: Category, Type and Level, one radio group each ("All" or one value).
+// Plain radio buttons, so keyboard use (Tab to the group, arrow keys inside it) and screen readers work natively.
+// The whole form shows only when scripts run; without them the full list is shown and the category pages
+// still let you browse by category. Choices are kept in the address (?category=AI&level=Beginner).
+interface Group {
+  name: 'category' | 'type' | 'level';
+  label: string;
+  options: string[];
+}
+interface Props {
+  groups: Group[];
+}
+const { groups } = Astro.props;
+---
+
+<form class="filters" data-filters aria-label="Filter articles">
+  {
+    groups.map((g) => (
+      <fieldset>
+        <legend class="label">{g.label}</legend>
+        <div class="chips">
+          <label>
+            <input type="radio" name={g.name} value="" checked />
+            <span>All</span>
+          </label>
+          {g.options.map((o) => (
+            <label>
+              <input type="radio" name={g.name} value={o} />
+              <span>{o}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    ))
+  }
+  <p class="status label" role="status" data-filter-status></p>
+</form>
+
+<style>
+  .filters {
+    display: none;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding-bottom: var(--space-5);
+  }
+  :global(html.js) .filters {
+    display: flex;
+  }
+  fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-1) var(--space-3);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+  legend {
+    float: left;
+    width: 88px;
+    padding: 0;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+  label {
+    position: relative;
+    display: inline-flex;
+  }
+  input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  label span {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    padding: 0 16px;
+    border: 1px solid var(--ui-border);
+    font-size: 15px;
+    color: var(--ink);
+  }
+  input:checked + span {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+  input:focus-visible + span {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .status {
+    margin: 0;
+  }
+  @media (max-width: 639px) {
+    legend {
+      float: none;
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-filters]');
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-article]'));
+  if (form) {
+    const names = ['category', 'type', 'level'] as const;
+    const status = form.querySelector<HTMLElement>('[data-filter-status]');
+    const empty = document.querySelector<HTMLElement>('[data-filter-empty]');
+
+    const read = () => Object.fromEntries(names.map((n) => [n, (form.elements.namedItem(n) as RadioNodeList).value]));
+
+    const apply = () => {
+      const f = read();
+      let shown = 0;
+      rows.forEach((row) => {
+        const ok = names.every((n) => !f[n] || row.dataset[n] === f[n]);
+        row.hidden = !ok;
+        if (ok) shown++;
+      });
+      if (status) status.textContent = `${shown} ${shown === 1 ? 'ARTICLE' : 'ARTICLES'}`;
+      if (empty) empty.hidden = shown !== 0;
+      const q = new URLSearchParams();
+      names.forEach((n) => f[n] && q.set(n, f[n]));
+      history.replaceState(null, '', q.toString() ? `?${q}` : location.pathname);
+    };
+
+    // Start from the address, if it carries choices.
+    const params = new URLSearchParams(location.search);
+    names.forEach((n) => {
+      const v = params.get(n);
+      const input = v ? form.querySelector<HTMLInputElement>(`input[name="${n}"][value="${CSS.escape(v)}"]`) : null;
+      if (input) input.checked = true;
+    });
+    form.addEventListener('change', apply);
+    form.addEventListener('submit', (e) => e.preventDefault());
+    document.querySelector('[data-filter-reset]')?.addEventListener('click', () => {
+      form.reset();
+      apply();
+    });
+    apply();
+  }
+</script>
