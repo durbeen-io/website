@@ -80,3 +80,7 @@ durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTT
 ## Before launch: placeholders
 
 `npm run build && npm run check:brackets` lists every `[BRACKET]` placeholder and every "PRELIMINARY" marker on the built site (the internal design-system pages are skipped). It exits with an error while any remain. It is **not** a CI job (it would fail on purpose before the founder fills them in). The Phase 8 gate requires it to report none.
+
+## 404 page
+
+`src/pages/404.astro` builds `dist/404.html`. For Cloudflare to answer an unknown address with it (and a 404 status), the Worker's asset config needs `"not_found_handling": "404-page"` in `wrangler.jsonc`. **That setting is not applied yet.** On 20 Nov 2026 it was tried in a pull request and Cloudflare's branch build (Workers Builds) failed, while every other check passed and every earlier build had succeeded. The cause could not be read from outside the Cloudflare dashboard, so the setting was removed again. Until it is fixed, unknown addresses get Cloudflare's default 404 response, not this page. Next step: open the failed build in the Cloudflare dashboard (Workers, durbeen-website, Builds) and read its error.
