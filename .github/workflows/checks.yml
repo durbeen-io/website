@@ -72,7 +72,10 @@ jobs:
           node-version-file: .node-version
           cache: npm
       - run: npm ci
+      # Sample drafts are included so the article, tag and series templates are link-checked too.
       - run: npm run build
+        env:
+          DURBEEN_INCLUDE_DRAFTS: '1'
       # Pinned to a full commit SHA (a tag can be moved). Version: v2.9.0
       - name: Check internal links in dist/
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0

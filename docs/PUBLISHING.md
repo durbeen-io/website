@@ -2,9 +2,11 @@
 
 The weekly routine. Goal: **under 10 minutes** from a finished draft to live.
 
-> **Partly usable.** The content rules (frontmatter, tags, template) are enforced by the build now. The article page, Insights list and search arrive in Phase 4, so a published article has no page of its own yet. Six sample articles (`sample-*.mdx`, all `draft: true`) test the site and are deleted in Phase 6.
+> **Ready to use.** Tested on 20 Nov 2026 with a real pull request: from `git push` to a live Cloudflare preview URL serving the new article, its image, the feed, the sitemap and search took **95 seconds**; the automatic checks take about 4 minutes. Writing is the slow part, not publishing.
 >
-> **Drafts:** `npm run dev` shows drafts. A normal build hides them. To test a build with drafts, run `DURBEEN_INCLUDE_DRAFTS=1 npm run build`.
+> **Sample articles:** six `sample-*.mdx` files (all `draft: true`) test the site and are deleted in Phase 6. Do not reuse their log numbers 1 to 6 until then (two articles with the same number fail the build, drafts included).
+>
+> **Drafts:** `npm run dev` shows drafts. A normal build hides them. To test a build with drafts, run `DURBEEN_INCLUDE_DRAFTS=1 npm run build`. To try search locally, run a build and then `npm run preview` (search needs the built index).
 
 ## Routine
 
@@ -69,6 +71,10 @@ Tags come from `src/content/tags.json` (keep it under about 30). To use a new ta
 - Captions look like `FIG. 03 — description`.
 - No decorative stock images. Every image must have a purpose.
 - Keep source images reasonably small; do not commit huge originals.
+
+## What updates by itself when you publish
+
+Nothing to edit by hand: Home (Observation Log, featured or recent, status strip), the Insights list and its filters, the category and tag pages, the series page (if you set `series`), related articles and previous/next on other articles, the RSS feed, the sitemap, the search index and the article's social-preview image.
 
 ## Pre-publish checklist
 
