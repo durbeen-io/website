@@ -62,4 +62,16 @@ const insights = defineCollection({
     }),
 });
 
-export const collections = { insights };
+// Projects (Home rows now; the Projects list and detail pages come in Phase 5). Real projects only.
+export const projectStatuses = ['In progress', 'Planned', 'Live'] as const;
+const projects = defineCollection({
+  loader: glob({ base: './src/content/projects', pattern: '**/[^_]*.{md,mdx}' }),
+  schema: z.object({
+    title: z.string().min(1),
+    summary: z.string().min(1),
+    status: z.enum(projectStatuses),
+    order: z.number().int().default(100),
+  }),
+});
+
+export const collections = { insights, projects };

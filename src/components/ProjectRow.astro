@@ -1,0 +1,78 @@
+---
+// One row of the Projects list ("durbeen.io · This website… · IN PROGRESS").
+// Status label: accent for IN PROGRESS and LIVE, muted for PLANNED. The label text carries the meaning, not the colour.
+// Pass `href` once the project has its own page (Phase 5); until then the row is plain text, not a dead link.
+interface Props {
+  title: string;
+  summary: string;
+  status: 'In progress' | 'Planned' | 'Live';
+  href?: string;
+  first?: boolean; // the first row gets the strong ink rule above it
+}
+const { title, summary, status, href, first = false } = Astro.props;
+const Wrapper = href ? 'a' : 'div';
+---
+
+<li class:list={['row', { first }]}>
+  <Wrapper class="inner" {...(href ? { href } : {})}>
+    <span class="name">{title}</span>
+    <span class="summary">{summary}</span>
+    <span class:list={['status', { planned: status === 'Planned' }]}>{status.toUpperCase()}</span>
+  </Wrapper>
+</li>
+
+<style>
+  .row {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .row.first {
+    border-top-color: var(--ink);
+  }
+  .row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+    align-items: center;
+    min-height: var(--touch-target);
+    padding: var(--space-4) 0;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  a.inner:hover .name {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 0.2em;
+  }
+  .name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+  }
+  .summary {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-2);
+  }
+  .status {
+    justify-self: end;
+    padding: 6px 10px;
+    border: 1px solid var(--accent);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    color: var(--accent);
+  }
+  .status.planned {
+    border-color: var(--muted);
+    color: var(--muted);
+  }
+  @media (max-width: 639px) {
+    .status {
+      justify-self: start;
+    }
+  }
+</style>
