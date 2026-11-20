@@ -1,0 +1,27 @@
+# Automatic checks on every pull request (CLAUDE.md rule 11).
+# The job name "Build and contrast" is what you select as a required check in GitHub.
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build and contrast
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - name: Colour contrast (WCAG AA)
+        run: npm run check:contrast
+      - name: Build
+        run: npm run build

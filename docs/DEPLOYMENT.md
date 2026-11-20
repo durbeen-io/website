@@ -44,6 +44,8 @@ Names only. Never put values in this repo.
 
 Run by GitHub Actions on every pull request: build, frontmatter validation, broken-link check, accessibility (axe), Lighthouse CI. A failing check blocks the merge. They become *required* status checks on `main` once they exist.
 
+**Live now:** `Build and contrast` (`.github/workflows/checks.yml`): `npm ci`, `npm run check:contrast`, `npm run build`. Axe, Lighthouse CI and the link check are added in the last Phase 2 PR.
+
 ## Security headers (Phase 7)
 
 Set in `public/_headers`: Content-Security-Policy, Strict-Transport-Security, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, `frame-ancestors 'none'`. Verify with an external header scanner before launch.
