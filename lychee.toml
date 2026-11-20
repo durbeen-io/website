@@ -1,0 +1,25 @@
+# Link check for the built site (run by the "Links" job in .github/workflows/checks.yml).
+# Offline mode: checks internal links in dist/ only. External links are not checked.
+#
+# RULE: when a page below ships, DELETE its entry here. Do not leave stale entries.
+# Zero entries left is a Phase 5 gate (CLAUDE.md section 12).
+
+offline = true
+root_dir = "dist"
+include_fragments = true
+no_progress = true
+
+exclude = [
+  # Phase 4 (blog engine): Insights list and RSS feed
+  'file://.*/insights/$',
+  'file://.*/rss\.xml$',
+  # Phase 5 (remaining pages)
+  'file://.*/projects/$',
+  'file://.*/toolkit/$',
+  'file://.*/about/$',
+  'file://.*/work-with-durbeen/$',
+  'file://.*/editorial-policy/$',
+  'file://.*/privacy/$',
+  'file://.*/terms/$',
+  'file://.*/affiliate-disclosure/$',
+]

@@ -21,6 +21,8 @@ npm install
 npm run dev      # local preview
 npm run build    # production build
 npm run check:contrast   # checks every colour pair against WCAG AA
+npm run check:axe        # accessibility check on every built page (run npm run build first)
+npm run check:lighthouse # Lighthouse budget, mobile (run npm run build first)
 ```
 
 Requires Node.js LTS (currently v26).

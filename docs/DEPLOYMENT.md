@@ -44,7 +44,19 @@ Names only. Never put values in this repo.
 
 Run by GitHub Actions on every pull request: build, frontmatter validation, broken-link check, accessibility (axe), Lighthouse CI. A failing check blocks the merge. They become *required* status checks on `main` once they exist.
 
-**Live now:** `Build and contrast` (`.github/workflows/checks.yml`): `npm ci`, `npm run check:contrast`, `npm run build`. Axe, Lighthouse CI and the link check are added in the last Phase 2 PR.
+**Live now** (all in `.github/workflows/checks.yml`):
+
+| Check (job name) | What it does | Run locally |
+|---|---|---|
+| `Build and contrast` | `npm ci`, colour contrast, build. **Required** on `main` | `npm run check:contrast && npm run build` |
+| `Accessibility (axe)` | axe (WCAG 2.0/2.1 A and AA) on every built page, light and dark, at 375px. Any violation fails | `npm run build && npm run check:axe` |
+| `Lighthouse (mobile)` | Lighthouse CI, median of 3 runs. Performance, Accessibility and Best Practices must be 90+. **SEO is not asserted until Phase 8**, when `noindex` is removed (see `lighthouserc.json`) | `npm run build && npm run check:lighthouse` |
+| `Internal links (lychee)` | Checks internal links in `dist/` (offline, no external links). Config: `lychee.toml` | needs lychee installed; CI is the normal route |
+
+- axe and Lighthouse use the Chrome already installed on the machine; no browser is downloaded.
+- `lychee.toml` skips the nav and footer pages that are not built yet. **When a page ships, delete its line.** The list must be empty at the Phase 5 gate.
+- The three new jobs are not yet *required* on `main`. Add them in GitHub branch protection after this PR is merged and has run once (the job names must exist first).
+- The `lychee-action` is pinned to a full commit SHA, not a tag. To update it, look up the new release's SHA and change the version comment too.
 
 ## Security headers (Phase 7)
 

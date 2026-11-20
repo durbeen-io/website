@@ -30,3 +30,6 @@ npm-debug.log*
 
 # Personal Claude Code instructions (stay on this Mac only)
 CLAUDE.local.md
+
+# Lighthouse CI output
+.lighthouseci/
