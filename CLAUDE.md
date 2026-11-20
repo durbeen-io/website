@@ -431,11 +431,13 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 4 (Blog engine) **PASSED** (builder-run gate under the founder's working mode, 20 Nov 2026). Phase 5 (Remaining pages) is next, and needs content from the founder before it can start. Phases 2 and 3 passed 20 Nov 2026
-- **Last session:** 20 Nov 2026: Phase 4 (PRs #27 to #33, then the gate)
-- **Next session goal:** Phase 5, once the founder supplies the content (About, Projects, Resources, Toolkit, Work with Durbeen packages, legal-page review, Kit account, free-download PDF, LinkedIn URL). Confirm the goal with the founder at the start of the session.
+- **Current phase:** 5 (Remaining pages) **BUILT and gate-reviewed** (20 Nov 2026). The gate items that depend on the founder are open: which country's law applies (legal pages stay preliminary), the `[BRACKET]` placeholders on About, Email Routing for hello@durbeen.io, and the Cloudflare build error behind the 404 page. Phases 2, 3 and 4 passed 20 Nov 2026
+- **Last session:** 20 Nov 2026: scope change (blog first) and Phase 5 (PRs #36 to #42)
+- **Next session goal:** resolve the founder items above and the tag-list approval, then Phase 6 (3-5 real articles, drafted by Claude from the founder's notes and edited by the founder).
 
 ## Completed
+- 20 Nov 2026 (Phase 5 gate review, builder-run): built Projects (list + 3 detail pages), Toolkit, Resources, About, Privacy, Terms, Editorial policy, Affiliate disclosure and 404 (PRs #37 to #41). Gate results: `lychee.toml` has zero entries; 1,576 internal links on 50 pages, none broken (checked a second time with nothing excused); 0 duplicate or missing titles or descriptions on 48 pages; axe 0 violations on 48 pages x 2 modes; Lighthouse mobile 99-100 in all four categories on About, Projects, a project page, Toolkit, Resources, Privacy and Editorial policy, and the 404 page scores 100/100/100 with SEO 66 only because it is deliberately `noindex`; all 16 new addresses return 200 on the live workers.dev site; the production sitemap lists only real pages; no newsletter, Kit or Work with Durbeen text on any public page. `npm run check:brackets` lists 9 items (3 About placeholders, 2 `[COUNTRY]`, 4 PRELIMINARY notices). Links on Resources were each opened and confirmed on 20 Nov 2026 (corrections recorded in DECISIONS). **Failure reported honestly:** the 404 page is built but Cloudflare does not serve it for unknown addresses; adding `not_found_handling: "404-page"` to `wrangler.jsonc` made Cloudflare's branch build fail (reverted; build went green again), and the error text is only visible in the Cloudflare dashboard. Not tested: mail delivery to hello@durbeen.io (Email Routing not set up).
+- 20 Nov 2026 (scope change, PR #36): Durbeen starts as a blog. Work with Durbeen and the newsletter/free download are deferred (kept in section 13 and DECISIONS), the newsletter form is hidden, new article type Infographic (text summary required) and new series AI for Engineers (series are a controlled list). Brief is now v1.5.
 - 20 Nov 2026 (Phase 4 gate review, builder-run under the founder's working mode): (1) Draft to preview: a real throwaway PR with a test article had a live preview URL serving the article, RSS, sitemap, search index and OG image 95 s after the push (PR closed unmerged); CI takes about 4 min. (2) Invalid frontmatter fails the build (exit 1) for: short description, bad category, bad level, 2 tags, missing title, hero image without alt, scorecard on a non-Review, tag not in the list, image without alt text, duplicate log number (a gap found and fixed: drafts now count). (3) Connection map: a new article appeared on Home (log, featured, status strip), Insights list with filter data, its category, 3 tag pages and series page, related and series boxes on other articles, previous/next, RSS, sitemap, search and OG; verified by 20 file checks plus a real search for a unique word. (4) RSS, sitemap and index are well-formed XML (`xmllint`); the production build gives an empty valid feed and a sitemap of `/` and `/insights/` only. (5) OG images viewed (1200x630). (6) Search works by keyboard in Chrome at 1360px and 375px. (7) Structured data: Article, BreadcrumbList and Organization checked against Google's required properties, 0 problems. Lighthouse mobile (4 categories, median of 2) is 100 on the article, hero-article, Insights, category and tag pages. axe 0 violations on 35 pages x 2 modes; 1,097 internal links, none broken; 0 duplicate titles or descriptions.
 - 20 Nov 2026 (Phase 4, PRs #27 to #33): #27 article page, SEO head, JSON-LD; #28 reading line, share, code copy; #29 article images (AVIF/WebP, FIG captions, zoom, hero); #30 Insights list, filters, category/tag/series pages; #31 Pagefind search; #32 RSS, sitemap, robots.txt; #33 OG images. Packages added (all founder-approved): `@astrojs/mdx`, `pagefind`, `@astrojs/rss`, `@astrojs/sitemap`, `satori`, `@resvg/resvg-js`, plus OFL font files in `src/assets/og-fonts/`.
 - 20 Nov 2026 (Phase 3 gate review, builder-run under the founder's working mode): Home matches the mockup side by side in Chrome at 375px and 1360px, light and dark (checked by eye, not a pixel diff). Lighthouse mobile on `/` (median of 3, sample drafts included): Performance 100, Accessibility 100, Best Practices 100, SEO 100 (LCP 0.9 s, CLS 0). axe 0 violations; Tab reaches every control; no horizontal scroll. The Observation Log reads from the content collection, but only the six sample drafts exist, so it shows real content only from Phase 6. The deployed `workers.dev` build hides drafts, so it shows the empty states until real articles exist (or the preview env var is set, see Open issues). Known mockup deviations: nav says Toolkit; the "[ 02 ] METHOD" label uses the accent on dark (Phase 2 component) where the mockup is grey.
@@ -457,20 +459,25 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - 18 Nov 2026 (v1.1): added dedicated 16px favicon tier + PNG/ICO icon set; accent colour confirmed final (orange).
 
 ## Open issues
-- **Founder to run Google's Rich Results Test** on a real article URL once a real article is live (Phase 6). It cannot be run from here; the structured data passes a local check of the required properties.
-- **Founder to approve the OG image look** (`/og/default.png` on the preview or `dist/og/` after a build). Changes would be a small PR.
-- Delete the six `sample-*.mdx` drafts in Phase 6 (and check nothing links to them).
-- The deployed `workers.dev` site excludes drafts. To show the sample content on branch previews, the founder can set `DURBEEN_INCLUDE_DRAFTS=1` for non-production builds in Cloudflare (a setting change, ask first). Never set it for production.
-- ProjectRow is plain text until Phase 5 gives each project a page; then link it.
-- Remove the internal `/design-system/` page before the Phase 8 launch (it is already filtered out of the sitemap in `astro.config.mjs`; remove that filter line too).
-- Remove `/design-system/components/` (with `/design-system/`) before the Phase 8 launch, and the `docs/pr-screenshots/` folder.
-- Nav and footer links point to pages that do not exist yet (Phases 4-5). They are listed in `lychee.toml`. **When a page ships, remove its entry from `lychee.toml`.** Zero entries and zero broken links is a Phase 5 gate. The link check covers internal links only.
-- Lighthouse: turn on the SEO assertion at Phase 8 (when `noindex` is removed).
-- Footer links are 44px tall but only 29-42px wide (RSS, Terms, About). Minor; revisit with the Phase 3 footer check.
-- Re-test the open mobile MENU panel by keyboard at 375px (not re-tested at the Phase 2 gate).
-- Footer has no LinkedIn link: the founder must supply the URL.
+**Waiting for the founder**
+- Tag list: a proposal is awaiting approval (not applied). Applying it needs two sample drafts retagged.
+- Which country's law applies to Privacy and Terms (`[COUNTRY]`); confirm the Editorial policy's AI-use statement; legal pages stay preliminary until then.
+- About placeholders: `[YOUR FIELD]`, `[YEARS]`, `[WHY YOU STARTED DURBEEN]`.
+- Cloudflare: open the failed build for the branch that added `not_found_handling` (Workers, durbeen-website, Builds) and read its error, so the 404 page can be wired up (see `docs/DEPLOYMENT.md`).
+- Email Routing for hello@durbeen.io (shown as plain text; delivery untested).
+- LinkedIn URL (footer has no LinkedIn link).
+- Toolkit lines for ChatGPT, Gemini and NotebookLM are deliberately plain; add a personal verdict if wanted.
+- Google's Rich Results Test on a real article (Phase 6); OG design was approved.
+- Newsletter (Kit), free download and Work with Durbeen: deferred.
+
+**For later phases**
+- Delete the seven `sample-*.mdx` drafts in Phase 6 (and the sample image), and check nothing links to them.
+- The deployed `workers.dev` site excludes drafts. To show sample content on branch previews, the founder can set `DURBEEN_INCLUDE_DRAFTS=1` for non-production builds in Cloudflare (a setting change, ask first). Never for production.
+- Before Phase 8: remove `/design-system/` and `/design-system/components/` (and the sitemap filter line in `astro.config.mjs`), the `docs/pr-screenshots/` folder, the `noindex` header; run `npm run check:brackets` (must report none); turn on the Lighthouse SEO assertion.
 - Phase 7: the CSP must allow `'wasm-unsafe-eval'` for Pagefind search (see `docs/DEPLOYMENT.md`); retest search after the headers.
-- Newsletter form is disabled until the Kit endpoint is set (Phase 5). Check Kit's field name (`email_address`) then.
+- Resources links are not checked by CI; re-check monthly (Phase 9).
+- Footer links are 44px tall but only 29-42px wide (RSS, Terms, About). Minor.
+- Re-test the open mobile MENU panel by keyboard at 375px.
 - Run a reverse image search and a trademark search on the logo (SAIP, IP India, WIPO) before public launch.
 
 ## Session history
@@ -490,4 +497,5 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 | 2026-11-20 | 2 | Phase 2 PR 7: axe, Lighthouse CI and lychee link check in CI; `lychee.toml`, `lighthouserc.json`, `scripts/check-axe.mjs`; docs | PR #20 | Phase 2 gate review |
 | 2026-11-20 | 2 | Phase 2 gate review: all items passed (CI-blocking not demonstrated, by founder's choice); Progress Log fixed; founder approved. Phase 2 marked complete | PR #21 | Phase 3 (Homepage A) |
 | 2026-11-20 | 3 | Phase 3 built (content system, hero + log, Insights, Method, Projects) and gate-reviewed | PR #22 to #26 | Phase 4 (blog engine) |
-| 2026-11-20 | 4 | Phase 4 blog engine built (article page, extras, images, Insights list and filters, search, RSS and sitemap, OG images) and gate-reviewed (builder-run): all items passed; duplicate-number check now includes drafts; publishing guide updated; link job includes sample drafts | PR #27 to #33 and this pull request | Phase 5, after the founder supplies content |
+| 2026-11-20 | 4 | Phase 4 blog engine built (article page, extras, images, Insights list and filters, search, RSS and sitemap, OG images) and gate-reviewed (builder-run): all items passed; duplicate-number check now includes drafts; publishing guide updated; link job includes sample drafts | PR #27 to #33 and this pull request | Phase 5 |
+| 2026-11-20 | scope + 5 | Scope change (blog first) and Phase 5 built: Projects, Toolkit, Resources, About, four legal pages (preliminary), 404; `check:brackets`; gate reviewed (builder-run) | PR #36 to #41 and this pull request | Founder items (tags, country, brackets, Cloudflare error), then Phase 6 |

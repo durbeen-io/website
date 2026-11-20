@@ -4,7 +4,7 @@ User-visible changes, newest first. Dates are when the change was made.
 
 ## Unreleased
 
-Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, the home page and the blog engine are done; the remaining pages are next (Phase 5).
+Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
 ### 2026-11-20
 - 404 page built: on-brand, with a Search button, a link home and the latest articles. **Not yet served by Cloudflare for unknown addresses:** that needs a Worker setting that failed to build when tried (see docs/DEPLOYMENT.md). Phase 5.
