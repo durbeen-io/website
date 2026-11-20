@@ -9,6 +9,15 @@ import { categories, types, levels, series, projectStatuses } from './lib/taxono
 
 const score = z.number().int().min(1).max(5);
 
+// A CMS (Pages CMS, see .pages.yml) may write an empty value for a field the author left blank, for example
+// `series: ""`. For optional fields an empty value means "not set", so it is treated as missing rather than invalid.
+const blank = (v: unknown) => (v === '' || v === null ? undefined : v);
+// An optional scorecard whose boxes were all left empty means "no scorecard".
+const emptyScorecard = (v: unknown) =>
+  v && typeof v === 'object' && Object.values(v as Record<string, unknown>).every((x) => x === '' || x === null || x === undefined)
+    ? undefined
+    : v;
+
 const insights = defineCollection({
   // Files starting with "_" (like _template.mdx) are ignored.
   loader: glob({ base: './src/content/insights', pattern: '**/[^_]*.{md,mdx}' }),
@@ -22,23 +31,24 @@ const insights = defineCollection({
       type: z.enum(types),
       level: z.enum(levels),
       tags: z.array(z.string()).min(3, 'use 3-5 tags').max(5, 'use 3-5 tags'),
-      series: z.enum(series).optional(),
+      series: z.preprocess(blank, z.enum(series).optional()),
       // Infographic articles: the written version of the image (blank line between paragraphs). Shown on the page.
-      summary: z.string().optional(),
+      summary: z.preprocess(blank, z.string().optional()),
       author: z.literal('Fahad Ehsan').default('Fahad Ehsan'),
       publishDate: z.coerce.date(),
-      updatedDate: z.coerce.date().optional(),
-      lastVerified: z.coerce.date().optional(),
+      updatedDate: z.preprocess(blank, z.coerce.date().optional()),
+      lastVerified: z.preprocess(blank, z.coerce.date().optional()),
       featured: z.boolean().default(false),
-      heroImage: image().optional(),
-      heroAlt: z.string().optional(),
-      ogImage: z.string().optional(),
+      heroImage: z.preprocess(blank, image().optional()),
+      heroAlt: z.preprocess(blank, z.string().optional()),
+      ogImage: z.preprocess(blank, z.string().optional()),
       draft: z.boolean().default(false),
       affiliate: z.boolean().default(false),
-      canonicalSource: z.string().url().optional(),
-      scorecard: z
-        .object({ setup: score, docs: score, maintenance: score, safety: score, verdict: z.string().min(1) })
-        .optional(),
+      canonicalSource: z.preprocess(blank, z.string().url().optional()),
+      scorecard: z.preprocess(
+        emptyScorecard,
+        z.object({ setup: score, docs: score, maintenance: score, safety: score, verdict: z.string().min(1) }).optional(),
+      ),
     })
     .superRefine((d, ctx) => {
       const allowed = new Set<string>(tags);
