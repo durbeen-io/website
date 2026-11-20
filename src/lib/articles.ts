@@ -11,15 +11,16 @@ export type Article = CollectionEntry<'insights'>;
 // (`npm run dev` shows drafts automatically). CI jobs that audit pages set the flag; the real deploy does not.
 const includeDrafts = process.env.DURBEEN_INCLUDE_DRAFTS === '1' || import.meta.env.DEV;
 
-/** Published articles, newest first. Fails the build if two articles share a log number. */
+/** Published articles, newest first. Fails the build if two articles (drafts included) share a log number. */
 export async function getArticles(): Promise<Article[]> {
-  const all = await getCollection('insights', ({ data }) => includeDrafts || !data.draft);
+  const everything = await getCollection('insights');
   const seen = new Map<number, string>();
-  for (const a of all) {
+  for (const a of everything) {
     const other = seen.get(a.data.number);
     if (other) throw new Error(`Log number ${a.data.number} is used twice: ${other} and ${a.id}`);
     seen.set(a.data.number, a.id);
   }
+  const all = everything.filter(({ data }) => includeDrafts || !data.draft);
   return all.sort(
     (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf() || b.data.number - a.data.number,
   );
