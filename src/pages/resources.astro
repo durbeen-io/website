@@ -1,0 +1,107 @@
+---
+// Resources: a short, verified starter list (data in src/data/resources.ts).
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ListHeader from '../components/ListHeader.astro';
+import { resources, LAST_CHECKED } from '../data/resources';
+---
+
+<BaseLayout
+  title="Resources: a short starter list | Durbeen"
+  description="A short starter list of documentation, tools and learning links behind Durbeen, from GitHub basics to Astro and Cloudflare. Every link was checked by hand."
+>
+  <ListHeader
+    label="RESOURCES"
+    title="Resources"
+    intro={`A short starter list: the tools behind this site, and where to learn them. Every link was opened and checked on ${LAST_CHECKED}.`}
+  />
+
+  <div class="container groups">
+    {
+      resources.map((group, gi) => (
+        <section aria-labelledby={`res-${gi}`}>
+          <h2 id={`res-${gi}`}>{group.title}</h2>
+          <ul>
+            {group.items.map((r, i) => (
+              <li class:list={{ first: i === 0 }}>
+                <a href={r.href} rel="noopener">
+                  <span class="name">{r.name}<span class="arrow" aria-hidden="true"> ↗</span></span>
+                  <span class="note">{r.note}</span>
+                  <span class="host">{new URL(r.href).hostname.replace(/^www\./, '')}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .groups {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(48px, 6vw, 80px);
+    padding-bottom: var(--space-section);
+  }
+  h2 {
+    margin-bottom: var(--space-3);
+    font-size: clamp(28px, 3vw, 40px);
+    letter-spacing: -0.025em;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  li.first {
+    border-top-color: var(--ink);
+  }
+  li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  a {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1) var(--space-4);
+    min-height: var(--touch-target);
+    padding: var(--space-3) 0;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+  }
+  a:hover .name {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 0.2em;
+  }
+  .note {
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-2);
+  }
+  .host {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+  @media (min-width: 760px) {
+    a {
+      grid-template-columns: 300px minmax(0, 1fr) 220px;
+      align-items: baseline;
+    }
+    .host {
+      text-align: right;
+    }
+  }
+</style>

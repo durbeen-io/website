@@ -13,7 +13,8 @@
     "astro": "astro",
     "check:contrast": "node scripts/check-contrast.mjs",
     "check:axe": "node scripts/check-axe.mjs",
-    "check:lighthouse": "lhci autorun"
+    "check:lighthouse": "lhci autorun",
+    "check:brackets": "node scripts/check-brackets.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.1.6",
