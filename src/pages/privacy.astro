@@ -1,5 +1,8 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+import { ANALYTICS_TOKEN } from '../data/site';
+// The Analytics text follows the real setting: it describes analytics only when a token is set (src/data/site.ts).
+const analyticsOn = ANALYTICS_TOKEN !== '';
 ---
 
 <LegalLayout
@@ -15,7 +18,10 @@ import LegalLayout from '../layouts/LegalLayout.astro';
     <li>There are no accounts, comments or forms. The site does not ask for your name or email address.</li>
     <li>Durbeen sets no cookies.</li>
     <li>If you choose light or dark mode, that choice is saved in your browser's local storage, on your own device. It is never sent to Durbeen.</li>
-    <li>Fonts come from durbeen.io itself, not from Google or another font service. The site loads no third-party scripts.</li>
+    <li>
+      Fonts come from durbeen.io itself, not from Google or another font service.
+      {analyticsOn ? 'The only third-party script is Cloudflare Web Analytics (see Analytics below).' : 'The site loads no third-party scripts.'}
+    </li>
   </ul>
 
   <h2>What the host can see</h2>
@@ -29,10 +35,27 @@ import LegalLayout from '../layouts/LegalLayout.astro';
   <p>Search runs in your browser. Durbeen does not store what you search for.</p>
 
   <h2>Analytics</h2>
-  <p>
-    There are no analytics yet. If I add them, I plan to use Cloudflare Web Analytics, which does not use cookies. I
-    will update this page before I switch it on.
-  </p>
+  {
+    analyticsOn ? (
+      <>
+        <p>
+          Durbeen uses Cloudflare Web Analytics to count page views, where visitors come from (the referring site and the
+          country) and how fast pages load. It sets no cookies and stores nothing in your browser. Cloudflare says it does
+          not fingerprint visitors, does not track individual visitors across websites, and does not collect or use
+          visitors' personal data. The data goes to Cloudflare.
+        </p>
+        <p>
+          The analytics script loads only on durbeen.io, and not at all if your browser sends the "Do Not Track" signal. See{' '}
+          <a href="https://developers.cloudflare.com/web-analytics/about/" rel="noopener">Cloudflare's explanation</a>.
+        </p>
+      </>
+    ) : (
+      <p>
+        There are no analytics yet. If I add them, I plan to use Cloudflare Web Analytics, which does not use cookies. I
+        will update this page before I switch it on.
+      </p>
+    )
+  }
 
   <h2>If you write to me</h2>
   <p>
