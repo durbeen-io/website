@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
 ### 2026-11-21
+- Unknown addresses now show the on-brand 404 page (with a real 404 status) instead of Cloudflare's plain "Not found", for visitors using a browser.
 - Home page voice: Durbeen is now described as a founder-led independent lab run by an instrumentation & controls engineer testing AI on real work. New hero intro, status strip, footer line, meta description and Organization structured data. About (title, description, first line), the social-image label, the RSS description and the footer ("Write to me at:") follow the same wording.
 - Home page Method section: new heading "Test before you trust." and new text for the four steps. Steps sit in one row on desktop, two by two on tablet and stacked on phone, so step 04 never sits alone. More space under each step so the divider line is not read as an underline.
 - Step-by-step guide for forwarding hello@durbeen.io to Gmail with Cloudflare Email Routing (`docs/EMAIL.md`). Nothing was switched on.

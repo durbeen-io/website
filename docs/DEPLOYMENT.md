@@ -87,4 +87,14 @@ Prepared and switched off (`ANALYTICS_TOKEN` in `src/data/site.ts` is empty). Se
 
 ## 404 page
 
-`src/pages/404.astro` builds `dist/404.html`. For Cloudflare to answer an unknown address with it (and a 404 status), the Worker's asset config needs `"not_found_handling": "404-page"` in `wrangler.jsonc`. **That setting is not applied yet.** On 20 Nov 2026 it was tried in a pull request and Cloudflare's branch build (Workers Builds) failed, while every other check passed and every earlier build had succeeded. The cause could not be read from outside the Cloudflare dashboard, so the setting was removed again. Until it is fixed, unknown addresses get Cloudflare's default 404 response, not this page. Next step: open the failed build in the Cloudflare dashboard (Workers, durbeen-website, Builds) and read its error.
+`src/pages/404.astro` builds `dist/404.html`. `wrangler.jsonc` has `"not_found_handling": "404-page"`, so Cloudflare answers an unknown address from a browser with that page and a 404 status. Checked on the branch preview on 20 Nov 2026: a browser-style request to an unknown address returned the "Page not found | Durbeen" page with status 404. A bare `curl` (no browser headers) still gets Cloudflare's plain "Not found"; that is how the setting works, not a fault.
+
+The first attempt (20 Nov) looked as if this setting had broken the build. It had not. The Cloudflare log said `A preview with name 'phase-5/404' already exists [code: 100338]`, from `npx wrangler preview` (beta): a branch name clash, not the config.
+
+## Known issue: "preview already exists" (code 100338)
+
+Workers Builds runs `npx wrangler preview` for every non-production branch. If the same branch name is built twice (a branch pushed again after a build, or a branch name that was used before, for example a Pages CMS `content` branch), it can fail with `A preview with name '<branch>' already exists`. Nothing is wrong with the code.
+
+- **Risk:** low. "Workers Builds: durbeen-website" is **not** a required check on `main` (the required checks are Build and contrast, Accessibility (axe), Lighthouse (mobile) and Internal links (lychee)), so a failed preview does not block a merge. Production deploys come from `main` and are a different path. The cost is a red cross on the pull request and no preview URL for it, which can hide a real Cloudflare failure.
+- **Simplest fix (founder's choice, a Cloudflare or workflow change, not applied):** use a fresh branch name for each pull request (the rule already followed here). For Pages CMS, set its branch to a name that is new each time, or delete the old branch after each merge (GitHub: Settings, General, "Automatically delete head branches"), so the next push starts clean. If it still appears, delete the stale preview in the Cloudflare dashboard (Workers, durbeen-website, Previews).
+- **Do not** add Workers Builds as a required check until this is solved.

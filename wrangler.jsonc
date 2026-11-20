@@ -5,7 +5,9 @@
   "name": "durbeen-website",
   "compatibility_date": "2026-11-19",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    // Answer unknown addresses with dist/404.html and a 404 status.
+    "not_found_handling": "404-page"
   },
   // Serve on the free *.workers.dev address, and give every branch a preview URL.
   // Set explicitly so a Wrangler default can never change them silently.

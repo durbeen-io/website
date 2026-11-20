@@ -432,8 +432,9 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 # PART B — PROGRESS LOG (update every session)
 
 ## Status
-- **Current phase:** 5 (Remaining pages) **BUILT and gate-reviewed** (20 Nov 2026), plus enhancements (21 Nov 2026). Open founder items: Email Routing for hello@durbeen.io, the Cloudflare build error behind the 404 page, enabling Pages CMS and GitHub auto-merge, the analytics token, LinkedIn. Phase 6 has not started
-- **Latest change:** 21 Nov 2026: Home Method section copy and layout (PR #52); founder-led voice recorded in section 1 and DECISIONS, Home hero intro, status strip, footer line, meta description and Organization description updated; About, OG label, RSS description and footer aligned in a follow-up PR
+- **Current phase:** 5 (Remaining pages) **BUILT and gate-reviewed** (20 Nov 2026), plus enhancements (21 Nov 2026). Open founder items: Email Routing for hello@durbeen.io, enabling Pages CMS and GitHub auto-merge, the analytics token, LinkedIn. Phase 6 has not started
+- **Latest change (20 Nov 2026):** 404 page now served by Cloudflare (`not_found_handling`); the old build failure was a preview-name clash, not the setting.
+- **Earlier change:** 21 Nov 2026: Home Method section copy and layout (PR #52); founder-led voice recorded in section 1 and DECISIONS, Home hero intro, status strip, footer line, meta description and Organization description updated; About, OG label, RSS description and footer aligned in a follow-up PR
 - **Last session:** 21 Nov 2026: answers, Infographics gallery, author box, analytics (prepared), email guide, Pages CMS and templates (PRs #43 to #51)
 - **Next session goal:** resolve the founder items above, then Phase 6 (3 to 5 real articles, drafted by Claude from the founder's notes and edited by the founder), only when the founder says to start.
 
@@ -466,7 +467,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - Install the Pages CMS GitHub app and run the first test (`docs/CMS.md`); turn on GitHub "Allow auto-merge" if wanted (`docs/CMS.md`). Both are GitHub settings.
 - Enable Email Routing for hello@durbeen.io (`docs/EMAIL.md`; a DNS change). Afterwards: name Email Routing on the Privacy page.
 - Get the Cloudflare Web Analytics token (`docs/ANALYTICS.md`) and send it; at launch choose "Enable with JS Snippet installation".
-- Cloudflare: read the failed build's error for the branch that added `not_found_handling`, so the 404 page can be wired up (`docs/DEPLOYMENT.md`). The founder will send it.
+- Watch for the Cloudflare error "A preview with name '...' already exists" (same branch pushed twice, e.g. a Pages CMS branch). Not a required check, so it does not block merges; use a new branch name or delete the old branch (`docs/DEPLOYMENT.md`).
 - LinkedIn URL (footer has no LinkedIn link).
 - Legal check of Privacy, Terms, Editorial policy and Affiliate disclosure (India; courts of Hyderabad). They stay PRELIMINARY until then.
 - Toolkit lines for ChatGPT, Gemini and NotebookLM are deliberately plain; add a personal verdict if wanted.
