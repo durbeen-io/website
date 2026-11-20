@@ -1,0 +1,66 @@
+---
+// Adds a "COPY" button to every code block inside an element with data-prose (progressive enhancement:
+// without scripts the code block is just a code block). Announces the result to screen readers.
+---
+
+<style is:global>
+  .code-block {
+    position: relative;
+    margin: 0 0 28px;
+  }
+  .code-block pre {
+    margin: 0;
+  }
+  .code-block .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    min-width: var(--touch-target);
+    min-height: var(--touch-target);
+    padding: 0 12px;
+    border: 1px solid var(--on-band-2);
+    background: var(--band);
+    color: var(--on-band);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: 0.04em;
+    cursor: pointer;
+  }
+  .code-block .copy-btn:hover {
+    border-color: var(--on-band);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-prose] pre').forEach((pre) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'code-block';
+    pre.replaceWith(wrap);
+    wrap.appendChild(pre);
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-btn';
+    btn.textContent = 'COPY';
+    btn.setAttribute('aria-label', 'Copy code');
+    const status = document.createElement('span');
+    status.className = 'visually-hidden';
+    status.setAttribute('role', 'status');
+    wrap.append(btn, status);
+
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(pre.textContent ?? '');
+        btn.textContent = 'COPIED';
+        status.textContent = 'Code copied';
+      } catch {
+        btn.textContent = 'PRESS CTRL+C';
+        status.textContent = 'Could not copy automatically';
+      }
+      setTimeout(() => {
+        btn.textContent = 'COPY';
+        status.textContent = '';
+      }, 2000);
+    });
+  });
+</script>
