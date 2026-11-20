@@ -1,11 +1,11 @@
 ---
 // One row of the Projects list ("durbeen.io · This website… · IN PROGRESS").
-// Status label: accent for IN PROGRESS and LIVE, muted for PLANNED. The label text carries the meaning, not the colour.
+// Status label: accent for IN PROGRESS and LIVE, muted for PLANNED, ink for COMPLETE. The label text carries the meaning, not the colour.
 // Pass `href` once the project has its own page (Phase 5); until then the row is plain text, not a dead link.
 interface Props {
   title: string;
   summary: string;
-  status: 'In progress' | 'Planned' | 'Live';
+  status: 'In progress' | 'Planned' | 'Complete' | 'Live';
   href?: string;
   first?: boolean; // the first row gets the strong ink rule above it
 }
@@ -17,7 +17,7 @@ const Wrapper = href ? 'a' : 'div';
   <Wrapper class="inner" {...(href ? { href } : {})}>
     <span class="name">{title}</span>
     <span class="summary">{summary}</span>
-    <span class:list={['status', { planned: status === 'Planned' }]}>{status.toUpperCase()}</span>
+    <span class:list={['status', { planned: status === 'Planned', complete: status === 'Complete' }]}>{status.toUpperCase()}</span>
   </Wrapper>
 </li>
 
@@ -69,6 +69,10 @@ const Wrapper = href ? 'a' : 'div';
   .status.planned {
     border-color: var(--muted);
     color: var(--muted);
+  }
+  .status.complete {
+    border-color: var(--ink);
+    color: var(--ink);
   }
   @media (max-width: 639px) {
     .status {

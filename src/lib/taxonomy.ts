@@ -11,7 +11,7 @@ export const types = ['Review', 'Comparison', 'Guide', 'Experiment', 'Build Note
 // Series: ongoing sequences of articles (not categories). A controlled list, so a typo cannot create a new series.
 export const series = ['Building Durbeen in Public', 'GitHub Mastery', 'Repo Reviews', 'AI for Engineers'] as const;
 export const levels = ['Beginner', 'Intermediate', 'Advanced'] as const;
-export const projectStatuses = ['In progress', 'Planned', 'Live'] as const;
+export const projectStatuses = ['In progress', 'Planned', 'Complete', 'Live'] as const;
 
 /** URL part for a category: "Open Source & GitHub" -> "open-source-github". Also used for series names. */
 export function categorySlug(category: string): string {

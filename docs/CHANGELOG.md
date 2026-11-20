@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, the home page and the blog engine are done; the remaining pages are next (Phase 5).
 
 ### 2026-11-20
+- Projects: a Projects page (dark header band and rows with status labels) and one page per project: durbeen.io (in progress), TokenSave (complete, version 1.0, private repository) and a personal CV website (in progress, private repository). Home project rows now link to them. Phase 5.
 - Scope change: Durbeen starts as a blog. The newsletter form and the Work with Durbeen link are removed from the footer (both deferred); the footer now shows `hello@durbeen.io` as plain text and a Resources link. New article type **Infographic** (the page shows a written text version) and a new series **AI for Engineers**; series are now a controlled list.
 - Two articles with the same log number now fail the build even if one is a draft. Phase 4 gate review.
 - Social-preview images: every article gets its own 1200x630 image (number, type, reading time, title, logo, reticle), and every other page uses a default one. Phase 4, PR 7.

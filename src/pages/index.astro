@@ -138,7 +138,7 @@ const organization = {
       projects.length > 0 ? (
         <ul class="rows">
           {projects.map((p, i) => (
-            <ProjectRow title={p.data.title} summary={p.data.summary} status={p.data.status} first={i === 0} />
+            <ProjectRow title={p.data.title} summary={p.data.summary} status={p.data.status} href={`/projects/${p.id}/`} first={i === 0} />
           ))}
         </ul>
       ) : (
