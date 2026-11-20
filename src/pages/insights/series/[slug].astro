@@ -1,0 +1,32 @@
+---
+// Basic series page: the articles of one series, oldest first, so they read in order.
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ListHeader from '../../../components/ListHeader.astro';
+import ArticleList from '../../../components/ArticleList.astro';
+import { getArticles, seriesSlug } from '../../../lib/articles';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  const names = [...new Set(articles.flatMap((a) => (a.data.series ? [a.data.series] : [])))];
+  return names.map((series) => ({
+    params: { slug: seriesSlug(series) },
+    props: { series, articles: articles.filter((a) => a.data.series === series).reverse() },
+  }));
+}
+const { series, articles } = Astro.props;
+const count = `${articles.length} ${articles.length === 1 ? 'article' : 'articles'}`;
+---
+
+<BaseLayout
+  title={`${series}: a series | Durbeen`}
+  description={`${series}: a Durbeen series of first-hand articles. ${count}, in reading order, oldest first.`}
+>
+  <ListHeader label="INSIGHTS / SERIES" title={series} intro={`${count}, oldest first.`} back />
+  <div class="container body"><ArticleList articles={articles} /></div>
+</BaseLayout>
+
+<style>
+  .body {
+    padding-bottom: var(--space-section);
+  }
+</style>

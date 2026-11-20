@@ -5,16 +5,7 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import tags from './content/tags.json';
 
-export const categories = [
-  'AI',
-  'Open Source & GitHub',
-  'Automation & Productivity',
-  'Software & Tools',
-  'Building Products',
-  'Business & Innovation',
-] as const;
-export const types = ['Review', 'Comparison', 'Guide', 'Experiment', 'Build Note', 'Insight', 'Visual'] as const;
-export const levels = ['Beginner', 'Intermediate', 'Advanced'] as const;
+import { categories, types, levels, projectStatuses } from './lib/taxonomy';
 
 const score = z.number().int().min(1).max(5);
 
@@ -64,7 +55,6 @@ const insights = defineCollection({
 });
 
 // Projects (Home rows now; the Projects list and detail pages come in Phase 5). Real projects only.
-export const projectStatuses = ['In progress', 'Planned', 'Live'] as const;
 const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/[^_]*.{md,mdx}' }),
   schema: z.object({

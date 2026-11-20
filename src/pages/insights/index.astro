@@ -1,0 +1,72 @@
+---
+// Insights: every article, newest first, with filters for category, type and level.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ListHeader from '../../components/ListHeader.astro';
+import InsightsFilters from '../../components/InsightsFilters.astro';
+import ArticleList from '../../components/ArticleList.astro';
+import { getArticles } from '../../lib/articles';
+import { categories, types, levels } from '../../lib/taxonomy';
+
+const articles = await getArticles();
+// Only offer choices that lead somewhere: values that at least one article uses (in the brief's order).
+const used = (key: 'category' | 'type' | 'level', order: readonly string[]) =>
+  order.filter((v) => articles.some((a) => a.data[key] === v));
+const groups = [
+  { name: 'category' as const, label: 'CATEGORY', options: used('category', categories) },
+  { name: 'type' as const, label: 'TYPE', options: used('type', types) },
+  { name: 'level' as const, label: 'LEVEL', options: used('level', levels) },
+];
+---
+
+<BaseLayout
+  title="Insights: reviews, guides and experiments | Durbeen"
+  description="Every Durbeen article in one list: reviews, comparisons, guides, experiments and build notes on AI, open source and practical tools, newest first."
+>
+  <ListHeader
+    label="[ 01 ] INSIGHTS"
+    title="Insights"
+    intro="Reviews, guides and experiments, tested first-hand and written plainly. Newest first."
+  />
+  <div class="container body">
+    {
+      articles.length > 0 ? (
+        <>
+          <InsightsFilters groups={groups} />
+          <ArticleList articles={articles} />
+          <div class="empty" data-filter-empty hidden>
+            <p>No articles match these filters.</p>
+            <button type="button" data-filter-reset>Show all articles</button>
+          </div>
+        </>
+      ) : (
+        <p class="none">The first articles are on the way.</p>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .body {
+    padding-bottom: var(--space-section);
+  }
+  .none,
+  .empty p {
+    margin: 0;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--ink);
+    color: var(--text-2);
+  }
+  .empty {
+    padding-block: var(--space-4);
+  }
+  .empty button {
+    min-height: var(--touch-target);
+    padding: 0 20px;
+    border: 1px solid var(--ui-border);
+    background: transparent;
+    color: var(--ink);
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+  }
+</style>
