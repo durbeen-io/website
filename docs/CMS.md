@@ -5,7 +5,7 @@
 ## Status (21 Nov 2026): configured, not yet tried in the live app
 
 - **Checked against Pages CMS's documentation:** the file layout, the field types (dropdowns, tag picker with 3 to 5, optional scorecard, dates, image upload), the media folder, and the "keep unknown keys" setting. The file parses as YAML, and its 22 fields match the article schema.
-- **Not checked (needs your GitHub login, so it can only be tested in the app):** the three points in "First test" below.
+- **Not checked (needs your GitHub login, so it can only be tested in the app):** the four points in "First test" below.
 - **Why not Keystatic:** its admin needs server-side rendering, an Astro adapter and the React integration, and its own guides say it cannot be used with a fully static build. This site is static on purpose.
 
 ## Install (your step: this is a GitHub setting, so I do not do it)
@@ -23,6 +23,8 @@
 3. When you are done, on GitHub open a pull request from `content` into `main`. The checks run and Cloudflare builds a preview address for the branch. Merge when green.
 4. Pages CMS cannot open the pull request itself (nothing in its documentation says it can).
 
+**Start a new article:** the sidebar has a **Start a new article** group with one entry per type (Guide, Build Note, Review, Comparison, Infographic). Each opens the form pre-filled from the matching starter file (`src/content/insights/_template-*.mdx`): the right type, level and, where certain, the category and series, and the starter text with `[FILL]` hints. The starter files and these entries are the same thing: the entries are generated from the files. Each entry also lists the existing articles of that type.
+
 Tips:
 - New articles start as **Draft** (on). Switch it off to publish.
 - **Log number** is the next free number; drafts count, and the build fails on a repeat.
@@ -36,7 +38,9 @@ Tips:
 2. **Saving changes nothing it should not.** Open `sample-review-lens-kit`, change nothing but one word in the text, save, then look at the change on GitHub. Only that word should differ. The `<Callout>` lines must be untouched, and the scorecard and `series` lines must be unchanged.
 3. **Image upload.** On a sample, upload a small PNG as the hero image, add alt text, save, and check the pull request's build passes (the path must be `./images/...`).
 
-If anything fails, send me a screenshot. Fallbacks: change the text box to Pages CMS's rich-text editor (loses MDX components), or keep editing in the repository.
+4. **Starter forms.** In **Start a new article**, open **New Guide**: the form should be pre-filled (type Guide, the `[FILL]` text in the title, description and text), and creating one should add a new file in **Articles**. (Several entries share one folder, which the documentation does not rule out but does not promise.)
+
+If anything fails, send me a screenshot. Fallbacks: for point 4, open the starter files in the repository instead (`docs/PUBLISHING.md`); for point 2, change the text box to Pages CMS's rich-text editor (loses MDX components), or keep editing in the repository.
 
 ## Keeping it in sync
 

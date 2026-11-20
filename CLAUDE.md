@@ -258,7 +258,7 @@ scorecard:                 # Review type only
 - **No user accounts, no comments, and no login** at launch
 
 **Publishing workflow (the founder's weekly routine):**
-1. Create `src/content/insights/my-article.mdx` from the template `_template.mdx`.
+1. Create `src/content/insights/my-article.mdx` from the template for its type (`_template-guide.mdx`, `-build-note`, `-review`, `-comparison`, `-infographic`; or `_template.mdx`), or use Pages CMS (`docs/CMS.md`).
 2. Write it, and preview locally with `npm run dev`.
 3. Run the pre-publish checklist (`docs/PUBLISHING.md`).
 4. Commit, push and open a pull request. Automatic checks run. Merge, and Cloudflare Workers publishes.

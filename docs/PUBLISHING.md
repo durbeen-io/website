@@ -13,7 +13,7 @@ The weekly routine. Goal: **under 10 minutes** from a finished draft to live.
 ## Routine
 
 1. **Create a branch** for the article, for example `article/why-im-building-durbeen`.
-2. **Copy the template:** `src/content/insights/_template.mdx` to `src/content/insights/my-article.mdx`.
+2. **Copy the template** for the kind of article you are writing from `src/content/insights/` to `src/content/insights/my-article.mdx`: `_template-guide.mdx`, `_template-build-note.mdx`, `_template-review.mdx`, `_template-comparison.mdx` or `_template-infographic.mdx` (or the bare `_template.mdx`). Every `[FILL]` marker tells you what to write; replace each one. In Pages CMS use **Start a new article** instead (see `docs/CMS.md`).
 3. **Fill in the frontmatter** (below), then write the article.
 4. **Preview locally:** `npm run dev`.
 5. **Run the pre-publish checklist** (below).
@@ -79,6 +79,20 @@ Tags come from `src/content/tags.json` (keep it under about 30). To use a new ta
 ## What updates by itself when you publish
 
 Nothing to edit by hand: Home (Observation Log, featured or recent, status strip), the Insights list and its filters, the category and tag pages, the series page (if you set `series`), related articles and previous/next on other articles, the RSS feed, the sitemap, the search index and the article's social-preview image.
+
+## Starter templates and `[FILL]` markers
+
+One starter file per type, with the headings that type needs and `[FILL: …]` hints:
+
+| Type | File |
+|---|---|
+| Guide | `_template-guide.mdx` |
+| Build note | `_template-build-note.mdx` (pre-set to the series "Building Durbeen in Public") |
+| Review | `_template-review.mdx` (scorecard and verdict included) |
+| Comparison | `_template-comparison.mdx` (comparison table included) |
+| Infographic | `_template-infographic.mdx` (text version and hero image included) |
+
+Files starting with `_` are never published. **A published article (`draft: false`) that still contains `[FILL]` fails the build**, so a half-written article cannot go live. The same markers are allowed while `draft: true`.
 
 ## Pre-publish checklist
 

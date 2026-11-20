@@ -20,6 +20,12 @@ export async function getArticles(): Promise<Article[]> {
     if (other) throw new Error(`Log number ${a.data.number} is used twice: ${other} and ${a.id}`);
     seen.set(a.data.number, a.id);
   }
+  // A leftover template marker must never be published. Drafts may still contain them.
+  for (const a of everything) {
+    if (!a.data.draft && /\[FILL\b/.test(`${a.body ?? ''}\n${JSON.stringify(a.data)}`)) {
+      throw new Error(`${a.id} still contains a [FILL] marker. Replace every [FILL] or keep the article as a draft.`);
+    }
+  }
   const all = everything.filter(({ data }) => includeDrafts || !data.draft);
   return all.sort(
     (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf() || b.data.number - a.data.number,
