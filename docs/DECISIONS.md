@@ -227,3 +227,11 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | The schema rejects a repository URL unless `repo: Public` (build fails otherwise); a private repo is shown as "REPOSITORY: PRIVATE", never linked | Founder: no private repo links | Trusting the writer |
 | Detail pages show a facts list (status, version, repository, built with) and the text from the project file; "built with" tools that have a Toolkit entry link to `/toolkit/#name` | Only facts; ties projects to the Toolkit (connection map) | A long case-study layout with nothing to put in it |
 | The Projects header reuses the approved mockup heading "From notes to working tools." and its first sentence; the second sentence ("Every project starts as a field note") is left out because it cannot be verified | No unverifiable claims | Copying the mockup text unchanged |
+
+## 2026-11-20: Toolkit (Phase 5)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| The Toolkit data is one file, `src/data/toolkit.ts` (groups, items with id, name and one line). Adding a tool means adding one entry; its anchor is `/toolkit/#id` | Simplest thing that works; the connection map says a new Toolkit item updates the page and any article or project that links to it | A content collection per tool |
+| Each line says what the tool is and where Durbeen uses it, using only facts the founder gave (daily use, learning, TokenSave uses MarkItDown and Hazel, this site runs on Astro, GitHub, Cloudflare). No opinions or experiences are invented. The lines for ChatGPT, Gemini and NotebookLM are deliberately plain until the founder adds a personal verdict | "One honest line each"; Editorial policy: no invented experience | Marketing blurbs |
+| No external links and no affiliate links on the page. The page says so | Founder: no affiliate links. Official-site links can be added later after checking each one | Linking every tool's website |
