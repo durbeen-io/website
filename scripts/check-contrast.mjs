@@ -44,6 +44,8 @@ const pairs = [
   ['--accent', '--surface', 'Links on panel', 4.5],
   ['--ink', '--surface-2', 'Text on placeholder or tab', 4.5],
   ['--muted', '--surface-2', 'Labels on placeholder or tab', 4.5],
+  ['--ui-border', '--paper', 'Border of an input or button on page', 3],
+  ['--ui-border', '--surface', 'Border of an input or button on panel', 3],
   ['--on-accent', '--accent', 'Text on accent button', 4.5],
   ['--on-band', '--band', 'Text on dark band', 4.5],
   ['--accent-on-dark', '--band', 'Accent on dark band', 4.5],

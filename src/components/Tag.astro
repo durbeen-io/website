@@ -1,0 +1,63 @@
+---
+// Tag. Two looks:
+//   hash (default) = "#GITHUB", plain monospace text, for article tags
+//   chip           = bordered label for type and level ("REVIEW", "BEGINNER")
+// With `href` it is a link and gets a 44px-high hit area (padding, so it still looks small).
+// Tags come from src/content/tags.json (Phase 4); this component only draws them.
+interface Props {
+  label: string;
+  href?: string;
+  variant?: 'hash' | 'chip';
+  onDark?: boolean;
+}
+const { label, href, variant = 'hash', onDark = false } = Astro.props;
+const text = variant === 'hash' ? `#${label}` : label;
+const Tag = href ? 'a' : 'span';
+---
+
+<Tag class:list={['tag', `tag-${variant}`, { link: !!href, 'on-dark': onDark }]} href={href}>{text}</Tag>
+
+<style>
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .tag-chip {
+    padding: 6px 8px;
+    border: 1px solid var(--ui-border);
+    color: var(--ink);
+  }
+  .on-dark {
+    color: var(--on-band);
+  }
+  .on-dark.tag-chip {
+    border-color: var(--on-band);
+  }
+  .link {
+    min-height: var(--touch-target); /* hit area only; the look stays small */
+    padding-block: 0;
+  }
+  .link.tag-chip {
+    padding: 0 12px;
+  }
+  .link:hover {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 0.3em;
+  }
+  .on-dark.link:hover {
+    color: var(--on-band);
+    text-decoration-color: var(--accent-on-dark);
+  }
+  .on-dark:focus-visible {
+    outline-color: var(--accent-on-dark);
+  }
+</style>

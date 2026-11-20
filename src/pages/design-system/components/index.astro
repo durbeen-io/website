@@ -1,0 +1,175 @@
+---
+// Internal component preview. Every shared component appears here with its variants and states.
+// Hidden from search engines. REMOVE before the Phase 8 launch (see docs/DECISIONS.md).
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Button from '../../../components/Button.astro';
+import Tag from '../../../components/Tag.astro';
+import SectionLabel from '../../../components/SectionLabel.astro';
+import ThemeToggle from '../../../components/ThemeToggle.astro';
+---
+
+<BaseLayout
+  title="Component preview · Durbeen"
+  description="Internal preview of every shared Durbeen component, with variants and states."
+  noindex
+>
+  <div class="container section">
+    <p class="label">[ DS ] COMPONENT PREVIEW · INTERNAL</p>
+    <h1 style="margin-top: var(--space-3)">Components</h1>
+    <p class="reading" style="margin-top: var(--space-4); font-size: 20px; color: var(--text-2)">
+      Each component is built once and shown here in every state. Tab through the page to check
+      keyboard access. <a href="/design-system/">Back to tokens</a>.
+    </p>
+    <div style="margin-top: var(--space-4)"><ThemeToggle /></div>
+
+    <nav aria-label="Components" class="toc">
+      <ul>
+        <li><a href="#button">Button</a></li>
+        <li><a href="#tag">Tag</a></li>
+        <li><a href="#section-label">SectionLabel</a></li>
+      </ul>
+    </nav>
+
+    <!-- BUTTON -->
+    <section id="button" aria-labelledby="button-h">
+      <hr />
+      <SectionLabel number={1}>BUTTON</SectionLabel>
+      <h2 id="button-h" class="h2-sm">Button</h2>
+
+      <p class="label-sm">PRIMARY · DEFAULT / HOVER / FOCUS / DISABLED</p>
+      <div class="row">
+        <Button href="/design-system/components/#button" arrow>Read the latest</Button>
+        <Button class="is-hover" href="/design-system/components/#button" arrow>Hover</Button>
+        <Button class="is-focus" href="/design-system/components/#button" arrow>Focus</Button>
+        <Button disabled>Disabled</Button>
+      </div>
+
+      <p class="label-sm">SECONDARY</p>
+      <div class="row">
+        <Button variant="secondary" href="/design-system/components/#button">Default</Button>
+        <Button variant="secondary" class="is-hover" href="/design-system/components/#button">Hover</Button>
+        <Button variant="secondary" class="is-focus" href="/design-system/components/#button">Focus</Button>
+        <Button variant="secondary" disabled>Disabled</Button>
+      </div>
+
+      <p class="label-sm">TEXT LINK</p>
+      <div class="row">
+        <Button variant="text" href="/design-system/components/#button">See projects</Button>
+        <Button variant="text" class="is-hover" href="/design-system/components/#button">Hover</Button>
+        <Button variant="text" class="is-focus" href="/design-system/components/#button">Focus</Button>
+        <Button variant="text" arrow href="/design-system/components/#button">With arrow</Button>
+      </div>
+
+      <p class="label-sm">INK · SUBMIT BUTTON (A REAL &lt;BUTTON&gt;, NOT A LINK)</p>
+      <div class="row">
+        <Button variant="ink" type="button">Subscribe</Button>
+        <Button variant="ink" class="is-hover" type="button">Hover</Button>
+      </div>
+
+      <p class="label-sm">ON A DARK BAND</p>
+      <div class="band">
+        <div class="row">
+          <Button onDark href="/design-system/components/#button" arrow>Read the latest</Button>
+          <Button onDark variant="ink" type="button">Subscribe</Button>
+          <Button onDark variant="secondary" href="/design-system/components/#button">Secondary</Button>
+          <Button onDark variant="text" href="/design-system/components/#button">See projects</Button>
+          <Button onDark disabled>Disabled</Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAG -->
+    <section id="tag" aria-labelledby="tag-h">
+      <hr />
+      <SectionLabel number={2}>TAG</SectionLabel>
+      <h2 id="tag-h" class="h2-sm">Tag</h2>
+
+      <p class="label-sm">HASH TAGS · PLAIN TEXT AND LINKS (44PX HIT AREA)</p>
+      <div class="row">
+        <Tag label="github" />
+        <Tag label="security" />
+        <Tag label="open-source" />
+        <Tag label="github" href="/design-system/components/#tag" />
+        <Tag label="security" href="/design-system/components/#tag" />
+      </div>
+
+      <p class="label-sm">CHIPS · TYPE AND LEVEL</p>
+      <div class="row">
+        <Tag variant="chip" label="Review" />
+        <Tag variant="chip" label="Guide" />
+        <Tag variant="chip" label="Beginner" />
+        <Tag variant="chip" label="Intermediate" href="/design-system/components/#tag" />
+      </div>
+
+      <p class="label-sm">ON A DARK BAND</p>
+      <div class="band">
+        <div class="row">
+          <Tag onDark label="github" />
+          <Tag onDark label="security" href="/design-system/components/#tag" />
+          <Tag onDark variant="chip" label="Review" />
+          <Tag onDark variant="chip" label="Advanced" href="/design-system/components/#tag" />
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION LABEL -->
+    <section id="section-label" aria-labelledby="sl-h">
+      <hr />
+      <SectionLabel number={3}>SECTION LABEL</SectionLabel>
+      <h2 id="sl-h" class="h2-sm">SectionLabel</h2>
+
+      <p class="label-sm">ON PAPER</p>
+      <div class="stack">
+        <SectionLabel number={0}>DISCOVER → EVALUATE → BUILD → SHARE</SectionLabel>
+        <SectionLabel number={1}>INSIGHTS</SectionLabel>
+        <SectionLabel number={3}>PROJECTS</SectionLabel>
+      </div>
+
+      <p class="label-sm">ON A DARK BAND</p>
+      <div class="band">
+        <SectionLabel number={2} onDark>METHOD</SectionLabel>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  section > .label-sm {
+    margin: var(--space-4) 0 var(--space-2);
+  }
+  .h2-sm {
+    margin-top: var(--space-2);
+    font-size: 36px;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+  }
+  .stack {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .band {
+    padding: var(--space-4);
+    background: var(--band);
+    color: var(--on-band);
+  }
+  .toc {
+    margin-top: var(--space-5);
+  }
+  .toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--space-3);
+  }
+  .toc a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+  }
+</style>
