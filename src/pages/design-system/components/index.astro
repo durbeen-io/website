@@ -8,6 +8,8 @@ import SectionLabel from '../../../components/SectionLabel.astro';
 import Header from '../../../components/Header.astro';
 import NewsletterForm from '../../../components/NewsletterForm.astro';
 import StatusStrip from '../../../components/StatusStrip.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import LogRow from '../../../components/LogRow.astro';
 import ThemeToggle from '../../../components/ThemeToggle.astro';
 ---
 
@@ -33,6 +35,8 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
         <li><a href="#header">Header</a></li>
         <li><a href="#newsletter">NewsletterForm</a></li>
         <li><a href="#footer">Footer</a></li>
+        <li><a href="#article-card">ArticleCard</a></li>
+        <li><a href="#log-row">LogRow</a></li>
       </ul>
     </nav>
 
@@ -183,6 +187,48 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
         The live Footer is at the bottom of this page and every other page. The live Header is at the top.
       </p>
     </section>
+
+    <!-- ARTICLE CARD -->
+    <section id="article-card" aria-labelledby="ac-h">
+      <hr />
+      <SectionLabel number={7}>ARTICLE CARD</SectionLabel>
+      <h2 id="ac-h" class="h2-sm">ArticleCard</h2>
+      <p class="reading" style="margin-top: var(--space-2)">
+        The whole card is one click target through the title link. Sample text only; real articles arrive in Phase 4.
+      </p>
+
+      <p class="label-sm">FEATURED (FIGURE SLOT EMPTY = RETICLE PLACEHOLDER)</p>
+      <ArticleCard
+        variant="featured"
+        number={12}
+        type="Repo review"
+        title="UI/UX Pro Max: what's actually inside a viral design skill"
+        description="We installed it, read every script, and tested it on a real website. What it does well, where it makes everything look the same, and how to use it safely."
+        href="/design-system/components/#article-card"
+        minutes={8}
+        date={new Date('2026-11-18')}
+      />
+
+      <p class="label-sm">DEFAULT · GRID OF THREE</p>
+      <div class="cards">
+        <ArticleCard number={11} type="Experiment" title="Converting any file to Markdown to cut AI token costs" description="A small automation that turns PDFs, Word and Excel files into clean text before they reach an AI model." href="/design-system/components/#article-card" minutes={6} />
+        <ArticleCard number={10} type="Guide" title="How to judge a GitHub repo before you trust it" description="Stars, licence, last commit, install scripts: a ten-minute checklist for anything you plan to run." href="/design-system/components/#article-card" minutes={11} />
+        <ArticleCard number={9} type="Build note" title="Building durbeen.io in public: week one" description="Why we threw away the first design, and what an independent lab website should actually do." href="/design-system/components/#article-card" minutes={5} />
+      </div>
+    </section>
+
+    <!-- LOG ROW -->
+    <section id="log-row" aria-labelledby="lr-h">
+      <hr />
+      <SectionLabel number={8}>LOG ROW</SectionLabel>
+      <h2 id="lr-h" class="h2-sm">LogRow</h2>
+      <p class="label-sm">IN AN OBSERVATION LOG PANEL (LONG TITLE WRAPS; TIME STAYS ON ONE LINE)</p>
+      <ul class="log">
+        <LogRow number={12} type="Repo review" title="UI/UX Pro Max: what's actually inside a viral design skill" minutes={8} href="/design-system/components/#log-row" />
+        <LogRow number={11} type="Experiment" title="Converting any file to Markdown to cut AI token costs" minutes={6} href="/design-system/components/#log-row" />
+        <LogRow number={10} type="Guide" title="How to judge a GitHub repo before you trust it" minutes={11} href="/design-system/components/#log-row" />
+      </ul>
+    </section>
   </div>
 </BaseLayout>
 
@@ -212,6 +258,18 @@ import ThemeToggle from '../../../components/ThemeToggle.astro';
   .frame {
     border: 1px solid var(--ui-border);
     background: var(--paper);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+  }
+  .log {
+    margin: 0;
+    padding: 0;
+    max-width: 520px;
+    border: 1px solid var(--ink);
+    background: var(--surface);
   }
   .toc {
     margin-top: var(--space-5);

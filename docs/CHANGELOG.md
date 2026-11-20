@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being set up (Phase 0).
 
 ### 2026-11-20
+- ArticleCard (featured and standard looks) and LogRow (one line of the Observation Log) components added to the hidden component preview page. They are not on any live page yet. Phase 2, PR 5.
 - Header and Footer now appear on every page. Header: logo, nav (Insights, Projects, Toolkit, About), theme toggle, and a MENU button on small screens. Footer: newsletter box, link groups, the large DURBEEN wordmark and the policy links. Phase 2, PR 4.
 - Newsletter form added. It is shown disabled ("SIGNUP OPENS AT LAUNCH") until Kit is connected in Phase 5.
 - Header, status strip, Button, Tag and SectionLabel components added, with a hidden component preview page at `/design-system/components/`. Phase 2, PRs 2-3.
