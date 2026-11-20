@@ -2,10 +2,12 @@
 
 [Pages CMS](https://pagescms.org) is a free editor that sits on top of GitHub. You write and edit articles in forms in the browser; each save is a change to the files in this repository. Nothing is added to the website itself (no server code, no package). The setup is one file, `.pages.yml`.
 
-## Status (21 Nov 2026): configured, not yet tried in the live app
+## Status: tested by the founder in the live app, except image upload
 
+- **Tested by the founder on a `cms-test` branch (works):** listing the `.mdx` files in Articles; editing an article (only the frontmatter was reformatted; the body text was untouched); creating an article from a starter template in **Start a new article**; deleting an article.
+- **Expect this when you edit:** saving in Pages CMS rewrites the frontmatter block (spacing and quoting can change). That is harmless, but it shows up as extra changed lines in the pull request. Read the body in the diff: it should not change.
+- **Not tested yet:** image upload (point 3 in "First test" below). Until it is tested, add hero images in the repository (`docs/PUBLISHING.md`), or test one upload on a sample article before relying on it. The path the CMS writes must be `./images/...`, and the build must pass.
 - **Checked against Pages CMS's documentation:** the file layout, the field types (dropdowns, tag picker with 3 to 5, optional scorecard, dates, image upload), the media folder, and the "keep unknown keys" setting. The file parses as YAML, and its 22 fields match the article schema.
-- **Not checked (needs your GitHub login, so it can only be tested in the app):** the four points in "First test" below.
 - **Why not Keystatic:** its admin needs server-side rendering, an Astro adapter and the React integration, and its own guides say it cannot be used with a fully static build. This site is static on purpose.
 
 ## Install (your step: this is a GitHub setting, so I do not do it)
@@ -54,13 +56,15 @@ Good to know:
 - Do not switch on GitHub's "Automatically delete head branches": it would delete your `content` branch after each merge (you would have to recreate it).
 - Pages CMS still cannot open the pull request for you. A small automatic step that opens and auto-merges it could be added later; it would be a new GitHub Action, so it needs your approval first.
 
-## First test (about 10 minutes, on the `content` branch)
+## First test (about 10 minutes, on a test branch)
 
-1. **MDX files appear.** Articles lists the sample articles (`sample-*`), and opening one fills every field and the text box. The template file `_template.mdx` should be hidden.
-2. **Saving changes nothing it should not.** Open `sample-review-lens-kit`, change nothing but one word in the text, save, then look at the change on GitHub. Only that word should differ. The `<Callout>` lines must be untouched, and the scorecard and `series` lines must be unchanged.
-3. **Image upload.** On a sample, upload a small PNG as the hero image, add alt text, save, and check the pull request's build passes (the path must be `./images/...`).
+Result so far: points 1, 2 and 4 passed (and delete works). **Only point 3, image upload, is still open.**
 
-4. **Starter forms.** In **Start a new article**, open **New Guide**: the form should be pre-filled (type Guide, the `[FILL]` text in the title, description and text), and creating one should add a new file in **Articles**. (Several entries share one folder, which the documentation does not rule out but does not promise.)
+1. **MDX files appear. (Passed.)** Articles lists the sample articles (`sample-*`), and opening one fills every field and the text box. The template file `_template.mdx` should be hidden.
+2. **Saving changes nothing it should not. (Passed: only the frontmatter was reformatted, the body was untouched.)** Open `sample-review-lens-kit`, change nothing but one word in the text, save, then look at the change on GitHub. Only that word should differ. The `<Callout>` lines must be untouched, and the scorecard and `series` lines must be unchanged.
+3. **Image upload. (NOT TESTED YET.)** On a sample, upload a small PNG as the hero image, add alt text, save, and check the pull request's build passes (the path must be `./images/...`).
+
+4. **Starter forms. (Passed: creating from a template works.)** In **Start a new article**, open **New Guide**: the form should be pre-filled (type Guide, the `[FILL]` text in the title, description and text), and creating one should add a new file in **Articles**. (Several entries share one folder, which the documentation does not rule out but does not promise.)
 
 If anything fails, send me a screenshot. Fallbacks: for point 4, open the starter files in the repository instead (`docs/PUBLISHING.md`); for point 2, change the text box to Pages CMS's rich-text editor (loses MDX components), or keep editing in the repository.
 
