@@ -1,0 +1,106 @@
+---
+// Toolkit: the tools the founder uses, grouped, one honest line each. Data lives in src/data/toolkit.ts.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ListHeader from '../components/ListHeader.astro';
+import { toolkit } from '../data/toolkit';
+---
+
+<BaseLayout
+  title="Toolkit: the tools Durbeen uses and is learning | Durbeen"
+  description="The AI assistants, Mac apps and developer tools Durbeen uses every day, and the skills it is still learning, with one honest line on each. No affiliate links."
+>
+  <ListHeader
+    label="TOOLKIT"
+    title="Toolkit"
+    intro="The tools I use, with one line on each. No affiliate links."
+  />
+
+  <div class="container groups">
+    {
+      toolkit.map((group, gi) => (
+        <section aria-labelledby={`group-${gi}`}>
+          <div class="head">
+            <h2 id={`group-${gi}`}>{group.title}</h2>
+            <p>{group.intro}</p>
+          </div>
+          <ul>
+            {group.items.map((item, i) => (
+              <li id={item.id} class:list={{ first: i === 0 }}>
+                <span class="name">{item.name}</span>
+                <span class="note">{item.note}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .groups {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(56px, 7vw, 96px);
+    padding-bottom: var(--space-section);
+  }
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-1) var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+  h2 {
+    font-size: clamp(32px, 3.6vw, 48px);
+    letter-spacing: -0.025em;
+  }
+  .head p {
+    margin: 0;
+    color: var(--text-2);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1) var(--space-4);
+    padding: var(--space-4) 0 var(--space-4) var(--space-2);
+    border-top: 1px solid var(--line);
+    border-left: 2px solid transparent;
+    list-style: none;
+    scroll-margin-top: var(--space-4);
+  }
+  li.first {
+    border-top-color: var(--ink);
+  }
+  li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  /* The tool linked from a project or an article is marked when you arrive on it */
+  li:target {
+    border-left-color: var(--accent);
+  }
+  .name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .note {
+    max-width: 640px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--text-2);
+  }
+  @media (min-width: 760px) {
+    li {
+      grid-template-columns: 240px minmax(0, 1fr);
+      align-items: baseline;
+    }
+  }
+</style>
