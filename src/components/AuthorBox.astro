@@ -1,0 +1,48 @@
+---
+// Author box: the end of every article. Name, a two-line bio and a link to the About page.
+// Not indexed by search (data-pagefind-ignore), or every article would match the words in the bio.
+import { author } from '../data/author';
+---
+
+<aside class="author" aria-label="About the author" data-pagefind-ignore>
+  <p class="label">ABOUT THE AUTHOR</p>
+  <p class="name">{author.name}</p>
+  <p class="bio">
+    {author.bio[0]}<br />
+    {author.bio[1]}
+  </p>
+  <a class="more" href="/about/">About Durbeen and me <span aria-hidden="true">→</span></a>
+</aside>
+
+<style>
+  .author {
+    margin-top: var(--space-7);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--ink);
+  }
+  .label {
+    margin: 0 0 var(--space-2);
+  }
+  .name {
+    margin: 0 0 var(--space-1);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .bio {
+    margin: 0 0 var(--space-2);
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--text-2);
+  }
+  .more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    min-height: var(--touch-target);
+    font-size: 15px;
+    font-weight: 500;
+  }
+</style>

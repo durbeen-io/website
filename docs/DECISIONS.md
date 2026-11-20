@@ -325,3 +325,11 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Thumbnails show the **whole image** (letterboxed in a 4:3 frame, `object-fit: contain`), never cropped. AVIF/WebP at 320/480/640 px | Cropping would cut off part of an infographic | Same-shape cropped cards |
 | The category filter reuses the Insights filter component (now works with any subset of its three groups, and says INFOGRAPHIC instead of ARTICLE on this page). All four categories are always offered, and an empty one says "No infographics in this category yet" | Founder asked for the four category buttons; one shared, tested component | A second filter script; hiding empty categories |
 | Tested with temporary infographics (removed afterwards): newest-first order, filter, empty state and reset, `?category=` deep link, card focus ring, tap opens the article with its text version, Insights filters unchanged | Not claimed without running | None |
+
+## 2026-11-21: Author box
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| An author box ends every article: label, name, the founder's two-line bio ("I&C engineer, 18+ years in Oil & Gas automation." / "Learning AI by building with it, in public.") and a link to `/about/`. No photo. The text lives in `src/data/author.ts`, which the box and the structured data both read | Founder's spec; one place to change | Hard-coding it in the template |
+| The Article JSON-LD `author` is now a Person with `name`, `url` (the About page), `jobTitle` ("Instrumentation & Controls engineer", from the founder's About text) and `description` (the bio). Checked on all 7 article pages | Founder asked for it; the required Google properties are unchanged | A bare name |
+| The author box, the related and previous/next blocks, the share rail and the contents list are excluded from search (`data-pagefind-ignore`). Measured: searching `lens-kit`, a word in only one article, went from 3 results to 1; the bio words match nothing | Without this, every article would match the bio and every article that links to another would match its title | Leaving the noise |
