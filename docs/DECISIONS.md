@@ -217,3 +217,13 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | **New article type `Infographic`**; all other types (including Visual) stay. An Infographic needs a `summary` (200+ characters) which the page shows as a "TEXT VERSION" box above the article; the build fails without it | Founder: the written text summary must be on the page, not only alt text (accessibility and search) | Alt text only |
 | **New series "AI for Engineers"**; the three existing series stay. Series are now a controlled list (`src/lib/taxonomy.ts`) so a typo cannot create a series; a series is never a category | Series pages are generated from the list | Free-text series |
 | Phase 5 gate revised: no packages, newsletter or free-download items; added legal pages marked preliminary, a list of every `[BRACKET]`, and a Phase 8 gate item: no bracket or "preliminary" marker left on any page | Matches the new scope; stops placeholders reaching launch | Leaving the old gate |
+
+## 2026-11-20: Projects (Phase 5)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Real projects only, using only the facts the founder gave: durbeen.io (in progress, public repo, link to `github.com/durbeen-io/website`, which exists), TokenSave (complete, v1.0, private repo, uses MarkItDown and Hazel) and a personal CV website (in progress, private repo) | No invented history or features | Placeholders |
+| New project status **Complete** (alongside In progress, Planned, Live) | TokenSave is finished but private, so "Live" would mislead | Calling it Live |
+| The schema rejects a repository URL unless `repo: Public` (build fails otherwise); a private repo is shown as "REPOSITORY: PRIVATE", never linked | Founder: no private repo links | Trusting the writer |
+| Detail pages show a facts list (status, version, repository, built with) and the text from the project file; "built with" tools that have a Toolkit entry link to `/toolkit/#name` | Only facts; ties projects to the Toolkit (connection map) | A long case-study layout with nothing to put in it |
+| The Projects header reuses the approved mockup heading "From notes to working tools." and its first sentence; the second sentence ("Every project starts as a field note") is left out because it cannot be verified | No unverifiable claims | Copying the mockup text unchanged |

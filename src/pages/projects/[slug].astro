@@ -1,0 +1,136 @@
+---
+// Project detail page: one per project in the `projects` collection. Only facts from the project file are shown.
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+const { project } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+const toolkitId = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+const toolkitNames = new Set(['MarkItDown', 'Hazel', 'Astro', 'Cloudflare', 'GitHub']); // items that have a Toolkit entry
+---
+
+<BaseLayout
+  title={`${d.title}: project | Durbeen`}
+  description={`${d.summary} Status: ${d.status.toLowerCase()}${d.version ? `, version ${d.version}` : ''}. A Durbeen project.`}
+>
+  <article class="container page">
+    <nav aria-label="Breadcrumb" class="crumbs">
+      <a href="/projects/">PROJECTS</a><span aria-hidden="true">/</span><span aria-current="page">{d.title.toUpperCase()}</span>
+    </nav>
+    <h1>{d.title}</h1>
+    <p class="dek">{d.summary}</p>
+
+    <dl class="facts">
+      <div><dt>STATUS</dt><dd>{d.status.toUpperCase()}</dd></div>
+      {d.version && <div><dt>VERSION</dt><dd>{d.version}</dd></div>}
+      {
+        d.repo && (
+          <div>
+            <dt>REPOSITORY</dt>
+            <dd>{d.repoUrl ? <a href={d.repoUrl} rel="noopener">{d.repoUrl.replace('https://', '')}</a> : d.repo.toUpperCase()}</dd>
+          </div>
+        )
+      }
+      {
+        d.uses.length > 0 && (
+          <div>
+            <dt>BUILT WITH</dt>
+            <dd>
+              {d.uses.map((u, i) => (
+                <>{i > 0 && ', '}{toolkitNames.has(u) ? <a href={`/toolkit/#${toolkitId(u)}`}>{u}</a> : u}</>
+              ))}
+            </dd>
+          </div>
+        )
+      }
+    </dl>
+
+    <div class="prose"><Content /></div>
+    <p class="back"><a href="/projects/">← All projects</a></p>
+  </article>
+</BaseLayout>
+
+<style>
+  .page {
+    padding-block: clamp(48px, 6vw, 96px) var(--space-section);
+  }
+  .crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: var(--space-5);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    color: var(--muted);
+  }
+  .crumbs a {
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    margin-block: -14px;
+  }
+  h1 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--fs-article-title);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+  .dek {
+    max-width: 720px;
+    margin: 0 0 var(--space-5);
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--text-2);
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-3);
+    max-width: 900px;
+    margin: 0 0 var(--space-6);
+    padding: var(--space-3) 0;
+    border-block: 1px solid var(--ink);
+  }
+  .facts div {
+    min-width: 0;
+  }
+  dt {
+    margin-bottom: 6px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label-sm);
+    letter-spacing: 0.04em;
+    color: var(--muted);
+  }
+  dd {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+  dd a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+  }
+  .prose {
+    max-width: var(--reading-width);
+    font-size: var(--fs-body-article);
+    line-height: var(--lh-article);
+    color: var(--text);
+  }
+  .back {
+    margin: var(--space-5) 0 0;
+  }
+  .back a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+  }
+</style>

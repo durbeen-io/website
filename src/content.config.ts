@@ -62,12 +62,22 @@ const insights = defineCollection({
 // Projects (Home rows now; the Projects list and detail pages come in Phase 5). Real projects only.
 const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/[^_]*.{md,mdx}' }),
-  schema: z.object({
-    title: z.string().min(1),
-    summary: z.string().min(1),
-    status: z.enum(projectStatuses),
-    order: z.number().int().default(100),
-  }),
+  schema: z
+    .object({
+      title: z.string().min(1),
+      summary: z.string().min(1),
+      status: z.enum(projectStatuses),
+      order: z.number().int().default(100),
+      version: z.string().optional(), // e.g. "1.0"
+      repo: z.enum(['Private', 'Public']).optional(),
+      repoUrl: z.string().url().optional(), // only for a Public repo; a private repo is never linked
+      uses: z.array(z.string()).default([]), // tools it is built with
+    })
+    .superRefine((d, ctx) => {
+      if (d.repoUrl && d.repo !== 'Public') {
+        ctx.addIssue({ code: 'custom', path: ['repoUrl'], message: 'repoUrl is only allowed when repo is Public (private repos are never linked)' });
+      }
+    }),
 });
 
 export const collections = { insights, projects };

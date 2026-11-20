@@ -150,7 +150,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 | 1 | Home | `/` | Mockup **A, Instrument Lab** | 3 |
 | 2 | Insights (all articles) | `/insights/` | List with filters by category, type and level (style from mockup B) | 4 |
 | 3 | About | `/about/` | Mockup B's calm hero and pacing; founder story | 5 |
-| 4 | Projects (list) | `/projects/` | Dark header band (mockup B) + project rows with status labels | 5 |
+| 4 | Projects (list) | `/projects/` | Dark header band (mockup B) + project rows with status labels. Statuses: In progress · Planned · Complete · Live | 5 |
 | 5 | Resources | `/resources/` | Curated repos, docs and learning links | 5 |
 | 6 | Toolkit | `/toolkit/` | The tools the founder actually uses, grouped, each with a one-line honest note; affiliate-ready | 5 |
 | 7 | ~~Work with Durbeen~~ | `/work-with-durbeen/` | **DEFERRED, not cancelled** (20 Nov 2026): Durbeen starts as a blog. The plan (2–3 fixed-price service packages with scope, deliverables, price or "from" price, timeline, plus an email link) is kept in section 13 and `docs/DECISIONS.md`. Not built, not in the nav or footer | – |
