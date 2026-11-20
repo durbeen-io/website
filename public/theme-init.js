@@ -6,3 +6,5 @@ try {
   var t = localStorage.getItem('theme');
   if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
 } catch (e) {}
+// Tells the CSS that scripts run, so the mobile menu can start collapsed (without JS the nav stays open).
+document.documentElement.classList.add('js');
