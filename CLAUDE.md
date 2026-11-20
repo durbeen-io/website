@@ -433,7 +433,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 
 ## Status
 - **Current phase:** 5 (Remaining pages) **BUILT and gate-reviewed** (20 Nov 2026), plus enhancements (21 Nov 2026). Open founder items: Email Routing for hello@durbeen.io, the Cloudflare build error behind the 404 page, enabling Pages CMS and GitHub auto-merge, the analytics token, LinkedIn. Phase 6 has not started
-- **Latest change:** 21 Nov 2026: Home Method section copy and layout (PR #52); founder-led voice recorded in section 1 and DECISIONS, Home hero intro, status strip, footer line, meta description and Organization description updated (not yet aligned: About, OG tag line, RSS description, footer "Write to us at")
+- **Latest change:** 21 Nov 2026: Home Method section copy and layout (PR #52); founder-led voice recorded in section 1 and DECISIONS, Home hero intro, status strip, footer line, meta description and Organization description updated; About, OG label, RSS description and footer aligned in a follow-up PR
 - **Last session:** 21 Nov 2026: answers, Infographics gallery, author box, analytics (prepared), email guide, Pages CMS and templates (PRs #43 to #51)
 - **Next session goal:** resolve the founder items above, then Phase 6 (3 to 5 real articles, drafted by Claude from the founder's notes and edited by the founder), only when the founder says to start.
 
