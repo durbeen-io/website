@@ -1,0 +1,3 @@
+# Cloudflare static-assets redirects (real 301s). Old slug of post N°001.
+/insights/building-a-website-with-ai /insights/welcome-to-durbeen/ 301
+/insights/building-a-website-with-ai/ /insights/welcome-to-durbeen/ 301
