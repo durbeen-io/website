@@ -4,6 +4,8 @@ export const types = ['Review', 'Comparison', 'Guide', 'Experiment', 'Build Note
 // Series: ongoing sequences of articles (not categories). A controlled list, so a typo cannot create a new series.
 export const series = ['Building Durbeen in Public', 'GitHub Mastery', 'Repo Reviews'] as const;
 export const levels = ['Beginner', 'Intermediate', 'Advanced'] as const;
+/** Display switch: false hides every level badge, level text and the level filter. The `level` field stays in the content. */
+export const showLevel = false;
 export const projectStatuses = ['In progress', 'Planned', 'Complete', 'Live'] as const;
 
 /** URL part for a category: "GitHub & Open Source" -> "github-open-source". Also used for series names. */

@@ -4,7 +4,7 @@
 interface Props {
   number: number;
   type: string;
-  level: string;
+  level?: string;
   category: string;
   title: string;
   description: string;
@@ -13,14 +13,15 @@ interface Props {
   first?: boolean;
 }
 const { number, type, level, category, title, description, minutes, href, first = false } = Astro.props;
+import { showLevel } from '../lib/taxonomy';
 const n = String(number).padStart(3, '0');
 ---
 
-<li class:list={['row', { first }]} data-article data-category={category} data-type={type} data-level={level}>
+<li class:list={['row', { first }]} data-article data-category={category} data-type={type} data-level={showLevel ? level : undefined}>
   <a href={href}>
     <span class="meta">
       <span>{n} · {type.toUpperCase()}</span>
-      <span>{level.toUpperCase()} · {minutes} MIN</span>
+      <span>{showLevel && level ? `${level.toUpperCase()} · ` : ''}{minutes} MIN</span>
     </span>
     <span class="main">
       <span class="title">{title}</span>

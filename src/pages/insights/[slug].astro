@@ -5,6 +5,7 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import TOC from '../../components/TOC.astro';
 import Tag from '../../components/Tag.astro';
+import { showLevel } from '../../lib/taxonomy';
 import Callout from '../../components/Callout.astro';
 import VerdictBox from '../../components/VerdictBox.astro';
 import ReadingProgress from '../../components/ReadingProgress.astro';
@@ -100,7 +101,7 @@ const jsonLd = [
       </div>
       <div class="chips">
         <Tag variant="chip" label={d.type.toUpperCase()} />
-        <Tag variant="chip" label={d.level.toUpperCase()} />
+        {showLevel && d.level && <Tag variant="chip" label={d.level.toUpperCase()} />}
         {d.tags.map((t) => <Tag label={t.toUpperCase()} href={tagHref(t)} />)}
       </div>
     </header>

@@ -6,7 +6,7 @@ import InsightsFilters from '../../components/InsightsFilters.astro';
 import ArticleList from '../../components/ArticleList.astro';
 import Button from '../../components/Button.astro';
 import { getArticles } from '../../lib/articles';
-import { categories, types, levels } from '../../lib/taxonomy';
+import { categories, types, levels, showLevel } from '../../lib/taxonomy';
 
 const articles = await getArticles();
 // Only offer choices that lead somewhere: values that at least one article uses (in the brief's order).
@@ -16,7 +16,7 @@ const groups = [
   { name: 'category' as const, label: 'CATEGORY', options: used('category', categories) },
   { name: 'type' as const, label: 'TYPE', options: used('type', types) },
   { name: 'level' as const, label: 'LEVEL', options: used('level', levels) },
-];
+].filter((g) => showLevel || g.name !== 'level');
 ---
 
 <BaseLayout
