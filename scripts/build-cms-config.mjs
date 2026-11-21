@@ -59,9 +59,9 @@ ${D('type')}        label: Type
         options:
           values: ${list(types)}
       - name: level
-${D('level')}        label: Level
+${D('level')}        label: Level (hidden on the site; optional)
         type: select
-        required: true
+        required: false
         options:
           values: ${list(levels)}
       - name: tags

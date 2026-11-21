@@ -29,7 +29,7 @@ const insights = defineCollection({
       number: z.number().int().positive(),
       category: z.enum(categories),
       type: z.enum(types),
-      level: z.enum(levels),
+      level: z.preprocess(blank, z.enum(levels).optional()),
       tags: z.array(z.string()).min(3, 'use 3-5 tags').max(5, 'use 3-5 tags'),
       series: z.preprocess(blank, z.enum(series).optional()),
       // Infographic articles: the written version of the image (blank line between paragraphs). Shown on the page.

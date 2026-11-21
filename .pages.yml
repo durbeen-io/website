@@ -63,9 +63,9 @@ content:
         options:
           values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
       - name: level
-        label: Level
+        label: Level (hidden on the site; optional)
         type: select
-        required: true
+        required: false
         options:
           values: ["Beginner", "Intermediate", "Advanced"]
       - name: tags
@@ -216,9 +216,9 @@ content:
               values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
           - name: level
             default: "Beginner"
-            label: Level
+            label: Level (hidden on the site; optional)
             type: select
-            required: true
+            required: false
             options:
               values: ["Beginner", "Intermediate", "Advanced"]
           - name: tags
@@ -389,9 +389,9 @@ content:
               values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
           - name: level
             default: "Beginner"
-            label: Level
+            label: Level (hidden on the site; optional)
             type: select
-            required: true
+            required: false
             options:
               values: ["Beginner", "Intermediate", "Advanced"]
           - name: tags
@@ -565,9 +565,9 @@ content:
               values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
           - name: level
             default: "Beginner"
-            label: Level
+            label: Level (hidden on the site; optional)
             type: select
-            required: true
+            required: false
             options:
               values: ["Beginner", "Intermediate", "Advanced"]
           - name: tags
@@ -743,9 +743,9 @@ content:
               values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
           - name: level
             default: "Beginner"
-            label: Level
+            label: Level (hidden on the site; optional)
             type: select
-            required: true
+            required: false
             options:
               values: ["Beginner", "Intermediate", "Advanced"]
           - name: tags
@@ -909,9 +909,9 @@ content:
               values: ["Review", "Comparison", "Guide", "Experiment", "Build Note", "Insight", "Visual", "Infographic"]
           - name: level
             default: "Beginner"
-            label: Level
+            label: Level (hidden on the site; optional)
             type: select
-            required: true
+            required: false
             options:
               values: ["Beginner", "Intermediate", "Advanced"]
           - name: tags
