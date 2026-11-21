@@ -33,3 +33,6 @@ CLAUDE.local.md
 
 # Lighthouse CI output
 .lighthouseci/
+
+# Local drop folder for files waiting to be moved into the site
+inbox/

@@ -7,6 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
 ### 2026-11-21
+- Post N°001 is now a welcome post, "Welcome to Durbeen" (type Insight), with a new hero image. Its address changed to `/insights/welcome-to-durbeen/`; the old address redirects (301) through `public/_redirects`. The description was lengthened to 126 characters because the build requires 120 to 160.
 - Post N°001, "I built my own website with Claude Code. Here is what broke.", is published (`draft: false`) on the workers.dev site, which is still hidden from search engines. A published article that contains `[CHECK]` now fails the build, like `[FILL]`.
 - First real article drafted (Phase 6, post 1): "I built my own website with Claude Code. Here is what broke.", N°001, Build Note in Building Durbeen. It stays `draft: true`, has no hero image yet and contains `[CHECK]` notes for the founder, so nothing is public.
 - Pages CMS tested in the live app by the founder (listing, editing, creating from a template and deleting all work; editing reformats only the frontmatter). Image upload is not tested yet. `docs/CMS.md` updated.
