@@ -7,7 +7,7 @@ User-visible changes, newest first. Dates are when the change was made.
 Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
 ### 2026-11-21
-- First real article drafted (Phase 6, post 1): "How I built Durbeen with AI", N°008, Build Note in Building Durbeen. It stays `draft: true`, has no hero image yet and contains `[CHECK]` notes for the founder, so nothing is public.
+- First real article drafted (Phase 6, post 1): "I built my own website with Claude Code. Here is what broke.", N°001, Build Note in Building Durbeen. It stays `draft: true`, has no hero image yet and contains `[CHECK]` notes for the founder, so nothing is public.
 - Pages CMS tested in the live app by the founder (listing, editing, creating from a template and deleting all work; editing reformats only the frontmatter). Image upload is not tested yet. `docs/CMS.md` updated.
 - Unknown addresses now show the on-brand 404 page (with a real 404 status) instead of Cloudflare's plain "Not found", for visitors using a browser.
 - Home page voice: Durbeen is now described as a founder-led independent lab run by an instrumentation & controls engineer testing AI on real work. New hero intro, status strip, footer line, meta description and Organization structured data. About (title, description, first line), the social-image label, the RSS description and the footer ("Write to me at:") follow the same wording.
