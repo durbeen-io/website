@@ -20,10 +20,14 @@ export async function getArticles(): Promise<Article[]> {
     if (other) throw new Error(`Log number ${a.data.number} is used twice: ${other} and ${a.id}`);
     seen.set(a.data.number, a.id);
   }
-  // A leftover template marker must never be published. Drafts may still contain them.
+  // A leftover template or review marker must never be published. Drafts may still contain them.
   for (const a of everything) {
-    if (!a.data.draft && /\[FILL\b/.test(`${a.body ?? ''}\n${JSON.stringify(a.data)}`)) {
-      throw new Error(`${a.id} still contains a [FILL] marker. Replace every [FILL] or keep the article as a draft.`);
+    if (a.data.draft) continue;
+    const text = `${a.body ?? ''}\n${JSON.stringify(a.data)}`;
+    for (const marker of ['FILL', 'CHECK']) {
+      if (new RegExp(`\\[${marker}\\b`).test(text)) {
+        throw new Error(`${a.id} still contains a [${marker}] marker. Resolve every [${marker}] or keep the article as a draft.`);
+      }
     }
   }
   const all = everything.filter(({ data }) => includeDrafts || !data.draft);
