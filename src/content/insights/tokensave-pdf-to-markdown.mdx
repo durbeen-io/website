@@ -1,0 +1,75 @@
+---
+title: "Convert PDFs to Markdown before you upload them to Claude"
+description: "PDF pages cost more tokens than plain text. Here is how I convert files to Markdown first with MarkItDown and TokenSave, and when to upload the PDF anyway."
+number: 2
+category: AI & AI Tools
+type: Guide
+tags: [tokens-and-cost, markitdown, markdown, hazel, documents]
+author: Fahad Ehsan
+publishDate: 2026-11-21
+# heroImage: ./images/PLACEHOLDER.png   # upload through Pages CMS; heroAlt is required once it is set
+# heroAlt: ""
+draft: true
+---
+
+When you upload a PDF to Claude, you pay for more than the words. Every page is read as an image and as text, so a long PDF uses up your usage fast. I fixed this with a small Mac workflow called TokenSave. This guide explains the idea, and shows a simple version you can try without my setup.
+
+## Why PDFs cost more
+
+Anthropic's documentation says each PDF page is processed in two ways: as an image, and as the text extracted from it. A page typically uses 1,500 to 3,000 tokens. You can read the details in the [PDF support docs](https://platform.claude.com/docs/en/build-with-claude/pdf-support).
+
+That is useful when the page has a chart or a diagram. It is a waste when the page is only words.
+
+## The fix: convert to Markdown first
+
+Markdown is plain text. There is no page image, only the words, with simple marks for headings, lists and tables. So I convert the file to Markdown first, and upload the `.md` file instead of the PDF.
+
+For the conversion I use MarkItDown. It is free and made by Microsoft. It turns PDF, Word, Excel and PowerPoint files into Markdown.
+
+[CHECK: add one real before and after example, for instance a PDF's page count and the estimated tokens of its Markdown version. The log I have has no page counts, so I did not use a number.]
+
+## How TokenSave works
+
+TokenSave version 1.0 is finished, and it is my own Mac workflow. It runs in four steps:
+
+1. **Drop.** I drop a file into a topic folder inside an Inbox folder in Google Drive.
+2. **Convert.** Hazel, a paid Mac automation app, notices the new file and runs my script, `tokensave.sh`. The script calls MarkItDown.
+3. **Clean.** The script removes the junk (more on that below) and adds a source header at the top.
+4. **Ready.** The Markdown file is saved in a Ready folder. The original is archived. A Mac notification shows an estimated token count, and a line is added to a CSV log.
+
+If a PDF is a scan with no text in it, there is nothing to convert. The script moves that file to a Needs-OCR folder instead.
+
+## What it cleans, and what it never removes
+
+The script removes:
+
+- page numbers
+- table-of-contents lines
+- repeated footers
+- empty table rows
+- extra blank lines
+
+The safety rule is simple: **when unsure, a line is kept.** A repeated line is only removed if it looks like a footer. A little junk left in the file is better than a lost sentence.
+
+## Limits, and when to upload the PDF anyway
+
+- **Images and diagrams are lost.** Markdown keeps the words only.
+- **Scanned PDFs need OCR first.** The script flags them, but it does not read them.
+- **The token count is an estimate.** It is the number of characters divided by four. It is a guide, not a bill.
+
+So when the charts, diagrams or layout matter, do not convert. Upload the PDF. That is what the extra tokens are for.
+
+## Try it yourself
+
+You do not need Hazel or my script. This is the simplest version: install MarkItDown, then convert one file.
+
+```bash
+pip install 'markitdown[all]'
+markitdown my-file.pdf -o my-file.md
+```
+
+[CHECK: I have not run these exact commands for this guide, and the TokenSave repository is private, so there is no README to copy from. Please confirm the install and run commands against the MarkItDown README before publishing.]
+
+Then open `my-file.md` and read it. Check that the text looks right, and upload that file to Claude instead of the PDF. For a rough token estimate, count the characters and divide by four.
+
+If it works well on one file, you can automate it later. That is all TokenSave is: this one command, plus folders and a cleanup script.
