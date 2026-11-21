@@ -365,3 +365,9 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 |---|---|---|
 | `"not_found_handling": "404-page"` added to `wrangler.jsonc` on a new branch (`fix-404-handling`). Cloudflare build passed; on the preview a browser-style request to an unknown address returned our 404 page with status 404 | The earlier failure log read `A preview with name 'phase-5/404' already exists [code 100338]` (from `wrangler preview`, beta): a branch-name clash, not the setting | Leaving the setting out |
 | Workers Builds is **not** a required check on `main`; it stays that way. Fix for the clash is a fresh branch name per pull request (and for Pages CMS, delete the branch after merge); no Cloudflare setting was changed | A failed preview then cannot block a merge, and the clash is a beta-tool quirk, not a site fault | Making it required; changing Cloudflare settings |
+
+## 2026-11-21: `[CHECK]` publish guard
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| A published article (`draft: false`) that contains `[CHECK]` fails the build, the same as `[FILL]`; drafts may contain it. Tested both ways | `[CHECK]` marks a guess the founder must confirm; it must never go live | Checking by hand |
