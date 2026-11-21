@@ -1,0 +1,75 @@
+---
+title: "How I built Durbeen with AI: the plan, the changes and what broke"
+description: "A true build story: why I moved from Lovable to Claude Code, Astro and Cloudflare, what broke on the way, and five lessons for building a website with AI."
+number: 8
+category: Building Durbeen
+type: Build Note
+level: Beginner
+tags: [claude-code, astro, cloudflare, github, building-in-public]
+series: Building Durbeen in Public
+author: Fahad Ehsan
+publishDate: 2026-11-21
+# heroImage: ./images/PLACEHOLDER.png   # upload through Pages CMS; heroAlt is required once it is set
+# heroAlt: ""
+draft: true
+---
+
+This site is built, but not launched. Between 18 and 21 November 2026 it went from an empty folder to a working blog: 55 merged pull requests, a design system, a search box, an RSS feed and a 404 page. I built it with Claude Code. This is how it went, including the parts that broke.
+
+## Why I did not stay on Lovable
+
+My plan was to build Durbeen on Lovable. I had already built my CV website there, so it was the obvious first choice.
+
+Then I changed my mind. I wanted more control. I also wanted a site I own for the long term, with the content as plain files in my own repository. [CHECK: is this the full reason? My guess for the rest: a blog will grow for years, and I did not want to depend on one platform's rules and pricing.]
+
+So the stack became Claude Code, Astro and Cloudflare. Articles are Markdown files. The site is static. Nothing runs on a server.
+
+## The name and the logo
+
+The first brand name was SlateWorks. I dropped it because the name was already in use in the US.
+
+The new name is Durbeen. It comes from *doorbeen*, the Urdu and Hindi word for telescope. I spelled it with "ur" so it does not read as "door". The tagline is "Discover. Build. Innovate." durbeen.com was taken, so I chose durbeen.io and registered it on Cloudflare.
+
+The logo changed too. My early idea was a metallic emblem. I dropped it and chose a flat, bold D with a small star in signal orange. [CHECK: why did the metallic one fail? My guess: it looked heavy and did not survive at favicon size.] The design rules now say it plainly: no gold, no metallic effects, no gradients, no glow.
+
+## How I worked with Claude Code
+
+I did not start by asking for a website. I started with a written brief: the design rules, the colours, the page list, the tech choices and the order of work. Claude Code reads that file at the start of every session.
+
+Then I split the work into phases: setup, design system, components, home page, blog engine, remaining pages. Each phase ended with a gate, a list of things that must pass before the next phase begins. Every change was one pull request, and every pull request ran automatic checks: build, colour contrast, accessibility (axe), Lighthouse and an internal link check. Four of those checks are required before anything can merge into `main`.
+
+The pace was fast. Phases 0 and 1 were done on 19 November. Phases 2 to 5 were all logged on 20 November.
+
+That speed came after the foundations, not before. In the first phases I approved the steps. Once the checks and the rules were solid, I let Claude Code run several phases on its own and merge a pull request whenever all the checks passed. [CHECK: how did that feel, and what made you trust it? My guess: it was a relief, because the checks, not my attention, were the safety net.] I kept a short list of things it must always stop and ask about: new packages, anything that costs money, account or hosting settings, and going live.
+
+One honest note. At first, a separate fresh session was meant to review each phase. Later, I let the builder session run its own gate reviews. That is weaker. A builder grading its own work will miss things.
+
+## What broke, and how it got fixed
+
+**The 404 page.** I built an on-brand 404 page. To make Cloudflare serve it, I added one setting, `not_found_handling`. The Cloudflare build failed right after I added it, so I blamed the setting and took it out. The build went green again. But the setting was not the problem. The error text was only visible in the Cloudflare dashboard, and when I read it, it said: `A preview with name 'phase-5/404' already exists`. The same branch name had been built twice. Nothing was wrong with my code. I added the setting back in a new pull request, and the page now works. I also wrote the clash down in the deployment notes, so it is easy to spot next time.
+
+**The link checker.** The link checker needed two configuration fixes for the version I used. I also turned off its anchor checking, because it gave false alarms on links to a section of a page.
+
+**Duplicate article numbers.** Every article has a log number, and two articles with the same number fail the build. During the Phase 4 review I found a gap: draft articles were not counted. A draft could share a number with a published article. I fixed it so drafts count too.
+
+**A missing space.** A line break before a link in one file made the text read "See" and the link joined together with no space. I fixed it, then scanned all 47 built pages for the same mistake. There were no others.
+
+**Pages CMS.** I can now publish posts myself through Pages CMS, without Claude. Listing, editing, creating from a template and deleting all work. Saving rewrites the frontmatter, which adds extra changed lines to a pull request. I have not yet tested image upload. [CHECK: is this still true by the time you publish?]
+
+## Where I changed direction
+
+- **Hosting:** I started with Cloudflare Pages. On 19 November I moved to Cloudflare Workers, because Cloudflare's own documentation now recommends Workers for new projects.
+- **Mockups:** where the mockups and the written brief disagreed, the brief won. For example, the mockup had a teal hover colour. The brief had already retired teal, so it was not used.
+- **Scope:** on 20 November I cut the plan down to a blog first. Anything that was not needed to publish good articles was deferred.
+
+## Five takeaways
+
+1. **Write the brief first.** A file with your design rules, tech choices and working rules stops the AI from guessing. It also stops you from changing your mind halfway.
+2. **Set the gates and the checks before you build.** Automatic checks do not get tired. I trusted the merge button because the checks sat behind it. One thing I did not test: whether a failing check really blocks a merge. I skipped that test.
+3. **One small pull request at a time.** A small change is easy to read, easy to check and easy to undo. Fifty-five of them make a clear history.
+4. **Read the real error before you believe the first explanation.** The 404 setting looked guilty. It was innocent. The real answer was in the log.
+5. **Give the AI more freedom in steps, and keep the stop rules.** Start by approving everything. Hand over more once the checks have proved themselves. Keep a progress log, so every new session knows where things stand.
+
+## What is next
+
+The site is not live on durbeen.io yet. First come the real articles. This is the first one.
