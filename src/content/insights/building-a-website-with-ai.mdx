@@ -1,7 +1,7 @@
 ---
-title: "How I built Durbeen with AI: the plan, the changes and what broke"
+title: "I built my own website with Claude Code. Here is what broke."
 description: "A true build story: why I moved from Lovable to Claude Code, Astro and Cloudflare, what broke on the way, and five lessons for building a website with AI."
-number: 8
+number: 1
 category: Building Durbeen
 type: Build Note
 level: Beginner
@@ -20,7 +20,7 @@ This site is built, but not launched. Between 18 and 21 November 2026 it went fr
 
 My plan was to build Durbeen on Lovable. I had already built my CV website there, so it was the obvious first choice.
 
-Then I changed my mind. I wanted more control. I also wanted a site I own for the long term, with the content as plain files in my own repository. [CHECK: is this the full reason? My guess for the rest: a blog will grow for years, and I did not want to depend on one platform's rules and pricing.]
+Then I changed my mind. I wanted more control. I also wanted a site I own for the long term, with the content as plain files in my own repository. I plan to run this site for at least three years, so I wanted to own it properly from day one.
 
 So the stack became Claude Code, Astro and Cloudflare. Articles are Markdown files. The site is static. Nothing runs on a server.
 
@@ -30,7 +30,7 @@ The first brand name was SlateWorks. I dropped it because the name was already i
 
 The new name is Durbeen. It comes from *doorbeen*, the Urdu and Hindi word for telescope. I spelled it with "ur" so it does not read as "door". The tagline is "Discover. Build. Innovate." durbeen.com was taken, so I chose durbeen.io and registered it on Cloudflare.
 
-The logo changed too. My early idea was a metallic emblem. I dropped it and chose a flat, bold D with a small star in signal orange. [CHECK: why did the metallic one fail? My guess: it looked heavy and did not survive at favicon size.] The design rules now say it plainly: no gold, no metallic effects, no gradients, no glow.
+The logo changed too. My early idea was a metallic emblem. I wanted the brand to look flat, professional and a bit unconventional. The metallic emblem didn't fit that, so I moved to a simple bold D with a star, in signal orange. The design rules now say it plainly: no gold, no metallic effects, no gradients, no glow.
 
 ## How I worked with Claude Code
 
@@ -40,7 +40,7 @@ Then I split the work into phases: setup, design system, components, home page, 
 
 The pace was fast. Phases 0 and 1 were done on 19 November. Phases 2 to 5 were all logged on 20 November.
 
-That speed came after the foundations, not before. In the first phases I approved the steps. Once the checks and the rules were solid, I let Claude Code run several phases on its own and merge a pull request whenever all the checks passed. [CHECK: how did that feel, and what made you trust it? My guess: it was a relief, because the checks, not my attention, were the safety net.] I kept a short list of things it must always stop and ask about: new packages, anything that costs money, account or hosting settings, and going live.
+That speed came after the foundations, not before. In the first phases I approved the steps. Once the checks and the rules were solid, I let Claude Code run several phases on its own and merge a pull request whenever all the checks passed. By then the checks were the safety net. Nothing merged unless all four required checks passed. I kept a short list of things it must always stop and ask about: new packages, anything that costs money, account or hosting settings, and going live.
 
 One honest note. At first, a separate fresh session was meant to review each phase. Later, I let the builder session run its own gate reviews. That is weaker. A builder grading its own work will miss things.
 
@@ -54,7 +54,7 @@ One honest note. At first, a separate fresh session was meant to review each pha
 
 **A missing space.** A line break before a link in one file made the text read "See" and the link joined together with no space. I fixed it, then scanned all 47 built pages for the same mistake. There were no others.
 
-**Pages CMS.** I can now publish posts myself through Pages CMS, without Claude. Listing, editing, creating from a template and deleting all work. Saving rewrites the frontmatter, which adds extra changed lines to a pull request. I have not yet tested image upload. [CHECK: is this still true by the time you publish?]
+**Pages CMS.** I can now publish posts myself through Pages CMS, without Claude. Listing, editing, creating from a template and deleting all work. Saving rewrites the frontmatter, which adds extra changed lines to a pull request. I have not yet tested image upload. [CHECK]
 
 ## Where I changed direction
 

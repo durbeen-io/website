@@ -4,7 +4,7 @@ The weekly routine. Goal: **under 10 minutes** from a finished draft to live.
 
 > **Ready to use.** Tested on 20 Nov 2026 with a real pull request: from `git push` to a live Cloudflare preview URL serving the new article, its image, the feed, the sitemap and search took **95 seconds**; the automatic checks take about 4 minutes. Writing is the slow part, not publishing.
 >
-> **Sample articles:** six `sample-*.mdx` files (all `draft: true`) test the site and are deleted in Phase 6. Do not reuse their log numbers 1 to 6 until then (two articles with the same number fail the build, drafts included).
+> **Sample articles:** seven `sample-*.mdx` files (all `draft: true`) test the site and are deleted in Phase 6. Their log numbers are 101 to 107, so they never clash with real articles (two articles with the same number fail the build, drafts included).
 >
 > **Drafts:** `npm run dev` shows drafts. A normal build hides them. To test a build with drafts, run `DURBEEN_INCLUDE_DRAFTS=1 npm run build`. To try search locally, run a build and then `npm run preview` (search needs the built index).
 
