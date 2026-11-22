@@ -1,0 +1,109 @@
+---
+title: "AI stopped answering questions. Now it does the work."
+description: "Until recently you asked AI questions. Now you can hand it a job. What changed, what can go wrong, and how to try it safely, with a real example."
+number: 3
+category: AI & AI Tools
+type: Insight
+tags: [ai-agents, automation, workflows, building-in-public]
+author: Fahad Ehsan
+publishDate: 2026-11-22
+# heroImage: ./images/n003-hero.png   # copy the final from ~/Projects/images/ai/posts/n003/; heroAlt is required once it is set
+# heroAlt: ""
+draft: true
+---
+
+Until recently, you asked AI how to do something. Now you can ask it to do the thing.
+
+That sounds like a small change. It is not. It changes who does the work, and who checks it.
+
+## From instructing to delegating
+
+Ask a chatbot, "How do I plan a family trip?" and you get a list of tips. The work is still yours.
+
+Now try this: "Plan the trip, compare the options, put it in a table, and ask me before booking anything."
+
+That is not a question. It is a job. Some tools can now take jobs like this. Not every tool can do it safely today, and the trip is only an example.
+
+## What an AI agent is
+
+A chatbot answers one message and waits.
+
+An agent works toward a goal. It decides its own next steps, uses tools, checks the result and carries on.
+
+Anthropic, the company that makes Claude, draws a useful line. In a workflow, code fixes the steps. In an agent, the model directs its own process and tool use. You can read more in [Anthropic's guide](https://www.anthropic.com/engineering/building-effective-agents).
+
+A simple way to think about it: AI tools sit on a scale, from ones that only answer to ones that act with more independence. That is my way of seeing it, not an official classification.
+
+{/* INFOGRAPHIC 1: uncomment when the final is in ./images/
+![Chatbot versus agent. You say: a chatbot gets "How do I plan a family trip?", an agent gets "Plan the trip, compare options, ask me before booking." It does: the chatbot answers once, then waits; the agent plans steps, uses tools, checks and continues. Who checks: with a chatbot you do all the work; with an agent you set limits and check the result.](./images/n003-1-chatbot-vs-agent.png "Chatbot vs agent")
+*/}
+
+## How fast it is moving
+
+METR, a research group, measures how long a task AI agents can finish. That length has grown exponentially for about six years, doubling roughly every seven months ([METR](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)).
+
+For recent models, METR's newer estimates put the doubling at around three to four months ([METR, January 2026](https://metr.org/blog/2026-01-29-time-horizon-1-1/)).
+
+Two cautions. It is measured mostly on software tasks. And the faster pace may partly reflect which tasks are measured. I won't guess where it goes next.
+
+## A real example: this website
+
+I built Durbeen with an AI agent. I described what I wanted the site to be. The work was broken into phases. The AI wrote the code and ran automated checks: build, accessibility, speed and broken links.
+
+Then came the part that surprised me. On 22 November, before going live, it checked the domain and ran the pre-launch checks. It found the legal pages still marked "preliminary" and security headers missing. It stopped and asked for my decision instead of pushing ahead.
+
+I decided, and the site went live.
+
+Another time I pasted in a request meant for a different website. It noticed the mismatch, asked which project I meant, and changed nothing.
+
+> Sometimes the most useful thing an agent can do is stop and ask.
+
+{/* INFOGRAPHIC 2: uncomment when the final is in ./images/
+![How this website was built, in six steps. I described: what I wanted the site to be. AI planned: broke the work into phases. AI built: wrote the code. AI checked: ran automated tests. AI stopped: asked me before going live. I decided: I approved, and it went live. Footer: stopping to ask is a feature.](./images/n003-2-how-durbeen-was-built.png "How this website was built")
+*/}
+
+## Access and permission
+
+Not every action carries the same risk. There are five levels:
+
+- **Read:** look at a document.
+- **Edit:** change a file.
+- **Publish:** put something online.
+- **Send:** message someone as you.
+- **Spend:** pay with your money.
+
+The more an agent can touch, the more a mistake costs.
+
+On this site, the agent worked freely on code. But it had to ask me before costs, accounts, settings, DNS changes and going live.
+
+{/* INFOGRAPHIC 3: uncomment when the final is in ./images/
+![The more it can touch, the more a mistake costs. A ladder of five levels: read a document, edit a file, publish something online, send a message as you, spend your money. For read and edit, the agent can work freely. For publish, send and spend, a human approves first.](./images/n003-3-permission-ladder.png "The permission ladder")
+*/}
+
+## Capable is not reliable
+
+An agent can get nine steps right and the tenth wrong, and the result is still wrong.
+
+It happened here. Once it wrote install commands from general knowledge instead of checking the official README. I had to verify them.
+
+Another time it was too careful. My instruction said "no numbers", so it removed a number that was correctly sourced.
+
+The wider picture is similar. Gartner predicts that over 40% of agentic AI projects will be canceled by the end of 2027, because of costs, unclear value or weak risk controls. It also estimates that only about 130 of the thousands of "agentic AI" vendors are real ([Gartner](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027)). Those are predictions, not facts.
+
+## What this means for you
+
+Gartner also predicts that 40% of enterprise apps will include task-specific AI agents by the end of 2026, up from less than 5% in 2025 ([Gartner](https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025)). If that is right, you will meet agents inside tools you already use.
+
+The skill that grows in value is not typing clever prompts. It is describing the outcome clearly, setting limits, deciding what to delegate and what to keep, and checking the result.
+
+You still need real knowledge. Without it, you cannot tell good output from bad.
+
+To try it safely:
+
+- Start with one small, low-risk task.
+- Set checkpoints where it must ask you.
+- Always verify the result.
+
+## One last thing
+
+You do not need to be a programmer to try this. Start small, stay in charge, and stay curious.
