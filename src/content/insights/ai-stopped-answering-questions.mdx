@@ -42,13 +42,13 @@ A simple way to think about it: AI tools sit on a scale, from ones that only ans
 
 METR, a research group, measures how long a task AI agents can finish. That length has grown exponentially for about six years, doubling roughly every seven months ([METR](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/)).
 
-For recent models, METR's newer estimates put the doubling at around three to four months ([METR, January 2026](https://metr.org/blog/2026-01-29-time-horizon-1-1/)).
+METR's own data suggests this has sped up since 2023, to roughly every four months ([METR, January 2026](https://metr.org/blog/2026-01-29-time-horizon-1-1/)).
 
 Two cautions. It is measured mostly on software tasks. And the faster pace may partly reflect which tasks are measured. I won't guess where it goes next.
 
 ## A real example: this website
 
-I built Durbeen with an AI agent. I described what I wanted the site to be. The work was broken into phases. The AI wrote the code and ran automated checks: build, accessibility, speed and broken links.
+I built Durbeen with an AI agent. I described what I wanted the site to be. We planned the work together, in phases, outside the coding tool. The AI wrote the code and ran automated checks: build, accessibility, speed and broken links.
 
 Then came the part that surprised me. On 22 November, before going live, it checked the domain and ran the pre-launch checks. It found the legal pages still marked "preliminary" and security headers missing. It stopped and asked for my decision instead of pushing ahead.
 
@@ -59,12 +59,12 @@ Another time I pasted in a request meant for a different website. It noticed the
 > Sometimes the most useful thing an agent can do is stop and ask.
 
 {/* INFOGRAPHIC 2: uncomment when the final is in ./images/
-![How this website was built, in six steps. I described: what I wanted the site to be. AI planned: broke the work into phases. AI built: wrote the code. AI checked: ran automated tests. AI stopped: asked me before going live. I decided: I approved, and it went live. Footer: stopping to ask is a feature.](./images/n003-2-how-durbeen-was-built.png "How this website was built")
+![How this website was built, in six steps. I described: what I wanted the site to be. We planned: broke the work into phases. AI built: wrote the code. AI checked: ran automated tests. AI stopped: asked me before going live. I decided: I approved, and it went live. Footer: stopping to ask is a feature.](./images/n003-2-how-durbeen-was-built.png "How this website was built")
 */}
 
 ## Access and permission
 
-Not every action carries the same risk. There are five levels:
+Here is a general way to think about risk. Not every action an agent takes costs the same if it goes wrong. Five levels, from low to high:
 
 - **Read:** look at a document.
 - **Edit:** change a file.
@@ -72,12 +72,12 @@ Not every action carries the same risk. There are five levels:
 - **Send:** message someone as you.
 - **Spend:** pay with your money.
 
-The more an agent can touch, the more a mistake costs.
+The more an agent can touch, the more a mistake costs. At the low levels, the agent works and you review. At the high levels, you approve first.
 
-On this site, the agent worked freely on code. But it had to ask me before costs, accounts, settings, DNS changes and going live.
+This site is one example. The agent worked on code, but its edits still went through pull requests and automated checks. It had to ask me before costs, accounts, settings, DNS changes and going live. It did not need to touch every level.
 
 {/* INFOGRAPHIC 3: uncomment when the final is in ./images/
-![The more it can touch, the more a mistake costs. A ladder of five levels: read a document, edit a file, publish something online, send a message as you, spend your money. For read and edit, the agent can work freely. For publish, send and spend, a human approves first.](./images/n003-3-permission-ladder.png "The permission ladder")
+![The more it can touch, the more a mistake costs. A ladder of five levels: read a document, edit a file, publish something online, send a message as you, spend your money. For read and edit: agent works, you review. For publish, send and spend, a human approves first.](./images/n003-3-permission-ladder.png "The permission ladder")
 */}
 
 ## Capable is not reliable
