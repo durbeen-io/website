@@ -20,7 +20,6 @@ const files = [];
 let found = 0;
 for (const f of files) {
   const page = relative(dist, f);
-  if (page.startsWith('design-system')) continue; // internal pages, removed before launch
   const text = readFileSync(f, 'utf8')
     .replace(/<script[\s\S]*?<\/script>/g, ' ')
     .replace(/<style[\s\S]*?<\/style>/g, ' ')

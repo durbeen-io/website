@@ -1,4 +1,6 @@
-# Pre-launch: ask search engines not to index the site.
-# REMOVE this rule at the Phase 8 launch (see docs/DEPLOYMENT.md).
+# Security headers for every page. CSP and HSTS are Phase 7 follow-ups (see CLAUDE.md).
 /*
-  X-Robots-Tag: noindex
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

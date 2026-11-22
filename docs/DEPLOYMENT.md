@@ -8,7 +8,7 @@ Hosting is **Cloudflare Workers with static assets**, built from GitHub by Worke
 
 | Branch | Where it goes |
 |---|---|
-| `main` | Production build, deployed to `durbeen-website.durbeen.workers.dev`. **durbeen.io is not connected until Phase 8** |
+| `main` | Production build, deployed to **https://durbeen.io** (custom domain in `wrangler.jsonc`). The production `workers.dev` address is switched off; branch previews still use `workers.dev` |
 | Any other branch or pull request | A preview build with its own preview URL. Cloudflare posts it as a comment on the pull request |
 
 - The site is static. The build produces plain files in `dist/`; there is no server code.
@@ -36,9 +36,9 @@ Names only. Never put values in this repo.
 |---|---|
 | None yet | |
 
-## Before launch: remove the noindex rule
+## Search engines
 
-`public/_headers` currently sends `X-Robots-Tag: noindex` on every response, so search engines ignore the placeholder site. **Remove that rule at Phase 8**, or Google will never index durbeen.io. Replace the file with the real security headers (Phase 7).
+The pre-launch `noindex` rule was removed from `public/_headers` for the Phase 8 launch. Only the 404 page and empty category pages are `noindex` (a meta tag).
 
 ## Automatic checks (from Phase 2)
 
@@ -50,7 +50,7 @@ Run by GitHub Actions on every pull request: build, frontmatter validation, brok
 |---|---|---|
 | `Build and contrast` | `npm ci`, colour contrast, build. **Required** on `main` | `npm run check:contrast && npm run build` |
 | `Accessibility (axe)` | axe (WCAG 2.0/2.1 A and AA) on every built page, light and dark, at 375px. Any violation fails | `npm run build && npm run check:axe` |
-| `Lighthouse (mobile)` | Lighthouse CI, median of 3 runs. Performance, Accessibility and Best Practices must be 90+. **SEO is not asserted until Phase 8**, when `noindex` is removed (see `lighthouserc.json`) | `npm run build && npm run check:lighthouse` |
+| `Lighthouse (mobile)` | Lighthouse CI, median of 3 runs. Performance, Accessibility and Best Practices must be 90+. **SEO is asserted from Phase 8**, when `noindex` is removed (see `lighthouserc.json`) | `npm run build && npm run check:lighthouse` |
 | `Internal links (lychee)` | Checks internal links in `dist/` (offline, no external links), built with the sample drafts so article, tag and series pages are checked. Config: `lychee.toml` | needs lychee installed; CI is the normal route |
 
 - axe and Lighthouse use the Chrome already installed on the machine; no browser is downloaded.
@@ -64,6 +64,8 @@ Run by GitHub Actions on every pull request: build, frontmatter validation, brok
 Set in `public/_headers`: Content-Security-Policy, Strict-Transport-Security, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, `frame-ancestors 'none'`. Verify with an external header scanner before launch.
 
 ## Domain (Phase 8)
+
+`wrangler.jsonc` lists `durbeen.io` and `www.durbeen.io` as custom domains. `www` is sent to durbeen.io with a 301 by a Cloudflare Redirect Rule (a dashboard rule, because a static site cannot redirect by hostname).
 
 durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTTPS only ("Always Use HTTPS"). Connected only after launch approval.
 

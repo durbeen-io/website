@@ -4,7 +4,7 @@ User-visible changes, newest first. Dates are when the change was made.
 
 ## Unreleased
 
-Nothing is live on durbeen.io yet. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
+durbeen.io go-live is prepared (custom domain in `wrangler.jsonc`, noindex removed, internal design-system pages removed); it is live once the pull request is merged and Cloudflare is set up. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
 ### 2026-11-21
 - Second article drafted (Phase 6, post 2): a Guide on converting PDFs to Markdown before uploading to Claude, with TokenSave (N°002). It stays `draft: true`, has no hero image and two `[CHECK]` notes, so nothing is public.

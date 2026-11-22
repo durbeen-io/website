@@ -9,9 +9,17 @@
     // Answer unknown addresses with dist/404.html and a 404 status.
     "not_found_handling": "404-page"
   },
-  // Serve on the free *.workers.dev address, and give every branch a preview URL.
+  // Phase 8: serve on durbeen.io (the main address) and www.durbeen.io. Cloudflare creates the
+  // DNS records and certificates for custom domains. A Redirect Rule in the dashboard sends
+  // www to durbeen.io with a 301 (static assets cannot redirect by hostname).
+  "routes": [
+    { "pattern": "durbeen.io", "custom_domain": true },
+    { "pattern": "www.durbeen.io", "custom_domain": true }
+  ],
+  // The production *.workers.dev address is switched off: a site with no Worker script cannot
+  // redirect it, and two public copies would split search ranking. Branch previews stay on.
   // Set explicitly so a Wrangler default can never change them silently.
-  "workers_dev": true,
+  "workers_dev": false,
   "preview_urls": true,
   // Do not send Wrangler usage data to Cloudflare.
   "send_metrics": false,

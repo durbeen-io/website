@@ -35,7 +35,6 @@ Requires Node.js LTS (currently v26).
 | `brand/` | Logo and icon files (master copies; the deployed copies are in `public/`) |
 | `src/styles/` | Design tokens (`tokens.css`), fonts, base styles |
 | `src/components/`, `src/layouts/` | `Logo`, `ThemeToggle`, `BaseLayout` |
-| `/design-system/` (page) | Internal preview of all tokens, hidden from search; removed before launch |
 | `scripts/` | Small helper scripts, e.g. the contrast check |
 | `design-reference/` | Approved design mockups (visual references only) |
 | `docs/PUBLISHING.md` | How to publish an article |
