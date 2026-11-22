@@ -1,6 +1,6 @@
 ---
-title: "Convert PDFs to Markdown before you upload them to Claude"
-description: "PDF pages cost more tokens than plain text. Here is how I convert files to Markdown first with MarkItDown and TokenSave, and when to upload the PDF anyway."
+title: "Why PDFs cost more tokens, and the simple fix I use"
+description: "PDF pages cost more tokens than plain text. Here is the simple fix I use: convert files to Markdown first with MarkItDown, and when to upload the PDF anyway."
 number: 2
 category: AI & AI Tools
 type: Guide
@@ -16,7 +16,7 @@ When you upload a PDF to Claude, you pay for more than the words. Every page is 
 
 ## Why PDFs cost more
 
-Anthropic's documentation says each PDF page is processed in two ways: as an image, and as the text extracted from it. A page typically uses 1,500 to 3,000 tokens. You can read the details in the [PDF support docs](https://platform.claude.com/docs/en/build-with-claude/pdf-support).
+Anthropic's documentation says each PDF page is processed in two ways: as an image, and as the text extracted from it. You pay for both. You can read the details in the [PDF support docs](https://platform.claude.com/docs/en/build-with-claude/pdf-support).
 
 That is useful when the page has a chart or a diagram. It is a waste when the page is only words.
 
@@ -25,8 +25,6 @@ That is useful when the page has a chart or a diagram. It is a waste when the pa
 Markdown is plain text. There is no page image, only the words, with simple marks for headings, lists and tables. So I convert the file to Markdown first, and upload the `.md` file instead of the PDF.
 
 For the conversion I use MarkItDown. It is free and made by Microsoft. It turns PDF, Word, Excel and PowerPoint files into Markdown.
-
-[CHECK: add one real before and after example, for instance a PDF's page count and the estimated tokens of its Markdown version. The log I have has no page counts, so I did not use a number.]
 
 ## How TokenSave works
 
@@ -53,7 +51,7 @@ The safety rule is simple: **when unsure, a line is kept.** A repeated line is o
 
 ## Limits, and when to upload the PDF anyway
 
-- **Images and diagrams are lost.** Markdown keeps the words only.
+- **Images and diagrams are lost.** Markdown keeps the words only. I tested it on a short networking lab guide that was full of screenshots. The text converted cleanly, but every screenshot was lost, including the command outputs shown as images. If the pictures matter, upload the PDF.
 - **Scanned PDFs need OCR first.** The script flags them, but it does not read them.
 - **The token count is an estimate.** It is the number of characters divided by four. It is a guide, not a bill.
 
@@ -65,11 +63,15 @@ You do not need Hazel or my script. This is the simplest version: install MarkIt
 
 ```bash
 pip install 'markitdown[all]'
-markitdown my-file.pdf -o my-file.md
+markitdown path-to-file.pdf -o document.md
 ```
 
-[CHECK: I have not run these exact commands for this guide, and the TokenSave repository is private, so there is no README to copy from. Please confirm the install and run commands against the MarkItDown README before publishing.]
+MarkItDown needs Python 3.10 or newer. If your Mac has an older Python (macOS ships 3.9), install it with uv instead:
 
-Then open `my-file.md` and read it. Check that the text looks right, and upload that file to Claude instead of the PDF. For a rough token estimate, count the characters and divide by four.
+```bash
+uv tool install --python 3.12 'markitdown[all]'
+```
+
+Then open `document.md` and read it. Check that the text looks right, and upload that file to Claude instead of the PDF. For a rough token estimate, count the characters and divide by four.
 
 If it works well on one file, you can automate it later. That is all TokenSave is: this one command, plus folders and a cleanup script.
