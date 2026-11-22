@@ -266,6 +266,8 @@ scorecard:                 # Review type only
 5. Republish on dev.to, Medium and LinkedIn with a canonical link back to durbeen.io (after the original is live and indexed).
 6. The goal is under 10 minutes from a finished draft to live.
 
+**Source images:** Source images live in ~/Projects/images/ai/posts/<nXXX>/. Copy only finals into the repo at publish time. Never copy anything from ~/Projects/images/islamic/, ~/Projects/images/general/ or ~/Projects/images/_inbox/ into this repo.
+
 ## 10. Technical stack
 
 | Layer | Choice |
@@ -440,6 +442,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - **Next session goal:** resolve the founder items above, then Phase 6 (3 to 5 real articles, drafted by Claude from the founder's notes and edited by the founder), only when the founder says to start.
 
 ## Completed
+- 22 Nov 2026 (Phase 6, post 3 drafted): N°003 "AI stopped answering questions. Now it does the work." (`ai-stopped-answering-questions.mdx`, Insight, AI & AI Tools, `draft: true`, about 765 words). Three infographic placeholders and the hero are commented out (finals come from `~/Projects/images/ai/posts/n003/` at publish time). METR's newer 3 to 4 month doubling taken from metr.org (Time Horizon 1.1, Jan 2026). Next free real number: 4.
 - 22 Nov 2026 (Phase 8, founder dashboard steps done): the founder created the www.durbeen.io to https://durbeen.io 301 Redirect Rule (Cloudflare template) and turned on Always Use HTTPS. Both checked by the founder on a phone (not re-tested by the builder).
 - 22 Nov 2026 (Phase 8 verified live): https://durbeen.io returns 200 with a valid Let's Encrypt certificate (to Feb 2027); N°001 and N°002 and their hero images return 200; sitemap (all durbeen.io), RSS and robots.txt use durbeen.io; the four security headers are on the homepage; the production workers.dev address now returns 404 (disabled, not redirected); `/design-system/` returns 404. Still waiting on the founder: www Redirect Rule and Always Use HTTPS; Search Console.
 - 22 Nov 2026 (Phase 8, go-live, PR #66): founder approved. Custom domains `durbeen.io` and `www.durbeen.io` in `wrangler.jsonc`; production `workers.dev` switched off (`workers_dev: false`; a site with no Worker script cannot redirect it; branch previews stay); pre-launch `noindex` removed; four security headers added in `public/_headers` (X-Content-Type-Options, Referrer-Policy, X-Frame-Options, Permissions-Policy); `/design-system/` pages and `docs/pr-screenshots` deleted; Lighthouse asserts SEO on every page except the deliberately noindex 404. Legal pages: founder review pending; remove PRELIMINARY after review. **Founder does in the dashboard:** www to durbeen.io Redirect Rule (301) and Always Use HTTPS. **Phase 7 follow-ups still open:** Content-Security-Policy (must allow `'wasm-unsafe-eval'` for Pagefind), HSTS, browser testing (Chrome, Safari, Firefox, iPhone/Android), uptime monitoring, INCIDENT.md rollback test, external header scan. Verification results are in the next entry.
