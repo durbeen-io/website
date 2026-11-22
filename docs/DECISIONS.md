@@ -371,3 +371,9 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Decision | Reason | Rejected |
 |---|---|---|
 | A published article (`draft: false`) that contains `[CHECK]` fails the build, the same as `[FILL]`; drafts may contain it. Tested both ways | `[CHECK]` marks a guess the founder must confirm; it must never go live | Checking by hand |
+
+## 2026-11-23: positioning text and author bio
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| The site's positioning text (home and RSS descriptions, Organization description, About title and meta description), the author box bio ("Founder of Durbeen. Learning AI by building with it, in public.") and the structured-data `jobTitle` ("Founder, Durbeen") now present Durbeen as a practical AI lab. The founder's career background is kept only in the About page body | The lab and what it tests should lead; the background is context for the About page, not the headline everywhere | Keeping the engineering background in every description and bio |
