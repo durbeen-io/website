@@ -1,4 +1,3 @@
-# Pre-launch: the site also sends X-Robots-Tag: noindex (public/_headers). Remove that header at Phase 8.
 User-agent: *
 Allow: /
 

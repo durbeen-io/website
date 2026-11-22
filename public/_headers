@@ -1,4 +1,2 @@
-# Pre-launch: ask search engines not to index the site.
-# REMOVE this rule at the Phase 8 launch (see docs/DEPLOYMENT.md).
-/*
-  X-Robots-Tag: noindex
+# Security headers are added in Phase 7 (see docs/DEPLOYMENT.md).
+# The pre-launch "X-Robots-Tag: noindex" rule was removed at the Phase 8 launch.

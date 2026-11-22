@@ -24,14 +24,13 @@ const populated = populatedCategoryPaths();
 
 // https://astro.build/config
 export default defineConfig({
-  // Canonical, sitemap and RSS links are built from this. durbeen.io is not connected until Phase 8.
+  // Canonical, sitemap and RSS links are built from this.
   site: 'https://durbeen.io',
   integrations: [
     mdx(),
     sitemap({
       filter: (page) => {
         const path = new URL(page).pathname;
-        if (path.startsWith('/design-system/')) return false; // internal pages, removed before launch
         const cat = path.match(/^\/insights\/category\/([^/]+)\/$/);
         if (cat && !populated.has(cat[1])) return false; // empty category pages are noindex
         return true;
