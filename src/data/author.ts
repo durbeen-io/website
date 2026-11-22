@@ -3,5 +3,5 @@
 export const author = {
   name: 'Fahad Ehsan',
   jobTitle: 'Instrumentation & Controls engineer',
-  bio: ['I&C engineer, 18+ years in Oil & Gas automation.', 'Learning AI by building with it, in public.'],
+  bio: ['Founder of Durbeen.','Learning AI by building with it, in public.'],
 } as const;
