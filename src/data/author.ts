@@ -2,6 +2,6 @@
 // both read this. The bio is the founder's own text (supplied 21 Nov 2026): two short lines, no photo, no contact details.
 export const author = {
   name: 'Fahad Ehsan',
-  jobTitle: 'Instrumentation & Controls engineer',
+  jobTitle: 'Founder, Durbeen',
   bio: ['Founder of Durbeen.','Learning AI by building with it, in public.'],
 } as const;
