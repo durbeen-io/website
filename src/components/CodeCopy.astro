@@ -54,8 +54,17 @@
         btn.textContent = 'COPIED';
         status.textContent = 'Code copied';
       } catch {
-        btn.textContent = 'PRESS CTRL+C';
-        status.textContent = 'Could not copy automatically';
+        // The browser blocked the clipboard: select the code so the keyboard shortcut works, and say which one.
+        const sel = window.getSelection();
+        if (sel) {
+          const range = document.createRange();
+          range.selectNodeContents(pre);
+          sel.removeAllRanges();
+          sel.addRange(range);
+        }
+        const mac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+        btn.textContent = mac ? 'PRESS ⌘C' : 'PRESS CTRL+C';
+        status.textContent = `Could not copy automatically. The code is selected: press ${mac ? '⌘C' : 'Ctrl+C'}.`;
       }
       setTimeout(() => {
         btn.textContent = 'COPY';

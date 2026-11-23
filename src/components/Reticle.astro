@@ -1,6 +1,7 @@
 ---
 // The telescope reticle: the site's only illustration style (brief section 5).
 // Decorative (hidden from screen readers). `target` adds the small "TARGET 012" tag next to the dot.
+// The tag sits in the gap between the outer rings (about 55 units wide at this height), so no ring line crosses it.
 interface Props {
   target?: number;
   size?: number;
@@ -16,5 +17,5 @@ const label = target !== undefined ? `TARGET ${String(target).padStart(3, '0')}`
   <path d="M160 0v120M160 200v120M0 160h120M200 160h120" stroke="var(--ink)" stroke-width="1" />
   <path d="M152 160h16M160 152v16" stroke="var(--accent)" stroke-width="2" />
   <circle cx="228" cy="104" r="6" fill="var(--accent)" />
-  {label && <text x="240" y="96" font-family="var(--font-mono)" font-size="10" fill="var(--muted)">{label}</text>}
+  {label && <text x="241" y="96" font-family="var(--font-mono)" font-size="8" fill="var(--muted)">{label}</text>}
 </svg>

@@ -200,7 +200,8 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     };
 
     btn.addEventListener('click', () => set(btn.getAttribute('aria-expanded') !== 'true'));
-    header.addEventListener('keydown', (e) => {
+    // Listen on the whole page, not just the header, so Esc works wherever the focus is.
+    document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') {
         set(false);
         btn.focus();

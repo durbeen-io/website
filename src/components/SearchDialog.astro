@@ -10,6 +10,8 @@
       <label for="site-search" class="label">SEARCH ARTICLES</label>
       <div class="field">
         <input id="site-search" type="search" name="q" autocomplete="off" spellcheck="false" placeholder="Search" />
+        <!-- A real submit button makes the form valid HTML. Hidden and out of the Tab order; results still update as you type. -->
+        <button type="submit" class="visually-hidden" tabindex="-1">Search</button>
         <button type="button" class="close" data-search-close>CLOSE</button>
       </div>
     </form>
