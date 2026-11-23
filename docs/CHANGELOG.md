@@ -4,6 +4,11 @@ User-visible changes, newest first. Dates are when the change was made.
 
 ## Unreleased
 
+### 2026-11-23 (repo privacy and CSP)
+- Planned commercial pages and prices are no longer described in the public brief or decision log; they are kept in private notes. Founder career details are removed from the docs (the About page is unchanged).
+- The unused tag `engineering` is removed (31 tags).
+- The report-only Content-Security-Policy also allows Cloudflare Web Analytics (`static.cloudflareinsights.com`, `cloudflareinsights.com`).
+
 ### 2026-11-23 (headers and configuration)
 - New headers on every page: Strict-Transport-Security (`max-age=300`, a safe start) and a Content-Security-Policy in report-only mode (nothing is blocked yet).
 - Preview URLs are switched off in `wrangler.jsonc`.
@@ -34,7 +39,7 @@ durbeen.io go-live is prepared (custom domain in `wrangler.jsonc`, noindex remov
 - First real article drafted (Phase 6, post 1): "I built my own website with Claude Code. Here is what broke.", N°001, Build Note in Building Durbeen. It stays `draft: true`, has no hero image yet and contains `[CHECK]` notes for the founder, so nothing is public.
 - Pages CMS tested in the live app by the founder (listing, editing, creating from a template and deleting all work; editing reformats only the frontmatter). Image upload is not tested yet. `docs/CMS.md` updated.
 - Unknown addresses now show the on-brand 404 page (with a real 404 status) instead of Cloudflare's plain "Not found", for visitors using a browser.
-- Home page voice: Durbeen is now described as a founder-led independent lab run by an instrumentation & controls engineer testing AI on real work. New hero intro, status strip, footer line, meta description and Organization structured data. About (title, description, first line), the social-image label, the RSS description and the footer ("Write to me at:") follow the same wording.
+- Home page voice: Durbeen is now described as a founder-led independent lab run by an engineer testing AI on real work. New hero intro, status strip, footer line, meta description and Organization structured data. About (title, description, first line), the social-image label, the RSS description and the footer ("Write to me at:") follow the same wording.
 - Home page Method section: new heading "Test before you trust." and new text for the four steps. Steps sit in one row on desktop, two by two on tablet and stacked on phone, so step 04 never sits alone. More space under each step so the divider line is not read as an underline.
 - Step-by-step guide for forwarding hello@durbeen.io to Gmail with Cloudflare Email Routing (`docs/EMAIL.md`). Nothing was switched on.
 - Analytics prepared but switched off: a Cloudflare Web Analytics loader that does nothing until a token is added, runs only on durbeen.io and never for visitors who send Do Not Track. The Privacy page text follows the same setting. Step-by-step instructions to get the token are in `docs/ANALYTICS.md`.
@@ -52,7 +57,7 @@ durbeen.io go-live is prepared (custom domain in `wrangler.jsonc`, noindex remov
 - About page (89 words; three `[BRACKET]` placeholders for the founder: field, years of experience, why Durbeen started) and a Resources page with eleven hand-checked links. `hello@durbeen.io` appears as plain text. A new command, `npm run check:brackets`, lists any placeholder still on the built site. Phase 5.
 - Toolkit page: ten tools used daily (ChatGPT, Claude, Gemini, NotebookLM, Hazel, MarkItDown, GitHub, Git, Cloudflare, macOS) and three being learned (TypeScript, Bash, Astro), one line each, no affiliate links. Project pages link to the tools they use. Phase 5.
 - Projects: a Projects page (dark header band and rows with status labels) and one page per project: durbeen.io (in progress), TokenSave (complete, version 1.0, private repository) and a personal CV website (in progress, private repository). Home project rows now link to them. Phase 5.
-- Scope change: Durbeen starts as a blog. The newsletter form and the Work with Durbeen link are removed from the footer (both deferred); the footer now shows `hello@durbeen.io` as plain text and a Resources link. New article type **Infographic** (the page shows a written text version) and a new series **AI for Engineers**; series are now a controlled list.
+- Scope change: Durbeen starts as a blog. The newsletter form and one planned page link are removed from the footer (both deferred); the footer now shows `hello@durbeen.io` as plain text and a Resources link. New article type **Infographic** (the page shows a written text version) and a new series **AI for Engineers**; series are now a controlled list.
 - Two articles with the same log number now fail the build even if one is a draft. Phase 4 gate review.
 - Social-preview images: every article gets its own 1200x630 image (number, type, reading time, title, logo, reticle), and every other page uses a default one. Phase 4, PR 7.
 - RSS feed (`/rss.xml`) and sitemap (`/sitemap-index.xml`), plus a `robots.txt` that points to the sitemap. The sitemap leaves out the internal design-system pages and empty category pages. Phase 4, PR 6.
@@ -72,7 +77,7 @@ durbeen.io go-live is prepared (custom domain in `wrangler.jsonc`, noindex remov
 - Newsletter form added. It is shown disabled ("SIGNUP OPENS AT LAUNCH") until Kit is connected in Phase 5.
 - Header, status strip, Button, Tag and SectionLabel components added, with a hidden component preview page at `/design-system/components/`. Phase 2, PRs 2-3.
 - Automatic checks added: every pull request now runs the build and the colour-contrast check, and the contrast check covers the new border colour for inputs and buttons. Phase 2, PR 1.
-- Nav and footer links to Insights, Projects, Toolkit, About, Work with Durbeen, RSS and the policy pages lead to pages that do not exist yet. They are built in Phases 4-5.
+- Nav and footer links to Insights, Projects, Toolkit, About, RSS and the policy pages lead to pages that do not exist yet. They are built in Phases 4-5.
 
 ### 2026-11-19
 - Colour contrast check added (`npm run check:contrast`): every text and background pair passes WCAG AA in light and dark mode. Phase 1, step 5.

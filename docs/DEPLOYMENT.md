@@ -63,6 +63,8 @@ Run by GitHub Actions on every pull request: build, frontmatter validation, brok
 
 Set in `public/_headers`: X-Content-Type-Options, Referrer-Policy, X-Frame-Options, Permissions-Policy, **Strict-Transport-Security `max-age=300`** (a 5-minute start; raise it step by step to 1 day, 1 week, then 6 months; no `includeSubDomains`, no `preload` yet) and a **Content-Security-Policy-Report-Only** (the browser logs problems and blocks nothing). The policy was tested with 0 violations; once the live console stays quiet, switch the header name to `Content-Security-Policy` and add `frame-ancestors 'none'`. Verify with an external header scanner before relying on it.
 
+Cloudflare Web Analytics is switched on in the Cloudflare dashboard, which adds its own script (`static.cloudflareinsights.com/beacon.min.js`) to pages automatically. The report-only CSP therefore allows that script and `cloudflareinsights.com` for its reports. The site's own `analytics.js` stays unused (empty token).
+
 Trailing slashes: Cloudflare redirects `/about` to `/about/` with a 307 (temporary) and `/404.html` to `/404`. That is how Workers static assets work (`html_handling`); it cannot be set to 301 and `/404` stays a normal page (status 200, `noindex`). Internal links and the sitemap already use the slash form.
 
 Preview URLs are off (`preview_urls: false` in `wrangler.jsonc`), as is `workers_dev`.
