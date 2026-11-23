@@ -442,6 +442,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - **Next session goal:** resolve the founder items above, then Phase 6 (3 to 5 real articles, drafted by Claude from the founder's notes and edited by the founder), only when the founder says to start.
 
 ## Completed
+- 23 Nov 2026 (legal pages FINAL, PR #80): the founder reviewed and approved the text of Privacy, Terms, Editorial policy and Affiliate disclosure. Privacy now names Cloudflare Web Analytics and Cloudflare Email Routing to Gmail; no "before launch" text; mailto links; dates 23 Nov 2026. The "PRELIMINARY DRAFT" notice is removed from all four and `check:brackets` no longer looks for it (it still lists `[BRACKET]` placeholders).
 - 23 Nov 2026 (audit Stage 5, PR D, privacy and CSP): commercial plans and founder career details removed from public docs (history unchanged); `engineering` tag removed; report-only CSP allows Cloudflare Web Analytics.
 - 23 Nov 2026 (audit Stage 5, PR C, headers and config): `public/_headers` adds HSTS `max-age=300` and a report-only CSP (tested locally, 0 violations); `preview_urls` off; Actions pinned to SHAs with job timeouts; `.github/dependabot.yml` (weekly, 5 PRs max, no auto-merge); sitemap `<lastmod>`. The 307 on no-slash URLs and `/404` = 200 are Cloudflare defaults (see DEPLOYMENT.md). Next: raise HSTS in steps and switch the CSP to enforcing once the live console is clean.
 - 23 Nov 2026 (audit Stage 5, PR B, UX and accessibility): visible "Link copied"; Mac/Windows copy-code hint; reticle label clear of the lines; image zoom viewer reworked (CLOSE bar, centred, scrollable on phones, no img without src); Esc closes the menu from anywhere; status strip is a labelled region; search form has a submit button; figure no longer inside a paragraph (ArticleImage is `span role=figure`); JPEG fallback at most 1600 px and a correct `sizes` for the hero. Source pictures are at most 1672 px wide, so the 1600 cap changes nothing visible (the portrait infographics are 1122 px and are not resized).
@@ -488,7 +489,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - Get the Cloudflare Web Analytics token (`docs/ANALYTICS.md`) and send it; at launch choose "Enable with JS Snippet installation".
 - Watch for the Cloudflare error "A preview with name '...' already exists" (same branch pushed twice, e.g. a Pages CMS branch). Not a required check, so it does not block merges; use a new branch name or delete the old branch (`docs/DEPLOYMENT.md`).
 - LinkedIn URL (footer has no LinkedIn link).
-- Legal check of Privacy, Terms, Editorial policy and Affiliate disclosure (India; courts of Hyderabad). They stay PRELIMINARY until then.
+- Legal pages: the founder approved the text on 23 Nov 2026 (India; courts of Hyderabad). No longer preliminary. A formal legal check by a lawyer was not done.
 - Toolkit lines for ChatGPT, Gemini and NotebookLM are deliberately plain; add a personal verdict if wanted.
 - Google's Rich Results Test on a real article (Phase 6).
 - Newsletter (Kit) and free download: deferred. Commercial plans: kept in private notes.

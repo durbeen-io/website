@@ -1,5 +1,5 @@
-// Finds placeholders that must not reach launch: [SQUARE BRACKET] markers for the founder to fill in, and
-// "PRELIMINARY" markers on draft legal pages. Run after a build: `npm run build && npm run check:brackets`.
+// Finds placeholders that must not reach launch: [SQUARE BRACKET] markers for the founder to fill in.
+// (The "PRELIMINARY" notice on the legal pages was removed on 23 Nov 2026 after the founder approved the text.) Run after a build: `npm run build && npm run check:brackets`.
 // Exit code 1 if any are found. Phase 8 gate (CLAUDE.md section 12): none may remain on any page.
 // Not run in CI before launch (it would fail on purpose while placeholders exist).
 import { readdirSync, readFileSync, statSync } from 'node:fs';
@@ -26,7 +26,6 @@ for (const f of files) {
     .replace(/<[^>]+>/g, ' ')
     .replace(/&#x27;/g, "'");
   const hits = [...text.matchAll(/\[[A-Z][A-Z0-9 ,'’\-/]{2,}\]/g)].map((m) => m[0]);
-  if (/PRELIMINARY/.test(text)) hits.push('PRELIMINARY marker');
   // The "[ 01 ]" section labels are design, not placeholders: they contain only digits, so the pattern above skips them.
   if (hits.length) {
     found += hits.length;
