@@ -1,26 +1,23 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
-import { ANALYTICS_TOKEN } from '../data/site';
-// The Analytics text follows the real setting: it describes analytics only when a token is set (src/data/site.ts).
-const analyticsOn = ANALYTICS_TOKEN !== '';
 ---
 
 <LegalLayout
   title="Privacy"
   label="PRIVACY"
-  updated="20 Nov 2026"
-  description="How durbeen.io handles information about you: no accounts, no cookies, no third-party scripts. What the site stores and what its host can see."
+  updated="23 Nov 2026"
+  description="How durbeen.io handles information about you: no accounts, no cookies, one privacy-friendly analytics script. What the site stores and what its host can see."
 >
   <p>This page explains what durbeen.io does with information about you. In short: very little.</p>
 
   <h2>What the website stores</h2>
   <ul>
-    <li>There are no accounts, comments or forms. The site does not ask for your name or email address.</li>
+    <li>There are no accounts or comments, and no forms that collect personal information (the search box runs only in your browser). The site does not ask for your name or email address.</li>
     <li>Durbeen sets no cookies.</li>
     <li>If you choose light or dark mode, that choice is saved in your browser's local storage, on your own device. It is never sent to Durbeen.</li>
     <li>
       Fonts come from durbeen.io itself, not from Google or another font service.
-      {analyticsOn ? 'The only third-party script is Cloudflare Web Analytics (see Analytics below).' : 'The site loads no third-party scripts.'}
+      The only third-party script is Cloudflare Web Analytics (see Analytics below).
     </li>
   </ul>
 
@@ -35,32 +32,17 @@ const analyticsOn = ANALYTICS_TOKEN !== '';
   <p>Search runs in your browser. Durbeen does not store what you search for.</p>
 
   <h2>Analytics</h2>
-  {
-    analyticsOn ? (
-      <>
-        <p>
-          Durbeen uses Cloudflare Web Analytics to count page views, where visitors come from (the referring site and the
-          country) and how fast pages load. It sets no cookies and stores nothing in your browser. Cloudflare says it does
-          not fingerprint visitors, does not track individual visitors across websites, and does not collect or use
-          visitors' personal data. The data goes to Cloudflare.
-        </p>
-        <p>
-          The analytics script loads only on durbeen.io, and not at all if your browser sends the "Do Not Track" signal. See{' '}
-          <a href="https://developers.cloudflare.com/web-analytics/about/" rel="noopener">Cloudflare's explanation</a>.
-        </p>
-      </>
-    ) : (
-      <p>
-        There are no analytics yet. If I add them, I plan to use Cloudflare Web Analytics, which does not use cookies. I
-        will update this page before I switch it on.
-      </p>
-    )
-  }
+  <p>
+    Durbeen uses Cloudflare Web Analytics to count page views and measure page speed. It does not use cookies and does
+    not track you across other sites. See{' '}
+    <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare's privacy policy</a>.
+  </p>
 
   <h2>If you write to me</h2>
   <p>
-    If you email hello@durbeen.io, I receive your email address and your message. I use them to reply, and keep the
-    email for as long as the conversation needs it.
+    If you email <a href="mailto:hello@durbeen.io">hello@durbeen.io</a>, I receive your email address and your message. I use them to reply, and keep the
+    email for as long as the conversation needs it. Email to this address is forwarded by Cloudflare Email Routing to my
+    Google (Gmail) inbox, so Cloudflare and Google process it.
   </p>
 
   <h2>Links to other sites</h2>
@@ -72,7 +54,7 @@ const analyticsOn = ANALYTICS_TOKEN !== '';
   <h2>Your rights</h2>
   <p>
     Under the law of India, and depending on where you live, you may have rights over information about you, such as seeing it, correcting it or
-    asking for it to be deleted. Write to hello@durbeen.io. The law that applies to this site is the law of India.
+    asking for it to be deleted. Write to <a href="mailto:hello@durbeen.io">hello@durbeen.io</a>. The law that applies to this site is the law of India.
   </p>
 
   <h2>Changes</h2>

@@ -4,6 +4,9 @@ User-visible changes, newest first. Dates are when the change was made.
 
 ## Unreleased
 
+### 2026-11-23 (legal pages, draft update)
+- Privacy now says Cloudflare Web Analytics is used (no cookies, no cross-site tracking), that email to hello@durbeen.io is forwarded by Cloudflare Email Routing to a Google (Gmail) inbox, and that there are no forms that collect personal information. The "before launch" wording is gone; the PRELIMINARY DRAFT marker stays until the founder's review. hello@durbeen.io is a mail link on all four legal pages; last-updated dates are 23 Nov 2026.
+
 ### 2026-11-23 (repo privacy and CSP)
 - Planned commercial pages and prices are no longer described in the public brief or decision log; they are kept in private notes. Founder career details are removed from the docs (the About page is unchanged).
 - The unused tag `engineering` is removed (31 tags).
