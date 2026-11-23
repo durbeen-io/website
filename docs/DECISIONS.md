@@ -378,6 +378,15 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 |---|---|---|
 | The site's positioning text (home and RSS descriptions, Organization description, About title and meta description), the author box bio ("Founder of Durbeen. Learning AI by building with it, in public.") and the structured-data `jobTitle` ("Founder, Durbeen") now present Durbeen as a practical AI lab. The founder's career background is kept only in the About page body | The lab and what it tests should lead; the background is context for the About page, not the headline everywhere | Keeping the engineering background in every description and bio |
 
+## 2026-11-23: headers, previews and CI pinning (audit Stage 5, PR C)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| HSTS starts at `max-age=300`; CSP is Report-Only first. | A wrong HSTS or CSP is hard to undo for visitors; a short start and a report-only policy show problems safely. | Enforcing CSP at once; 6-month HSTS with preload. |
+| `preview_urls: false`. | Branch previews were public copies of the site with no noindex. | Adding noindex to previews only. |
+| Actions pinned by SHA, job timeouts, weekly Dependabot (no auto-merge). | A tag can be moved; a hung job can run for hours; updates should be seen by the owner. | Auto-merging Dependabot PRs. |
+| The 307 on no-slash URLs and `/404` returning 200 are left as Cloudflare's defaults. | `html_handling` offers only 307 redirects; `_redirects` cannot return a 404 status. All internal links use the final URLs. | One 301 rule per page in `_redirects` (loop risk). |
+
 ## 2026-11-23: wording for everyone, three categories
 
 | Decision | Reason | Rejected |

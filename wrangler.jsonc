@@ -17,10 +17,11 @@
     { "pattern": "www.durbeen.io", "custom_domain": true }
   ],
   // The production *.workers.dev address is switched off: a site with no Worker script cannot
-  // redirect it, and two public copies would split search ranking. Branch previews stay on.
+  // redirect it, and two public copies would split search ranking. Preview URLs are off too (audit F035): they were public
+  // copies of the site without a noindex header.
   // Set explicitly so a Wrangler default can never change them silently.
   "workers_dev": false,
-  "preview_urls": true,
+  "preview_urls": false,
   // Do not send Wrangler usage data to Cloudflare.
   "send_metrics": false,
   // Required by Worker Previews (`wrangler preview`, used for branch builds).

@@ -4,6 +4,12 @@ User-visible changes, newest first. Dates are when the change was made.
 
 ## Unreleased
 
+### 2026-11-23 (headers and configuration)
+- New headers on every page: Strict-Transport-Security (`max-age=300`, a safe start) and a Content-Security-Policy in report-only mode (nothing is blocked yet).
+- Preview URLs are switched off in `wrangler.jsonc`.
+- The sitemap now has `<lastmod>` dates for articles and for the pages that list them.
+- GitHub Actions are pinned to full commit SHAs and every job has a timeout. Dependabot opens weekly pull requests for npm packages and Actions (maximum 5 each); they wait for the owner.
+
 ### 2026-11-23 (UX and accessibility polish)
 - "Link copied" (and the failure message) now shows next to the Copy link button for 3 seconds. If the clipboard is blocked, the code-block button selects the code and says "Press ⌘C" on Mac or "Press Ctrl+C" elsewhere.
 - The TARGET label in the reticle (Home, 404) no longer touches a circle line at phone widths.

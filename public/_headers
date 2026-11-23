@@ -1,6 +1,13 @@
-# Security headers for every page. CSP and HSTS are Phase 7 follow-ups (see CLAUDE.md).
+# Security headers for every page.
+# HSTS starts at 5 minutes (easy to undo) and is raised step by step later: 1 day, 1 week, then 6 months.
+# No includeSubDomains and no preload yet.
+# The Content-Security-Policy is REPORT-ONLY for now: the browser notes problems in its console but blocks nothing.
+# Tested locally against the built site (search, theme toggle and all page types) with 0 violations. The policy
+# needs 'wasm-unsafe-eval' for the search (Pagefind) and style-src-attr for the few style="" attributes in posts.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=300
+  Content-Security-Policy-Report-Only: default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'
