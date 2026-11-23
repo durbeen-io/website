@@ -61,7 +61,7 @@ The build fails on invalid values.
 
 | Field | Values |
 |---|---|
-| Category | AI & AI Tools · AI for Engineers · GitHub & Open Source · Building Durbeen |
+| Category | AI & AI Tools · GitHub & Open Source · Building Durbeen |
 | Type | Review · Comparison · Guide · Experiment · Build Note · Insight · Visual · Infographic |
 | Series (optional) | Building Durbeen in Public · GitHub Mastery · Repo Reviews (a controlled list in `src/lib/taxonomy.ts`) |
 | Level | Beginner · Intermediate · Advanced |

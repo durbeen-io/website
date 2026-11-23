@@ -10,7 +10,7 @@
 
 ## 1. What Durbeen is
 
-- **Durbeen** (durbeen.io) is a **founder-led independent lab and publication**, and the parent brand for future projects, services and products. The brand voice stays "Durbeen", but it openly names its founder: an instrumentation & controls (I&C) engineer testing AI on real work. First person ("I") is fine on About, the author box and articles (decided 21 Nov 2026).
+- **Durbeen** (durbeen.io) is a **founder-led independent lab and publication**, and the parent brand for future projects, services and products. The brand voice stays "Durbeen", but it openly names its founder: an engineer by background, testing AI on real work. Durbeen is not aimed at engineers only: it is for anyone who wants to use AI on real work (positioning of 23 Nov 2026). First person ("I") is fine on About, the author box and articles (decided 21 Nov 2026).
 - "Durbeen" means *telescope*. The core idea: **look further, look closer, then build.**
 - Tagline: **Discover. Build. Innovate.**
 - Method: **Discover → Evaluate → Build → Share.**
@@ -205,7 +205,7 @@ Technology enthusiasts, developers and independent builders, entrepreneurs, busi
 ### Content system: every article gets 1 category + 1 type + 1 level + 3–5 tags
 | Label | Allowed values |
 |---|---|
-| **Category** (what it's about) | **Exactly four:** AI & AI Tools · AI for Engineers · GitHub & Open Source · Building Durbeen (changed 21 Nov 2026; "Infographic" is a type, not a category) |
+| **Category** (what it's about) | **Exactly three:** AI & AI Tools · GitHub & Open Source · Building Durbeen (was four until 23 Nov 2026, when "AI for Engineers" was removed; "Infographic" is a type, not a category) |
 | **Type** (what form it takes) | Review · Comparison · Guide · Experiment · Build Note · Insight · Visual · **Infographic** (needs a written text summary shown on the page) |
 | **Level** | Beginner · Intermediate · Advanced |
 | **Tags** | Lowercase, reused, from a controlled list in `src/content/tags.json` (keep it under ~30; adding a tag means adding it to the list) |
@@ -442,6 +442,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - **Next session goal:** resolve the founder items above, then Phase 6 (3 to 5 real articles, drafted by Claude from the founder's notes and edited by the founder), only when the founder says to start.
 
 ## Completed
+- 23 Nov 2026 (audit Stage 5, PR A, content and positioning): site wording no longer aimed at engineers (Home hero, status strip, footer, Method step 01, About); durbeen.io project is LIVE; Projects intro uses "I"; `/infographics/` now lists every picture from published posts (hero and figures), each linking to its post; hello@durbeen.io is a mailto link in the footer and About; posts in a series show "Part of: ..."; category "AI for Engineers" removed; N°002/N°003 page titles are 60 characters or less. Audit sources are outside the repo.
 - 23 Nov 2026 (positioning text): home meta and Organization descriptions and the RSS description now read "Durbeen is an independent lab for practical AI. I test AI tools and workflows by building with them, and write up what works, what breaks, and why."; About title and meta description no longer mention the I&C background (About body unchanged); structured-data `jobTitle` is "Founder, Durbeen"; DECISIONS has a new 23 Nov entry. No post content touched.
 - 23 Nov 2026 (small edits): N°003 METR sentence now says "sped up in the last couple of years, to roughly every four months"; the author box bio (`src/data/author.ts`) now reads "Founder of Durbeen. Learning AI by building with it, in public." Other places that still name the I&C background (About, meta descriptions, the structured-data `jobTitle`, `docs/DECISIONS.md`) were listed for the founder and left unchanged.
 - 23 Nov 2026 (Phase 6, post 3 PUBLISHED): N°003 "AI stopped answering questions. Now it does the work." set to draft: false (founder-approved for this post only), publishDate 23 Nov 2026, hero and three infographics (`images/n003-*.png`, with alt text) copied from the source folder; two of the infographic files are really JPEGs with a .png name (the build converts them fine). No `[CHECK]` left; about 823 words. Next free real number: 4.

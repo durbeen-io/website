@@ -54,7 +54,7 @@ content:
         type: select
         required: true
         options:
-          values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+          values: ["AI & AI Tools", "GitHub & Open Source", "Building Durbeen"]
       - name: type
         label: Type
         type: select
@@ -205,7 +205,7 @@ content:
             type: select
             required: true
             options:
-              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+              values: ["AI & AI Tools", "GitHub & Open Source", "Building Durbeen"]
           - name: type
             default: "Build Note"
             label: Type
@@ -378,7 +378,7 @@ content:
             type: select
             required: true
             options:
-              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+              values: ["AI & AI Tools", "GitHub & Open Source", "Building Durbeen"]
           - name: type
             default: "Comparison"
             label: Type
@@ -554,7 +554,7 @@ content:
             type: select
             required: true
             options:
-              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+              values: ["AI & AI Tools", "GitHub & Open Source", "Building Durbeen"]
           - name: type
             default: "Guide"
             label: Type
@@ -727,12 +727,12 @@ content:
             options:
               min: 1
           - name: category
-            default: "AI for Engineers"
+            default: "AI & AI Tools"
             label: Category
             type: select
             required: true
             options:
-              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+              values: ["AI & AI Tools", "GitHub & Open Source", "Building Durbeen"]
           - name: type
             default: "Infographic"
             label: Type
@@ -898,7 +898,7 @@ content:
             type: select
             required: true
             options:
-              values: ["AI & AI Tools", "AI for Engineers", "GitHub & Open Source", "Building Durbeen"]
+              values: ["AI & AI Tools", "GitHub & Open Source", "Building Durbeen"]
           - name: type
             default: "Review"
             label: Type

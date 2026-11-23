@@ -1,42 +1,64 @@
 ---
-// Infographics gallery: every article of type Infographic, newest first, as a grid of thumbnails.
-// A new Infographic article appears here by itself (connection map, CLAUDE.md section 8).
+// Infographics gallery: every picture used in a published article (the hero and the figures in the text),
+// newest article first, as a grid of tiles. Each tile links to its article, which is the full written version.
+// A new article's pictures appear here by themselves (connection map, CLAUDE.md section 8). Drafts never show.
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ListHeader from '../components/ListHeader.astro';
 import InsightsFilters from '../components/InsightsFilters.astro';
 import InfographicCard from '../components/InfographicCard.astro';
-import { getArticles, articleHref, formatDate } from '../lib/articles';
+import { getArticles, articleHref } from '../lib/articles';
 import { categories } from '../lib/taxonomy';
 
-const items = (await getArticles()).filter((a) => a.data.type === 'Infographic' && a.data.heroImage);
-// All four categories are always offered here (the founder asked for them); an empty one says so.
+// Every image kept next to the articles, so a figure written as ![alt](./images/x.png "caption") can be found again.
+const files = import.meta.glob<ImageMetadata>('/src/content/insights/images/*.{png,jpg,jpeg,webp,avif}', {
+  eager: true,
+  import: 'default',
+});
+const figure = /!\[([^\]]*)\]\(\s*\.\/images\/([^)\s]+)(?:\s+"([^"]*)")?\s*\)/g;
+
+type Tile = { article: Awaited<ReturnType<typeof getArticles>>[number]; image: ImageMetadata; alt: string; caption?: string };
+const tiles: Tile[] = [];
+for (const article of await getArticles()) {
+  const seen = new Set<string>();
+  const add = (image: ImageMetadata, alt: string, caption?: string) => {
+    if (seen.has(image.src)) return;
+    seen.add(image.src);
+    tiles.push({ article, image, alt, caption });
+  };
+  if (article.data.heroImage) add(article.data.heroImage, article.data.heroAlt!);
+  for (const m of (article.body ?? '').matchAll(figure)) {
+    const image = files[`/src/content/insights/images/${m[2]}`];
+    if (!image) throw new Error(`${article.id}: figure ./images/${m[2]} was not found in src/content/insights/images/`);
+    add(image, m[1], m[3]);
+  }
+}
 const groups = [{ name: 'category' as const, label: 'CATEGORY', options: [...categories] }];
 ---
 
 <BaseLayout
   title="Infographics: pictures that explain one idea | Durbeen"
-  description="Durbeen infographics, newest first: one idea per picture, each with a full written version on its page, filed under four categories."
+  description="Durbeen infographics, newest first: one idea per picture, each linked to the article that holds its full written version."
 >
   <ListHeader
     label="INFOGRAPHICS"
     title="Infographics"
-    intro="One idea per picture, and every picture comes with a full written version. Newest first."
+    intro="One idea per picture, and every picture comes with a full written version: the article it belongs to. Newest first."
   />
   <div class="container body">
     {
-      items.length > 0 ? (
+      tiles.length > 0 ? (
         <>
           <InsightsFilters groups={groups} noun="INFOGRAPHIC" />
           <ul class="grid">
-            {items.map((a) => (
+            {tiles.map((t) => (
               <InfographicCard
-                number={a.data.number}
-                category={a.data.category}
-                title={a.data.title}
-                date={formatDate(a.data.publishDate)}
-                href={articleHref(a)}
-                image={a.data.heroImage!}
-                alt={a.data.heroAlt!}
+                number={t.article.data.number}
+                category={t.article.data.category}
+                fromTitle={t.article.data.title}
+                caption={t.caption}
+                href={articleHref(t.article)}
+                image={t.image}
+                alt={t.alt}
               />
             ))}
           </ul>

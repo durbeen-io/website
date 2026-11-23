@@ -377,3 +377,12 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Decision | Reason | Rejected |
 |---|---|---|
 | The site's positioning text (home and RSS descriptions, Organization description, About title and meta description), the author box bio ("Founder of Durbeen. Learning AI by building with it, in public.") and the structured-data `jobTitle` ("Founder, Durbeen") now present Durbeen as a practical AI lab. The founder's career background is kept only in the About page body | The lab and what it tests should lead; the background is context for the About page, not the headline everywhere | Keeping the engineering background in every description and bio |
+
+## 2026-11-23: wording for everyone, three categories
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Durbeen's wording is no longer aimed at engineers (Home, strip, footer, About, Method step 01). The founder's engineering background stays in one line on About. | The audience is anyone using AI on real work. | Keeping the I&C identity in the hero and strip. |
+| Category "AI for Engineers" removed; categories are now three. | It no longer fits the positioning, and the category page was empty. | Keeping it empty. |
+| The Infographics gallery lists every picture from published posts, linked to the post. | The page was empty although posts already held six pictures; the post is the written version. | Only articles of type Infographic. |
+| A page title drops the suffix "| Durbeen" when it would pass 60 characters. | Keeps long titles from being cut in search results without changing the H1. | A separate title field per article. |

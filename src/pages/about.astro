@@ -13,18 +13,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h1>Look further. Look closer. Then build.</h1>
 
     <div class="text">
-      <p>Durbeen is an independent lab run by an instrumentation &amp; controls engineer testing AI on real work. The name means telescope.</p>
+      <p>Durbeen is an independent lab testing AI on real work. The name means telescope.</p>
       <p>
-        I'm Fahad Ehsan, an Instrumentation &amp; Controls engineer with 18+ years in Oil &amp; Gas and water projects
-        across the GCC: DCS commissioning, FAT/SAT, inspection and OT/ICS cybersecurity. I started Durbeen to learn AI the
-        way engineers learn anything: by testing it on real work.
+        I'm Fahad Ehsan. After 18+ years in engineering, I'm learning AI the way engineers learn anything: by testing it
+        on real work.
       </p>
       <p>
-        Here I share what I build, what works, what doesn't, and how AI can help engineers with reports, documents and
+        Here I share what I build, what works, what doesn't, and how AI can help with reports, documents and
         everyday workflows. I'm a learner, not a guru. Every tool I write about, I've actually used. If something here saves
         you an hour, it was worth publishing.
       </p>
-      <p>Current work is on the <a href="/projects/">Projects</a> page. To get in touch: <span class="mail">hello@durbeen.io</span></p>
+      <p>Current work is on the <a href="/projects/">Projects</a> page. To get in touch: <a class="mail" href="mailto:hello@durbeen.io">hello@durbeen.io</a></p>
     </div>
   </article>
 </BaseLayout>
@@ -56,6 +55,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-family: var(--font-mono);
     font-size: 17px;
     color: var(--ink);
-    user-select: all;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 </style>

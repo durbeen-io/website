@@ -4,6 +4,13 @@ User-visible changes, newest first. Dates are when the change was made.
 
 ## Unreleased
 
+### 2026-11-23 (content and positioning)
+- Wording no longer targets engineers: Home hero and Method step 01, the top strip, the footer line and About. The durbeen.io project now shows LIVE. The Projects intro uses "I".
+- `/infographics/` now shows every picture used in a published article (hero and figures), each with its caption and a "From:" link to the article (the written version).
+- hello@durbeen.io is a clickable mail link in the footer and on About.
+- Posts that belong to a series show "Part of: <series>" under the tags.
+- The category "AI for Engineers" is removed (three categories remain). Page titles of N°002 and N°003 are 60 characters or less.
+
 durbeen.io go-live is prepared (custom domain in `wrangler.jsonc`, noindex removed, internal design-system pages removed); it is live once the pull request is merged and Cloudflare is set up. A placeholder site is deployed to a Cloudflare `workers.dev` address and hidden from search engines. The site is being built: the design system, components, home page, blog engine and the remaining pages are built; real articles are next (Phase 6).
 
 ### 2026-11-21
