@@ -1,0 +1,14 @@
+# Dependabot version updates: a weekly pull request for outdated npm packages and GitHub Actions.
+# These pull requests are never merged automatically: the owner reads and merges them.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
