@@ -1,5 +1,7 @@
 ---
 // Article image (used for every image in an article, and for the hero image).
+// Built from <span role="figure"> rather than <figure>: Markdown puts a lone picture inside a <p>, and a <figure> inside
+// a <p> is invalid HTML (audit F026). A span is allowed there and role="figure" keeps the meaning for screen readers.
 // - Alt text is REQUIRED: the build fails without it (brief section 9).
 // - Astro makes AVIF and WebP copies at several widths (responsive sizes) and the browser picks one.
 // - Lazy loading (except the hero), and a soft blurred preview that sharpens when the image loads.
@@ -18,11 +20,20 @@ if (!alt || !alt.trim()) {
   throw new Error(`Image is missing alt text (src: ${typeof src === 'string' ? src : src.src}). Every image needs alt text.`);
 }
 const optimised = typeof src !== 'string';
-const full = optimised ? await getImage({ src, width: Math.min(2000, src.width), format: 'webp' }) : undefined;
+// Source pictures are capped at 1600 px wide (the biggest size we ever serve). The JPEG copy is only the fallback for
+// browsers without AVIF/WebP; it is much smaller than the PNG original (audit F013 to F016).
+const maxWidth = 1600;
+const fitWidth = optimised ? Math.min(maxWidth, src.width) : 0;
+const fitHeight = optimised ? Math.round((src.height * fitWidth) / src.width) : 0;
+// The hero is shown in the wide page container, the pictures in the text in the narrow reading column.
+const sizes = eager
+  ? '(min-width: 1360px) 1280px, (min-width: 760px) calc(100vw - 80px), calc(100vw - 48px)'
+  : '(min-width: 760px) 700px, calc(100vw - 48px)';
+const full = optimised ? await getImage({ src, width: fitWidth, format: 'webp' }) : undefined;
 const tiny = optimised ? await getImage({ src, width: 24, format: 'webp', quality: 30 }) : undefined;
 ---
 
-<figure class:list={['figure', { 'has-caption': !!title }]}>
+<span class:list={['figure', { 'has-caption': !!title }]} role="figure" aria-label={title}>
   <a
     class="frame"
     href={full?.src ?? (src as string)}
@@ -37,8 +48,12 @@ const tiny = optimised ? await getImage({ src, width: 24, format: 'webp', qualit
           src={src}
           alt={alt}
           formats={['avif', 'webp']}
+          fallbackFormat="jpeg"
+          quality={80}
+          width={fitWidth}
+          height={fitHeight}
           widths={[480, 800, 1200, 1600]}
-          sizes="(min-width: 760px) 700px, calc(100vw - 48px)"
+          sizes={sizes}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
           class="img"
@@ -48,11 +63,12 @@ const tiny = optimised ? await getImage({ src, width: 24, format: 'webp', qualit
       )
     }
   </a>
-  {title && <figcaption>{title}</figcaption>}
-</figure>
+  {title && <span class="caption">{title}</span>}
+</span>
 
 <style>
   .figure {
+    display: block;
     margin: 40px 0;
   }
   .frame {
@@ -77,7 +93,8 @@ const tiny = optimised ? await getImage({ src, width: 24, format: 'webp', qualit
   .frame :global(.img) {
     transition: opacity 0.4s ease, filter 0.4s ease;
   }
-  figcaption {
+  .caption {
+    display: block;
     margin-top: var(--space-2);
     font-family: var(--font-mono);
     font-size: var(--fs-label);
@@ -93,7 +110,7 @@ const tiny = optimised ? await getImage({ src, width: 24, format: 'webp', qualit
   .has-caption {
     counter-increment: fig;
   }
-  .has-caption figcaption::before {
+  .has-caption .caption::before {
     content: 'FIG. ' counter(fig, decimal-leading-zero) ' — ';
   }
 </style>

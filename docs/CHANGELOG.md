@@ -4,6 +4,13 @@ User-visible changes, newest first. Dates are when the change was made.
 
 ## Unreleased
 
+### 2026-11-23 (UX and accessibility polish)
+- "Link copied" (and the failure message) now shows next to the Copy link button for 3 seconds. If the clipboard is blocked, the code-block button selects the code and says "Press ⌘C" on Mac or "Press Ctrl+C" elsewhere.
+- The TARGET label in the reticle (Home, 404) no longer touches a circle line at phone widths.
+- Image zoom: CLOSE sits in its own bar above the picture, the picture is centred, and on phones it is wider than the screen so you can scroll sideways (pinch-zoom also works). Tapping the picture no longer closes it.
+- Esc closes the mobile menu wherever the focus is. The status strip is a labelled region. The search form has a (hidden) submit button.
+- Pictures in posts no longer break the HTML (a figure inside a paragraph). Fallback pictures are JPEG (about 150 KB instead of 1+ MB), capped at 1600 px; the hero picture now picks a size that fits its wide frame.
+
 ### 2026-11-23 (content and positioning)
 - Wording no longer targets engineers: Home hero and Method step 01, the top strip, the footer line and About. The durbeen.io project now shows LIVE. The Projects intro uses "I".
 - `/infographics/` now shows every picture used in a published article (hero and figures), each with its caption and a "From:" link to the article (the written version).

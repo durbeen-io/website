@@ -17,7 +17,7 @@ const x = `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encod
     <a href={x} target="_blank" rel="noopener noreferrer">X<span class="visually-hidden"> (opens in a new tab)</span></a>
     <button type="button" data-copy-link={url}>COPY LINK</button>
   </div>
-  <p class="visually-hidden" role="status" data-copy-status></p>
+  <p class="copy-status" role="status" data-copy-status></p>
 </div>
 
 <style>
@@ -49,6 +49,14 @@ const x = `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encod
   a:hover,
   button:hover {
     border-color: var(--ink);
+  }
+  .copy-status {
+    min-height: 1.5em; /* reserved, so the message appearing does not move the page */
+    margin: var(--space-1) 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: 0.04em;
+    color: var(--text-2);
   }
   button {
     display: none;

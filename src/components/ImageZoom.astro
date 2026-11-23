@@ -1,12 +1,7 @@
 ---
-// Tap-to-zoom viewer for article images: one <dialog> per page, opened by links with data-zoom.
-// The browser's dialog handles focus (it returns to the image link) and Esc. Tap anywhere or press CLOSE to leave.
-// On a phone the full image can be pinch-zoomed.
----
-
-<dialog class="zoom" aria-label="Enlarged image" data-zoom-dialog>
-  <button type="button" class="close" data-zoom-close>CLOSE</button>
-  <img alt="" data-zoom-img />
+// Tap-to-zoom viewer for article images: one <dialog class="zoom" aria-label="Enlarged image" data-zoom-dialog>
+  <div class="bar"><button type="button" class="close" data-zoom-close>CLOSE</button></div>
+  <div class="stage" data-zoom-stage></div>
 </dialog>
 
 <style>
@@ -21,22 +16,50 @@
     background: var(--paper);
     overflow: auto;
   }
+  .zoom[open] {
+    display: flex;
+    flex-direction: column;
+  }
   .zoom::backdrop {
     background: var(--paper);
   }
-  .zoom img {
+  .bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: flex-end;
+    flex: none;
+    padding: var(--space-1) var(--space-2);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .stage {
+    flex: 1 0 auto;
+    display: flex;
+    padding: var(--space-2);
+  }
+  .stage :global(img) {
     display: block;
     max-width: 100%;
-    max-height: 100%;
-    margin: auto;
+    margin: auto; /* centred both ways when it is smaller than the space */
     object-fit: contain;
     touch-action: pinch-zoom pan-x pan-y;
   }
+  @media (min-width: 768px) {
+    .stage :global(img) {
+      max-height: calc(100dvh - 120px);
+    }
+  }
+  @media (max-width: 767px) {
+    .stage :global(img) {
+      width: 170vw; /* wider than the screen: scroll sideways to read small text */
+      max-width: none;
+      height: auto;
+    }
+  }
   .close {
-    position: fixed;
-    top: var(--space-2);
-    right: var(--space-2);
-    z-index: 1;
     min-width: var(--touch-target);
     min-height: var(--touch-target);
     padding: 0 16px;
@@ -52,18 +75,24 @@
 
 <script>
   const dialog = document.querySelector<HTMLDialogElement>('[data-zoom-dialog]');
-  const big = dialog?.querySelector<HTMLImageElement>('[data-zoom-img]');
-  if (dialog && big && typeof dialog.showModal === 'function') {
+  const stage = dialog?.querySelector<HTMLElement>('[data-zoom-stage]');
+  if (dialog && stage && typeof dialog.showModal === 'function') {
     document.querySelectorAll<HTMLAnchorElement>('a[data-zoom]').forEach((a) => {
       a.addEventListener('click', (e) => {
         e.preventDefault();
-        big.src = a.href;
+        const big = document.createElement('img');
         big.alt = a.dataset.alt ?? '';
+        big.src = a.href;
+        stage.replaceChildren(big);
         dialog.showModal();
+        dialog.scrollTo(0, 0);
       });
     });
-    dialog.addEventListener('click', () => dialog.close());
+    // Tapping the empty space (not the picture, so panning never closes it) closes the viewer.
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog || e.target === stage) dialog.close();
+    });
     dialog.querySelector('[data-zoom-close]')?.addEventListener('click', () => dialog.close());
-    dialog.addEventListener('close', () => big.removeAttribute('src'));
+    dialog.addEventListener('close', () => stage.replaceChildren());
   }
 </script>
