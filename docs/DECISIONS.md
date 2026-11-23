@@ -100,7 +100,7 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Mobile nav is a MENU button below 860px; without JavaScript the nav stays open (`html.js` class set by `theme-init.js`) | Fits 375px; still usable with scripts off | Wrapping the nav as the mockup does |
 | StatusStrip shows `LOG UPDATED date · N°nnn` only when a page passes the data | Nothing is invented; it comes from the latest article in Phase 3/4 | A hard-coded date |
 | NewsletterForm posts to Kit's hosted form (`action` prop) and is shown disabled until it is set (Phase 5) | Never a form that looks live but goes nowhere; no custom data storage | A form with a placeholder endpoint |
-| Footer links: Explore (Insights, Projects, Toolkit, About), Work with Durbeen, GitHub, RSS, policy links. **Resources is left out** of the footer for now (founder's call). LinkedIn is left out until the founder gives the URL | No link to a page that is not planned yet; no URL is guessed | A guessed LinkedIn link |
+| Footer links: Explore (Insights, Projects, Toolkit, About), GitHub, RSS, policy links. **Resources is left out** of the footer for now (founder's call). LinkedIn is left out until the founder gives the URL | No link to a page that is not planned yet; no URL is guessed | A guessed LinkedIn link |
 | Footer signup text is "New reviews and experiments. No spam.": no frequency, no free-download line. The Repo Safety Checklist line returns once the PDF exists (Phase 5) | Do not promise a send rate or a download that is not there yet | Keeping the checklist line from the mockup/brief now |
 | Footer wordmark uses the brief's 0.1em tracking (mockup shows -0.02em) and `aria-hidden` | Brief rule for the wordmark; the text is decorative repeat | Mockup tracking |
 | Header and Footer are in `BaseLayout`, so every page has them. The component preview page shows extra Header demos with unique landmark names | One place to change; avoids duplicate landmark names | Adding them page by page |
@@ -211,7 +211,7 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 
 | Decision | Reason | Rejected |
 |---|---|---|
-| **Durbeen starts as a blog.** "Work with Durbeen" (page `/work-with-durbeen/`) is removed from the footer, the Phase 5 gate and the page inventory. **Deferred, not cancelled.** The plan is kept: 2-3 fixed-price service packages (scope, deliverables, price or "from" price, timeline), an email link to hello@durbeen.io and no contact form. It returns when the founder asks | Founder's call: focus on publishing first | Deleting the plan; building the page now |
+| **Durbeen starts as a blog.** A planned page is removed from the footer, the Phase 5 gate and the page inventory. **Deferred, not cancelled.** Commercial plans: kept in private notes. It returns when the founder asks | Founder's call: focus on publishing first | Deleting the plan; building the page now |
 | **The newsletter form is hidden** (footer and end of articles). The `NewsletterForm` component stays in the repo and on the internal preview page. Kit, double opt-in and the "Repo Safety Checklist" download are deferred and kept in brief section 13 | Founder's call; no form that cannot work yet | A disabled form |
 | The footer now holds an intro line and **hello@durbeen.io as plain text** (not a mail link), plus Explore (now with Resources), Elsewhere and the policy links. No LinkedIn link until the founder supplies the URL | Email routing is not set up yet, so a mail link might fail; plain text is honest | A `mailto:` link |
 | **New article type `Infographic`**; all other types (including Visual) stay. An Infographic needs a `summary` (200+ characters) which the page shows as a "TEXT VERSION" box above the article; the build fails without it | Founder: the written text summary must be on the page, not only alt text (accessibility and search) | Alt text only |
@@ -311,7 +311,7 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Decision | Reason | Rejected |
 |---|---|---|
 | **Series "AI for Engineers" removed** (the category of the same name stays). Series are now: Building Durbeen in Public, GitHub Mastery, Repo Reviews. The infographic sample draft lost its series; the template comments and `.pages.yml` were updated. This also resolves the earlier flag about series and categories sharing names (the remaining overlap, "Building Durbeen in Public" vs the category "Building Durbeen", is a different name) | Founder's call: the category covers it | Keeping both |
-| **About now holds the founder's own text**, supplied by the founder (Instrumentation & Controls engineer, 18+ years, Oil & Gas and water projects, GCC; no phone number, no ID numbers). The whole page body is 123 words. It is the founder's choice to publish this, so it now also appears in this public repository and its history | Founder supplied it for the page; the brief's "no founder background in the public repo" is about private strategy material | Placeholders |
+| **About now holds the founder's own text**, supplied by the founder (a short professional background; no phone number, no ID numbers). The whole page body is 123 words. It is the founder's choice to publish this, so it now also appears in this public repository and its history | Founder supplied it for the page; the brief's "no founder background in the public repo" is about private strategy material | Placeholders |
 | Terms: governing law India, courts of **Hyderabad**, India. The legal pages stay PRELIMINARY until the founder's legal check | Founder's answer | Citing statutes without a legal check |
 | Personal CV website: **Live**, link `https://fahadehsan-cv.lovable.app/` (opened and returned HTTP 200 with no redirect before adding), description "My professional CV site, built with Lovable (AI app builder).", repository still private. New optional `url` field on projects shows a "LIVE SITE" fact | Founder's answer; link verified | Adding an unverified link |
 | GitHub auto-merge for content pull requests is **documented in `docs/CMS.md`, not switched on** (steps checked against GitHub's documentation) | The founder asked to be told before any GitHub setting; it is a repository setting | Changing the setting myself |
@@ -330,8 +330,8 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 
 | Decision | Reason | Rejected |
 |---|---|---|
-| An author box ends every article: label, name, the founder's two-line bio ("I&C engineer, 18+ years in Oil & Gas automation." / "Learning AI by building with it, in public.") and a link to `/about/`. No photo. The text lives in `src/data/author.ts`, which the box and the structured data both read | Founder's spec; one place to change | Hard-coding it in the template |
-| The Article JSON-LD `author` is now a Person with `name`, `url` (the About page), `jobTitle` ("Instrumentation & Controls engineer", from the founder's About text) and `description` (the bio). Checked on all 7 article pages | Founder asked for it; the required Google properties are unchanged | A bare name |
+| An author box ends every article: label, name, the founder's two-line bio (see `src/data/author.ts`) and a link to `/about/`. No photo. The text lives in `src/data/author.ts`, which the box and the structured data both read | Founder's spec; one place to change | Hard-coding it in the template |
+| The Article JSON-LD `author` is now a Person with `name`, `url` (the About page), `jobTitle` (from the founder's About text) and `description` (the bio). Checked on all 7 article pages | Founder asked for it; the required Google properties are unchanged | A bare name |
 | The author box, the related and previous/next blocks, the share rail and the contents list are excluded from search (`data-pagefind-ignore`). Measured: searching `lens-kit`, a word in only one article, went from 3 results to 1; the bio words match nothing | Without this, every article would match the bio and every article that links to another would match its title | Leaving the noise |
 
 ## 2026-11-21: Cloudflare Web Analytics (prepared, off)
@@ -355,7 +355,7 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 
 | Decision | Reason | Rejected |
 |---|---|---|
-| Durbeen is a founder-led independent lab. The brand voice stays "Durbeen", but it openly names its founder, an instrumentation & controls engineer testing AI on real work. First person ("I") is fine on About, the author box and articles | "Independent technology lab" and "we" sounded like a generic developer lab; the real value is an engineer's tests on real work (reports, documents, data) | Keeping "we" and a generic lab voice; turning the site into a personal portfolio |
+| Durbeen is a founder-led independent lab. The brand voice stays "Durbeen", but it openly names its founder, an engineer by background testing AI on real work. First person ("I") is fine on About, the author box and articles | "Independent technology lab" and "we" sounded like a generic developer lab; the real value is first-hand tests on real work (reports, documents, data) | Keeping "we" and a generic lab voice; turning the site into a personal portfolio |
 | Home: hero intro, status strip, footer line, meta description and Organization JSON-LD rewritten to match. Hero headline, hero label and "Look closer. Then build." kept. Meta description is 147 characters | Same reason; Google shows the meta description | – |
 | Aligned in a follow-up PR the same day: About (title, meta description, first line), the OG image label ("INDEPENDENT LAB"; design otherwise unchanged), the RSS description (same as the Home meta description) and the footer ("Write to me at:") | One voice across the site | – |
 
@@ -378,6 +378,13 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 |---|---|---|
 | The site's positioning text (home and RSS descriptions, Organization description, About title and meta description), the author box bio ("Founder of Durbeen. Learning AI by building with it, in public.") and the structured-data `jobTitle` ("Founder, Durbeen") now present Durbeen as a practical AI lab. The founder's career background is kept only in the About page body | The lab and what it tests should lead; the background is context for the About page, not the headline everywhere | Keeping the engineering background in every description and bio |
 
+## 2026-11-23: repo privacy and CSP for Cloudflare Analytics (audit Stage 5, PR D)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Commercial plans are kept in private notes; public files say only "Commercial plans: kept in private notes." Founder career details are removed from `docs/`. The unused tag `engineering` is removed (31 tags; earlier entries keep their historic numbers). | The brief's own rule 13: no business plans or founder background in the public repo. The About page is the founder's own choice and is unchanged. | Rewriting git history (the owner chose not to). |
+| The report-only CSP allows `https://static.cloudflareinsights.com` (script) and `https://cloudflareinsights.com` (connect). | Cloudflare injects its Web Analytics script by itself; without the entries the report-only policy would log it as a violation. | Blocking the script. |
+
 ## 2026-11-23: headers, previews and CI pinning (audit Stage 5, PR C)
 
 | Decision | Reason | Rejected |
@@ -391,7 +398,7 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 
 | Decision | Reason | Rejected |
 |---|---|---|
-| Durbeen's wording is no longer aimed at engineers (Home, strip, footer, About, Method step 01). The founder's engineering background stays in one line on About. | The audience is anyone using AI on real work. | Keeping the I&C identity in the hero and strip. |
+| Durbeen's wording is no longer aimed at engineers (Home, strip, footer, About, Method step 01). The founder's engineering background stays in one line on About. | The audience is anyone using AI on real work. | Keeping the old engineer-focused identity in the hero and strip. |
 | Category "AI for Engineers" removed; categories are now three. | It no longer fits the positioning, and the category page was empty. | Keeping it empty. |
 | The Infographics gallery lists every picture from published posts, linked to the post. | The page was empty although posts already held six pictures; the post is the written version. | Only articles of type Infographic. |
 | A page title drops the suffix "| Durbeen" when it would pass 60 characters. | Keeps long titles from being cut in search results without changing the H1. | A separate title field per article. |

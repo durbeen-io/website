@@ -77,7 +77,7 @@ content:
           multiple: true
           min: 3
           max: 5
-          values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+          values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "inspection-qa", "standards"]
       - name: series
         label: Series (optional)
         type: select
@@ -230,7 +230,7 @@ content:
               multiple: true
               min: 3
               max: 5
-              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "inspection-qa", "standards"]
           - name: series
             default: "Building Durbeen in Public"
             label: Series (optional)
@@ -403,7 +403,7 @@ content:
               multiple: true
               min: 3
               max: 5
-              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "inspection-qa", "standards"]
           - name: series
             label: Series (optional)
             type: select
@@ -579,7 +579,7 @@ content:
               multiple: true
               min: 3
               max: 5
-              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "inspection-qa", "standards"]
           - name: series
             label: Series (optional)
             type: select
@@ -757,7 +757,7 @@ content:
               multiple: true
               min: 3
               max: 5
-              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "inspection-qa", "standards"]
           - name: series
             label: Series (optional)
             type: select
@@ -923,7 +923,7 @@ content:
               multiple: true
               min: 3
               max: 5
-              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "engineering", "inspection-qa", "standards"]
+              values: ["ai-agents", "llm", "claude-code", "chatgpt", "gemini", "notebooklm", "prompting", "tokens-and-cost", "github", "git", "open-source", "repo-review", "security", "automation", "workflows", "productivity", "macos", "hazel", "markitdown", "markdown", "documents", "ocr", "typescript", "bash", "astro", "cloudflare", "tools", "building-in-public", "learning", "inspection-qa", "standards"]
           - name: series
             label: Series (optional)
             type: select
