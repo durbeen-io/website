@@ -408,3 +408,13 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 | Category "AI for Engineers" removed; categories are now three. | It no longer fits the positioning, and the category page was empty. | Keeping it empty. |
 | The Infographics gallery lists every picture from published posts, linked to the post. | The page was empty although posts already held six pictures; the post is the written version. | Only articles of type Infographic. |
 | A page title drops the suffix "| Durbeen" when it would pass 60 characters. | Keeps long titles from being cut in search results without changing the H1. | A separate title field per article. |
+
+## 2026-11-23: scope, audience and analytics wording (docs fixes)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| Islamic content is out of scope for Durbeen (decided 20 Nov 2026). It goes elsewhere. The earlier plan for a separate section is removed from `CLAUDE.md`. | Durbeen stays tech-focused. | Keeping a deferred section. |
+| Audience: mainly India (decided 20 Nov 2026); the Gulf is not a target. Legal pages: law of India, courts of Hyderabad. | Founder's answer. | Naming Saudi Arabia and the Gulf. |
+| Docs do not name a certificate authority: Cloudflare Universal SSL, and Cloudflare chooses the CA (currently Google Trust Services). | Cloudflare can change the CA. | Naming one CA. |
+| `docs/ANALYTICS.md` and `docs/DEPLOYMENT.md` say Web Analytics is ON, injected by Cloudflare, with no token in code. | The old text said "switched off". | Leaving stale text. |
+

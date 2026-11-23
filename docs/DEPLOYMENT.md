@@ -77,7 +77,7 @@ durbeen.io is registered on Cloudflare. `www` redirects to the main address, HTT
 
 ## Analytics (Cloudflare Web Analytics)
 
-Prepared and switched off (`ANALYTICS_TOKEN` in `src/data/site.ts` is empty). See `docs/ANALYTICS.md` for the token steps, the launch-day setting and the Content-Security-Policy entries (`script-src https://static.cloudflareinsights.com/beacon.min.js`, `connect-src cloudflareinsights.com`) for Phase 7.
+On. Cloudflare injects its own cookie-free script automatically; there is no token in the code (`ANALYTICS_TOKEN` in `src/data/site.ts` is empty). The CSP allows it (PR #79) and the Privacy page names it (PR #80). See `docs/ANALYTICS.md`.
 
 ## Search (Pagefind)
 

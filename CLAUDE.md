@@ -23,7 +23,7 @@
 
 ## 3. Audience
 
-Technology enthusiasts, developers and independent builders, entrepreneurs, businesses looking for practical digital solutions, and AI and automation users. Mainly English-speaking readers, with a strong base in Saudi Arabia, the Gulf and India.
+Technology enthusiasts, developers and independent builders, entrepreneurs, businesses looking for practical digital solutions, and AI and automation users. Audience: mainly India (decided 20 Nov 2026). Readers are mainly English-speaking.
 
 ## 4. Voice and tone
 
@@ -347,7 +347,6 @@ Every phase ends with a gate. **Every gate also includes: relevant `docs/` files
 
 | Item | Note |
 |---|---|
-| **Quran Visuals** (see section 18) | Planned project; design already agreed |
 | **Commercial plans** | Deferred (20 Nov 2026). Commercial plans: kept in private notes. Revisit when the founder asks |
 | **Newsletter (Kit) and free download** | Deferred (20 Nov 2026). The `NewsletterForm` component exists but is hidden. Plan: Kit free plan, double opt-in, form in the footer and at the end of articles, "Repo Safety Checklist" PDF as the first download |
 | Contact form | Needs a Worker script (the site is static assets only), Turnstile and a way to send email. Email link only until then |
@@ -404,7 +403,7 @@ Documentation is part of the product. Keep these files current, in plain English
 | `ADMIN.md` | Account inventory: who owns what, roles, 2FA status, where recovery codes are kept (location only, never the codes), how to add/remove a collaborator |
 | `SECURITY.md` | The account and role table, 2FA rules and the controls in section 15 as a checklist, with the date each was last verified |
 | `INCIDENT.md` | Step-by-step: account compromised, site down, bad deploy (how to roll back), domain/DNS problem, leaked secret |
-| `STRATEGY.md` | Business strategy, revenue plans, founder background, the launch article plan and the Quran Visuals purpose |
+| `STRATEGY.md` | Business strategy, revenue plans, founder background, the launch article plan |
 
 **Rules:**
 - ADMIN, SECURITY and INCIDENT must **never** be committed to the public repo. The public docs may say that a private repo exists, but must not copy its contents.
@@ -416,18 +415,9 @@ Documentation is part of the product. Keep these files current, in plain English
 
 The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). Phase 6 needs 3-5 real articles live at launch.
 
-## 18. Deferred project: Quran Visuals
+## 18. Out of scope
 
-**Status:** idea agreed, **not to be built yet.** Start only when the founder asks (after the main launch).
-
-**Purpose:** kept in the private `internal` repo (`STRATEGY.md`).
-
-**Decisions so far:**
-- Lives on durbeen.io as its own section (e.g. `/quran-visuals/`), with its own short introduction. Kept separate from the tech feed: not in the homepage log or the Insights list; one link in the footer or menu.
-- Uses the same stack and design system. It can move to its own site later because it shares the templates.
-- Adds 2 templates when built: a **gallery** (grid of same-shape 4:5 cards, monospace labels like `N°001 · AL-FATIHAH · 7 AYAT`, filter by series such as "Juz 30" or "Daily prayer surahs") and an **infographic page** (large image in a thin frame; full-screen with pinch-zoom and swipe to next/previous; high-resolution download; WhatsApp/X/copy-link sharing; a text version below with the Arabic surah name in Noto Naskh Arabic, the meaning and the founder's explanation).
-- Tech and general infographics are separate: they go in Insights as the **Infographic** article type (written text summary required); **Visual** stays for other image-led pieces.
-- Content accuracy matters: each infographic should cite the translation or tafsir it is based on.
+Islamic content is out of scope for Durbeen (decided 20 Nov 2026). It goes elsewhere, not on durbeen.io. Durbeen stays tech-focused.
 
 ---
 
@@ -442,6 +432,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - **Next session goal:** resolve the founder items above, then Phase 6 (3 to 5 real articles, drafted by Claude from the founder's notes and edited by the founder), only when the founder says to start.
 
 ## Completed
+- 23 Nov 2026 (doc fixes, PR docs-gap-fixes): Quran Visuals and the Gulf-audience text removed (Islamic content is out of scope; audience is mainly India); the certificate line no longer names a CA; `docs/ANALYTICS.md` and `docs/DEPLOYMENT.md` now say Cloudflare Web Analytics is ON (injected by Cloudflare, no token in code).
 - 23 Nov 2026 (legal pages FINAL, PR #80): the founder reviewed and approved the text of Privacy, Terms, Editorial policy and Affiliate disclosure. Privacy now names Cloudflare Web Analytics and Cloudflare Email Routing to Gmail; no "before launch" text; mailto links; dates 23 Nov 2026. The "PRELIMINARY DRAFT" notice is removed from all four and `check:brackets` no longer looks for it (it still lists `[BRACKET]` placeholders).
 - 23 Nov 2026 (audit Stage 5, PR D, privacy and CSP): commercial plans and founder career details removed from public docs (history unchanged); `engineering` tag removed; report-only CSP allows Cloudflare Web Analytics.
 - 23 Nov 2026 (audit Stage 5, PR C, headers and config): `public/_headers` adds HSTS `max-age=300` and a report-only CSP (tested locally, 0 violations); `preview_urls` off; Actions pinned to SHAs with job timeouts; `.github/dependabot.yml` (weekly, 5 PRs max, no auto-merge); sitemap `<lastmod>`. The 307 on no-slash URLs and `/404` = 200 are Cloudflare defaults (see DEPLOYMENT.md). Next: raise HSTS in steps and switch the CSP to enforcing once the live console is clean.
@@ -453,7 +444,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - 22 Nov 2026 (Phase 6, post 3 revised, still draft): METR sentence now "sped up since 2023, to roughly every four months" (founder's wording, linked to Time Horizon 1.1); step 2 of the build story and Infographic 2 now read "We planned" (planned together, outside Claude Code); the permission ladder is framed as a general way to think about risk, with this build as one example and READ/EDIT labelled "Agent works, you review"; Gartner and security-header claims confirmed by the founder. No `[CHECK]` left; about 823 words.
 - 22 Nov 2026 (Phase 6, post 3 drafted): N°003 "AI stopped answering questions. Now it does the work." (`ai-stopped-answering-questions.mdx`, Insight, AI & AI Tools, `draft: true`, about 765 words). Three infographic placeholders and the hero are commented out (finals come from `~/Projects/images/ai/posts/n003/` at publish time). METR's newer 3 to 4 month doubling taken from metr.org (Time Horizon 1.1, Jan 2026). Next free real number: 4.
 - 22 Nov 2026 (Phase 8, founder dashboard steps done): the founder created the www.durbeen.io to https://durbeen.io 301 Redirect Rule (Cloudflare template) and turned on Always Use HTTPS. Both checked by the founder on a phone (not re-tested by the builder).
-- 22 Nov 2026 (Phase 8 verified live): https://durbeen.io returns 200 with a valid Let's Encrypt certificate (to Feb 2027); N°001 and N°002 and their hero images return 200; sitemap (all durbeen.io), RSS and robots.txt use durbeen.io; the four security headers are on the homepage; the production workers.dev address now returns 404 (disabled, not redirected); `/design-system/` returns 404. Still waiting on the founder: www Redirect Rule and Always Use HTTPS; Search Console.
+- 22 Nov 2026 (Phase 8 verified live): https://durbeen.io returns 200 with a valid certificate from Cloudflare Universal SSL (Cloudflare chooses the CA; currently Google Trust Services; valid to Feb 2027); N°001 and N°002 and their hero images return 200; sitemap (all durbeen.io), RSS and robots.txt use durbeen.io; the four security headers are on the homepage; the production workers.dev address now returns 404 (disabled, not redirected); `/design-system/` returns 404. Still waiting on the founder: www Redirect Rule and Always Use HTTPS; Search Console.
 - 22 Nov 2026 (Phase 8, go-live, PR #66): founder approved. Custom domains `durbeen.io` and `www.durbeen.io` in `wrangler.jsonc`; production `workers.dev` switched off (`workers_dev: false`; a site with no Worker script cannot redirect it; branch previews stay); pre-launch `noindex` removed; four security headers added in `public/_headers` (X-Content-Type-Options, Referrer-Policy, X-Frame-Options, Permissions-Policy); `/design-system/` pages and `docs/pr-screenshots` deleted; Lighthouse asserts SEO on every page except the deliberately noindex 404. Legal pages: founder review pending; remove PRELIMINARY after review. **Founder does in the dashboard:** www to durbeen.io Redirect Rule (301) and Always Use HTTPS. **Phase 7 follow-ups still open:** Content-Security-Policy (must allow `'wasm-unsafe-eval'` for Pagefind), HSTS, browser testing (Chrome, Safari, Firefox, iPhone/Android), uptime monitoring, INCIDENT.md rollback test, external header scan. Verification results are in the next entry.
 - 22 Nov 2026 (Phase 6, post 2 PUBLISHED): N°002 "Why PDFs cost more tokens, and the simple fix I use" set to draft: false (founder-approved for this post only), publishDate 22 Nov 2026, hero image `images/n002-pdf-tokens.png` with alt text, sourced docs sentence on tokens per page restored. No `[CHECK]` left. Next free real number: 3.
 - 22 Nov 2026 (Phase 6, post 2 update): retitled "Why PDFs cost more tokens, and the simple fix I use" (file now `why-pdfs-cost-more-tokens.mdx`; never published, so no redirect); removed the before/after number and the token-range figure; added the Python 3.10 note and uv command, and a real screenshot-loss example in Limits. No `[CHECK]` left; still a draft with the hero image placeholder.
@@ -478,7 +469,7 @@ The launch article plan is kept in the private `internal` repo (`STRATEGY.md`). 
 - 19 Nov 2026 (Phase 0): Astro 7.4.13 minimal scaffold added (PR #2). Cloudflare Workers config and pre-launch `noindex` header added (PR #3); first deploy to `durbeen-website.durbeen.workers.dev` succeeded. Follow-up: Pages wording replaced by Workers, Node version pinned to 26 (`.node-version`), Wrangler telemetry off, `workers_dev` and `preview_urls` set explicitly. Account and access details are in the private repo.
 - 18-19 Nov 2026 (Phase 0, partial): installed Homebrew, Node v26 (Active LTS), npm and the GitHub CLI. Created public repo `durbeen-io/website` and private repo `durbeen-io/internal`. First commit: brief, brand files, design references, `.gitignore`. Security baseline set (details in private repo). Public docs skeleton added: README, DECISIONS, PUBLISHING, DEPLOYMENT, CHANGELOG.
 - 18 Nov 2026: brand, design direction, mockups, logo ("Discovery"), colour (signal orange), architecture and phase plan approved in planning (outside Claude Code).
-- 18 Nov 2026 (v1.3): page inventory (12 pages + 4 templates) and connection map; content system (categories, types, levels, tags, series); Toolkit, Editorial policy; Kit newsletter + free download; scorecard, level labels, last-verified dates, reading line, image handling; automatic checks; first 12 articles; Quran Visuals deferred project; deferred list expanded.
+- 18 Nov 2026 (v1.3): page inventory (12 pages + 4 templates) and connection map; content system (categories, types, levels, tags, series); Toolkit, Editorial policy; Kit newsletter + free download; scorecard, level labels, last-verified dates, reading line, image handling; automatic checks; first 12 articles; deferred list expanded.
 - 18 Nov 2026 (v1.2): added section 15 (security, admin, access control) and section 16 (documentation); gates updated.
 - 18 Nov 2026 (v1.1): added dedicated 16px favicon tier + PNG/ICO icon set; accent colour confirmed final (orange).
 
