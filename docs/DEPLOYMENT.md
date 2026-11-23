@@ -91,7 +91,7 @@ Prepared and switched off (`ANALYTICS_TOKEN` in `src/data/site.ts` is empty). Se
 
 ## Before launch: placeholders
 
-`npm run build && npm run check:brackets` lists every `[BRACKET]` placeholder and every "PRELIMINARY" marker on the built site (the internal design-system pages are skipped). It exits with an error while any remain. It is **not** a CI job (it would fail on purpose before the founder fills them in). The Phase 8 gate requires it to report none.
+`npm run build && npm run check:brackets` lists every `[BRACKET]` placeholder on the built site (the internal design-system pages are skipped). It exits with an error while any remain. It is **not** a CI job (it would fail on purpose before the founder fills them in). The Phase 8 gate requires it to report none.
 
 ## 404 page
 

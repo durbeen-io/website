@@ -1,18 +1,16 @@
 ---
 // Shared layout for plain-text policy pages (Privacy, Terms, Editorial policy, Affiliate disclosure).
-// While `preliminary` is true the page shows a clear notice. `npm run check:brackets` flags that notice and any
-// [BRACKET] left in the text, so a preliminary page cannot be launched by accident (Phase 8 gate).
+// The founder reviewed and approved the legal text on 23 Nov 2026, so the "PRELIMINARY DRAFT" notice is gone.
+// `npm run check:brackets` still flags any [BRACKET] placeholder left in a page.
 import BaseLayout from './BaseLayout.astro';
-import Callout from '../components/Callout.astro';
 
 interface Props {
   title: string; // page heading
   description: string;
   label: string; // mono label, e.g. "PRIVACY"
   updated: string; // e.g. "20 Nov 2026"
-  preliminary?: boolean;
 }
-const { title, description, label, updated, preliminary = true } = Astro.props;
+const { title, description, label, updated } = Astro.props;
 ---
 
 <BaseLayout title={`${title} | Durbeen`} description={description}>
@@ -22,16 +20,6 @@ const { title, description, label, updated, preliminary = true } = Astro.props;
       <h1>{title}</h1>
       <p class="label updated">LAST UPDATED {updated.toUpperCase()}</p>
     </header>
-
-    {
-      preliminary && (
-        <div class="notice">
-          <Callout variant="warning" label="PRELIMINARY DRAFT">
-            This page is a first draft. It is not legal advice and has not had a legal check yet, so it may change.
-          </Callout>
-        </div>
-      )
-    }
 
     <div class="prose"><slot /></div>
   </article>
@@ -52,13 +40,6 @@ const { title, description, label, updated, preliminary = true } = Astro.props;
     font-size: var(--fs-article-title);
     line-height: 1;
     letter-spacing: -0.035em;
-  }
-  .notice {
-    max-width: var(--reading-width);
-    margin-top: var(--space-4);
-  }
-  .notice :global(.callout) {
-    margin: 0;
   }
   .prose {
     max-width: var(--reading-width);

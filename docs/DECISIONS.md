@@ -378,6 +378,12 @@ Format: date, decision, reason, alternatives rejected. Newest entries go at the 
 |---|---|---|
 | The site's positioning text (home and RSS descriptions, Organization description, About title and meta description), the author box bio ("Founder of Durbeen. Learning AI by building with it, in public.") and the structured-data `jobTitle` ("Founder, Durbeen") now present Durbeen as a practical AI lab. The founder's career background is kept only in the About page body | The lab and what it tests should lead; the background is context for the About page, not the headline everywhere | Keeping the engineering background in every description and bio |
 
+## 2026-11-23: legal pages final (audit Stage 5, PR E)
+
+| Decision | Reason | Rejected |
+|---|---|---|
+| The "PRELIMINARY DRAFT" notice is removed from Privacy, Terms, Editorial policy and Affiliate disclosure; `check:brackets` no longer looks for it. | The founder reviewed and approved the text on 23 Nov 2026 (the brief's Phase 8 gate asks for no preliminary marker). It is not a lawyer's review. | Keeping the notice. |
+
 ## 2026-11-23: repo privacy and CSP for Cloudflare Analytics (audit Stage 5, PR D)
 
 | Decision | Reason | Rejected |
