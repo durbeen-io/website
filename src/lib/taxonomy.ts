@@ -1,5 +1,5 @@
 // The controlled lists from CLAUDE.md section 9. One place, used by the content schema, the filters and the category pages.
-export const categories = ['AI & AI Tools', 'AI for Engineers', 'GitHub & Open Source', 'Building Durbeen'] as const;
+export const categories = ['AI & AI Tools', 'GitHub & Open Source', 'Building Durbeen'] as const;
 export const types = ['Review', 'Comparison', 'Guide', 'Experiment', 'Build Note', 'Insight', 'Visual', 'Infographic'] as const;
 // Series: ongoing sequences of articles (not categories). A controlled list, so a typo cannot create a new series.
 export const series = ['Building Durbeen in Public', 'GitHub Mastery', 'Repo Reviews'] as const;

@@ -40,6 +40,8 @@ const toc = headings.filter((h) => h.depth === 2).map((h) => ({ id: h.slug, text
 const minutes = readingMinutes(article);
 const related = relatedArticles(article, all);
 const { previous, next } = adjacentArticles(article, all);
+// Browser/search title: "<title> | Durbeen", or just the title when that would pass 60 characters (audit F011/F012).
+const pageTitle = `${d.title} | Durbeen`.length > 60 ? d.title : `${d.title} | Durbeen`;
 const inSeries = d.series ? all.filter((a) => a.data.series === d.series && a.id !== article.id) : [];
 const n = String(d.number).padStart(3, '0');
 const sc = d.scorecard;
@@ -81,7 +83,7 @@ const jsonLd = [
 ];
 ---
 
-<BaseLayout title={`${d.title} | Durbeen`} description={d.description} ogType="article" ogImage={image} jsonLd={jsonLd}>
+<BaseLayout title={pageTitle} description={d.description} ogType="article" ogImage={image} jsonLd={jsonLd}>
   <ReadingProgress target="#article-body" />
   <article data-pagefind-body data-pagefind-meta={`type:${d.type}`}>
     <header class="head container" data-pagefind-meta={`number:${n}`}>
@@ -104,6 +106,13 @@ const jsonLd = [
         {showLevel && d.level && <Tag variant="chip" label={d.level.toUpperCase()} />}
         {d.tags.map((t) => <Tag label={t.toUpperCase()} href={tagHref(t)} />)}
       </div>
+      {
+        d.series && (
+          <p class="label part-of">
+            PART OF: <a href={seriesHref(d.series)}>{d.series.toUpperCase()}</a>
+          </p>
+        )
+      }
     </header>
 
     {
@@ -247,6 +256,9 @@ const jsonLd = [
     font-size: 15px;
     font-weight: 500;
     color: var(--ink);
+  }
+  .part-of {
+    margin: var(--space-2) 0 0;
   }
   .chips {
     display: flex;

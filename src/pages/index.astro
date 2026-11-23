@@ -37,7 +37,7 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 
 // The four steps of the method (brief section 1). Copy follows the mockup.
 const steps = [
-  { n: '01', name: 'Discover', text: 'Find AI tools and ideas that could save engineers real time.' },
+  { n: '01', name: 'Discover', text: 'Find AI tools and ideas that could save you real time.' },
   { n: '02', name: 'Evaluate', text: 'Try them on real work: reports, documents, data. Note what breaks.' },
   { n: '03', name: 'Build', text: 'Turn what works into small tools and workflows I actually use.' },
   { n: '04', name: 'Share', text: 'Write it up honestly, so you can skip the trial and error.' },
@@ -65,8 +65,8 @@ const organization = {
       <p class="label kicker"><span aria-hidden="true">[ 00 ]</span> Discover → Evaluate → Build → Share</p>
       <h1>Field notes from the edge of technology.</h1>
       <p class="lede">
-        Durbeen is an independent lab run by an instrumentation &amp; controls engineer. I test AI tools on real work
-        (reports, documents, data), write down what breaks, and keep what helps.
+        Durbeen is an independent lab. I test AI tools on real work (reports, documents, data), write down what
+        breaks, and keep what helps.
       </p>
       <div class="actions">
         <Button href={latest ? articleHref(latest) : '/insights/'} arrow>Read the latest</Button>

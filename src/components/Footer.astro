@@ -1,5 +1,5 @@
 ---
-// Site footer (CLAUDE.md section 8): intro and plain-text contact, Explore, Elsewhere (GitHub, RSS),
+// Site footer (CLAUDE.md section 8): intro and the contact email (a mailto link), Explore, Elsewhere (GitHub, RSS),
 // the large DURBEEN wordmark, and the policy links. The newsletter form is hidden until Kit is set up (deferred).
 // LinkedIn is left out until the founder supplies the URL. Nothing is guessed.
 
@@ -30,8 +30,8 @@ const year = new Date().getFullYear();
     <div class="top">
       <div class="intro">
         <p class="intro-title">Field notes from the edge of technology.</p>
-        <p class="intro-text">Independent lab. An engineer testing AI on real work. Write to me at:</p>
-        <p class="contact"><span class="visually-hidden">Email: </span>hello@durbeen.io</p>
+        <p class="intro-text">Independent lab. Testing AI on real work. Write to me at:</p>
+        <p class="contact"><span class="visually-hidden">Email: </span><a href="mailto:hello@durbeen.io">hello@durbeen.io</a></p>
       </div>
 
       <div class="links">
@@ -97,7 +97,11 @@ const year = new Date().getFullYear();
     font-family: var(--font-mono);
     font-size: 15px;
     color: var(--ink);
-    user-select: all; /* plain text on purpose (no mail link until email routing is set up); easy to copy */
+  }
+  .contact a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
   .links {
     display: flex;

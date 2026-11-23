@@ -1,18 +1,20 @@
 ---
-// One card of the Infographics gallery: the picture (whole image, never cropped), number and category, title, date.
-// The whole card is one link (the title), like ArticleCard. data-* lets the category filter hide it.
+// One tile of the Infographics gallery: one picture from a published article (the hero or a figure in the text),
+// its caption, and a link back to the article, which holds the full written version.
+// The picture is never cropped. The whole tile is one link (the "From:" line), like ArticleCard.
+// data-* lets the category filter hide it.
 import { Picture } from 'astro:assets';
 
 interface Props {
-  number: number;
+  number: number; // log number of the article the picture comes from
   category: string;
-  title: string;
-  date: string; // already formatted, e.g. "18 NOV 2026"
-  href: string;
+  fromTitle: string; // title of that article
+  caption?: string; // the figure's caption, when it has one
+  href: string; // the article
   image: ImageMetadata;
   alt: string;
 }
-const { number, category, title, date, href, image, alt } = Astro.props;
+const { number, category, fromTitle, caption, href, image, alt } = Astro.props;
 const n = String(number).padStart(3, '0');
 ---
 
@@ -29,8 +31,8 @@ const n = String(number).padStart(3, '0');
     />
   </div>
   <p class="meta">N°{n} · {category.toUpperCase()}</p>
-  <h2 class="title"><a href={href}>{title}</a></h2>
-  <p class="date">{date}</p>
+  {caption && <p class="caption">{caption}</p>}
+  <p class="from">From: <a href={href}>{fromTitle}</a></p>
 </li>
 
 <style>
@@ -58,40 +60,46 @@ const n = String(number).padStart(3, '0');
     height: 100%;
     object-fit: contain; /* the whole infographic stays visible */
   }
-  .meta,
-  .date {
+  .meta {
     margin: 0;
     font-family: var(--font-mono);
     font-size: var(--fs-label);
     letter-spacing: 0.04em;
     color: var(--muted);
   }
-  .title {
+  .caption {
     margin: 0;
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.2;
     letter-spacing: -0.015em;
-  }
-  .title a {
     color: var(--ink);
-    text-decoration: none;
   }
-  .title a::after {
-    content: '';
-    position: absolute;
-    inset: 0; /* the whole card is the tap target */
+  .from {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--text-2);
   }
-  .card:hover .title a {
+  .from a {
+    color: var(--ink);
     text-decoration: underline;
-    text-decoration-color: var(--accent);
+    text-decoration-color: var(--line);
     text-underline-offset: 0.2em;
   }
-  .title a:focus-visible {
-    outline: none; /* the ring goes on the whole card */
+  .from a::after {
+    content: '';
+    position: absolute;
+    inset: 0; /* the whole tile is the tap target */
   }
-  .card:has(.title a:focus-visible) {
+  .card:hover .from a {
+    text-decoration-color: var(--accent);
+  }
+  .from a:focus-visible {
+    outline: none; /* the ring goes on the whole tile */
+  }
+  .card:has(.from a:focus-visible) {
     outline: 2px solid var(--accent);
     outline-offset: 6px;
   }
